@@ -10,9 +10,8 @@
   metafield populated per-product in Shopify Admin. Renders nothing if the
   metafield is blank, so products without a colour family are unaffected.
 
-  Each swatch is filled with the `custom.swatch_color` colour metafield when
-  set (reads clearly at small sizes, unlike a shrunk product photo) and
-  falls back to the product's featured image when no colour is set.
+  Each swatch shows the product's actual featured photo. Falls back to the
+  `custom.swatch_color` colour metafield only when a product has no photo.
 
   The current product's swatch is rendered as a non-interactive element
   (not a link) since clicking it should be a no-op.
@@ -47,8 +46,8 @@
         aria-label="{{ current_color_name }}"
         title="{{ current_color_name }}"
       >
-        <span class="color-family-swatches__frame"{% if current_swatch_color != blank %} style="background-color: {{ current_swatch_color }};"{% endif %}>
-          {%- if current_swatch_color == blank and product.featured_media -%}
+        <span class="color-family-swatches__frame"{% if product.featured_media == blank and current_swatch_color != blank %} style="background-color: {{ current_swatch_color }};"{% endif %}>
+          {%- if product.featured_media -%}
             {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
           {%- endif -%}
         </span>
@@ -66,8 +65,8 @@
             aria-label="{{ linked_color_name }}"
             title="{{ linked_color_name }}"
           >
-            <span class="color-family-swatches__frame"{% if linked_swatch_color != blank %} style="background-color: {{ linked_swatch_color }};"{% endif %}>
-              {%- if linked_swatch_color == blank and linked_product.featured_media -%}
+            <span class="color-family-swatches__frame"{% if linked_product.featured_media == blank and linked_swatch_color != blank %} style="background-color: {{ linked_swatch_color }};"{% endif %}>
+              {%- if linked_product.featured_media -%}
                 {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
               {%- endif -%}
             </span>
