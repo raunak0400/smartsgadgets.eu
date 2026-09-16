@@ -1,0 +1,346 @@
+{% liquid
+  assign hero_image = section.settings.hero_image
+  assign button_link = section.settings.button_link | default: '#meari-voordelen'
+%}
+
+<section
+  id="MeariHero-{{ section.id }}"
+  class="meari-s1-hero"
+>
+  <div class="meari-s1-hero__inner">
+
+    <div class="meari-s1-hero__content">
+
+      {% if section.settings.badge != blank %}
+        <div class="meari-s1-hero__badge">
+          {{ section.settings.badge | escape }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="meari-s1-hero__heading">
+          {{ section.settings.heading | escape | newline_to_br }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="meari-s1-hero__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="meari-s1-hero__media">
+
+      {% if hero_image != blank %}
+        {{
+          hero_image
+          | image_url: width: 1800
+          | image_tag:
+            class: 'meari-s1-hero__image',
+            widths: '600, 800, 1000, 1200, 1500, 1800',
+            sizes: '(min-width: 990px) 55vw, 100vw',
+            loading: 'eager',
+            fetchpriority: 'high'
+        }}
+      {% else %}
+        <div class="meari-s1-hero__placeholder">
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #MeariHero-{{ section.id }} {
+    --meari-dark: #0d172b;
+    --meari-text: #667085;
+    --meari-orange: #ff7900;
+    --meari-background: #f5f8fc;
+
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background:
+      radial-gradient(
+        circle at 15% 20%,
+        rgba(65, 145, 255, 0.11),
+        transparent 34%
+      ),
+      var(--meari-background);
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    width: min(1500px, calc(100% - 64px));
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 64px 0;
+    gap: 56px;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 570px;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 9px 17px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(13, 23, 43, 0.09);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 8px 28px rgba(25, 45, 80, 0.06);
+    color: var(--meari-dark);
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__heading {
+    margin: 0;
+    color: var(--meari-dark);
+    font-size: clamp(44px, 4.6vw, 72px);
+    font-weight: 800;
+    line-height: 0.99;
+    letter-spacing: -0.045em;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__description {
+    max-width: 540px;
+    margin-top: 27px;
+    color: var(--meari-text);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__description p {
+    margin: 0;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    min-height: 54px;
+    margin-top: 34px;
+    padding: 14px 27px;
+    border-radius: 999px;
+    background: var(--meari-orange);
+    box-shadow: 0 14px 32px rgba(255, 121, 0, 0.25);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__button:hover {
+    background: #ed7000;
+    box-shadow: 0 18px 38px rgba(255, 121, 0, 0.32);
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__button svg {
+    flex: 0 0 auto;
+    transition: transform 180ms ease;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__button:hover svg {
+    transform: translateX(4px);
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__media {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #eceff3;
+    box-shadow: 0 25px 65px rgba(25, 45, 80, 0.14);
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center;
+}
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__placeholder {
+    display: flex;
+    width: 100%;
+    height: 540px;
+    align-items: center;
+    justify-content: center;
+    background: #edf1f6;
+  }
+
+  #MeariHero-{{ section.id }} .meari-s1-hero__placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 1100px) {
+    #MeariHero-{{ section.id }} .meari-s1-hero__inner {
+      width: min(100% - 40px, 1200px);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      min-height: auto;
+      gap: 34px;
+      padding: 54px 0;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__image,
+#MeariHero-{{ section.id }} .meari-s1-hero__placeholder {
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    #MeariHero-{{ section.id }} .meari-s1-hero__inner {
+      grid-template-columns: 1fr;
+      width: min(100% - 32px, 760px);
+      gap: 38px;
+      padding: 55px 0;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__content {
+      max-width: 680px;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__heading {
+      font-size: clamp(43px, 9vw, 62px);
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__media {
+      border-radius: 24px;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__image,
+    #MeariHero-{{ section.id }} .meari-s1-hero__placeholder {
+      height: auto;
+      min-height: 390px;
+      aspect-ratio: 16 / 10;
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    #MeariHero-{{ section.id }} .meari-s1-hero__inner {
+      width: calc(100% - 28px);
+      gap: 31px;
+      padding: 42px 0;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__badge {
+      min-height: 34px;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      font-size: 10px;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__heading {
+      font-size: clamp(39px, 12vw, 52px);
+      line-height: 1.02;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__description {
+      margin-top: 21px;
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__button {
+      width: 100%;
+      margin-top: 27px;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__media {
+      border-radius: 20px;
+    }
+
+    #MeariHero-{{ section.id }} .meari-s1-hero__image,
+    #MeariHero-{{ section.id }} .meari-s1-hero__placeholder {
+      min-height: 260px;
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #MeariHero-{{ section.id }} .meari-s1-hero__button,
+    #MeariHero-{{ section.id }} .meari-s1-hero__button svg {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MEARI Hero",
+  "tag": "section",
+  "class": "section-meari-s1-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "SLIMME BINNENBEVEILIGING"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Eén camera.\nEindeloze gemoedsrust."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Bescherm uw woning, houd uw baby veilig in de gaten en blijf verbonden met uw huisdier met één slimme AI-camera.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Bekijk voordelen"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "MEARI Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,138 @@
+{% doc %}
+  @prompt
+    In the "Shop by category" section (section ID: template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff), the collection/category items (images + labels) are left-aligned instead of centered on the page when viewed on a laptop. Add custom CSS or modify the section's Liquid/CSS so that the grid of category items is horizontally centered on the page, with equal spacing on both sides.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-center-collection-grid-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff .grid,
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff [class*="grid"] {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff .collection-list,
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff [class*="collection"] {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff .collection-card,
+  #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff [class*="collection-card"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-template--18648004132923__b7c18b78-f517-4220-a6c6-ff4ab88b41ff .grid {
+      max-width: {{ block.settings.max_grid_width }}px;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  }
+
+  {% if block.settings.apply_globally %}
+    .collection-list .grid,
+    [class*="collection-list"] .grid,
+    .section-collection-list .grid {
+      justify-content: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .collection-list,
+    [class*="collection-list"],
+    .section-collection-list {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    @media screen and (min-width: 750px) {
+      .collection-list .grid,
+      [class*="collection-list"] .grid,
+      .section-collection-list .grid {
+        max-width: {{ block.settings.max_grid_width }}px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+  {% endif %}
+{% endstyle %}
+
+<div class="ai-center-collection-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.show_message %}
+    <p style="text-align: center; color: {{ block.settings.message_color }}; font-size: 14px; margin: 10px 0;">
+      {{ block.settings.message_text }}
+    </p>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Center collection grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Grid centering"
+    },
+    {
+      "type": "paragraph",
+      "content": "This block centers the collection grid items on the page with equal spacing on both sides."
+    },
+    {
+      "type": "range",
+      "id": "max_grid_width",
+      "label": "Maximum grid width",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1400,
+      "info": "Maximum width of the centered grid on desktop"
+    },
+    {
+      "type": "checkbox",
+      "id": "apply_globally",
+      "label": "Apply to all collection grids",
+      "default": false,
+      "info": "If enabled, this will center all collection list grids on the site, not just the Shop by category section"
+    },
+    {
+      "type": "header",
+      "content": "Optional message"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_message",
+      "label": "Show confirmation message",
+      "default": false,
+      "info": "Display a small message to confirm the centering is active (for testing)"
+    },
+    {
+      "type": "text",
+      "id": "message_text",
+      "label": "Message text",
+      "default": "Collection grid centered"
+    },
+    {
+      "type": "color",
+      "id": "message_color",
+      "label": "Message color",
+      "default": "#2a2b2a"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Center collection grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,251 @@
+<section class="gp-why-choose">
+  <div class="page-width">
+
+    <div class="gp-why-header">
+
+      {% if section.settings.badge != blank %}
+        <span class="gp-badge">
+          {{ section.settings.badge }}
+        </span>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="gp-title">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="gp-text">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+
+    </div>
+
+    <div class="gp-grid">
+
+      {% for block in section.blocks %}
+
+        <div class="gp-card" {{ block.shopify_attributes }}>
+
+          {% if block.settings.icon != blank %}
+            <div class="gp-icon">
+              <img
+                src="{{ block.settings.icon | image_url: width: 96 }}"
+                width="96"
+                height="96"
+                loading="lazy"
+                alt="{{ block.settings.title | escape }}">
+            </div>
+          {% endif %}
+
+          {% if block.settings.title != blank %}
+            <h3>
+              {{ block.settings.title }}
+            </h3>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <p>
+              {{ block.settings.description }}
+            </p>
+          {% endif %}
+
+        </div>
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+    .gp-why-choose{
+  padding:90px 0;
+  background:#f8fafc;
+}
+
+.gp-why-header{
+  max-width:760px;
+  margin:0 auto 60px;
+  text-align:center;
+}
+
+.gp-badge{
+  display:inline-block;
+  padding:10px 20px;
+  border-radius:999px;
+  background:#e8f1ff;
+  color:#1d4ed8;
+  font-size:14px;
+  font-weight:700;
+}
+
+.gp-title{
+  margin:22px 0 18px;
+  font-size:46px;
+  line-height:1.15;
+  font-weight:800;
+  color:#111827;
+}
+
+.gp-text{
+  max-width:700px;
+  margin:auto;
+  font-size:18px;
+  line-height:1.8;
+  color:#6b7280;
+}
+
+.gp-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:30px;
+}
+
+.gp-card{
+  background:#fff;
+  border-radius:24px;
+  padding:40px 30px;
+  text-align:center;
+  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  transition:all .35s ease;
+}
+
+.gp-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 25px 55px rgba(0,0,0,.15);
+}
+
+.gp-icon{
+  width:90px;
+  height:90px;
+  margin:0 auto 25px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.gp-icon img{
+  max-width:100%;
+  height:auto;
+}
+
+.gp-card h3{
+  font-size:24px;
+  margin:0 0 15px;
+  color:#111827;
+}
+
+.gp-card p{
+  margin:0;
+  color:#6b7280;
+  line-height:1.8;
+  font-size:16px;
+}
+
+@media screen and (max-width:990px){
+
+.gp-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.gp-title{
+font-size:38px;
+}
+
+}
+
+@media screen and (max-width:749px){
+
+.gp-why-choose{
+padding:60px 0;
+}
+
+.gp-grid{
+grid-template-columns:1fr;
+}
+
+.gp-title{
+font-size:30px;
+}
+
+.gp-card{
+padding:30px 24px;
+}
+
+.gp-text{
+font-size:16px;
+}
+
+}{% schema %}
+{
+  "name": "GP • Why Choose",
+  "tag": "section",
+  "class": "gp-why-choose",
+
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "Waarom kiezen voor"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titel",
+      "default": "Waarom kiezen voor de MEARI L1 Plus?"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Beschrijving",
+      "default": "<p>Ontdek waarom de MEARI L1 Plus de ideale keuze is voor betrouwbare beveiliging van je woning.</p>"
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icoon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "AI Detectie"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Beschrijving",
+          "default": "Slimme detectie voor betrouwbare meldingen."
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "GP • Why Choose",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

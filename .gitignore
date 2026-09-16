@@ -1,0 +1,6 @@
+.shopify/
+.env
+.DS_Store
+node_modules/
+*.log
+.claude/settings.local.json

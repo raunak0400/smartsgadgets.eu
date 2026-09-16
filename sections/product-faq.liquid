@@ -1,0 +1,158 @@
+{%- liquid
+  assign faq_count = 0
+  for i in (1..8)
+    assign question_key = 'question_' | append: i
+    assign answer_key = 'answer_' | append: i
+    if section.settings[question_key] != blank and section.settings[answer_key] != blank
+      assign faq_count = faq_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if faq_count > 0 -%}
+  <div class="section">
+    <div class="container">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="h4 section__heading text-start mb-6">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- for i in (1..8) -%}
+        {%- liquid
+          assign question_key = 'question_' | append: i
+          assign answer_key = 'answer_' | append: i
+          assign question = section.settings[question_key]
+          assign answer = section.settings[answer_key]
+        -%}
+        {%- if question != blank and answer != blank -%}
+          <details-disclosure>
+            <details class="disclosure disclosure--row">
+              <summary>
+                <div class="flex justify-between items-center">
+                  <h3 class="disclosure__title font-body font-bold text-body flex flex-auto items-center mb-0">
+                    {{ question | escape }}
+                  </h3>
+                  <span class="disclosure__toggle">
+                    {%- if settings.disclosure_toggle == 'plus' -%}
+                      {% render 'icon-plus' %}
+                    {%- else -%}
+                      {% render 'icon-chevron-down' %}
+                    {%- endif -%}
+                  </span>
+                </div>
+              </summary>
+              <div class="disclosure__panel has-motion">
+                <div class="disclosure__content rte">
+                  {{ answer }}
+                </div>
+              </div>
+            </details>
+          </details-disclosure>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product FAQ",
+  "class": "cc-product-faq section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows a shared FAQ accordion. Each question with both a question and answer filled in will appear as its own expandable row. Add this section to the product template, positioned wherever you want it to appear."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "question_1",
+      "label": "Question 1"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_1",
+      "label": "Answer 1"
+    },
+    {
+      "type": "text",
+      "id": "question_2",
+      "label": "Question 2"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_2",
+      "label": "Answer 2"
+    },
+    {
+      "type": "text",
+      "id": "question_3",
+      "label": "Question 3"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_3",
+      "label": "Answer 3"
+    },
+    {
+      "type": "text",
+      "id": "question_4",
+      "label": "Question 4"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_4",
+      "label": "Answer 4"
+    },
+    {
+      "type": "text",
+      "id": "question_5",
+      "label": "Question 5"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_5",
+      "label": "Answer 5"
+    },
+    {
+      "type": "text",
+      "id": "question_6",
+      "label": "Question 6"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_6",
+      "label": "Answer 6"
+    },
+    {
+      "type": "text",
+      "id": "question_7",
+      "label": "Question 7"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_7",
+      "label": "Answer 7"
+    },
+    {
+      "type": "text",
+      "id": "question_8",
+      "label": "Question 8"
+    },
+    {
+      "type": "richtext",
+      "id": "answer_8",
+      "label": "Answer 8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product FAQ"
+    }
+  ]
+}
+{% endschema %}

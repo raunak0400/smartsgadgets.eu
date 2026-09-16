@@ -1,0 +1,34 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-login",
+      "settings": {
+        "enable_shop_login_button": false
+      }
+    },
+    "custom_liquid_RMChYQ": {
+      "type": "custom-liquid",
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"guarantee-warning-container\" style=\"\n      padding-top: {{ container_padding_top | default: \"20px\" }};\n      padding-bottom: {{ container_padding_bottom | default: \"20px\" }};\n    \">\n      <!-- Para İade Garantisi -->\n      <div class=\"guarantee-card\">\n        <div class=\"guarantee-icon\">\n          <svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n            <circle cx=\"10\" cy=\"10\" r=\"9\" fill=\"{{ guarantee_icon_color | default: \"#22c55e\" }}\" stroke=\"{{ guarantee_icon_color | default: \"#22c55e\" }}\" stroke-width=\"2\"/>\n            <path d=\"m6 10 2 2 4-4\" stroke=\"white\" stroke-width=\"2\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n          </svg>\n        </div>\n        <div class=\"guarantee-text\">\n          {{ guarantee_text | default: \"Snelle Toegang tot Bestelgeschiedenis & Tracking\" }}\n        </div>\n      </div>\n\n      <!-- Sahte Ürün Uyarısı -->\n      <div class=\"warning-card\">\n        <div class=\"warning-content\">\n          {{ warning_text | default: \"Uw Privacy Is Belangrijk: Uw gegevens zijn veilig bij ons\" }}\n        </div>\n      </div>\n    </div>\n\n    {% style %}\n    .guarantee-warning-container {\n      width: 100%;\n      display: flex;\n      flex-direction: column;\n      align-items: {{ container_alignment | default: \"center\" }};\n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;\n    }\n\n    .guarantee-card {\n      background: {{ guarantee_bg_color | default: \"#f0f9ff\" }};\n      border: 1px solid {{ guarantee_border_color | default: \"#e0f2fe\" }};\n      border-left: 4px solid {{ guarantee_accent_color | default: \"#22c55e\" }};\n      border-radius: {{ border_radius | default: \"8px\" }};\n      padding: {{ card_padding | default: \"16px 20px\" }};\n      margin-bottom: {{ card_spacing | default: \"12px\" }};\n      display: flex;\n      align-items: center;\n      gap: 12px;\n      max-width: 600px;\n      width: 100%;\n    }\n\n    .guarantee-icon {\n      flex-shrink: 0;\n    }\n\n    .guarantee-text {\n      color: {{ guarantee_text_color | default: \"#374151\" }};\n      font-size: {{ text_font_size | default: \"14px\" }};\n      line-height: 1.4;\n      font-weight: 500;\n    }\n\n    .guarantee-percentage {\n      font-weight: 600;\n      color: {{ guarantee_highlight_color | default: '#1f2937' }};\n    }\n\n    .guarantee-link {\n      font-weight: 600;\n      color: {{ guarantee_highlight_color | default: '#1f2937' }};\n      text-decoration: underline;\n      cursor: pointer;\n    }\n\n    .guarantee-link:hover {\n      color: {{ guarantee_icon_color | default: \"#22c55e\" }};\n    }\n\n    .warning-card {\n      background: {{ warning_bg_color | default: \"#fef2f2\" }};\n      border: 1px solid {{ warning_border_color | default: \"#fecaca\" }};\n      border-left: 4px solid {{ warning_accent_color | default: \"#ef4444\" }};\n      border-radius: {{ border_radius | default: \"8px\" }};\n      padding: {{ card_padding | default: \"16px 20px\" }};\n      max-width: 600px;\n      width: 100%;\n    }\n\n    .warning-content {\n      color: {{ warning_text_color | default: \"#374151\" }};\n      font-size: {{ text_font_size | default: \"14px\" }};\n      line-height: 1.4;\n      font-weight: 500;\n    }\n\n    .warning-title {\n      font-weight: 600;\n      color: {{ warning_highlight_color | default: '#1f2937' }};\n    }\n\n    /* Responsive tasarım */\n    @media (max-width: 768px) {\n      .guarantee-warning-container {\n        align-items: {{ mobile_alignment | default: \"center\" }} !important;\n        margin: 0 !important;\n        padding-left: 0 !important;\n        padding-right: 0 !important;\n      }\n      \n      .guarantee-card,\n      .warning-card {\n        padding: 14px 16px;\n        max-width: 100%;\n        width: 100%;\n        margin-left: 0 !important;\n        margin-right: 0 !important;\n      }\n      \n      .guarantee-text,\n      .warning-content {\n        font-size: 13px;\n      }\n    }\n    {% endstyle %}",
+        "section_height": "tight",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_liquid_RMChYQ"
+  ]
+}

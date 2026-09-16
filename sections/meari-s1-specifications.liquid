@@ -1,0 +1,528 @@
+{% liquid
+  assign section_id = 'meari-specifications-' | append: section.id
+%}
+
+<section id="{{ section_id }}" class="meari-specifications">
+  <div class="meari-specifications__container">
+
+    <div class="meari-specifications__header">
+      {% if section.settings.eyebrow != blank %}
+        <div class="meari-specifications__eyebrow">
+          <span class="meari-specifications__dot"></span>
+          {{ section.settings.eyebrow }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="meari-specifications__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="meari-specifications__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="meari-specifications__grid">
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M12 16h24a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4Z"></path>
+            <path d="M17 16l3-5h8l3 5"></path>
+            <circle cx="24" cy="28" r="8"></circle>
+            <circle cx="24" cy="28" r="3" class="accent-fill"></circle>
+            <path d="M34 21h1"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Resolutie</h3>
+          <p>2K QHD</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M5 24s7-11 19-11 19 11 19 11-7 11-19 11S5 24 5 24Z"></path>
+            <circle cx="24" cy="24" r="7"></circle>
+            <circle cx="24" cy="24" r="3" class="accent-fill"></circle>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Kijkhoek</h3>
+          <p>110° groothoek</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M28 8a16 16 0 1 0 10 27A18 18 0 0 1 28 8Z"></path>
+            <path d="M36 10v5M33.5 12.5h5" class="accent-stroke"></path>
+            <path d="M40 19v4M38 21h4" class="accent-stroke"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Nachtzicht</h3>
+          <p>Tot 10 meter</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="11" y="15" width="26" height="24" rx="7"></rect>
+            <path d="M24 15V9"></path>
+            <circle cx="24" cy="7" r="2" class="accent-fill"></circle>
+            <path d="M11 23H7v8h4M37 23h4v8h-4"></path>
+            <circle cx="19" cy="26" r="2" class="accent-fill"></circle>
+            <circle cx="29" cy="26" r="2" class="accent-fill"></circle>
+            <path d="M19 33h10"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>AI-detectie</h3>
+          <p>Personen, huisdieren en geluid</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M7 18c10-8 24-8 34 0"></path>
+            <path d="M13 25c7-6 15-6 22 0"></path>
+            <path d="M19 32c3-3 7-3 10 0"></path>
+            <circle cx="24" cy="38" r="2.5" class="accent-fill"></circle>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Wifi</h3>
+          <p>2,4 GHz</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="17" y="7" width="14" height="25" rx="7"></rect>
+            <path d="M11 24v2c0 7 5 12 13 12s13-5 13-12v-2"></path>
+            <path d="M24 38v6M18 44h12"></path>
+            <path d="M35 17c2 2 2 5 0 7" class="accent-stroke"></path>
+            <path d="M39 13c5 5 5 11 0 16" class="accent-stroke"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Audio</h3>
+          <p>Tweerichtingsaudio</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M14 6h20l6 6v30H14Z"></path>
+            <path d="M20 6v11h14V6"></path>
+            <path d="M20 29h14M20 35h10"></path>
+            <path d="M23 10v4M28 10v4M33 10v4" class="accent-stroke"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Opslag</h3>
+          <p>MicroSD tot 256 GB en cloud</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M14 15a15 15 0 0 1 23 4"></path>
+            <path d="M36 11l1 8-8-2"></path>
+            <path d="M34 33a15 15 0 0 1-23-4"></path>
+            <path d="M12 37l-1-8 8 2"></path>
+            <circle cx="24" cy="24" r="3" class="accent-fill"></circle>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Pan &amp; Tilt</h3>
+          <p>355° horizontaal en 60° verticaal</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="14" y="5" width="20" height="38" rx="4"></rect>
+            <path d="M20 10h8"></path>
+            <circle cx="24" cy="38" r="1.8" class="accent-fill"></circle>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>App</h3>
+          <p>MEARI App voor iOS en Android</p>
+        </div>
+      </article>
+
+      <article class="meari-specifications__card">
+        <div class="meari-specifications__icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 5l16 7v11c0 10-6 17-16 21C14 40 8 33 8 23V12Z"></path>
+            <rect x="18" y="23" width="12" height="10" rx="2"></rect>
+            <path d="M21 23v-4a3 3 0 0 1 6 0v4"></path>
+            <path d="M24 27v3" class="accent-stroke"></path>
+          </svg>
+        </div>
+
+        <div class="meari-specifications__content">
+          <h3>Beveiliging</h3>
+          <p>AES 128-bit encryptie</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }},
+  #{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ section.id }} {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  #{{ section_id }} {
+    width: 100%;
+    margin: 0;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 50% 0%,
+        rgba(255, 122, 26, 0.04),
+        transparent 32%
+      ),
+      #f8f9fb;
+  }
+
+  #{{ section_id }} .meari-specifications__container {
+    width: calc(100% - 48px);
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  #{{ section_id }} .meari-specifications__header {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto 44px;
+    text-align: center;
+  }
+
+  #{{ section_id }} .meari-specifications__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin: 0 0 18px;
+    padding: 9px 18px;
+    border: 1px solid rgba(244, 101, 26, 0.08);
+    border-radius: 999px;
+    background: #fff1e7;
+    color: #f26419;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  #{{ section_id }} .meari-specifications__dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #f26419;
+  }
+
+  #{{ section_id }} .meari-specifications__heading {
+    margin: 0 0 18px;
+    padding: 0;
+    color: #0f1b28;
+    font-size: clamp(36px, 4.2vw, 60px);
+    font-weight: 780;
+    line-height: 1.06;
+    letter-spacing: -0.045em;
+  }
+
+  #{{ section_id }} .meari-specifications__description {
+    max-width: 880px;
+    margin: 0 auto;
+    color: #5f646c;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  #{{ section_id }} .meari-specifications__description p {
+    margin: 0;
+  }
+
+  #{{ section_id }} .meari-specifications__grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  #{{ section_id }} .meari-specifications__card {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    min-width: 0;
+    min-height: 130px;
+    gap: 24px;
+    margin: 0;
+    padding: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(15, 27, 40, 0.055);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow:
+      0 3px 7px rgba(15, 27, 40, 0.03),
+      0 12px 28px rgba(15, 27, 40, 0.045);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  #{{ section_id }} .meari-specifications__card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 5px 12px rgba(15, 27, 40, 0.04),
+      0 18px 38px rgba(15, 27, 40, 0.075);
+  }
+
+  #{{ section_id }} .meari-specifications__icon {
+    display: flex;
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #fff6ef 0%, #ffe9da 100%);
+  }
+
+  #{{ section_id }} .meari-specifications__icon svg {
+    display: block;
+    width: 46px;
+    height: 46px;
+    fill: none;
+    stroke: #142333;
+    stroke-width: 2.3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #{{ section_id }} .meari-specifications__icon .accent-fill {
+    fill: #f26419;
+    stroke: #f26419;
+  }
+
+  #{{ section_id }} .meari-specifications__icon .accent-stroke {
+    stroke: #f26419;
+  }
+
+  #{{ section_id }} .meari-specifications__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #{{ section_id }} .meari-specifications__content h3 {
+    width: 100%;
+    margin: 0 0 7px;
+    color: #101820;
+    font-size: 20px;
+    font-weight: 760;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  #{{ section_id }} .meari-specifications__content p {
+    width: 100%;
+    margin: 0;
+    color: #565d66;
+    font-size: 16px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  @media screen and (max-width: 990px) {
+    #{{ section_id }} .meari-specifications__container {
+      width: calc(100% - 36px);
+    }
+
+    #{{ section_id }} .meari-specifications__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    #{{ section_id }} .meari-specifications__header {
+      margin-bottom: 36px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #{{ section_id }} {
+      padding-top: 56px;
+      padding-bottom: 56px;
+    }
+
+    #{{ section_id }} .meari-specifications__container {
+      width: calc(100% - 28px);
+    }
+
+    #{{ section_id }} .meari-specifications__header {
+      margin-bottom: 28px;
+      text-align: left;
+    }
+
+    #{{ section_id }} .meari-specifications__eyebrow {
+      margin-bottom: 15px;
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    #{{ section_id }} .meari-specifications__heading {
+      margin-bottom: 14px;
+      font-size: 36px;
+      line-height: 1.08;
+    }
+
+    #{{ section_id }} .meari-specifications__description {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    #{{ section_id }} .meari-specifications__grid {
+      gap: 14px;
+    }
+
+    #{{ section_id }} .meari-specifications__card {
+      grid-template-columns: 64px minmax(0, 1fr);
+      min-height: 104px;
+      gap: 17px;
+      padding: 18px;
+      border-radius: 16px;
+    }
+
+    #{{ section_id }} .meari-specifications__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 15px;
+    }
+
+    #{{ section_id }} .meari-specifications__icon svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    #{{ section_id }} .meari-specifications__content h3 {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    #{{ section_id }} .meari-specifications__content p {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    #{{ section_id }} .meari-specifications__card {
+      grid-template-columns: 56px minmax(0, 1fr);
+      gap: 14px;
+      padding: 15px;
+    }
+
+    #{{ section_id }} .meari-specifications__icon {
+      width: 56px;
+      height: 56px;
+    }
+
+    #{{ section_id }} .meari-specifications__icon svg {
+      width: 33px;
+      height: 33px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MEARI S1 - Specifications",
+  "tag": "section",
+  "class": "meari-s1-specifications-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine titel",
+      "default": "Technische specificaties"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hoofdtitel",
+      "default": "Alles wat je moet weten."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Beschrijving",
+      "default": "<p>De MEARI S1 Plus combineert haarscherpe beeldkwaliteit, intelligente AI-detectie en eenvoudige bediening in één compacte beveiligingscamera.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Ruimte boven",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Ruimte onder",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "MEARI S1 - Specifications"
+    }
+  ]
+}
+{% endschema %}

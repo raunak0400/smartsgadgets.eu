@@ -1,0 +1,208 @@
+<section class="meari-comparison">
+  <div class="page-width">
+
+    <div class="comparison-header">
+      <span class="eyebrow">WAAROM MEARI?</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+
+    <div class="comparison-table">
+
+      <div class="table-head">
+        <div>Functie</div>
+        <div>MEARI S2 Plus</div>
+        <div>Standaard Camera</div>
+      </div>
+
+      {% for block in section.blocks %}
+      <div class="table-row">
+        <div>{{ block.settings.feature }}</div>
+        <div class="good">✓</div>
+        <div class="bad">{{ block.settings.standard }}</div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.meari-comparison{
+    background:#081A2B;
+    padding:110px 20px;
+}
+
+.meari-comparison .page-width{
+    max-width:1100px;
+    margin:auto;
+}
+
+.comparison-header{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 60px;
+}
+
+.eyebrow{
+    color:#48A9FF;
+    letter-spacing:2px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.comparison-header h2{
+    color:#fff;
+    font-size:44px;
+    margin:15px 0;
+}
+
+.comparison-header p{
+    color:#c9d3dc;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.comparison-table{
+    background:#0E2338;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.table-head,
+.table-row{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    align-items:center;
+}
+
+.table-head{
+    background:#133252;
+    color:#fff;
+    font-weight:700;
+    padding:22px 30px;
+}
+
+.table-row{
+    padding:22px 30px;
+    border-top:1px solid rgba(255,255,255,.06);
+    transition:.3s;
+}
+
+.table-row:hover{
+    background:#112942;
+}
+
+.table-row div:first-child{
+    color:#fff;
+    font-weight:500;
+}
+
+.good{
+    color:#37d67a;
+    font-size:28px;
+    text-align:center;
+    font-weight:700;
+}
+
+.bad{
+    color:#ffb84d;
+    font-size:24px;
+    text-align:center;
+    font-weight:700;
+}
+
+@media(max-width:750px){
+
+.table-head{
+    display:none;
+}
+
+.table-row{
+    grid-template-columns:1fr;
+    gap:12px;
+    text-align:center;
+    padding:25px;
+}
+
+.table-row div:first-child{
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.good::before{
+    content:"MEARI S2 Plus ";
+    color:#fff;
+    font-size:15px;
+}
+
+.bad::before{
+    content:"Standaard Camera ";
+    color:#fff;
+    font-size:15px;
+}
+
+.comparison-header h2{
+    font-size:32px;
+}
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name":"MEARI S2 Vergelijking",
+  "settings":[
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Titel",
+      "default":"Waarom kiezen voor de MEARI S2 Plus?"
+    },
+    {
+      "type":"textarea",
+      "id":"text",
+      "label":"Omschrijving",
+      "default":"Ontdek waarom de MEARI S2 Plus meer veiligheid, betere beeldkwaliteit en slimme functies biedt dan een standaard beveiligingscamera."
+    }
+  ],
+  "blocks":[
+    {
+      "type":"row",
+      "name":"Vergelijking",
+      "settings":[
+        {
+          "type":"text",
+          "id":"feature",
+          "label":"Functie"
+        },
+        {
+          "type":"text",
+          "id":"standard",
+          "label":"Standaard Camera",
+          "default":"✕"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"MEARI S2 Vergelijking",
+      "blocks":[
+        { "type":"row","settings":{"feature":"2K 4MP Ultra HD","standard":"✕"}},
+        { "type":"row","settings":{"feature":"355° PTZ Pan & Tilt","standard":"✕"}},
+        { "type":"row","settings":{"feature":"AI Persoonsdetectie","standard":"✕"}},
+        { "type":"row","settings":{"feature":"Auto Tracking","standard":"✕"}},
+        { "type":"row","settings":{"feature":"Full Color Nachtzicht","standard":"✕"}},
+        { "type":"row","settings":{"feature":"Tweeweg Audio","standard":"△"}},
+        { "type":"row","settings":{"feature":"Gratis MEARI App","standard":"△"}},
+        { "type":"row","settings":{"feature":"IP65 Weerbestendig","standard":"△"}}
+      ]
+    }
+  ]
+}
+{% endschema %}

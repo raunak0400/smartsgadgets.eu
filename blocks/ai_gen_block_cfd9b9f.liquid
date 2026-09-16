@@ -1,0 +1,132 @@
+{% doc %}
+  @prompt
+    Create a Liquid code block that displays the compare-at price (original strikethrough price) on the product page. The block should: check if the product has a compare_at_price that is greater than the current price, display the compare-at price with a strikethrough style (text-decoration: line-through) in a muted/grey color, display it above or next to the sale price, use Shopify's money filters to format the price correctly in the store currency (EUR), and be styled to look clean and consistent with a modern theme. This block will be added to the product page to show the original price alongside the discounted price.
+{% enddoc %}
+{%- comment -%}
+  Compare-at Price Block
+  Displays the original strikethrough price when a product is on sale
+  
+  Accepts:
+  - block: block object
+  
+  Usage:
+  Add this block to your product template to show the compare-at price
+{%- endcomment -%}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign compare_at_price = current_variant.compare_at_price
+  assign price = current_variant.price
+  assign on_sale = false
+  
+  if compare_at_price > price
+    assign on_sale = true
+  endif
+-%}
+
+{%- if on_sale -%}
+  <div class="compare-at-price-block" {{ block.shopify_attributes }}>
+    <div class="compare-at-price-wrapper">
+      <span class="compare-at-price-label">
+        {{ 'products.product.was' | t | default: 'Was' }}:
+      </span>
+      <span class="compare-at-price-amount">
+        {{ compare_at_price | money }}
+      </span>
+    </div>
+  </div>
+
+  <style>
+    .compare-at-price-block {
+      margin-bottom: 0.5rem;
+    }
+
+    .compare-at-price-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.95em;
+    }
+
+    .compare-at-price-label {
+      color: {{ block.settings.label_color | default: '#777777' }};
+      font-weight: 400;
+    }
+
+    .compare-at-price-amount {
+      color: {{ block.settings.price_color | default: '#999999' }};
+      text-decoration: line-through;
+      font-weight: 400;
+      text-decoration-thickness: 1.5px;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 749px) {
+      .compare-at-price-wrapper {
+        font-size: 0.9em;
+      }
+    }
+
+    /* Update on variant change */
+    .compare-at-price-block[data-variant-changed] {
+      transition: opacity 0.2s ease;
+    }
+  </style>
+
+  <script>
+    (function() {
+      const block = document.currentScript.closest('.compare-at-price-block');
+      if (!block) return;
+
+      // Listen for variant changes
+      document.addEventListener('variant:change', function(event) {
+        if (!event.detail || !event.detail.variant) return;
+        
+        const variant = event.detail.variant;
+        const compareAtPrice = variant.compare_at_price;
+        const price = variant.price;
+        
+        // Show/hide block based on whether there's a compare-at price
+        if (compareAtPrice && compareAtPrice > price) {
+          block.style.display = 'block';
+          
+          // Update the price display
+          const priceElement = block.querySelector('.compare-at-price-amount');
+          if (priceElement && window.Shopify && window.Shopify.formatMoney) {
+            priceElement.textContent = window.Shopify.formatMoney(compareAtPrice, '{{ shop.money_format }}');
+          }
+        } else {
+          block.style.display = 'none';
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Compare-at Price",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Displays the original price with a strikethrough when a product is on sale. The block automatically shows/hides based on whether the selected variant has a compare-at price set."
+    },
+    {
+      "type": "header",
+      "content": "Styling"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#777777"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#999999"
+    }
+  ]
+}
+{% endschema %}

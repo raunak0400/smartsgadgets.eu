@@ -1,0 +1,533 @@
+{% doc %}
+  @prompt
+    <div class="shipping-methods-section" style="background: {{ section.settings.background_color }};">
+      {% if section.settings.title != blank %}
+        <h2 class="shipping-methods-title">{{ section.settings.title }}</h2>
+      {% endif %}
+    
+      <div class="shipping-methods-icons">
+        {% for block in section.blocks %}
+          <div class="shipping-method-item" {{ block.shopify_attributes }}>
+            {% if block.settings.logo != blank %}
+              <img
+                src="{{ block.settings.logo | image_url: width: 200 }}"
+                alt="{{ block.settings.name }}"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <style>
+      .shipping-methods-section {
+        padding: 20px 15px;
+        text-align: center;
+      }
+    
+      .shipping-methods-title {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    
+      .shipping-methods-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+    
+      .shipping-method-item img {
+        max-height: {{ section.settings.icon_height }}px;
+        max-width: 110px;
+        object-fit: contain;
+        display: block;
+      }
+    
+      @media screen and (max-width: 749px) {
+        .shipping-methods-icons {
+          gap: 10px;
+        }
+    
+        .shipping-method-item img {
+          max-height: {{ section.settings.mobile_icon_height }}px;
+          max-width: 90px;
+        }
+      }
+    </style>
+    
+    {% schema %}
+    {
+      "name": "Shipping Method Icons",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Verzendmethoden"
+        },
+        {
+          "type": "range",
+          "id": "icon_height",
+          "label": "Desktop icon height",
+          "min": 20,
+          "max": 80,
+          "step": 2,
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "mobile_icon_height",
+          "label": "Mobile icon height",
+          "min": 18,
+          "max": 60,
+          "step": 2,
+          "default": 30
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background color",
+          "default": "#ffffff"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "shipping_logo",
+          "name": "Shipping company",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "logo",
+              "label": "Company logo"
+            },
+            {
+              "type": "text",
+              "id": "name",
+              "label": "Company name",
+              "default": "PostNL"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Shipping Method Icons",
+          "blocks": [
+            { "type": "shipping_logo", "settings": { "name": "PostNL" } },
+            { "type": "shipping_logo", "settings": { "name": "DHL" } },
+            { "type": "shipping_logo", "settings": { "name": "DPD" } },
+            { "type": "shipping_logo", "settings": { "name": "UPS" } },
+            { "type": "shipping_logo", "settings": { "name": "GLS" } }
+          ]
+        }
+      ]
+    }
+    {% endschema %}
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shipping-methods-{{ ai_gen_id }} {
+    display: block;
+    padding: {{ block.settings.padding_top }}px 15px {{ block.settings.padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+    text-align: center;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+  }
+
+  .ai-shipping-methods__title-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.title_color }};
+  }
+
+  .ai-shipping-methods__icons-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ block.settings.icon_gap }}px;
+    flex-wrap: wrap;
+  }
+
+  .ai-shipping-methods__item-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-shipping-methods__item-{{ ai_gen_id }} img {
+    max-height: {{ block.settings.icon_height }}px;
+    max-width: {{ block.settings.icon_max_width }}px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .ai-shipping-methods__placeholder-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_max_width }}px;
+    height: {{ block.settings.icon_height }}px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .ai-shipping-methods__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-shipping-methods-{{ ai_gen_id }} {
+      padding: {{ block.settings.mobile_padding_top }}px 15px {{ block.settings.mobile_padding_bottom }}px;
+    }
+
+    .ai-shipping-methods__title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.mobile_title_size }}px;
+      margin-bottom: {{ block.settings.mobile_title_spacing }}px;
+    }
+
+    .ai-shipping-methods__icons-{{ ai_gen_id }} {
+      gap: {{ block.settings.mobile_icon_gap }}px;
+    }
+
+    .ai-shipping-methods__item-{{ ai_gen_id }} img {
+      max-height: {{ block.settings.mobile_icon_height }}px;
+      max-width: {{ block.settings.mobile_icon_max_width }}px;
+    }
+
+    .ai-shipping-methods__placeholder-{{ ai_gen_id }} {
+      width: {{ block.settings.mobile_icon_max_width }}px;
+      height: {{ block.settings.mobile_icon_height }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-shipping-methods-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.title != blank %}
+    <h2 class="ai-shipping-methods__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+  {% endif %}
+
+  <div class="ai-shipping-methods__icons-{{ ai_gen_id }}">
+    {% for i in (1..6) %}
+      {% liquid
+        assign logo_key = 'logo_' | append: i
+        assign name_key = 'name_' | append: i
+        assign logo = block.settings[logo_key]
+        assign name = block.settings[name_key]
+      %}
+
+      {% if logo != blank %}
+        <div class="ai-shipping-methods__item-{{ ai_gen_id }}">
+          <img
+            src="{{ logo | image_url: width: 400 }}"
+            alt="{{ name | escape }}"
+            loading="lazy"
+            width="{{ logo.width }}"
+            height="{{ logo.height }}"
+          >
+        </div>
+      {% elsif name != blank %}
+        <div class="ai-shipping-methods__item-{{ ai_gen_id }}">
+          <div class="ai-shipping-methods__placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping method icons",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Verzendmethoden"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_1",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_1",
+      "label": "Company name",
+      "default": "PostNL"
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_2",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_2",
+      "label": "Company name",
+      "default": "DHL"
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_3",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_3",
+      "label": "Company name",
+      "default": "DPD"
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_4",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_4",
+      "label": "Company name",
+      "default": "UPS"
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_5",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_5",
+      "label": "Company name",
+      "default": "GLS"
+    },
+    {
+      "type": "header",
+      "content": "Shipping company 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_6",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "name_6",
+      "label": "Company name"
+    },
+    {
+      "type": "header",
+      "content": "Desktop style"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Title spacing",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "icon_height",
+      "label": "Icon height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "icon_max_width",
+      "label": "Icon max width",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 110
+    },
+    {
+      "type": "range",
+      "id": "icon_gap",
+      "label": "Icon spacing",
+      "min": 4,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Mobile style"
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_size",
+      "label": "Title size",
+      "min": 12,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_title_spacing",
+      "label": "Title spacing",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_height",
+      "label": "Icon height",
+      "min": 18,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_max_width",
+      "label": "Icon max width",
+      "min": 50,
+      "max": 160,
+      "step": 10,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_gap",
+      "label": "Icon spacing",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#2a2b2a"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping method icons"
+    }
+  ]
+}
+{% endschema %}

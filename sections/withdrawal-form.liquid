@@ -1,0 +1,81 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .sg-withdrawal {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-withdrawal__link-btn {
+    margin-top: 24px;
+  }
+{%- endstyle -%}
+
+<div class="sg-withdrawal">
+  <div class="container">
+    <div class="reading-width mx-auto">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="h4 mb-8">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      <div class="rte">
+        <p>(Dit formulier alleen invullen en terugzenden wanneer u de overeenkomst wilt herroepen)</p>
+      </div>
+
+      {%- if section.settings.pdf_link != blank -%}
+        <a href="{{ section.settings.pdf_link }}" class="btn btn--secondary sg-withdrawal__link-btn" download>
+          {{ section.settings.pdf_link_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Modelformulier herroeping",
+  "class": "cc-withdrawal-form section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Modelformulier voor herroeping"
+    },
+    {
+      "type": "url",
+      "id": "pdf_link",
+      "label": "Download PDF link",
+      "info": "Upload the return/withdrawal form PDF to Shopify Files, then select it here"
+    },
+    {
+      "type": "text",
+      "id": "pdf_link_label",
+      "label": "Download link label",
+      "default": "Download PDF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modelformulier herroeping"
+    }
+  ]
+}
+{% endschema %}

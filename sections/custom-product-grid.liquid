@@ -1,0 +1,428 @@
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  #shopify-section-{{ section.id }} .sg-grid-section {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 56px 48px;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  #shopify-section-{{ section.id }} .sg-grid-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-grid-section__heading {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: #111111;
+  }
+
+  #shopify-section-{{ section.id }} .sg-grid-section__view-all {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 24px;
+    border: 1px solid #cccccc;
+    border-radius: 999px;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card {
+    position: relative;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__media-wrap {
+    position: relative;
+    z-index: 2;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__meta,
+  #shopify-section-{{ section.id }} .sg-card__title-row {
+    padding: 0 4px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ffffff;
+    border-radius: 4px 0 4px 0;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__badge--best_seller {
+    background-color: #ff8600;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__badge--discount {
+    background-color: #d1361f;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__badge--new_arrival {
+    background-color: #1a73e8;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__favorite {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #b0b0b0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__favorite::after {
+    content: "";
+    position: absolute;
+    inset: calc((32px - 44px) / 2);
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__favorite svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__brand {
+    color: #005f8f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background-color: #fff1e6;
+    color: #ff8600;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__rating svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__title-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111111;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__price {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #111111;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button-wrap {
+    position: relative;
+    z-index: 2;
+    margin-top: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button-wrap .js-product-form,
+  #shopify-section-{{ section.id }} .sg-card__button-wrap product-form {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff8600;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button[disabled] {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .sg-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-grid-section {
+      padding: 40px 20px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-grid-section__heading {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    #shopify-section-{{ section.id }} .sg-grid {
+      gap: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-card__title {
+      font-size: 13px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-card__price {
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-card__brand,
+    #shopify-section-{{ section.id }} .sg-card__rating {
+      font-size: 11px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-card__button {
+      padding: 10px;
+      font-size: 13px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-grid-section">
+  <div class="sg-grid-section__header">
+    <h2 class="sg-grid-section__heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.view_all_link != blank -%}
+      <a href="{{ section.settings.view_all_link }}" class="sg-grid-section__view-all">View All</a>
+    {%- endif -%}
+  </div>
+
+  <ul class="sg-grid">
+    {%- for block in section.blocks -%}
+      {%- assign product = block.settings.product -%}
+      <li class="sg-card" {{ block.shopify_attributes }}>
+        <a href="{{ product.url | default: '#' }}" class="sg-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
+
+        <div class="sg-card__media-wrap">
+          {%- if block.settings.badge_type != 'none' -%}
+            <span class="sg-card__badge sg-card__badge--{{ block.settings.badge_type }}">
+              {{ block.settings.badge_text }}
+            </span>
+          {%- endif -%}
+          <div class="sg-card__media">
+            {%- if product != blank -%}
+              {% render 'image',
+                image: product.featured_image,
+                widths: '250, 350, 500',
+                src_width: 500,
+                sizes: '(max-width: 749px) 45vw, 22vw',
+                class: 'img-fit'
+              %}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'img-fit' }}
+            {%- endif -%}
+          </div>
+          <span class="sg-card__favorite">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.5-10-9c-1.7-3.1-.3-6.5 2.7-7.5C7 3.8 9.5 4.5 12 7c2.5-2.5 5-3.2 7.3-2.5 3 1 4.4 4.4 2.7 7.5-2.5 4.5-10 9-10 9z"/></svg>
+          </span>
+        </div>
+
+        <div class="sg-card__meta">
+          <span class="sg-card__brand">{{ product.vendor | default: 'Brand' }}</span>
+          <span class="sg-card__rating">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+            {%- if product.metafields.reviews.rating.value != blank -%}
+              {{ product.metafields.reviews.rating.value.rating | round: 1 }} ({{ product.metafields.reviews.rating_count | default: 0 }})
+            {%- else -%}
+              {{ block.settings.rating | default: '4.6' }} ({{ block.settings.rating_count | default: 45 }})
+            {%- endif -%}
+          </span>
+        </div>
+
+        <div class="sg-card__title-row">
+          <p class="sg-card__title">{{ product.title | default: block.settings.fallback_title }}</p>
+          <p class="sg-card__price">{{ product.price | default: 19900 | money }}</p>
+        </div>
+
+        {%- if product != blank -%}
+          <product-form class="sg-card__button-wrap">
+            {%- form 'product', product, class: 'js-product-form' -%}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" name="add" class="sg-card__button"{% if product.selected_or_first_available_variant.available == false %} disabled{% endif %}>
+                {{ 'products.product.add_to_cart' | t }}
+              </button>
+            {%- endform -%}
+          </product-form>
+        {%- else -%}
+          <div class="sg-card__button-wrap">
+            <button type="button" class="sg-card__button" disabled>{{ 'products.product.add_to_cart' | t }}</button>
+          </div>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Custom: Product grid",
+  "tag": "section",
+  "class": "cc-custom-product-grid",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View all link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "fallback_title",
+          "label": "Fallback title (if no product selected)",
+          "default": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp"
+        },
+        {
+          "type": "text",
+          "id": "rating",
+          "label": "Rating",
+          "default": "4.6"
+        },
+        {
+          "type": "number",
+          "id": "rating_count",
+          "label": "Rating count",
+          "default": 45
+        },
+        {
+          "type": "select",
+          "id": "badge_type",
+          "label": "Badge",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "best_seller", "label": "Best seller (orange)" },
+            { "value": "discount", "label": "Discount (red)" },
+            { "value": "new_arrival", "label": "New arrival (blue)" }
+          ],
+          "default": "none"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "default": "Best Seller"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom: Product grid",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

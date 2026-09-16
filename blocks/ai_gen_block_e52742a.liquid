@@ -1,0 +1,246 @@
+{% doc %}
+  @prompt
+    Create a footer custom section block that displays shipping carrier logos/icons for PostNL, DHL, and DPD. The icons should be displayed in a horizontal row, be small and clean (similar in size to payment icons), and fit naturally in the footer alongside payment icons. Use official-looking carrier badge styling with the carrier names or logos. The block should be easy to show/hide via theme editor settings.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-shipping-carriers-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-shipping-carriers__container-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ai-shipping-carriers__badge-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background-color: {{ block.settings.badge_bg_color }};
+    border: 1px solid {{ block.settings.badge_border_color }};
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.badge_text_color }};
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+  }
+
+  .ai-shipping-carriers__badge-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.badge_hover_bg_color }};
+    border-color: {{ block.settings.badge_hover_border_color }};
+    transform: translateY(-1px);
+  }
+
+  .ai-shipping-carriers__logo-{{ ai_gen_id }} {
+    height: {{ block.settings.logo_height }}px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-shipping-carriers__container-{{ ai_gen_id }} {
+      gap: 8px;
+    }
+
+    .ai-shipping-carriers__badge-{{ ai_gen_id }} {
+      padding: 5px 10px;
+      font-size: {{ block.settings.badge_font_size | times: 0.9 }}px;
+    }
+
+    .ai-shipping-carriers__logo-{{ ai_gen_id }} {
+      height: {{ block.settings.logo_height | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+{% if block.settings.show_carriers %}
+  <shipping-carriers-{{ ai_gen_id }}
+    class="ai-shipping-carriers-{{ ai_gen_id }}"
+    {{ block.shopify_attributes }}
+  >
+    <div class="ai-shipping-carriers__container-{{ ai_gen_id }}">
+      {% if block.settings.show_postnl %}
+        <div class="ai-shipping-carriers__badge-{{ ai_gen_id }}">
+          {% if block.settings.postnl_logo %}
+            <img
+              src="{{ block.settings.postnl_logo | image_url: height: 40 }}"
+              alt="PostNL"
+              class="ai-shipping-carriers__logo-{{ ai_gen_id }}"
+              loading="lazy"
+              width="auto"
+              height="{{ block.settings.logo_height }}"
+            >
+          {% else %}
+            PostNL
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_dhl %}
+        <div class="ai-shipping-carriers__badge-{{ ai_gen_id }}">
+          {% if block.settings.dhl_logo %}
+            <img
+              src="{{ block.settings.dhl_logo | image_url: height: 40 }}"
+              alt="DHL"
+              class="ai-shipping-carriers__logo-{{ ai_gen_id }}"
+              loading="lazy"
+              width="auto"
+              height="{{ block.settings.logo_height }}"
+            >
+          {% else %}
+            DHL
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.show_dpd %}
+        <div class="ai-shipping-carriers__badge-{{ ai_gen_id }}">
+          {% if block.settings.dpd_logo %}
+            <img
+              src="{{ block.settings.dpd_logo | image_url: height: 40 }}"
+              alt="DPD"
+              class="ai-shipping-carriers__logo-{{ ai_gen_id }}"
+              loading="lazy"
+              width="auto"
+              height="{{ block.settings.logo_height }}"
+            >
+          {% else %}
+            DPD
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </shipping-carriers-{{ ai_gen_id }}>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Shipping carriers",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_carriers",
+      "label": "Show shipping carriers",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Carriers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_postnl",
+      "label": "Show PostNL",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "postnl_logo",
+      "label": "PostNL logo",
+      "info": "Optional. If not set, text will be displayed."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dhl",
+      "label": "Show DHL",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "dhl_logo",
+      "label": "DHL logo",
+      "info": "Optional. If not set, text will be displayed."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dpd",
+      "label": "Show DPD",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "dpd_logo",
+      "label": "DPD logo",
+      "info": "Optional. If not set, text will be displayed."
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "label": "Badge corner radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Badge background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Badge text",
+      "default": "#2a2b2a"
+    },
+    {
+      "type": "color",
+      "id": "badge_border_color",
+      "label": "Badge border",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "color",
+      "id": "badge_hover_bg_color",
+      "label": "Badge hover background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "badge_hover_border_color",
+      "label": "Badge hover border",
+      "default": "#ff580d"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shipping carriers"
+    }
+  ]
+}
+{% endschema %}

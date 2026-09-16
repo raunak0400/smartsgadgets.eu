@@ -1,0 +1,117 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .sg-newsletter {
+    padding: 56px 48px;
+    text-align: center;
+    background: linear-gradient(120deg, #050506 0%, #2b2c2f 60%, #4a4b4d 100%);
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter__inner {
+    width: min(640px, 100%);
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter__heading {
+    margin: 0 0 12px;
+    color: #ff8600;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter__subtext {
+    margin: 0 0 24px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter .form {
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter .input-with-button {
+    display: flex;
+    background-color: #d97a06;
+    border-radius: 999px;
+    overflow: hidden;
+    padding: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter .input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 20px;
+    color: #ffffff;
+    font-size: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter .input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  #shopify-section-{{ section.id }} .sg-newsletter .btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: transparent;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-newsletter {
+      padding: 40px 20px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-newsletter__heading {
+      font-size: 22px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-newsletter">
+  <div class="sg-newsletter__inner">
+    <h2 class="sg-newsletter__heading">{{ section.settings.heading }}</h2>
+    <p class="sg-newsletter__subtext">{{ section.settings.subtext }}</p>
+
+    {% render 'newsletter-signup',
+      id: section.id,
+      tags: 'newsletter, homepage',
+      hide_label: true,
+      arrow_button: true
+    %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom: Newsletter",
+  "tag": "section",
+  "class": "cc-custom-newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Receive a 10% discount on your first order"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Sign up for exclusive deals, new products & smart home tips."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom: Newsletter"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

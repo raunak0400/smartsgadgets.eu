@@ -1,0 +1,188 @@
+{%- liquid
+  assign heading = section.settings.heading
+  assign subheading = section.settings.subheading
+  assign button_label = section.settings.button_label
+  assign button_link = section.settings.button_link
+  assign image = section.settings.image
+-%}
+
+{%- style -%}
+  .template-index #shopify-section-group-header-group {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+
+  .template-index #shopify-section-group-header-group .cc-header,
+  .template-index #shopify-section-group-header-group .header {
+    background-color: transparent !important;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero {
+    position: relative;
+    width: 100%;
+    min-height: 780px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__content {
+    position: relative;
+    z-index: 1;
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__heading {
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    max-width: 560px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__subheading {
+    margin: 0 0 32px;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.4;
+    max-width: 480px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border: 1px solid #ffffff;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    background: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hero__button:hover {
+    background-color: #ffffff;
+    color: #00253d;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-hero {
+      min-height: 560px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-hero__content {
+      padding: 0 24px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-hero__heading {
+      font-size: 32px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-hero__subheading {
+      font-size: 15px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-hero">
+  <div class="sg-hero__media">
+    {%- if image != blank -%}
+      {% render 'image',
+        image: image,
+        widths: '750, 1100, 1500, 2000, 2560',
+        src_width: 2560,
+        sizes: '100vw',
+        class: 'img-fit',
+        lazy_load: false,
+        fetchpriority: 'high'
+      %}
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'img-fit' }}
+    {%- endif -%}
+  </div>
+
+  <div class="sg-hero__content">
+    {%- if heading != blank -%}
+      <h1 class="sg-hero__heading">{{ heading }}</h1>
+    {%- endif -%}
+
+    {%- if subheading != blank -%}
+      <p class="sg-hero__subheading">{{ subheading }}</p>
+    {%- endif -%}
+
+    {%- if button_label != blank -%}
+      <a href="{{ button_link | default: '#' }}" class="sg-hero__button">
+        {{- button_label -}}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom: Hero",
+  "tag": "section",
+  "class": "cc-custom-hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Light that feels like home"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Bring warmth and comfort to any corner of your home."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom: Hero"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

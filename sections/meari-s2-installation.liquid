@@ -1,0 +1,288 @@
+<section class="meari-installation">
+  <div class="page-width">
+
+    <div class="section-header">
+      <span class="eyebrow">SNEL & EENVOUDIG</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+
+    <div class="installation-grid">
+
+      {% for block in section.blocks %}
+        <div class="installation-card">
+
+          <div class="step-number">
+            {{ forloop.index }}
+          </div>
+
+          <h3>{{ block.settings.title }}</h3>
+
+          <p>{{ block.settings.text }}</p>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+    <div class="bottom-features">
+
+      <div class="feature">
+        ✓ Geen abonnement verplicht
+      </div>
+
+      <div class="feature">
+        ✓ Gratis MEARI App
+      </div>
+
+      <div class="feature">
+        ✓ Binnen 10 minuten klaar
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.meari-installation{
+    background:#081A2B;
+    padding:110px 20px;
+}
+
+.meari-installation .page-width{
+    max-width:1300px;
+    margin:auto;
+}
+
+.section-header{
+    text-align:center;
+    max-width:760px;
+    margin:0 auto 70px;
+}
+
+.eyebrow{
+    display:inline-block;
+    color:#48A9FF;
+    letter-spacing:2px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+}
+
+.section-header h2{
+    color:#fff;
+    font-size:46px;
+    line-height:1.2;
+    margin-bottom:18px;
+    font-weight:700;
+}
+
+.section-header p{
+    color:#c8d2dc;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.installation-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+}
+
+.installation-card{
+
+    background:linear-gradient(180deg,#0f2741,#0b2035);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:24px;
+
+    padding:45px 35px;
+
+    transition:.35s;
+
+    text-align:center;
+
+}
+
+.installation-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#2a90ff;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.30);
+
+}
+
+.step-number{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    background:#1c82ff;
+
+    color:#fff;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:0 auto 28px;
+
+}
+
+.installation-card h3{
+
+    color:#fff;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+}
+
+.installation-card p{
+
+    color:#cfd7df;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+}
+
+.bottom-features{
+
+    margin-top:70px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:45px;
+
+    flex-wrap:wrap;
+
+}
+
+.feature{
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+@media(max-width:990px){
+
+.installation-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.section-header h2{
+
+font-size:34px;
+
+}
+
+.meari-installation{
+
+padding:80px 20px;
+
+}
+
+.bottom-features{
+
+gap:18px;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name":"MEARI S2 Installatie",
+  "settings":[
+    {
+      "type":"text",
+      "id":"heading",
+      "label":"Titel",
+      "default":"Binnen 10 minuten klaar voor gebruik"
+    },
+    {
+      "type":"textarea",
+      "id":"text",
+      "label":"Omschrijving",
+      "default":"Geen technische kennis nodig. Installeer de MEARI S2 Plus eenvoudig en beheer uw camera via de gratis MEARI-app."
+    }
+  ],
+  "blocks":[
+    {
+      "type":"step",
+      "name":"Stap",
+      "settings":[
+        {
+          "type":"text",
+          "id":"title",
+          "label":"Titel"
+        },
+        {
+          "type":"textarea",
+          "id":"text",
+          "label":"Omschrijving"
+        }
+      ]
+    }
+  ],
+  "presets":[
+    {
+      "name":"MEARI S2 Installatie",
+      "blocks":[
+        {
+          "type":"step",
+          "settings":{
+            "title":"Monteer de camera",
+            "text":"Bevestig de camera eenvoudig aan de muur of het plafond met het meegeleverde montagemateriaal."
+          }
+        },
+        {
+          "type":"step",
+          "settings":{
+            "title":"Verbind met wifi",
+            "text":"Open de MEARI-app en verbind de camera binnen enkele minuten met uw wifi-netwerk."
+          }
+        },
+        {
+          "type":"step",
+          "settings":{
+            "title":"Bewaak overal",
+            "text":"Bekijk live beelden, ontvang meldingen en communiceer met bezoekers via uw smartphone, waar u ook bent."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

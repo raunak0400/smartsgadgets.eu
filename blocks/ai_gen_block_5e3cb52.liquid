@@ -1,0 +1,488 @@
+{% doc %}
+  @prompt
+    simple bundle options below add to cart button. Not too big in height, convert this into block not section. make the price calculation also dynamic
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-bundle-options-{{ ai_gen_id }} {
+    padding: 20px 0;
+    border-top: 1px solid {{ block.settings.border_color }};
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .ai-bundle-options__heading-{{ ai_gen_id }} {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 14px;
+    color: {{ block.settings.text_color }};
+  }
+
+  /* List container */
+  .ai-bundle-options__list-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Each row */
+  .ai-bundle-options__item-{{ ai_gen_id }} {
+    padding: 14px 16px;
+    background: {{ block.settings.option_bg_color }};
+    border: 1px solid {{ block.settings.option_border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s ease;
+  }
+
+  .ai-bundle-options__item-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.option_hover_bg_color }};
+    border-color: {{ block.settings.option_hover_border_color }};
+  }
+
+  /* Selected */
+  .ai-bundle-options__item-{{ ai_gen_id }}.selected {
+    background-color: {{ block.settings.option_selected_bg_color }};
+    border-color: {{ block.settings.option_selected_border_color }};
+    box-shadow: 0 0 0 2px rgba(255, 88, 13, 0.15);
+  }
+
+  /* Radio */
+  .ai-bundle-options__radio-{{ ai_gen_id }} {
+    width: 20px;
+    height: 20px;
+    border: 2px solid {{ block.settings.radio_color }};
+    border-radius: 50%;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .ai-bundle-options__item-{{ ai_gen_id }}.selected .ai-bundle-options__radio-{{ ai_gen_id }}::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: {{ block.settings.radio_color }};
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Content wrapper */
+  .ai-bundle-options__content-{{ ai_gen_id }} {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Left: Label */
+  .ai-bundle-options__label-{{ ai_gen_id }} {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+    color: {{ block.settings.text_color }};
+  }
+
+  /* Right: Price block */
+  .ai-bundle-options__price-{{ ai_gen_id }} {
+    font-size: 15px;
+    font-weight: 700;
+    color: {{ block.settings.price_color }};
+    white-space: nowrap;
+  }
+
+  .ai-bundle-options__savings-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.savings_color }};
+    margin-left: 8px;
+    font-weight: 600;
+  }
+
+  /* Input hidden */
+  .ai-bundle-options__input-{{ ai_gen_id }} {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Desktop responsiveness */
+  @media (min-width: 992px) {
+    .ai-bundle-options__item-{{ ai_gen_id }} {
+      padding: 16px 20px;
+    }
+
+    .ai-bundle-options__label-{{ ai_gen_id }} {
+      font-size: 15px;
+    }
+
+    .ai-bundle-options__price-{{ ai_gen_id }} {
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<bundle-options-{{ ai_gen_id }} class="ai-bundle-options-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}
+    <h3 class="ai-bundle-options__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+  {% endif %}
+
+  <ul class="ai-bundle-options__list-{{ ai_gen_id }}">
+    {% if block.settings.option_1_quantity > 0 %}
+      {% liquid
+        assign option_1_total = product.price | times: block.settings.option_1_quantity
+        assign option_1_discount = option_1_total | times: block.settings.option_1_discount | divided_by: 100.0
+        assign option_1_final = option_1_total | minus: option_1_discount
+      %}
+      <li class="ai-bundle-options__item-{{ ai_gen_id }} {% if block.settings.default_option == '1' %}selected{% endif %}" data-option="1" data-quantity="{{ block.settings.option_1_quantity }}" data-price="{{ option_1_final }}">
+        <input 
+          type="radio" 
+          name="bundle-option-{{ ai_gen_id }}" 
+          value="option-1" 
+          class="ai-bundle-options__input-{{ ai_gen_id }}"
+          {% if block.settings.default_option == '1' %}checked{% endif %}
+        >
+        <div class="ai-bundle-options__radio-{{ ai_gen_id }}"></div>
+        <div class="ai-bundle-options__content-{{ ai_gen_id }}">
+          <p class="ai-bundle-options__label-{{ ai_gen_id }}">
+            {% if block.settings.option_1_label != blank %}
+              {{ block.settings.option_1_label }}
+            {% else %}
+              {{ block.settings.option_1_quantity }} {% if block.settings.option_1_quantity == 1 %}item{% else %}items{% endif %}
+            {% endif %}
+          </p>
+          <div>
+            <span class="ai-bundle-options__price-{{ ai_gen_id }}">{{ option_1_final | money }}</span>
+            {% if block.settings.option_1_discount > 0 %}
+              <span class="ai-bundle-options__savings-{{ ai_gen_id }}">Save {{ block.settings.option_1_discount }}%</span>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endif %}
+
+    {% if block.settings.option_2_quantity > 0 %}
+      {% liquid
+        assign option_2_total = product.price | times: block.settings.option_2_quantity
+        assign option_2_discount = option_2_total | times: block.settings.option_2_discount | divided_by: 100.0
+        assign option_2_final = option_2_total | minus: option_2_discount
+      %}
+      <li class="ai-bundle-options__item-{{ ai_gen_id }} {% if block.settings.default_option == '2' %}selected{% endif %}" data-option="2" data-quantity="{{ block.settings.option_2_quantity }}" data-price="{{ option_2_final }}">
+        <input 
+          type="radio" 
+          name="bundle-option-{{ ai_gen_id }}" 
+          value="option-2" 
+          class="ai-bundle-options__input-{{ ai_gen_id }}"
+          {% if block.settings.default_option == '2' %}checked{% endif %}
+        >
+        <div class="ai-bundle-options__radio-{{ ai_gen_id }}"></div>
+        <div class="ai-bundle-options__content-{{ ai_gen_id }}">
+          <p class="ai-bundle-options__label-{{ ai_gen_id }}">
+            {% if block.settings.option_2_label != blank %}
+              {{ block.settings.option_2_label }}
+            {% else %}
+              {{ block.settings.option_2_quantity }} {% if block.settings.option_2_quantity == 1 %}item{% else %}items{% endif %}
+            {% endif %}
+          </p>
+          <div>
+            <span class="ai-bundle-options__price-{{ ai_gen_id }}">{{ option_2_final | money }}</span>
+            {% if block.settings.option_2_discount > 0 %}
+              <span class="ai-bundle-options__savings-{{ ai_gen_id }}">Save {{ block.settings.option_2_discount }}%</span>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endif %}
+
+    {% if block.settings.option_3_quantity > 0 %}
+      {% liquid
+        assign option_3_total = product.price | times: block.settings.option_3_quantity
+        assign option_3_discount = option_3_total | times: block.settings.option_3_discount | divided_by: 100.0
+        assign option_3_final = option_3_total | minus: option_3_discount
+      %}
+      <li class="ai-bundle-options__item-{{ ai_gen_id }} {% if block.settings.default_option == '3' %}selected{% endif %}" data-option="3" data-quantity="{{ block.settings.option_3_quantity }}" data-price="{{ option_3_final }}">
+        <input 
+          type="radio" 
+          name="bundle-option-{{ ai_gen_id }}" 
+          value="option-3" 
+          class="ai-bundle-options__input-{{ ai_gen_id }}"
+          {% if block.settings.default_option == '3' %}checked{% endif %}
+        >
+        <div class="ai-bundle-options__radio-{{ ai_gen_id }}"></div>
+        <div class="ai-bundle-options__content-{{ ai_gen_id }}">
+          <p class="ai-bundle-options__label-{{ ai_gen_id }}">
+            {% if block.settings.option_3_label != blank %}
+              {{ block.settings.option_3_label }}
+            {% else %}
+              {{ block.settings.option_3_quantity }} {% if block.settings.option_3_quantity == 1 %}item{% else %}items{% endif %}
+            {% endif %}
+          </p>
+          <div>
+            <span class="ai-bundle-options__price-{{ ai_gen_id }}">{{ option_3_final | money }}</span>
+            {% if block.settings.option_3_discount > 0 %}
+              <span class="ai-bundle-options__savings-{{ ai_gen_id }}">Save {{ block.settings.option_3_discount }}%</span>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+    {% endif %}
+  </ul>
+</bundle-options-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BundleOptions{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-bundle-options__item-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.items.forEach((item) => {
+          item.addEventListener('click', () => {
+            this.items.forEach((i) => i.classList.remove('selected'));
+            item.classList.add('selected');
+            
+            const radio = item.querySelector('.ai-bundle-options__input-{{ ai_gen_id }}');
+            if (radio) {
+              radio.checked = true;
+            }
+
+            const quantity = item.dataset.quantity;
+            const price = item.dataset.price;
+
+            this.dispatchEvent(new CustomEvent('bundle-option-changed', {
+              bubbles: true,
+              detail: {
+                quantity: parseInt(quantity),
+                price: parseFloat(price)
+              }
+            }));
+          });
+        });
+      }
+    }
+
+    customElements.define('bundle-options-{{ ai_gen_id }}', BundleOptions{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Bundle options",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your bundle"
+    },
+    {
+      "type": "select",
+      "id": "default_option",
+      "label": "Default selection",
+      "options": [
+        {
+          "value": "1",
+          "label": "Option 1"
+        },
+        {
+          "value": "2",
+          "label": "Option 2"
+        },
+        {
+          "value": "3",
+          "label": "Option 3"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "header",
+      "content": "Option 1"
+    },
+    {
+      "type": "range",
+      "id": "option_1_quantity",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "label": "Quantity",
+      "default": 1
+    },
+    {
+      "type": "text",
+      "id": "option_1_label",
+      "label": "Custom label",
+      "info": "Leave blank to auto-generate"
+    },
+    {
+      "type": "range",
+      "id": "option_1_discount",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Option 2"
+    },
+    {
+      "type": "range",
+      "id": "option_2_quantity",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "label": "Quantity",
+      "default": 2
+    },
+    {
+      "type": "text",
+      "id": "option_2_label",
+      "label": "Custom label",
+      "info": "Leave blank to auto-generate"
+    },
+    {
+      "type": "range",
+      "id": "option_2_discount",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Option 3"
+    },
+    {
+      "type": "range",
+      "id": "option_3_quantity",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "label": "Quantity",
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "option_3_label",
+      "label": "Custom label",
+      "info": "Leave blank to auto-generate"
+    },
+    {
+      "type": "range",
+      "id": "option_3_discount",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Discount",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Top border color",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#2a2b2a"
+    },
+    {
+      "type": "color",
+      "id": "price_color",
+      "label": "Price color",
+      "default": "#2a2b2a"
+    },
+    {
+      "type": "color",
+      "id": "savings_color",
+      "label": "Savings color",
+      "default": "#7fb800"
+    },
+    {
+      "type": "color",
+      "id": "radio_color",
+      "label": "Radio button color",
+      "default": "#ff580d"
+    },
+    {
+      "type": "color",
+      "id": "option_bg_color",
+      "label": "Option background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "option_border_color",
+      "label": "Option border",
+      "default": "#e1e1e1"
+    },
+    {
+      "type": "color",
+      "id": "option_hover_bg_color",
+      "label": "Option hover background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "color",
+      "id": "option_hover_border_color",
+      "label": "Option hover border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "option_selected_bg_color",
+      "label": "Selected background",
+      "default": "#fff5f0"
+    },
+    {
+      "type": "color",
+      "id": "option_selected_border_color",
+      "label": "Selected border",
+      "default": "#ff580d"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bundle options"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,458 @@
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+-%}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    z-index: 20;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+  }
+
+  .template-index #shopify-section-{{ section.id }} {
+    position: static;
+  }
+
+  body:not(.template-index) #shopify-section-{{ section.id }} .sg-header {
+    position: relative;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__logo-text,
+  body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__nav-link,
+  body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__icon-btn,
+  body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__burger {
+    color: #111111;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__bar {
+    width: min(1320px, 100%);
+    margin: 0 auto;
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__logo {
+    display: flex;
+    align-items: center;
+    flex: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__logo img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__logo-text {
+    font-size: 24px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__logo-text strong {
+    font-weight: 800;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: clamp(16px, 2vw, 36px);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav-link svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 150ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav-item {
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav-item:hover .sg-header__nav-link svg {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 16px;
+    min-width: 220px;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 150ms ease, transform 150ms ease, visibility 150ms ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__nav-item:hover .sg-header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__dropdown a:hover {
+    background-color: #f4f4f4;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__icons {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__icon-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__icon-btn::after {
+    content: "";
+    position: absolute;
+    inset: calc((22px - 44px) / 2);
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__cart-count {
+    position: absolute;
+    top: -7px;
+    right: -9px;
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background-color: #ff580d;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__burger {
+    display: none;
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__burger svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-header__mobile-nav {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .sg-header__bar {
+      padding: 16px 20px;
+      gap: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__logo {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__logo-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__icons {
+      gap: 14px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__nav {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__burger {
+      display: inline-flex;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__mobile-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #00253d;
+      padding: 8px 20px 20px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__mobile-nav.is-open {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__mobile-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__mobile-nav a {
+      display: block;
+      padding: 12px 0;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__mobile-nav {
+      background-color: #ffffff;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__mobile-nav a {
+      color: #111111;
+      border-bottom-color: #e5e5e5;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    #shopify-section-{{ section.id }} .sg-header__bar {
+      gap: 10px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__icons {
+      gap: 8px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-header__logo-text {
+      font-size: 19px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-header">
+  <div class="sg-header__bar">
+    <div class="sg-header__logo">
+      <a href="{{ routes.root_url }}">
+        {%- if section.settings.logo != blank -%}
+          {% render 'image',
+            image: section.settings.logo,
+            src_width: section.settings.logo_width,
+            srcset_2x: true,
+            lazy_load: false,
+            alt_text: shop.name
+          %}
+        {%- else -%}
+          <span class="sg-header__logo-text">{{ section.settings.logo_text_1 }}<strong>{{ section.settings.logo_text_2 }}</strong></span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <nav aria-label="Main">
+      <ul class="sg-header__nav">
+        {%- if menu != blank -%}
+          <li class="sg-header__nav-item">
+            <button type="button" class="sg-header__nav-link">
+              {{ section.settings.menu_label }}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="sg-header__dropdown">
+              {%- for link in menu.links -%}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {%- endfor -%}
+            </div>
+          </li>
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          <li class="sg-header__nav-item">
+            <a href="{{ block.settings.link }}" class="sg-header__nav-link">{{ block.settings.label }}</a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="sg-header__icons">
+      <a href="{{ routes.search_url }}" class="sg-header__icon-btn" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </a>
+      <a href="{{ routes.account_url }}" class="sg-header__icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="sg-header__icon-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="sg-header__cart-count">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+      <button type="button" class="sg-header__burger" data-sg-header-burger aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="sg-header__mobile-nav" data-sg-header-mobile-nav>
+    <ul>
+      {%- if menu != blank -%}
+        {%- for link in menu.links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        <li><a href="{{ block.settings.link }}">{{ block.settings.label }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var burger = document.currentScript.previousElementSibling.querySelector('[data-sg-header-burger]');
+    var mobileNav = document.currentScript.previousElementSibling.querySelector('[data-sg-header-mobile-nav]');
+    if (!burger || !mobileNav) return;
+    burger.addEventListener('click', function () {
+      mobileNav.classList.toggle('is-open');
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom: Header",
+  "tag": "header",
+  "class": "cc-custom-header",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "number",
+      "id": "logo_width",
+      "label": "Logo width",
+      "default": 160
+    },
+    {
+      "type": "text",
+      "id": "logo_text_1",
+      "label": "Logo text (regular)",
+      "default": "Smarts"
+    },
+    {
+      "type": "text",
+      "id": "logo_text_2",
+      "label": "Logo text (bold)",
+      "default": "Gadgets"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Dropdown menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "menu_label",
+      "label": "Dropdown menu label",
+      "default": "Shop By Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Best Sellers"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom: Header",
+      "blocks": [
+        { "type": "nav_link", "settings": { "label": "Best Sellers" } },
+        { "type": "nav_link", "settings": { "label": "Brands" } },
+        { "type": "nav_link", "settings": { "label": "Deals" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

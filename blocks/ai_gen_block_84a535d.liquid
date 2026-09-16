@@ -1,0 +1,115 @@
+{% doc %}
+  @prompt
+    Add CSS to the theme to ensure the compare-at price (strikethrough original price) is always visible on the product page when a product has a compare-at price set. The compare-at price may be hidden by existing custom CSS. Target common Shopify price elements like .price__compare, .price-item--regular, .price--on-sale .price-item--regular and ensure they are displayed correctly alongside the sale price. Do not hide or override the sale price styling.
+{% enddoc %}
+{% comment %}
+  Compare-at Price Visibility Fix
+  Ensures strikethrough original prices are always visible when set
+{% endcomment %}
+
+<style>
+  /* Force compare-at price to be visible on product pages */
+  .price__compare,
+  .price-item--regular,
+  .price--on-sale .price-item--regular,
+  .price__regular,
+  .compare-at-price,
+  [class*="compare-at"],
+  [class*="was-price"],
+  .product__price .price-item--regular,
+  .product-price .price-item--regular,
+  .price__container .price-item--regular {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    text-decoration: line-through !important;
+    color: {{ block.settings.compare_at_color | default: '#999999' }} !important;
+    font-size: 0.9em !important;
+    margin-right: 8px !important;
+  }
+
+  /* Ensure sale price remains visible and styled correctly */
+  .price__sale,
+  .price-item--sale,
+  .price--on-sale .price-item--sale,
+  .sale-price,
+  .product__price .price-item--sale,
+  .product-price .price-item--sale {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: inherit !important;
+    font-weight: 600 !important;
+  }
+
+  /* Price container should use inline-flex for proper alignment */
+  .price,
+  .price__container,
+  .product__price,
+  .product-price {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Override any theme-specific hiding of compare-at prices */
+  .price--on-sale .price__compare,
+  .price--on-sale .price-item--regular {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Ensure proper order: compare-at price first, then sale price */
+  .price__regular {
+    order: 1 !important;
+  }
+
+  .price__sale {
+    order: 2 !important;
+  }
+
+  /* Additional specificity for Enterprise theme */
+  .product-block-price .price__compare,
+  .product-block-price .price-item--regular,
+  .price-block .price__compare,
+  .price-block .price-item--regular {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Mobile responsiveness */
+  @media screen and (max-width: 749px) {
+    .price__compare,
+    .price-item--regular {
+      font-size: 0.85em !important;
+      margin-right: 6px !important;
+    }
+  }
+
+  /* Ensure strikethrough is always applied */
+  .price__compare *,
+  .price-item--regular * {
+    text-decoration: line-through !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Compare-at Price Fix",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This block ensures compare-at prices (strikethrough original prices) are always visible on product pages when set. It overrides any custom CSS that may be hiding them."
+    },
+    {
+      "type": "color",
+      "id": "compare_at_color",
+      "label": "Compare-at price color",
+      "default": "#999999"
+    }
+  ]
+}
+{% endschema %}

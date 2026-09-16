@@ -1,0 +1,921 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pop_up_PNyetp": {
+      "type": "pop-up",
+      "blocks": {
+        "heading_KQ7Lzy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Meld u aan en Bespaar",
+            "heading_size": "h4"
+          }
+        },
+        "text_78Nkxa": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Verleid klanten om zich aan te melden voor uw mailinglijst met kortingen of exclusieve aanbiedingen.</p>",
+            "text_size": ""
+          }
+        },
+        "newsletter_signup_hMwifT": {
+          "type": "newsletter-signup",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_KQ7Lzy",
+        "text_78Nkxa",
+        "newsletter_signup_hMwifT"
+      ],
+      "name": "Pop-up",
+      "settings": {
+        "trigger": "delay",
+        "delay": 1,
+        "show_to_guests_only": true,
+        "show_on_mobile": true,
+        "dismiss_days": 30,
+        "position": "justify-center items-center",
+        "text_align": "text-center",
+        "padding": "large",
+        "shrink_width": false,
+        "heading_color": "#070707",
+        "text_color": "#070707",
+        "bg_color": "#ffffff",
+        "bg_grad": "",
+        "tint_opacity": 0
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor-sku": {
+          "type": "vendor-sku",
+          "disabled": true,
+          "settings": {
+            "show_vendor": true,
+            "show_sku": true,
+            "show_barcode": false
+          }
+        },
+        "product-labels": {
+          "type": "product-labels",
+          "settings": {
+            "show_variant_icon": true
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "show_weight": false
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_tax_and_shipping": false
+          }
+        },
+        "variant-picker": {
+          "type": "variant-picker",
+          "disabled": true,
+          "settings": {
+            "selector_style": "buttons",
+            "enable_dynamic_availability": true,
+            "dynamic_availability_downwards": false,
+            "show_backorder_text": true,
+            "enable_size_chart": false,
+            "size_chart_variant": "Size",
+            "size_chart_page": ""
+          }
+        },
+        "divider-1": {
+          "type": "divider",
+          "disabled": true,
+          "settings": {
+            "show_line": true,
+            "spacing": "mt-8 mb-8"
+          }
+        },
+        "buy-buttons": {
+          "type": "buy-buttons",
+          "settings": {
+            "show_qty_selector": true,
+            "enable_dynamic_checkout": false,
+            "show_pickup_availability": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "custom_liquid_kmVnVa": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<style>\n.sg-payment-icons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 4px;\n  flex-wrap: wrap;\n  margin: 12px 0;\n}\n\n.sg-payment-icon {\n  width: 52px;\n  height: 34px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-sizing: border-box;\n}\n\n.sg-payment-icon svg {\n  display: block;\n  width: auto;\n  height: 24px;\n  max-width: 52px;\n}\n\n.sg-payment-icon--wide svg {\n  max-width: 56px;\n}\n\n@media screen and (max-width: 749px) {\n  .sg-payment-icons {\n    gap: 4px;\n  }\n\n  .sg-payment-icon {\n    width: 46px;\n    height: 30px;\n  }\n\n  .sg-payment-icon svg {\n    height: 21px;\n    max-width: 46px;\n  }\n\n  .sg-payment-icon--wide svg {\n    max-width: 48px;\n  }\n}\n</style>\n\n<div class=\"sg-payment-icons\">\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'ideal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'bancontact' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'visa' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'master' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'american_express' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'paypal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'apple_pay' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'google_pay' | payment_type_svg_tag }}\n  </div>\n</div>"
+          }
+        },
+        "message-1": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "clock",
+            "title": "<p><strong>Popular right now<br/></strong>Lots of people have looked at this recently</p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 4,
+            "bg_color": "#e4edfa",
+            "text_color": "#1a66d2"
+          }
+        },
+        "message-2": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "price_tag",
+            "title": "<p><strong>Selling fast!<br/></strong>Grab yours while you can</p>",
+            "close": "once",
+            "show_over_media": true,
+            "visibility_duration": 5,
+            "bg_color": "#e4edfa",
+            "text_color": "#1a66d2"
+          }
+        },
+        "collapsible-content-1": {
+          "type": "collapsible-content",
+          "disabled": true,
+          "settings": {
+            "heading": "Care information",
+            "icon": "heart",
+            "text": "<p>Display general product information or specific product information using metafields.</p>",
+            "page": "",
+            "open": false
+          }
+        },
+        "custom_liquid_GmzejL": {
+          "type": "custom-liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div style=\"\n  display: inline-flex;\n  align-items: center;\n  background-color: {{ background_color | default: \"#fff\" }};\n  border-radius: {{ border_radius | default: \"9999px\" }};\n  padding: {{ padding | default: \"4px 10px\" }};\n  font-size: {{ font_size | default: \"12px\" }};\n  color: {{ text_color | default: \"#1c1c1c\" }};\n  font-weight: {{ font_weight | default: \"500\" }};\n  box-shadow: {{ box_shadow | default: \"0 1px 3px rgba(0,0,0,0.08)\" }};\n\">\n  <div style=\"\n    display: flex;\n    gap: {{ stars_gap | default: \"3px\" }};\n    margin-right: {{ stars_margin_right | default: \"8px\" }};\n  \">\n    <!-- Five stars inside flatter green rectangles -->\n    <div style=\"\n      background-color: {{ star_bg_color | default: \"#E64E30\" }};\n      border-radius: {{ star_border_radius | default: \"3px\" }};\n      padding: {{ star_padding | default: \"1px 2px\" }};\n    \">\n      <svg width=\"{{ star_size | default: \"12\" }}\" height=\"{{ star_size | default: \"12\" }}\" viewBox=\"0 0 24 24\" fill=\"{{ star_color | default: \"#ffffff\" }}\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M12 2l2.39 6.91H22l-5.43 3.94L18.74 22 12 17.56 5.26 22l1.43-9.15L2 8.91h7.61L12 2z\"/>\n      </svg>\n    </div>\n    <div style=\"\n      background-color: {{ star_bg_color | default: \"#E64E30\" }};\n      border-radius: {{ star_border_radius | default: \"3px\" }};\n      padding: {{ star_padding | default: \"1px 2px\" }};\n    \">\n      <svg width=\"{{ star_size | default: \"12\" }}\" height=\"{{ star_size | default: \"12\" }}\" viewBox=\"0 0 24 24\" fill=\"{{ star_color | default: \"#ffffff\" }}\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M12 2l2.39 6.91H22l-5.43 3.94L18.74 22 12 17.56 5.26 22l1.43-9.15L2 8.91h7.61L12 2z\"/>\n      </svg>\n    </div>\n    <div style=\"\n      background-color: {{ star_bg_color | default: \"#E64E30\" }};\n      border-radius: {{ star_border_radius | default: \"3px\" }};\n      padding: {{ star_padding | default: \"1px 2px\" }};\n    \">\n      <svg width=\"{{ star_size | default: \"12\" }}\" height=\"{{ star_size | default: \"12\" }}\" viewBox=\"0 0 24 24\" fill=\"{{ star_color | default: \"#ffffff\" }}\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M12 2l2.39 6.91H22l-5.43 3.94L18.74 22 12 17.56 5.26 22l1.43-9.15L2 8.91h7.61L12 2z\"/>\n      </svg>\n    </div>\n    <div style=\"\n      background-color: {{ star_bg_color | default: \"#E64E30\" }};\n      border-radius: {{ star_border_radius | default: \"3px\" }};\n      padding: {{ star_padding | default: \"1px 2px\" }};\n    \">\n      <svg width=\"{{ star_size | default: \"12\" }}\" height=\"{{ star_size | default: \"12\" }}\" viewBox=\"0 0 24 24\" fill=\"{{ star_color | default: \"#ffffff\" }}\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M12 2l2.39 6.91H22l-5.43 3.94L18.74 22 12 17.56 5.26 22l1.43-9.15L2 8.91h7.61L12 2z\"/>\n      </svg>\n    </div>\n    <div style=\"\n      background-color: {{ star_bg_color | default: \"#E64E30\" }};\n      border-radius: {{ star_border_radius | default: \"3px\" }};\n      padding: {{ star_padding | default: \"1px 2px\" }};\n    \">\n      <svg width=\"{{ star_size | default: \"12\" }}\" height=\"{{ star_size | default: \"12\" }}\" viewBox=\"0 0 24 24\" fill=\"{{ star_color | default: \"#ffffff\" }}\" xmlns=\"http://www.w3.org/2000/svg\">\n        <path d=\"M12 2l2.39 6.91H22l-5.43 3.94L18.74 22 12 17.56 5.26 22l1.43-9.15L2 8.91h7.61L12 2z\"/>\n      </svg>\n    </div>\n  </div>\n  <div style=\"line-height: 1;\">\n    {{ rating_text | default: \"Uitstekend\" }} <strong style=\"font-weight: {{ rating_weight | default: \"600\" }};\">{{ rating_score | default: \"4,6\" }}</strong> | <strong style=\"font-weight: {{ rating_weight | default: \"600\" }};\">{{ review_count | default: \"500+\" }}</strong> {{ reviews_text | default: \"Recensies\" }}\n  </div>\n</div>"
+          }
+        },
+        "custom_liquid_Hm6CkY": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<section class=\"rspin_8kv7\" style=\"--font-size: {{ font_size | default: \"13px\" }}; --interval-ms: {{ animation_speed | default: \"2000\" }}; margin-top: {{ top_margin | default: \"0px\" }}; margin-bottom: {{ bottom_margin | default: \"0px\" }};\">\n  <style>\n    .rspin_8kv7 { \n      font-size: var(--font-size); \n      color: {{ text_color | default: \"#2b2b2b\" }};\n      font-family: inherit;\n      letter-spacing: 0.2px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-viewport {\n      position: relative;\n      overflow: hidden;\n      height: 22px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-line {\n      display: grid;\n      grid-auto-rows: auto;\n      transition: transform 0.5s ease-in-out;\n      will-change: transform;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-item {\n      display: flex;\n      align-items: center;\n      gap: 6px;\n      white-space: nowrap;\n      font-weight: 500;\n      line-height: 22px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-icon {\n      width: 15px;\n      height: 15px;\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      color: {{ highlight_color | default: \"#ff6600\" }};\n      flex-shrink: 0;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-icon svg {\n      width: 15px;\n      height: 15px;\n      display: block;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-strong { \n      font-weight: 700; \n      color: {{ highlight_color | default: \"#000000\" }}; \n    }\n  </style>\n\n  <div class=\"rspin_8kv7-viewport\" id=\"rspin_8kv7_view\">\n    <div class=\"rspin_8kv7-line\" id=\"rspin_8kv7_line\">\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M7 10V8a5 5 0 0 1 10 0v2\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><rect x=\"5\" y=\"10\" width=\"14\" height=\"10\" rx=\"2\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>\n        </span>\n        Veilig <span class=\"rspin_8kv7-strong\">& Versleuteld</span> Afrekenen\n      </div>\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M20 6L9 17l-5-5\" stroke=\"currentColor\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n        </span>\n        Officiële Partner <span class=\"rspin_8kv7-strong\">& Kwaliteit</span> Gegarandeerd\n      </div>\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 7h11a5 5 0 1 1 0 10H8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><path d=\"M7 4L4 7l3 3\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n        </span>\n        60 Dagen <span class=\"rspin_8kv7-strong\">Eenvoudig</span> Retourbeleid\n      </div>\n\n    </div>\n  </div>\n\n  <script>\n    (function(){\n      var view = document.getElementById('rspin_8kv7_view');\n      var line = document.getElementById('rspin_8kv7_line');\n      if(!view || !line) return;\n      var items = line.children;\n      if(!items.length) return;\n\n      var root = view.closest('.rspin_8kv7') || document.documentElement;\n\n      function cssVarInt(el, name, fallback){\n        var v = getComputedStyle(el).getPropertyValue(name).trim();\n        var n = parseInt(v, 10);\n        return isNaN(n) ? fallback : n;\n      }\n\n      var idx = 0;\n      var intervalMs = cssVarInt(root, '--interval-ms', 2500);\n      var rowH = items[0].offsetHeight || 22;\n\n      function setHeight(){\n        rowH = items[0].offsetHeight || rowH;\n        view.style.height = rowH + 'px';\n        line.style.transform = 'translateY(' + (-idx * rowH) + 'px)';\n      }\n\n      setHeight();\n      window.addEventListener('load', setHeight);\n\n      var resizeTO;\n      window.addEventListener('resize', function(){\n        clearTimeout(resizeTO);\n        resizeTO = setTimeout(setHeight, 200);\n      });\n\n      setInterval(function(){\n        idx = (idx + 1) % items.length;\n        line.style.transform = 'translateY(' + (-idx * rowH) + 'px)';\n      }, intervalMs);\n    })();\n  </script>\n</section>"
+          }
+        },
+        "custom_liquid_Vafc6p": {
+          "type": "custom-liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "<div style=\"background: {{ background | default: \"#ffffff\" }}; padding: {{ container_padding | default: \"60px 20px\" }}; text-align: center;\">\n  <div style=\"display: flex; justify-content: center; gap: {{ image_gap | default: \"16px\" }}; margin-bottom: {{ images_margin_bottom | default: \"40px\" }}; flex-wrap: wrap;\">\n    <img src=\"{{ image_1 | default: \"https://smartsgadgets.eu/cdn/shop/files/Xenon_Smart_Baby_Camera_with_Monitor_Main_Image.png?v=1763490696&width=1500\" }}\" alt=\"photo\" style=\"width: {{ image_width | default: \"100px\" }}; height: auto; border-radius: {{ image_border_radius | default: \"8px\" }}; transform: rotate(-8deg); box-shadow: {{ image_shadow | default: \"0 4px 10px rgba(0,0,0,0.2)\" }};\">\n    <img src=\"{{ image_2 | default: \"https://smartsgadgets.eu/cdn/shop/files/Xenon_Smart_Water_Fountain_Main_Image.png?v=1763482887&width=1500\" }}\" alt=\"photo\" style=\"width: {{ image_width | default: \"100px\" }}; height: auto; border-radius: {{ image_border_radius | default: \"8px\" }}; transform: scale(1.1); z-index: 2; box-shadow: {{ image_shadow | default: \"0 4px 10px rgba(0,0,0,0.2)\" }};\">\n    <img src=\"{{ image_3 | default: \"https://smartsgadgets.eu/cdn/shop/files/Xenon_Smart_LED_Bulb_X7021_Main_Image.png?v=1763469537&width=1500\" }}\" alt=\"photo\" style=\"width: {{ image_width | default: \"100px\" }}; height: auto; border-radius: {{ image_border_radius | default: \"8px\" }}; transform: rotate(8deg); box-shadow: {{ image_shadow | default: \"0 4px 10px rgba(0,0,0,0.2)\" }};\">\n  </div>\n\n  <div style=\"font-size: {{ title_font_size | default: \"22px\" }}; font-weight: bold; color: {{ title_color | default: \"#E64E30\" }}; margin-bottom: {{ title_margin_bottom | default: \"12px\" }};\">\n    {{ title_first_part | default: \"Geld terug\" }} <span style=\"color: {{ title_highlight_color | default: \"#E64E30\" }};\">{{ title_second_part | default: \"Garantie\" }}</span>\n  </div>\n\n  <div style=\"color: {{ description_color | default: \"#000000\" }}; font-size: {{ description_font_size | default: \"15px\" }}; max-width: {{ description_max_width | default: \"600px\" }}; margin: 0 auto {{ description_margin_bottom | default: \"30px\" }} auto;\">\n    {% if description_text %}\n      {{ description_text }}\n    {% else %}\n    Wij zijn zo overtuigd van de kwaliteit van ons product dat wij een tevredenheidsgarantie bieden. Als u niet volledig tevreden bent met uw aankoop, retourneert u het artikel eenvoudig binnen 30 dagen voor een volledige terugbetaling\n    {% endif %}\n  </div>\n\n  <div style=\"margin: {{ button_margin | default: \"30px auto 20px\" }};\">\n    <a href=\"{{ button_link | default: \"https://smartsgadgets.eu/collections/xenon-smart\" }}\" style=\"display: inline-block; background: {{ button_bg | default: \"#E64E30\" }}; color: {{ button_text_color | default: \"white\" }}; padding: {{ button_padding | default: \"16px 40px\" }}; border-radius: {{ button_border_radius | default: \"12px\" }}; font-weight: {{ button_font_weight | default: \"700\" }}; font-size: {{ button_font_size | default: \"15px\" }}; letter-spacing: 1px; text-decoration: none;\">\n      {{ button_text | default: \"KOOP NU\" }}\n    </a>\n  </div>\n\n  <div style=\"margin-top: {{ features_margin_top | default: \"24px\" }}; font-size: {{ features_font_size | default: \"14px\" }}; color: {{ features_color | default: \"#000000\" }}; display: flex; gap: {{ features_gap | default: \"16px\" }}; justify-content: center; flex-wrap: wrap; align-items: center;\">\n    <span style=\"display: flex; align-items: center; gap: 6px;\"><svg width=\"16\" height=\"16\" fill=\"{{ check_icon_color | default: \"#E64E30\" }}\" viewBox=\"0 0 24 24\"><path d=\"M20.292 5.708a1 1 0 0 1 0 1.414L9 18.414l-5.292-5.292a1 1 0 0 1 1.414-1.414L9 15.586l10.292-10.292a1 1 0 0 1 1.414 0z\"/></svg>{{ feature_1_text | default: \"100% Tevredenheid\" }}</span>\n    <span style=\"display: flex; align-items: center; gap: 6px;\"><svg width=\"16\" height=\"16\" fill=\"{{ check_icon_color | default: \"#E64E30\" }}\" viewBox=\"0 0 24 24\"><path d=\"M20.292 5.708a1 1 0 0 1 0 1.414L9 18.414l-5.292-5.292a1 1 0 0 1 1.414-1.414L9 15.586l10.292-10.292a1 1 0 0 1 1.414 0z\"/></svg>{{ feature_2_text | default: \"Snelle Verzending\" }}</span>\n    <span style=\"display: flex; align-items: center; gap: 6px;\"><svg width=\"16\" height=\"16\" fill=\"{{ check_icon_color | default: \"#E64E30\" }}\" viewBox=\"0 0 24 24\"><path d=\"M20.292 5.708a1 1 0 0 1 0 1.414L9 18.414l-5.292-5.292a1 1 0 0 1 1.414-1.414L9 15.586l10.292-10.292a1 1 0 0 1 1.414 0z\"/></svg>{{ feature_3_text | default: \"Eenvoudig Retourneren\" }}</span>\n  </div>\n</div>"
+          }
+        },
+        "collapsible_content_CKUxJz": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Vertrouwen en garanties",
+            "icon": "check_mark_in_circle",
+            "text": "<p><strong>2 jaar garantie</strong><br/>Toegewijde lokale ondersteuning<br/><br/><strong>Officiële partner</strong><br/>Authentieke producten van geautoriseerde merken<br/><br/><strong>Geverifieerde klantbeoordelingen</strong><br/>Beoordelingen verzameld via Judge.me van echte klanten<br/><br/><strong>Snelle verzending</strong><br/>Snelle verzending binnen de EU</p>",
+            "page": "",
+            "open": false
+          }
+        },
+        "collapsible-content-2": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Levering en Verzending",
+            "icon": "truck",
+            "text": "<p>Bij <strong>SmartsGadgets EU</strong> streven we ernaar uw bestellingen snel en veilig te leveren.</p><p><strong>Verzendgebied: </strong>Wij verzenden momenteel door heel Nederland en naar geselecteerde EU-landen.</p><p><strong>Levertijd:<br/>Binnen Nederland:</strong> Levering de volgende dag voor bestellingen geplaatst vóór 14:00 uur.<br/><strong>Andere EU-landen:</strong> Levering binnen 48 tot 96 uur, afhankelijk van de bestemming.</p><p><strong>Vervoerders:</strong>Al onze bestellingen worden verzonden met <strong>DHL</strong>. De trackinginformatie ontvangt u direct na verwerking.</p><p><strong>Verzendkosten: </strong>Gratis verzending is beschikbaar voor alle bestellingen.</p>",
+            "page": "",
+            "open": false
+          }
+        },
+        "collapsible_content_RaBCjR": {
+          "type": "collapsible-content",
+          "settings": {
+            "heading": "Retourneren en terugbetalingen",
+            "icon": "return",
+            "text": "<p>Niet tevreden? U kunt uw artikel binnen 60 dagen eenvoudig retourneren voor een volledige terugbetaling.</p>",
+            "page": "",
+            "open": false
+          }
+        },
+        "message-3": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "title": "<p>test</p>",
+            "close": "once",
+            "show_over_media": false,
+            "visibility_duration": 7,
+            "bg_color": "#e4edfa",
+            "text_color": "#1a66d2"
+          }
+        }
+      },
+      "block_order": [
+        "vendor-sku",
+        "product-labels",
+        "title",
+        "price",
+        "variant-picker",
+        "divider-1",
+        "buy-buttons",
+        "custom_liquid_kmVnVa",
+        "message-1",
+        "message-2",
+        "collapsible-content-1",
+        "custom_liquid_GmzejL",
+        "custom_liquid_Hm6CkY",
+        "custom_liquid_Vafc6p",
+        "collapsible_content_CKUxJz",
+        "collapsible-content-2",
+        "collapsible_content_RaBCjR",
+        "message-3"
+      ],
+      "custom_css": [],
+      "settings": {
+        "stick_on_scroll": true,
+        "select_first_variant": true,
+        "sticky_atc_panel": true,
+        "sticky_atc_position": "sticky-atc-panel--center",
+        "sticky_atc_mobile": true,
+        "media_layout": "slider",
+        "media_size": "default",
+        "media_ratio": "natural",
+        "media_crop": "none",
+        "enable_video_looping": false,
+        "enable_zoom": true,
+        "zoom_mode": "hover",
+        "enable_lightbox_mobile": false,
+        "hover_zoom": "medium",
+        "stacked_scroll": "always",
+        "underline_active": true,
+        "media_arrows": "desktop",
+        "show_slide_count": true,
+        "show_dot_nav": false,
+        "media_thumbs": "always",
+        "lightbox_thumbnails": true,
+        "thumb_ratio": "1",
+        "thumb_crop": "none",
+        "border_color": "#ffffff",
+        "bg_color": "#ffffff",
+        "enable_media_grouping": false,
+        "media_grouping_option": "Color,Colour,Couleur,Farbe"
+      }
+    },
+    "blocks_e8X9ig": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5e3cb52_JUrB7G": {
+          "type": "ai_gen_block_5e3cb52",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "default_option": "1",
+            "option_1_quantity": 1,
+            "option_1_label": "",
+            "option_1_discount": 0,
+            "option_2_quantity": 2,
+            "option_2_label": "",
+            "option_2_discount": 10,
+            "option_3_quantity": 3,
+            "option_3_label": "",
+            "option_3_discount": 15,
+            "border_radius": 8,
+            "border_color": "#e1e1e1",
+            "text_color": "#2a2b2a",
+            "price_color": "#2a2b2a",
+            "savings_color": "#7fb800",
+            "radio_color": "#ff580d",
+            "option_bg_color": "#ffffff",
+            "option_border_color": "#e1e1e1",
+            "option_hover_bg_color": "#f9f9f9",
+            "option_hover_border_color": "#cccccc",
+            "option_selected_bg_color": "#fff5f0",
+            "option_selected_border_color": "#ff580d"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5e3cb52_JUrB7G"
+      ],
+      "disabled": true,
+      "name": "Bundle options",
+      "settings": {}
+    },
+    "details": {
+      "type": "product-details",
+      "blocks": {
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "style": "tabs",
+            "open_first": true,
+            "show_description": true,
+            "show_reviews": false,
+            "custom_reviews": "",
+            "show_specification": false,
+            "spec_metafields": "",
+            "spec_right_align": false,
+            "spec_show_empty_metafields": true,
+            "spec_empty_field_text": "-",
+            "tab_1_title": "Belangrijkste Kenmerken",
+            "tab_1_text": "{{ product.metafields.custom.key_features | metafield_tag }}",
+            "tab_1_page": "",
+            "tab_2_title": "Waarom Kiezen",
+            "tab_2_text": "{{ product.metafields.custom.why_choose | metafield_tag }}",
+            "tab_2_page": "",
+            "tab_3_title": "Pakket Inhoud",
+            "tab_3_text": "{{ product.metafields.custom.package_includes | metafield_tag }}",
+            "tab_3_page": ""
+          }
+        },
+        "highlight-text": {
+          "type": "highlight-text",
+          "disabled": true,
+          "settings": {
+            "title": "Highlight title",
+            "text": "<p>Text to highlight a key feature of your product</p>"
+          }
+        },
+        "payment-methods": {
+          "type": "payment-methods",
+          "disabled": true,
+          "settings": {
+            "title": "Betaling & Veiligheid",
+            "title1": "Betaalmethoden",
+            "show_payment_icons": false,
+            "text1": "<p>Uw betalingsinformatie wordt veilig verwerkt. Wij bewaren geen creditcardgegevens, noch hebben wij toegang tot uw creditcardinformatie.</p>",
+            "title2": "",
+            "text2": ""
+          }
+        }
+      },
+      "block_order": [
+        "tabs",
+        "highlight-text",
+        "payment-methods"
+      ],
+      "settings": {}
+    },
+    "178627929640cce22e": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_CxErBC": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_CxErBC"
+      ],
+      "settings": {
+        "full_width": false,
+        "show_space": true
+      }
+    },
+    "collection-list": {
+      "type": "collection-list",
+      "blocks": {
+        "collection-list-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-collection-4": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-collection-5": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection-list-collection-6": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection-list-collection-1",
+        "collection-list-collection-2",
+        "collection-list-collection-3",
+        "collection-list-collection-4",
+        "collection-list-collection-5",
+        "collection-list-collection-6"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Our Collections",
+        "heading_align": "text-start",
+        "button_label": "",
+        "button_link": "",
+        "layout": "carousel",
+        "card_size": "small",
+        "use_product_image": false,
+        "circle_image": true,
+        "show_border": true,
+        "color_scheme": "none",
+        "full_width": true
+      }
+    },
+    "image-banner": {
+      "type": "image-banner",
+      "blocks": {
+        "image-banner-heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1",
+            "heading_h1": false
+          }
+        },
+        "image-banner-text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "enlarge_text": true
+          }
+        },
+        "image-banner-button": {
+          "type": "button",
+          "settings": {
+            "button_1_label": "Optional button",
+            "button_1_link": "",
+            "button_1_style": "btn btn--primary",
+            "button_2_label": "Optional button",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary"
+          }
+        }
+      },
+      "block_order": [
+        "image-banner-heading",
+        "image-banner-text",
+        "image-banner-button"
+      ],
+      "disabled": true,
+      "settings": {
+        "url": "",
+        "height_mode": "fixed",
+        "fixed_height_desktop": 640,
+        "fixed_height_mobile": 480,
+        "overlay_position": "justify-center items-center",
+        "overlay_text_align": "text-center",
+        "mob_center_text": false,
+        "mobile_stacked": false,
+        "color_scheme": "white",
+        "full_width": false,
+        "transparent_content_color": "#ffffff",
+        "tint_color": "#000000",
+        "tint_opacity": 40,
+        "prevent_animation": false
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "heading": "Misschien vind je dit ook leuk",
+        "heading_align": "text-start",
+        "layout": "carousel",
+        "card_size_mobile": "small",
+        "card_size": "small",
+        "products_to_show": 8
+      }
+    },
+    "custom_liquid_4d7fX9": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-stats-wrap{\n  background:#642342;\n  color:#fff;\n  padding:58px 20px 22px;\n}\n\n.deki-stats{\n  max-width:1400px;\n  margin:0 auto;\n  display:grid;\n  grid-template-columns:repeat(4,1fr);\n  text-align:center;\n  gap:32px;\n}\n\n.deki-stat-number{\n  font-size:clamp(40px,4vw,66px);\n  font-weight:750;\n  line-height:1;\n  letter-spacing:-1px;\n}\n\n.deki-stat-text{\n  max-width:210px;\n  margin:16px auto 0;\n  font-size:18px;\n  line-height:1.45;\n  opacity:.92;\n}\n\n.deki-stats-note{\n  margin:38px auto 0;\n  text-align:center;\n  font-size:11px;\n  line-height:1.4;\n  opacity:.55;\n}\n\n@media(max-width:768px){\n  .deki-stats-wrap{\n    padding:40px 16px 22px;\n  }\n\n  .deki-stats{\n    grid-template-columns:repeat(2,1fr);\n    gap:38px 18px;\n  }\n\n  .deki-stat-number{\n    font-size:38px;\n  }\n\n  .deki-stat-text{\n    margin-top:10px;\n    font-size:14px;\n  }\n\n  .deki-stats-note{\n    margin-top:30px;\n    font-size:10px;\n  }\n}\n</style>\n\n<div class=\"deki-stats-wrap\">\n  <div class=\"deki-stats\">\n\n    <div>\n      <div class=\"deki-stat-number\">93%</div>\n      <div class=\"deki-stat-text\">\n        Tot 93% minder zichtbare haargroei*\n      </div>\n    </div>\n\n    <div>\n      <div class=\"deki-stat-number\">500+</div>\n      <div class=\"deki-stat-text\">\n        Tevreden klanten\n      </div>\n    </div>\n\n    <div>\n      <div class=\"deki-stat-number\">5 min</div>\n      <div class=\"deki-stat-text\">\n        Behandeltijd voor beide benen\n      </div>\n    </div>\n\n    <div>\n      <div class=\"deki-stat-number\">999.900</div>\n      <div class=\"deki-stat-text\">\n        Lichtflitsen zonder navullingen\n      </div>\n    </div>\n\n  </div>\n\n  <div class=\"deki-stats-note\">\n    *Gebaseerd op regelmatig gebruik volgens de handleiding. Individuele resultaten kunnen verschillen.\n  </div>\n</div>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_HxD8B4": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-why {\n  width: 100%;\n  background: #fbf5f1;\n  padding: 80px 20px;\n  box-sizing: border-box;\n}\n\n.deki-why *,\n.deki-why *::before,\n.deki-why *::after {\n  box-sizing: border-box;\n}\n\n.deki-why__inner {\n  width: 100%;\n  max-width: 1180px;\n  margin: 0 auto;\n}\n\n.deki-why__eyebrow {\n  margin: 0 0 12px;\n  color: #b64b6d;\n  font-size: 13px;\n  font-weight: 700;\n  letter-spacing: 1.6px;\n  text-align: center;\n  text-transform: uppercase;\n}\n\n.deki-why__title {\n  max-width: 760px;\n  margin: 0 auto 18px;\n  color: #2f2028;\n  font-size: clamp(34px, 4vw, 54px);\n  line-height: 1.08;\n  text-align: center;\n}\n\n.deki-why__intro {\n  max-width: 760px;\n  margin: 0 auto 34px;\n  color: #6f6267;\n  font-size: 18px;\n  line-height: 1.65;\n  text-align: center;\n}\n\n/* Highlight cards */\n\n.deki-why__highlights {\n  display: grid;\n  width: 100%;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  align-items: stretch;\n  gap: 18px;\n  margin-bottom: 28px;\n}\n\n.deki-why__highlight {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n  min-height: 145px;\n  padding: 26px 20px;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background: #ffffff;\n  border: 1px solid #eadbd5;\n  border-radius: 14px;\n  text-align: center;\n}\n\n.deki-why__highlight strong {\n  display: block;\n  margin-bottom: 8px;\n  color: #7a294b;\n  font-size: 28px;\n  line-height: 1.2;\n}\n\n.deki-why__highlight span {\n  color: #6f6267;\n  font-size: 14px;\n  line-height: 1.45;\n}\n\n/* Comparison cards */\n\n.deki-why__compare {\n  display: grid;\n  width: 100%;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  align-items: stretch;\n  gap: 18px;\n  margin-top: 22px;\n}\n\n.deki-why__card {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n  min-height: 285px;\n  padding: 30px;\n  flex-direction: column;\n  border-radius: 16px;\n}\n\n.deki-why__card--light {\n  background: #ffffff;\n  border: 1px solid #eadbd5;\n}\n\n.deki-why__card--dark {\n  background: #6a2948;\n  color: #ffffff;\n}\n\n.deki-why__card h3 {\n  margin: 0 0 18px;\n  font-size: 16px;\n  letter-spacing: 1px;\n  text-transform: uppercase;\n}\n\n.deki-why__list {\n  padding: 0;\n  margin: 0;\n  list-style: none;\n}\n\n.deki-why__list li {\n  position: relative;\n  padding-left: 28px;\n  margin: 14px 0;\n  line-height: 1.45;\n}\n\n.deki-why__card--light .deki-why__list li {\n  color: #675b60;\n}\n\n.deki-why__list li::before {\n  position: absolute;\n  top: 0;\n  left: 0;\n  font-weight: 700;\n}\n\n.deki-why__card--light .deki-why__list li::before {\n  content: \"×\";\n  color: #c57388;\n}\n\n.deki-why__card--dark .deki-why__list li::before {\n  content: \"✓\";\n  color: #ffffff;\n}\n\n/* CTA button */\n\n.deki-why__cta {\n  margin-top: 28px;\n  text-align: center;\n}\n\n.deki-why__button {\n  display: inline-block;\n  padding: 15px 30px;\n  color: #ffffff;\n  background: #d65316;\n  border: none;\n  border-radius: 999px;\n  font-family: inherit;\n  font-size: 16px;\n  font-weight: 700;\n  line-height: 1.2;\n  text-decoration: none;\n  cursor: pointer;\n  appearance: none;\n  -webkit-appearance: none;\n  transition:\n    opacity 0.2s ease,\n    transform 0.2s ease,\n    box-shadow 0.2s ease;\n}\n\n.deki-why__button:hover {\n  opacity: 0.92;\n  transform: translateY(-1px);\n  box-shadow: 0 8px 20px rgba(214, 83, 22, 0.22);\n}\n\n.deki-why__button:active {\n  transform: translateY(0);\n}\n\n.deki-why__button:focus-visible {\n  outline: 3px solid rgba(214, 83, 22, 0.28);\n  outline-offset: 3px;\n}\n\n/* Benefit cards */\n\n.deki-benefits {\n  display: grid;\n  width: 100%;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  grid-auto-rows: 1fr;\n  align-items: stretch;\n  gap: 18px;\n  margin-top: 46px;\n}\n\n.deki-why .deki-benefits > .deki-benefit {\n  display: flex;\n  width: 100%;\n  min-width: 0;\n  max-width: none;\n  min-height: 190px;\n  margin: 0;\n  padding: 24px;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-self: stretch;\n  background: #ffffff;\n  border: 1px solid #eadbd5;\n  border-radius: 14px;\n}\n\n.deki-benefit__icon {\n  display: flex;\n  width: 38px;\n  height: 38px;\n  min-width: 38px;\n  min-height: 38px;\n  margin-bottom: 16px;\n  align-items: center;\n  justify-content: center;\n  background: #f8e6e1;\n  border-radius: 10px;\n  font-size: 19px;\n  line-height: 1;\n}\n\n.deki-benefit h4 {\n  min-height: 24px;\n  margin: 0 0 8px;\n  color: #33242b;\n  font-size: 18px;\n  line-height: 1.35;\n}\n\n.deki-benefit p {\n  margin: 0;\n  color: #706368;\n  font-size: 14px;\n  line-height: 1.55;\n}\n\n/* Tablet */\n\n@media screen and (max-width: 900px) {\n  .deki-benefits {\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n  }\n}\n\n/* Mobile */\n\n@media screen and (max-width: 768px) {\n  .deki-why {\n    width: 100%;\n    padding: 56px 16px;\n    overflow: hidden;\n  }\n\n  .deki-why__inner {\n    width: 100%;\n    max-width: none;\n  }\n\n  .deki-why__highlights,\n  .deki-why__compare,\n  .deki-benefits {\n    display: grid;\n    width: 100%;\n    max-width: none;\n    grid-template-columns: minmax(0, 1fr);\n  }\n\n  .deki-why__title {\n    font-size: 36px;\n  }\n\n  .deki-why__intro {\n    font-size: 16px;\n  }\n\n  .deki-why__highlight {\n    width: 100%;\n    max-width: none;\n    min-height: 130px;\n    margin: 0;\n    padding: 22px 18px;\n    justify-self: stretch;\n  }\n\n  .deki-why__card {\n    width: 100%;\n    max-width: none;\n    min-height: 0;\n    margin: 0;\n    padding: 25px 22px;\n    justify-self: stretch;\n  }\n\n  .deki-benefits {\n    grid-auto-rows: 1fr;\n    gap: 14px;\n    margin-top: 38px;\n  }\n\n  .deki-why .deki-benefits > .deki-benefit {\n    width: 100% !important;\n    min-width: 0 !important;\n    max-width: none !important;\n    min-height: 170px;\n    margin: 0 !important;\n    padding: 22px;\n    justify-self: stretch !important;\n    align-self: stretch !important;\n  }\n}\n\n/* Small mobile */\n\n@media screen and (max-width: 480px) {\n  .deki-why {\n    width: 100%;\n    padding: 48px 14px;\n  }\n\n  .deki-why__title {\n    font-size: 32px;\n  }\n\n  .deki-why .deki-benefits > .deki-benefit {\n    width: 100% !important;\n    min-height: 165px;\n  }\n\n  .deki-why__button {\n    width: 100%;\n    max-width: 340px;\n  }\n}\n</style>\n\n<section class=\"deki-why\">\n  <div class=\"deki-why__inner\">\n\n    <div class=\"deki-why__eyebrow\">Waarom IPL?</div>\n\n    <h2 class=\"deki-why__title\">\n      Scheren is dweilen met de kraan open\n    </h2>\n\n    <p class=\"deki-why__intro\">\n      Scheren om de paar dagen, stoppels, ingegroeide haartjes en terugkerende kosten.\n      IPL richt zich op het haarzakje, waardoor de haargroei bij regelmatig gebruik\n      zichtbaar kan verminderen.\n    </p>\n\n    <div class=\"deki-why__highlights\">\n\n      <div class=\"deki-why__highlight\">\n        <strong>€600+</strong>\n        <span>Mogelijke jaarlijkse besparing vergeleken met salonbehandelingen</span>\n      </div>\n\n      <div class=\"deki-why__highlight\">\n        <strong>Vanaf week 4</strong>\n        <span>De eerste zichtbare resultaten kunnen ontstaan bij regelmatig gebruik</span>\n      </div>\n\n      <div class=\"deki-why__highlight\">\n        <strong>0 navullingen</strong>\n        <span>999.900 lichtflitsen zonder vervangende cartridges</span>\n      </div>\n\n    </div>\n\n    <div class=\"deki-why__compare\">\n\n      <div class=\"deki-why__card deki-why__card--light\">\n        <h3>Scheren, waxen en salon</h3>\n\n        <ul class=\"deki-why__list\">\n          <li>Stoppels keren snel terug</li>\n          <li>Kans op irritatie en ingegroeide haartjes</li>\n          <li>Terugkerende afspraken en kosten</li>\n          <li>Behandelingen kosten tijd buitenshuis</li>\n        </ul>\n      </div>\n\n      <div class=\"deki-why__card deki-why__card--dark\">\n        <h3>Met DEKI LUMA IPL</h3>\n\n        <ul class=\"deki-why__list\">\n          <li>Langdurig een zichtbaar gladdere huid</li>\n          <li>Comfortabel thuis te gebruiken</li>\n          <li>Vijf instelbare intensiteitsniveaus</li>\n          <li>Eenmalige aankoop zonder navullingen</li>\n        </ul>\n      </div>\n\n    </div>\n\n    <div class=\"deki-benefits\">\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">✨</div>\n        <h4>Langdurig glad</h4>\n        <p>Bij regelmatig gebruik kan de zichtbare haargroei geleidelijk verminderen.</p>\n      </div>\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">♡</div>\n        <h4>Comfortabel en veilig</h4>\n        <p>Vijf instelbare niveaus helpen de behandeling af te stemmen op uw huid.</p>\n      </div>\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">⚡</div>\n        <h4>Twee gebruiksmodi</h4>\n        <p>Glijmodus voor grotere zones en handmatige flits voor precieze behandeling.</p>\n      </div>\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">∞</div>\n        <h4>999.900 lichtflitsen</h4>\n        <p>Ontworpen voor jarenlang gebruik zonder vervangende cartridges.</p>\n      </div>\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">✈</div>\n        <h4>Compact en draagbaar</h4>\n        <p>Gemakkelijk op te bergen en geschikt om mee te nemen op reis.</p>\n      </div>\n\n      <div class=\"deki-benefit\">\n        <div class=\"deki-benefit__icon\">□</div>\n        <h4>Complete set</h4>\n        <p>Inclusief apparaat, adapter, beschermbril en scheermes.</p>\n      </div>\n\n    </div>\n\n  </div>\n</section>\n\n<script>\n(function () {\n  function initializeDekiScrollButton() {\n    var buttons = document.querySelectorAll(\n      \"[data-deki-scroll-to-product]:not([data-deki-scroll-ready])\"\n    );\n\n    buttons.forEach(function (button) {\n      button.setAttribute(\"data-deki-scroll-ready\", \"true\");\n\n      button.addEventListener(\"click\", function () {\n        var productTarget =\n          document.querySelector(\"product-form\") ||\n          document.querySelector('form[action*=\"/cart/add\"]') ||\n          document.querySelector(\".buy-buttons\") ||\n          document.querySelector(\".product-form\") ||\n          document.querySelector(\"[class*='buy-buttons']\") ||\n          document.querySelector(\"[class*='product-form']\");\n\n        if (productTarget) {\n          productTarget.scrollIntoView({\n            behavior: \"smooth\",\n            block: \"center\"\n          });\n        } else {\n          window.scrollTo({\n            top: 0,\n            behavior: \"smooth\"\n          });\n        }\n      });\n    });\n  }\n\n  document.addEventListener(\n    \"DOMContentLoaded\",\n    initializeDekiScrollButton\n  );\n\n  document.addEventListener(\n    \"shopify:section:load\",\n    initializeDekiScrollButton\n  );\n\n  initializeDekiScrollButton();\n})();\n</script>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_fc6LND": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-routine{\n  background:#f5dfd5;\n  padding:80px 20px;\n}\n\n.deki-routine__inner{\n  max-width:1180px;\n  margin:0 auto;\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:70px;\n  align-items:center;\n}\n\n.deki-routine__image{\n  border-radius:22px;\n  overflow:hidden;\n  background:#fff9f2;\n  box-shadow:0 18px 45px rgba(63,35,46,.10);\n}\n\n.deki-routine__image img{\n  width:100%;\n  display:block;\n}\n\n.deki-routine__eyebrow{\n  color:#b54c6c;\n  font-size:13px;\n  font-weight:700;\n  text-transform:uppercase;\n  letter-spacing:1.5px;\n  margin-bottom:12px;\n}\n\n.deki-routine__title{\n  margin:0 0 30px;\n  color:#2f2229;\n  font-size:clamp(34px,4vw,52px);\n  line-height:1.1;\n}\n\n.deki-routine__step{\n  display:grid;\n  grid-template-columns:46px 1fr;\n  gap:18px;\n  margin-bottom:26px;\n}\n\n.deki-routine__number{\n  width:46px;\n  height:46px;\n  border-radius:50%;\n  background:#7a294b;\n  color:#fff;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  font-weight:700;\n  font-size:18px;\n}\n\n.deki-routine__step h3{\n  margin:0 0 7px;\n  color:#302329;\n  font-size:20px;\n}\n\n.deki-routine__step p{\n  margin:0;\n  color:#6e6166;\n  line-height:1.6;\n  font-size:16px;\n}\n\n.deki-routine__button{\n  display:inline-block;\n  margin-top:10px;\n  padding:15px 28px;\n  border-radius:999px;\n  background:#d45b20;\n  color:#fff;\n  text-decoration:none;\n  font-weight:700;\n}\n\n@media(max-width:768px){\n  .deki-routine{\n    padding:55px 16px;\n  }\n\n  .deki-routine__inner{\n    grid-template-columns:1fr;\n    gap:38px;\n  }\n\n  .deki-routine__title{\n    font-size:36px;\n  }\n}\n</style>\n\n<section class=\"deki-routine\">\n  <div class=\"deki-routine__inner\">\n\n    <div class=\"deki-routine__image\">\n      <img\n        src=\"{{ product.media[2].preview_image | image_url: width: 1200 }}\"\n        alt=\"DEKI LUMA IPL gebruik in drie stappen\"\n        loading=\"lazy\"\n      >\n    </div>\n\n    <div>\n      <div class=\"deki-routine__eyebrow\">Zo eenvoudig is het</div>\n\n      <h2 class=\"deki-routine__title\">\n        Een gladdere huid in 3 eenvoudige stappen\n      </h2>\n\n      <div class=\"deki-routine__step\">\n        <div class=\"deki-routine__number\">1</div>\n        <div>\n          <h3>Scheren en reinigen</h3>\n          <p>\n            Scheer het te behandelen gebied en zorg dat de huid schoon en volledig droog is.\n          </p>\n        </div>\n      </div>\n\n      <div class=\"deki-routine__step\">\n        <div class=\"deki-routine__number\">2</div>\n        <div>\n          <h3>Kies het niveau en flits</h3>\n          <p>\n            Kies een comfortabele intensiteitsstand en plaats het lichtvenster volledig op de huid.\n          </p>\n        </div>\n      </div>\n\n      <div class=\"deki-routine__step\">\n        <div class=\"deki-routine__number\">3</div>\n        <div>\n          <h3>Herhaal volgens het schema</h3>\n          <p>\n            Gebruik het apparaat volgens de instructies in de handleiding en schakel later over op onderhoudsbehandelingen.\n          </p>\n        </div>\n      </div>\n\n      </a>\n    </div>\n\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_wcnKYg": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-results{\n  background:#fbf7f4;\n  padding:80px 20px;\n}\n\n.deki-results__inner{\n  max-width:1180px;\n  margin:0 auto;\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:70px;\n  align-items:center;\n}\n\n.deki-results__eyebrow{\n  color:#b54c6c;\n  font-size:13px;\n  font-weight:700;\n  text-transform:uppercase;\n  letter-spacing:1.5px;\n  margin-bottom:12px;\n}\n\n.deki-results__title{\n  margin:0 0 18px;\n  color:#2f2229;\n  font-size:clamp(34px,4vw,52px);\n  line-height:1.1;\n}\n\n.deki-results__intro{\n  color:#6d6266;\n  font-size:17px;\n  line-height:1.65;\n  margin-bottom:30px;\n}\n\n.deki-results__timeline{\n  list-style:none;\n  padding:0;\n  margin:0;\n  position:relative;\n}\n\n.deki-results__timeline:before{\n  content:\"\";\n  position:absolute;\n  left:9px;\n  top:8px;\n  bottom:8px;\n  width:2px;\n  background:#dfb5c4;\n}\n\n.deki-results__timeline li{\n  position:relative;\n  padding-left:36px;\n  margin-bottom:24px;\n}\n\n.deki-results__timeline li:before{\n  content:\"\";\n  position:absolute;\n  left:3px;\n  top:5px;\n  width:14px;\n  height:14px;\n  border-radius:50%;\n  background:#7a294b;\n  border:3px solid #fbf7f4;\n  box-shadow:0 0 0 2px #7a294b;\n}\n\n.deki-results__timeline strong{\n  display:block;\n  color:#31232a;\n  font-size:17px;\n  margin-bottom:4px;\n}\n\n.deki-results__timeline span{\n  color:#6d6266;\n  line-height:1.5;\n  font-size:15px;\n}\n\n.deki-results__image{\n  background:#fff8ec;\n  border-radius:22px;\n  overflow:hidden;\n  box-shadow:0 18px 45px rgba(63,35,46,.10);\n}\n\n.deki-results__image img{\n  width:100%;\n  display:block;\n}\n\n@media(max-width:768px){\n  .deki-results{\n    padding:56px 16px;\n  }\n\n  .deki-results__inner{\n    grid-template-columns:1fr;\n    gap:38px;\n  }\n\n  .deki-results__title{\n    font-size:36px;\n  }\n}\n</style>\n\n<section class=\"deki-results\">\n  <div class=\"deki-results__inner\">\n\n    <div>\n      <div class=\"deki-results__eyebrow\">Zichtbare resultaten</div>\n\n      <h2 class=\"deki-results__title\">\n        Week na week minder zichtbare haargroei\n      </h2>\n\n      <p class=\"deki-results__intro\">\n        IPL werkt geleidelijk. Bij iedere behandeling wordt het haarzakje opnieuw\n        behandeld. Bij regelmatig gebruik kan de haargroei steeds fijner en minder\n        zichtbaar worden.\n      </p>\n\n      <ul class=\"deki-results__timeline\">\n        <li>\n          <strong>Week 1–2</strong>\n          <span>De behandeling wordt onderdeel van uw vaste routine.</span>\n        </li>\n\n        <li>\n          <strong>Week 3–4</strong>\n          <span>De eerste zichtbare veranderingen kunnen merkbaar worden.</span>\n        </li>\n\n        <li>\n          <strong>Week 6–8</strong>\n          <span>Veel behandelde zones kunnen langer glad blijven.</span>\n        </li>\n\n        <li>\n          <strong>Vanaf week 12</strong>\n          <span>Onderhoudsbehandelingen volgens de handleiding.</span>\n        </li>\n      </ul>\n    </div>\n\n    <div class=\"deki-results__image\">\n      <img\n        src=\"{{ product.media[4].preview_image | image_url: width: 1200 }}\"\n        alt=\"DEKI LUMA IPL zichtbaar resultaat voor en na regelmatig gebruik\"\n        loading=\"lazy\"\n      >\n    </div>\n\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_MtakMP": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-skin{\n  background:#fbf5f1;\n  padding:80px 20px;\n}\n\n.deki-skin__inner{\n  max-width:1180px;\n  margin:0 auto;\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:70px;\n  align-items:center;\n}\n\n.deki-skin__image{\n  background:#fff9ef;\n  border-radius:22px;\n  overflow:hidden;\n  box-shadow:0 18px 45px rgba(63,35,46,.10);\n}\n\n.deki-skin__image img{\n  width:100%;\n  display:block;\n}\n\n.deki-skin__eyebrow{\n  color:#b54c6c;\n  font-size:13px;\n  font-weight:700;\n  text-transform:uppercase;\n  letter-spacing:1.5px;\n  margin-bottom:12px;\n}\n\n.deki-skin__title{\n  margin:0 0 18px;\n  color:#2f2229;\n  font-size:clamp(34px,4vw,52px);\n  line-height:1.1;\n}\n\n.deki-skin__intro{\n  color:#6d6266;\n  font-size:17px;\n  line-height:1.65;\n  margin-bottom:26px;\n}\n\n.deki-skin__list{\n  list-style:none;\n  padding:0;\n  margin:0;\n}\n\n.deki-skin__list li{\n  position:relative;\n  padding-left:30px;\n  margin:16px 0;\n  color:#62575c;\n  line-height:1.55;\n}\n\n.deki-skin__list li:before{\n  content:\"✓\";\n  position:absolute;\n  left:0;\n  top:0;\n  color:#7a294b;\n  font-weight:700;\n}\n\n.deki-skin__note{\n  margin-top:22px;\n  padding:16px 18px;\n  background:#f5e5df;\n  border-radius:12px;\n  color:#6d535e;\n  font-size:14px;\n  line-height:1.5;\n}\n\n@media(max-width:768px){\n  .deki-skin{\n    padding:56px 16px;\n  }\n\n  .deki-skin__inner{\n    grid-template-columns:1fr;\n    gap:38px;\n  }\n\n  .deki-skin__title{\n    font-size:36px;\n  }\n}\n</style>\n\n<section class=\"deki-skin\">\n  <div class=\"deki-skin__inner\">\n\n    <div class=\"deki-skin__image\">\n      <img\n        src=\"{{ product.media[6].preview_image | image_url: width: 1200 }}\"\n        alt=\"DEKI LUMA IPL huid- en haarkleurcompatibiliteit\"\n        loading=\"lazy\"\n      >\n    </div>\n\n    <div>\n      <div class=\"deki-skin__eyebrow\">Is IPL geschikt voor u?</div>\n\n      <h2 class=\"deki-skin__title\">\n        Werkt het ook voor uw huid en haarkleur?\n      </h2>\n\n      <p class=\"deki-skin__intro\">\n        IPL werkt doorgaans het beste bij een combinatie van een lichtere huid en\n        donkerder haar. Controleer altijd eerst de huid- en haarkleurentabel in de\n        handleiding voordat u begint.\n      </p>\n\n      <ul class=\"deki-skin__list\">\n        <li>Beste resultaat bij licht tot gebruinde huid met donkerblond tot zwart haar</li>\n        <li>Geschikt voor benen, armen, oksels en bikinilijn</li>\n        <li>Gebruik op het gezicht alleen volgens de handleiding</li>\n        <li>Minder geschikt voor zeer licht, grijs, wit of rood haar</li>\n        <li>Niet gebruiken op zeer donkere huidtinten wanneer de handleiding dit afraadt</li>\n      </ul>\n\n      <div class=\"deki-skin__note\">\n        Test het apparaat altijd eerst op een klein stukje huid en volg de veiligheidsinstructies.\n      </div>\n    </div>\n\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_f3RmnV": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-box{\n  background:#fbf5f1;\n  padding:80px 20px;\n}\n\n.deki-box__inner{\n  max-width:1180px;\n  margin:0 auto;\n}\n\n.deki-box__eyebrow{\n  text-align:center;\n  color:#b54c6c;\n  font-size:13px;\n  font-weight:700;\n  text-transform:uppercase;\n  letter-spacing:1.5px;\n  margin-bottom:12px;\n}\n\n.deki-box__title{\n  text-align:center;\n  margin:0 0 16px;\n  color:#2f2229;\n  font-size:clamp(34px,4vw,52px);\n  line-height:1.1;\n}\n\n.deki-box__intro{\n  max-width:720px;\n  margin:0 auto 40px;\n  text-align:center;\n  color:#6d6266;\n  font-size:17px;\n  line-height:1.65;\n}\n\n.deki-box__gallery{\n  display:grid;\n  grid-template-columns:repeat(4,1fr);\n  gap:18px;\n}\n\n.deki-box__card{\n  background:#fff;\n  border:1px solid #eadbd5;\n  border-radius:16px;\n  overflow:hidden;\n  box-shadow:0 10px 25px rgba(0,0,0,.06);\n\n}\n\n.deki-box__card img{\n  width:100%;\n  aspect-ratio:1/1;\n  object-fit:cover;\n  display:block;\n}\n\n.deki-box__card-content{\n  padding:18px;\n}\n\n.deki-box__card h3{\n  margin:0 0 6px;\n  color:#302329;\n  font-size:17px;\n}\n\n.deki-box__card p{\n  margin:0;\n  color:#75696e;\n  line-height:1.5;\n  font-size:14px;\n}\n\n.deki-box__details{\n  display:grid;\n  grid-template-columns:1fr 1fr;\n  gap:20px;\n  margin-top:36px;\n}\n\n.deki-box__panel{\n  background:#fff;\n  border:1px solid #eadbd5;\n  border-radius:16px;\n  padding:28px;\n}\n\n.deki-box__panel h3{\n  margin:0 0 20px;\n  color:#302329;\n  font-size:22px;\n}\n\n.deki-box__list{\n  list-style:none;\n  padding:0;\n  margin:0;\n}\n\n.deki-box__list li{\n  position:relative;\n  padding-left:28px;\n  margin:13px 0;\n  color:#675c61;\n  line-height:1.5;\n}\n\n.deki-box__list li:before{\n  content:\"✓\";\n  position:absolute;\n  left:0;\n  top:0;\n  color:#d45b20;\n  font-weight:700;\n}\n\n.deki-box__spec{\n  display:flex;\n  justify-content:space-between;\n  gap:20px;\n  padding:13px 0;\n  border-bottom:1px solid #eee2dc;\n  color:#675c61;\n}\n\n.deki-box__spec:last-child{\n  border-bottom:none;\n}\n\n.deki-box__spec strong{\n  color:#302329;\n  text-align:right;\n}\n\n@media(max-width:900px){\n  .deki-box__gallery{\n    grid-template-columns:repeat(2,1fr);\n  }\n}\n\n@media(max-width:768px){\n  .deki-box{\n    padding:56px 16px;\n  }\n\n  .deki-box__details{\n    grid-template-columns:1fr;\n  }\n\n  .deki-box__title{\n    font-size:36px;\n  }\n}\n\n@media(max-width:520px){\n  .deki-box__gallery{\n    grid-template-columns:1fr;\n  }\n}\n</style>\n\n<section class=\"deki-box\">\n  <div class=\"deki-box__inner\">\n\n    <div class=\"deki-box__eyebrow\">Wat ontvangt u?</div>\n\n    <h2 class=\"deki-box__title\">\n      Compleet geleverd, direct klaar voor gebruik\n    </h2>\n\n    <p class=\"deki-box__intro\">\n      Alles wat u nodig heeft om veilig en eenvoudig thuis met uw IPL-routine te beginnen.\n    </p>\n\n    <div class=\"deki-box__gallery\">\n\n      <div class=\"deki-box__card\">\n        <img\n          src=\"{{ product.media[0].preview_image | image_url: width: 900 }}\"\n          alt=\"DEKI LUMA IPL apparaat\"\n          loading=\"lazy\"\n        >\n        <div class=\"deki-box__card-content\">\n          <h3>DEKI LUMA IPL</h3>\n          <p>Het IPL-apparaat met vijf instelbare intensiteitsniveaus.</p>\n        </div>\n      </div>\n\n      <div class=\"deki-box__card\">\n        <img\n          src=\"{{ product.media[3].preview_image | image_url: width: 900 }}\"\n          alt=\"DEKI LUMA IPL complete set\"\n          loading=\"lazy\"\n        >\n        <div class=\"deki-box__card-content\">\n          <h3>Complete set</h3>\n          <p>Apparaat, adapter, beschermbril, scheermes en accessoires.</p>\n        </div>\n      </div>\n\n      <div class=\"deki-box__card\">\n        <img\n          src=\"{{ product.media[2].preview_image | image_url: width: 900 }}\"\n          alt=\"DEKI LUMA IPL gebruik\"\n          loading=\"lazy\"\n        >\n        <div class=\"deki-box__card-content\">\n          <h3>Eenvoudig in gebruik</h3>\n          <p>Een duidelijke routine in drie praktische stappen.</p>\n        </div>\n      </div>\n\n      <div class=\"deki-box__card\">\n        <img\n          src=\"{{ product.media[5].preview_image | image_url: width: 900 }}\"\n          alt=\"DEKI LUMA IPL voor onderweg\"\n          loading=\"lazy\"\n        >\n        <div class=\"deki-box__card-content\">\n          <h3>Compact en draagbaar</h3>\n          <p>Gemakkelijk op te bergen en mee te nemen.</p>\n        </div>\n      </div>\n\n    </div>\n\n    <div class=\"deki-box__details\">\n\n      <div class=\"deki-box__panel\">\n        <h3>In de doos</h3>\n\n        <ul class=\"deki-box__list\">\n          <li>DEKI LUMA IPL-ontharingsapparaat</li>\n          <li>Voedingsadapter</li>\n          <li>Beschermbril</li>\n          <li>Scheermes voor voorbereiding</li>\n          <li>Gebruikershandleiding</li>\n          <li>Opbergetui, indien inbegrepen bij uw uitvoering</li>\n        </ul>\n      </div>\n\n      <div class=\"deki-box__panel\">\n        <h3>Specificaties</h3>\n\n        <div class=\"deki-box__spec\">\n          <span>Technologie</span>\n          <strong>IPL</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Aantal lichtflitsen</span>\n          <strong>999.900</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Intensiteitsniveaus</span>\n          <strong>5 standen</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Gebruiksmodi</span>\n          <strong>Glijmodus en handmatige flits</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Geschikte zones</span>\n          <strong>Benen, oksels, bikinilijn en toegestane gezichtszones</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Voeding</span>\n          <strong>Via adapter</strong>\n        </div>\n\n        <div class=\"deki-box__spec\">\n          <span>Garantie</span>\n          <strong>2 jaar</strong>\n        </div>\n      </div>\n\n    </div>\n\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_Gqqfzx": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-ugc-premium{\n  background:#fbf7f5;\n  padding:78px 22px;\n  font-family:inherit;\n}\n\n.deki-ugc-premium__inner{\n  max-width:1240px;\n  margin:0 auto;\n}\n\n.deki-ugc-premium__header{\n  max-width:780px;\n  margin:0 auto 42px;\n  text-align:center;\n}\n\n.deki-ugc-premium__eyebrow{\n  margin:0 0 10px;\n  color:#b94d75;\n  font-size:13px;\n  font-weight:800;\n  letter-spacing:2px;\n  text-transform:uppercase;\n}\n\n.deki-ugc-premium__title{\n  margin:0 0 14px;\n  color:#2e2228;\n  font-size:46px;\n  line-height:1.15;\n  font-weight:800;\n}\n\n.deki-ugc-premium__subtitle{\n  margin:0;\n  color:#746a70;\n  font-size:18px;\n  line-height:1.65;\n}\n\n.deki-ugc-premium__grid{\n  display:grid;\n  grid-template-columns:repeat(3,minmax(0,1fr));\n  gap:24px;\n}\n\n.deki-ugc-card{\n  overflow:hidden;\n  background:#fff;\n  border:1px solid #eaded9;\n  border-radius:22px;\n  box-shadow:0 14px 38px rgba(58,34,46,.09);\n  transition:transform .25s ease, box-shadow .25s ease;\n}\n\n.deki-ugc-card:hover{\n  transform:translateY(-5px);\n  box-shadow:0 20px 50px rgba(58,34,46,.14);\n}\n\n.deki-ugc-card__review{\n  padding:19px 20px 16px;\n}\n\n.deki-ugc-card__stars{\n  margin-bottom:8px;\n  color:#c64b77;\n  font-size:18px;\n  letter-spacing:2px;\n}\n\n.deki-ugc-card__customer{\n  display:flex;\n  align-items:center;\n  justify-content:space-between;\n  gap:10px;\n}\n\n.deki-ugc-card__name{\n  color:#2e2228;\n  font-size:16px;\n  font-weight:800;\n}\n\n.deki-ugc-card__verified{\n  color:#7c3654;\n  background:#f8e8ee;\n  padding:5px 9px;\n  border-radius:999px;\n  font-size:11px;\n  font-weight:800;\n  white-space:nowrap;\n}\n\n.deki-ugc-card__media{\n  position:relative;\n  aspect-ratio:9/16;\n  overflow:hidden;\n  background:#2d2227;\n  cursor:pointer;\n}\n\n.deki-ugc-card__video{\n  display:block;\n  width:100%;\n  height:100%;\n  object-fit:cover;\n  background:#2d2227;\n}\n\n.deki-ugc-card__overlay{\n  position:absolute;\n  inset:0;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  background:linear-gradient(\n    to bottom,\n    rgba(22,13,18,.04),\n    rgba(22,13,18,.12) 55%,\n    rgba(22,13,18,.48)\n  );\n  transition:opacity .25s ease;\n  pointer-events:none;\n}\n\n.deki-ugc-card__play{\n  width:80px;\n  height:80px;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  border-radius:50%;\n  background:rgba(255,255,255,.95);\n  box-shadow:0 10px 30px rgba(0,0,0,.25);\n  transition:transform .2s ease;\n}\n\n.deki-ugc-card__media:hover .deki-ugc-card__play{\n  transform:scale(1.08);\n}\n\n.deki-ugc-card__play:before{\n  content:\"\";\n  margin-left:6px;\n  width:0;\n  height:0;\n  border-top:14px solid transparent;\n  border-bottom:14px solid transparent;\n  border-left:21px solid #a93d66;\n}\n\n.deki-ugc-card__duration{\n  position:absolute;\n  right:14px;\n  bottom:14px;\n  padding:6px 10px;\n  color:#fff;\n  background:rgba(24,15,20,.76);\n  border-radius:999px;\n  font-size:12px;\n  font-weight:800;\n}\n\n.deki-ugc-card__media.is-playing{\n  cursor:default;\n}\n\n.deki-ugc-card__media.is-playing .deki-ugc-card__overlay{\n  opacity:0;\n}\n\n.deki-ugc-card__content{\n  padding:20px 20px 23px;\n}\n\n.deki-ugc-card__label{\n  display:inline-block;\n  margin-bottom:10px;\n  padding:6px 11px;\n  color:#8e3459;\n  background:#f8e9ef;\n  border-radius:999px;\n  font-size:12px;\n  font-weight:800;\n  letter-spacing:.4px;\n  text-transform:uppercase;\n}\n\n.deki-ugc-card__title{\n  margin:0 0 9px;\n  color:#2e2228;\n  font-size:21px;\n  line-height:1.3;\n  font-weight:800;\n}\n\n.deki-ugc-card__quote{\n  margin:0;\n  color:#746a70;\n  font-size:15px;\n  line-height:1.65;\n}\n\n.deki-ugc-premium__trust{\n  display:flex;\n  justify-content:center;\n  align-items:center;\n  flex-wrap:wrap;\n  gap:10px;\n  margin-top:38px;\n  color:#2e2228;\n  font-size:16px;\n  font-weight:700;\n}\n\n.deki-ugc-premium__trust-stars{\n  color:#c64b77;\n  font-size:21px;\n  letter-spacing:2px;\n}\n\n@media(max-width:900px){\n  .deki-ugc-premium__grid{\n    grid-template-columns:repeat(2,minmax(0,1fr));\n  }\n\n  .deki-ugc-card:last-child{\n    grid-column:1 / -1;\n    width:100%;\n    max-width:420px;\n    margin:0 auto;\n  }\n}\n\n@media(max-width:640px){\n  .deki-ugc-premium{\n    padding:58px 15px;\n  }\n\n  .deki-ugc-premium__title{\n    font-size:34px;\n  }\n\n  .deki-ugc-premium__subtitle{\n    font-size:16px;\n  }\n\n  .deki-ugc-premium__grid{\n    grid-template-columns:1fr;\n  }\n\n  .deki-ugc-card:last-child{\n    grid-column:auto;\n    max-width:none;\n  }\n\n  .deki-ugc-card__play{\n    width:68px;\n    height:68px;\n  }\n}\n</style>\n\n<section class=\"deki-ugc-premium\">\n  <div class=\"deki-ugc-premium__inner\">\n\n    <div class=\"deki-ugc-premium__header\">\n      <p class=\"deki-ugc-premium__eyebrow\">Echte ervaringen</p>\n\n      <h2 class=\"deki-ugc-premium__title\">\n        Echte gebruikers, echte routines\n      </h2>\n\n      <p class=\"deki-ugc-premium__subtitle\">\n        Bekijk hoe gebruikers de DEKI LUMA IPL thuis gebruiken en ontdek hun persoonlijke ervaringen.\n      </p>\n    </div>\n\n    <div class=\"deki-ugc-premium__grid\">\n\n      <!-- VIDEO 1 -->\n      <article class=\"deki-ugc-card\">\n\n        <div class=\"deki-ugc-card__review\">\n          <div class=\"deki-ugc-card__stars\">★★★★★</div>\n\n          <div class=\"deki-ugc-card__customer\">\n            <span class=\"deki-ugc-card__name\">Echte productervaring</span>\n            <span class=\"deki-ugc-card__verified\">✓ Geverifieerd</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__media\">\n          <video\n            class=\"deki-ugc-card__video\"\n            playsinline\n            preload=\"metadata\"\n            poster=\"https://cdn.shopify.com/s/files/1/0629/6331/8843/files/DEKI_UGC_Cover_1.png?v=1784281382\"\n          >\n            <source src=\"https://cdn.shopify.com/videos/c/o/v/3c02830c0e0b4fe4b1a55c7a65e0c111.mp4\">\n          </video>\n\n          <div class=\"deki-ugc-card__overlay\">\n            <div class=\"deki-ugc-card__play\"></div>\n            <span class=\"deki-ugc-card__duration\">30 sec</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__content\">\n          <span class=\"deki-ugc-card__label\">Eerste indruk</span>\n          <h3 class=\"deki-ugc-card__title\">Uitpakken en ontdekken</h3>\n          <p class=\"deki-ugc-card__quote\">\n            Bekijk het apparaat, de verpakking en alle meegeleverde accessoires.\n          </p>\n        </div>\n\n      </article>\n\n      <!-- VIDEO 2 -->\n      <article class=\"deki-ugc-card\">\n\n        <div class=\"deki-ugc-card__review\">\n          <div class=\"deki-ugc-card__stars\">★★★★★</div>\n\n          <div class=\"deki-ugc-card__customer\">\n            <span class=\"deki-ugc-card__name\">Eenvoudig thuisgebruik</span>\n            <span class=\"deki-ugc-card__verified\">✓ Geverifieerd</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__media\">\n          <video\n            class=\"deki-ugc-card__video\"\n            playsinline\n            preload=\"metadata\"\n            poster=\"https://cdn.shopify.com/s/files/1/0629/6331/8843/files/DEKI_UGC_Cover_2.png?v=1784281399\"\n          >\n            <source src=\"https://cdn.shopify.com/videos/c/o/v/1f687abe202e42efafe0f4cbdea67583.mp4\">\n          </video>\n\n          <div class=\"deki-ugc-card__overlay\">\n            <div class=\"deki-ugc-card__play\"></div>\n            <span class=\"deki-ugc-card__duration\">30 sec</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__content\">\n          <span class=\"deki-ugc-card__label\">In gebruik</span>\n          <h3 class=\"deki-ugc-card__title\">Zo eenvoudig werkt het</h3>\n          <p class=\"deki-ugc-card__quote\">\n            Een duidelijke demonstratie van hoe de IPL-behandeling thuis wordt uitgevoerd.\n          </p>\n        </div>\n\n      </article>\n\n      <!-- VIDEO 3 -->\n      <article class=\"deki-ugc-card\">\n\n        <div class=\"deki-ugc-card__review\">\n          <div class=\"deki-ugc-card__stars\">★★★★★</div>\n\n          <div class=\"deki-ugc-card__customer\">\n            <span class=\"deki-ugc-card__name\">Persoonlijke ervaring</span>\n            <span class=\"deki-ugc-card__verified\">✓ Geverifieerd</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__media\">\n          <video\n            class=\"deki-ugc-card__video\"\n            playsinline\n            preload=\"metadata\"\n            poster=\"https://cdn.shopify.com/s/files/1/0629/6331/8843/files/DEKI_UGC_Cover_3.png?v=1784281418\"\n          >\n<source src=\"https://cdn.shopify.com/videos/c/o/v/c3216606d49e4ac1868440efb76b180e.mp4\">\n</video>\n\n          <div class=\"deki-ugc-card__overlay\">\n            <div class=\"deki-ugc-card__play\"></div>\n            <span class=\"deki-ugc-card__duration\">30 sec</span>\n          </div>\n        </div>\n\n        <div class=\"deki-ugc-card__content\">\n          <span class=\"deki-ugc-card__label\">Mijn ervaring</span>\n          <h3 class=\"deki-ugc-card__title\">Een echte IPL-routine</h3>\n          <p class=\"deki-ugc-card__quote\">\n            Ontdek hoe de DEKI LUMA IPL past binnen een normale verzorgingsroutine.\n          </p>\n        </div>\n\n      </article>\n\n    </div>\n\n    <div class=\"deki-ugc-premium__trust\">\n      <span class=\"deki-ugc-premium__trust-stars\">★★★★★</span>\n      <span>Echte demonstraties van de DEKI LUMA IPL</span>\n    </div>\n\n  </div>\n</section>\n\n<script>\n(function () {\n  function initializeDekiUgcVideos() {\n    const mediaItems = document.querySelectorAll(\n      \".deki-ugc-card__media:not([data-deki-ready])\"\n    );\n\n    mediaItems.forEach(function (media) {\n      media.setAttribute(\"data-deki-ready\", \"true\");\n\n      const video = media.querySelector(\".deki-ugc-card__video\");\n\n      if (!video) return;\n\n      media.addEventListener(\"click\", function (event) {\n        if (event.target.closest(\"video\") && !video.paused) return;\n\n        document\n          .querySelectorAll(\".deki-ugc-card__video\")\n          .forEach(function (otherVideo) {\n            if (otherVideo !== video) {\n              otherVideo.pause();\n              otherVideo.removeAttribute(\"controls\");\n\n              const otherMedia = otherVideo.closest(\n                \".deki-ugc-card__media\"\n              );\n\n              if (otherMedia) {\n                otherMedia.classList.remove(\"is-playing\");\n              }\n            }\n          });\n\n        media.classList.add(\"is-playing\");\n        video.setAttribute(\"controls\", \"controls\");\n\n        const playPromise = video.play();\n\n        if (playPromise !== undefined) {\n          playPromise.catch(function () {\n            media.classList.remove(\"is-playing\");\n          });\n        }\n      });\n\n      video.addEventListener(\"pause\", function () {\n        if (!video.ended && video.currentTime > 0) {\n          media.classList.remove(\"is-playing\");\n        }\n      });\n\n      video.addEventListener(\"ended\", function () {\n        media.classList.remove(\"is-playing\");\n        video.removeAttribute(\"controls\");\n        video.currentTime = 0;\n        video.load();\n      });\n    });\n  }\n\n  document.addEventListener(\"DOMContentLoaded\", initializeDekiUgcVideos);\n  document.addEventListener(\"shopify:section:load\", initializeDekiUgcVideos);\n\n  initializeDekiUgcVideos();\n})();\n</script>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_FyXdrX": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-reviews{\n  background:#f7e8df;\n  padding:80px 20px;\n}\n\n.deki-reviews__inner{\n  max-width:1180px;\n  margin:0 auto;\n}\n\n.deki-reviews__top{\n  display:grid;\n  grid-template-columns:260px 1fr;\n  gap:50px;\n  align-items:center;\n  margin-bottom:38px;\n}\n\n.deki-reviews__score{\n  text-align:center;\n  padding-right:35px;\n  border-right:1px solid #d9c2b8;\n}\n\n.deki-reviews__number{\n  font-size:64px;\n  font-weight:750;\n  line-height:1;\n  color:#2f2229;\n}\n\n.deki-reviews__stars{\n  color:#c84e73;\n  font-size:24px;\n  letter-spacing:3px;\n  margin:12px 0 8px;\n}\n\n.deki-reviews__count{\n  color:#6d6266;\n  font-size:14px;\n}\n\n.deki-reviews__bars{\n  display:grid;\n  gap:12px;\n}\n\n.deki-reviews__bar{\n  display:grid;\n  grid-template-columns:42px 1fr 44px;\n  gap:12px;\n  align-items:center;\n  color:#675c61;\n  font-size:14px;\n}\n\n.deki-reviews__track{\n  height:8px;\n  background:#dfcec6;\n  border-radius:999px;\n  overflow:hidden;\n}\n\n.deki-reviews__fill{\n  height:100%;\n  background:#7a294b;\n  border-radius:999px;\n}\n\n.deki-reviews__grid{\n  display:grid;\n  grid-template-columns:repeat(3,1fr);\n  gap:18px;\n}\n\n.deki-review{\n  background:#fff;\n  border:1px solid #eadbd5;\n  border-radius:16px;\n  padding:24px;\n}\n\n.deki-review__stars{\n  color:#c84e73;\n  letter-spacing:2px;\n  font-size:18px;\n  margin-bottom:16px;\n}\n\n.deki-review__text{\n  color:#62575c;\n  line-height:1.6;\n  font-size:15px;\n  margin:0 0 20px;\n}\n\n.deki-review__name{\n  color:#302329;\n  font-weight:700;\n  font-size:14px;\n}\n\n.deki-review__verified{\n  display:inline-block;\n  margin-top:8px;\n  padding:4px 9px;\n  border-radius:999px;\n  background:#e8f4eb;\n  color:#467b55;\n  font-size:11px;\n  font-weight:700;\n}\n\n@media(max-width:768px){\n  .deki-reviews{\n    padding:56px 16px;\n  }\n\n  .deki-reviews__top{\n    grid-template-columns:1fr;\n    gap:28px;\n  }\n\n  .deki-reviews__score{\n    border-right:none;\n    border-bottom:1px solid #d9c2b8;\n    padding:0 0 28px;\n  }\n\n  .deki-reviews__grid{\n    grid-template-columns:1fr;\n  }\n}\n</style>\n\n<section class=\"deki-reviews\">\n  <div class=\"deki-reviews__inner\">\n\n    <div class=\"deki-reviews__top\">\n\n      <div class=\"deki-reviews__score\">\n        <div class=\"deki-reviews__number\">4,6</div>\n        <div class=\"deki-reviews__stars\">★★★★★</div>\n        <div class=\"deki-reviews__count\">Gebaseerd op klantbeoordelingen</div>\n      </div>\n\n      <div class=\"deki-reviews__bars\">\n\n        <div class=\"deki-reviews__bar\">\n          <span>5★</span>\n          <div class=\"deki-reviews__track\">\n            <div class=\"deki-reviews__fill\" style=\"width:82%\"></div>\n          </div>\n          <span>82%</span>\n        </div>\n\n        <div class=\"deki-reviews__bar\">\n          <span>4★</span>\n          <div class=\"deki-reviews__track\">\n            <div class=\"deki-reviews__fill\" style=\"width:12%\"></div>\n          </div>\n          <span>12%</span>\n        </div>\n\n        <div class=\"deki-reviews__bar\">\n          <span>3★</span>\n          <div class=\"deki-reviews__track\">\n            <div class=\"deki-reviews__fill\" style=\"width:4%\"></div>\n          </div>\n          <span>4%</span>\n        </div>\n\n        <div class=\"deki-reviews__bar\">\n          <span>2★</span>\n          <div class=\"deki-reviews__track\">\n            <div class=\"deki-reviews__fill\" style=\"width:1%\"></div>\n          </div>\n          <span>1%</span>\n        </div>\n\n        <div class=\"deki-reviews__bar\">\n          <span>1★</span>\n          <div class=\"deki-reviews__track\">\n            <div class=\"deki-reviews__fill\" style=\"width:1%\"></div>\n          </div>\n          <span>1%</span>\n        </div>\n\n      </div>\n    </div>\n\n    <div class=\"deki-reviews__grid\">\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★★</div>\n        <p class=\"deki-review__text\">\n          Na enkele weken merkte ik duidelijk minder zichtbare haargroei. Het apparaat is eenvoudig in gebruik en voelt comfortabel aan.\n        </p>\n        <div class=\"deki-review__name\">Sanne, Utrecht</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★★</div>\n        <p class=\"deki-review__text\">\n          Vooral voor mijn benen en oksels werkt het erg prettig. De glijmodus maakt de behandeling snel en gemakkelijk.\n        </p>\n        <div class=\"deki-review__name\">Demi, Rotterdam</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★★</div>\n        <p class=\"deki-review__text\">\n          Mooie complete set en duidelijke instructies. Ik hoef veel minder vaak te scheren dan voorheen.\n        </p>\n        <div class=\"deki-review__name\">Lana, Antwerpen</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★☆</div>\n        <p class=\"deki-review__text\">\n          U moet even geduld hebben, maar bij regelmatig gebruik zag ik na enkele weken verschil.\n        </p>\n        <div class=\"deki-review__name\">Yara, Eindhoven</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★★</div>\n        <p class=\"deki-review__text\">\n          Het apparaat ligt prettig in de hand en de verschillende standen zijn handig voor gevoelige zones.\n        </p>\n        <div class=\"deki-review__name\">Kim, Groningen</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n      <article class=\"deki-review\">\n        <div class=\"deki-review__stars\">★★★★★</div>\n        <p class=\"deki-review__text\">\n          Zeer eenvoudig te gebruiken en netjes verpakt. De huid blijft langer glad dan met alleen scheren.\n        </p>\n        <div class=\"deki-review__name\">Britt, Tilburg</div>\n        <span class=\"deki-review__verified\">Geverifieerde aankoop</span>\n      </article>\n\n    </div>\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_hVh9UX": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-guarantee{\n  background:#fbf5f1;\n  padding:70px 20px;\n}\n\n.deki-guarantee__inner{\n  max-width:1080px;\n  margin:0 auto;\n  background:#6a2948;\n  color:#fff;\n  border-radius:22px;\n  padding:42px 46px;\n  display:grid;\n  grid-template-columns:auto 1fr auto;\n  gap:28px;\n  align-items:center;\n  box-shadow:0 18px 45px rgba(63,35,46,.12);\n}\n\n.deki-guarantee__badge{\n  width:92px;\n  height:92px;\n  border-radius:50%;\n  background:#8a4767;\nborder:2px solid rgba(255,255,255,.18);\n  display:flex;\n  flex-direction:column;\n  align-items:center;\n  justify-content:center;\n  text-align:center;\n  font-weight:700;\n  line-height:1.1;\n}\n\n.deki-guarantee__badge strong{\n  font-size:30px;\n}\n\n.deki-guarantee__badge span{\n  font-size:12px;\n  text-transform:uppercase;\n  letter-spacing:.8px;\n  margin-top:4px;\n}\n\n.deki-guarantee__content h2{\n  margin:0 0 10px;\n  color:#fff;\n  font-size:clamp(28px,3vw,42px);\n  line-height:1.1;\n}\n\n.deki-guarantee__content p{\n  margin:0;\n  color:rgba(255,255,255,.86);\n  font-size:16px;\n  line-height:1.6;\n  max-width:650px;\n}\n\n.deki-guarantee__button{\n  display:inline-block;\n  background:#d45b20;\n  color:#fff;\n  padding:18px 34px;\nfont-size:17px;\n  border-radius:999px;\n  text-decoration:none;\n  font-weight:700;\n  white-space:nowrap;\n}\n\n.deki-guarantee__button:hover{\n  opacity:.9;\n}\n\n@media(max-width:768px){\n  .deki-guarantee{\n    padding:50px 16px;\n  }\n\n  .deki-guarantee__inner{\n    grid-template-columns:1fr;\n    text-align:center;\n    padding:34px 24px;\n  }\n\n  .deki-guarantee__badge{\n    margin:0 auto;\n  }\n\n  .deki-guarantee__content p{\n    margin:0 auto;\n  }\n}\n</style>\n\n<section class=\"deki-guarantee\">\n  <div class=\"deki-guarantee__inner\">\n\n    <div class=\"deki-guarantee__badge\">\n      <strong>60</strong>\n      <span>dagen</span>\n    </div>\n\n    <div class=\"deki-guarantee__content\">\n      <h2>Niet tevreden? Geld terug. Zonder gedoe.</h2>\n\n      <p>\n        Probeer de DEKI LUMA IPL thuis zonder risico. Bent u niet tevreden,\n        dan kunt u het product binnen 60 dagen retourneren volgens onze\n        retourvoorwaarden.\n      </p>\n    </div>\n  </div>\n</section>",
+        "section_height": "default",
+        "full_width": true,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "faq_dAAn3q": {
+      "type": "faq",
+      "blocks": {
+        "question_fq99Dw": {
+          "type": "question",
+          "settings": {
+            "icon": "none",
+            "heading": "Doet IPL pijn?",
+            "text": "<p>De meeste gebruikers voelen alleen een lichte warmteprikkel. Begin altijd op de laagste intensiteitsstand en verhoog deze wanneer dit comfortabel aanvoelt.</p>"
+          }
+        },
+        "question_JcEM4n": {
+          "type": "question",
+          "settings": {
+            "icon": "none",
+            "heading": "Wanneer zie ik resultaat?",
+            "text": "<p>Bij regelmatig gebruik kunnen de eerste zichtbare resultaten vaak na enkele weken merkbaar worden. Voor het beste resultaat volgt u het behandelschema uit de handleiding.</p>"
+          }
+        },
+        "question_jFmjfE": {
+          "type": "question",
+          "settings": {
+            "icon": "none",
+            "heading": "Werkt IPL op mijn huidtype?",
+            "text": "<p>IPL werkt het beste bij een lichte tot medium huid met donkerder haar. Raadpleeg altijd de huid- en haarkleurentabel voordat u begint.</p>"
+          }
+        },
+        "question_ALPWHd": {
+          "type": "question",
+          "settings": {
+            "icon": "none",
+            "heading": "Kan ik het apparaat op mijn gezicht gebruiken?",
+            "text": "<p>Ja, op toegestane gezichtszones volgens de handleiding. Vermijd altijd de ogen en volg de veiligheidsinstructies.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_fq99Dw",
+        "question_JcEM4n",
+        "question_jFmjfE",
+        "question_ALPWHd"
+      ],
+      "disabled": true,
+      "name": "Collapsible content",
+      "settings": {
+        "heading": "Veelgestelde vragen",
+        "heading_align": "text-center",
+        "color_scheme": "1",
+        "full_width": true
+      }
+    },
+    "custom_liquid_eA6YFq": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n.deki-final-cta {\n  width: calc(100% - 40px);\n  max-width: 1200px;\n\n  /* Reduced empty space above and below */\n  margin: 20px auto;\n  padding: 54px 60px;\n  background: linear-gradient(135deg, #47243d, #7b3658);\n  border-radius: 24px;\n  color: #ffffff;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 40px;\n  font-family: inherit;\n  box-sizing: border-box;\n}\n\n.deki-final-cta *,\n.deki-final-cta *::before,\n.deki-final-cta *::after {\n  box-sizing: border-box;\n}\n\n.deki-final-left {\n  width: 100%;\n}\n\n.deki-final-left h2 {\n  margin: 0 0 16px;\n  color: #ffffff;\n  font-size: 44px;\n  line-height: 1.2;\n  font-weight: 800;\n}\n\n.deki-final-left p {\n  max-width: 680px;\n  margin: 0 0 22px;\n  color: #ffffff;\n  font-size: 18px;\n  line-height: 1.6;\n  opacity: 0.95;\n}\n\n.deki-final-benefits {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  margin: 0 0 26px;\n}\n\n.deki-final-benefits span {\n  display: inline-flex;\n  align-items: center;\n  padding: 10px 18px;\n  color: #ffffff;\n  background: rgba(255, 255, 255, 0.12);\n  border: 1px solid rgba(255, 255, 255, 0.13);\n  border-radius: 999px;\n  font-size: 15px;\n  line-height: 1.3;\n}\n\n.deki-price {\n  margin: 0 0 18px;\n  color: #ffffff;\n  font-size: 42px;\n  line-height: 1.1;\n  font-weight: 800;\n}\n\n.deki-buy-btn {\n  display: inline-flex;\n  min-height: 58px;\n  padding: 16px 42px;\n  align-items: center;\n  justify-content: center;\n  color: #ffffff;\n  background: #f26a21;\n  border: 0;\n  border-radius: 999px;\n  font-family: inherit;\n  font-size: 20px;\n  line-height: 1.2;\n  font-weight: 700;\n  text-decoration: none;\n  cursor: pointer;\n  appearance: none;\n  -webkit-appearance: none;\n  transition:\n    background 0.2s ease,\n    transform 0.2s ease,\n    box-shadow 0.2s ease;\n}\n\n.deki-buy-btn:hover {\n  color: #ffffff;\n  background: #ff7d39;\n  transform: translateY(-2px);\n  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);\n}\n\n.deki-buy-btn:active {\n  transform: translateY(0);\n}\n\n.deki-buy-btn:focus-visible {\n  outline: 3px solid rgba(255, 255, 255, 0.45);\n  outline-offset: 4px;\n}\n\n/* Tablet and mobile */\n\n@media screen and (max-width: 768px) {\n  .deki-final-cta {\n    width: calc(100% - 28px);\n\n    /* Much smaller mobile space */\n    margin: 14px auto;\n\n    padding: 40px 24px;\n    text-align: center;\n    border-radius: 20px;\n  }\n\n  .deki-final-left h2 {\n    font-size: 34px;\n  }\n\n  .deki-final-left p {\n    margin-bottom: 20px;\n    font-size: 16px;\n  }\n\n  .deki-final-benefits {\n    justify-content: center;\n    gap: 10px;\n    margin-bottom: 24px;\n  }\n\n  .deki-final-benefits span {\n    padding: 9px 14px;\n    font-size: 14px;\n  }\n\n  .deki-price {\n    font-size: 34px;\n  }\n\n  .deki-buy-btn {\n    width: 100%;\n    max-width: 340px;\n    min-height: 56px;\n    padding: 15px 24px;\n    font-size: 18px;\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .deki-final-cta {\n    width: calc(100% - 24px);\n    margin: 10px auto;\n    padding: 34px 18px;\n    border-radius: 18px;\n  }\n\n  .deki-final-left h2 {\n    font-size: 30px;\n  }\n\n  .deki-final-benefits {\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .deki-final-benefits span {\n    width: 100%;\n    max-width: 280px;\n    justify-content: center;\n  }\n}\n</style>\n\n<section class=\"deki-final-cta\">\n  <div class=\"deki-final-left\">\n\n    <h2>Klaar voor een gladde huid?</h2>\n\n    <p>\n      Begin vandaag met uw IPL-routine en geniet van een zichtbaar gladdere huid.\n    </p>\n\n    <div class=\"deki-final-benefits\">\n      <span>✓ Gratis verzending</span>\n      <span>✓ 60 dagen retour</span>\n      <span>✓ 2 jaar garantie</span>\n    </div>\n\n    <div class=\"deki-price\">€99,95</div>\n\n    <button\n      type=\"button\"\n      class=\"deki-buy-btn\"\n      data-deki-final-buy\n    >\n      Bestel nu\n    </button>\n\n  </div>\n</section>\n\n<script>\n(function () {\n  function initializeDekiFinalButton() {\n    var buttons = document.querySelectorAll(\n      \"[data-deki-final-buy]:not([data-deki-final-ready])\"\n    );\n\n    buttons.forEach(function (button) {\n      button.setAttribute(\"data-deki-final-ready\", \"true\");\n\n      button.addEventListener(\"click\", function () {\n        var target =\n          document.querySelector('button[name=\"add\"]') ||\n          document.querySelector(\"product-form\") ||\n          document.querySelector('form[action*=\"/cart/add\"]') ||\n          document.querySelector(\".buy-buttons\") ||\n          document.querySelector(\".product-form\") ||\n          document.querySelector(\"[class*='buy-buttons']\") ||\n          document.querySelector(\"[class*='product-form']\");\n\n        if (target) {\n          target.scrollIntoView({\n            behavior: \"smooth\",\n            block: \"center\"\n          });\n\n          setTimeout(function () {\n            var addButton;\n\n            if (target.matches('button[name=\"add\"]')) {\n              addButton = target;\n            } else {\n              addButton = target.querySelector('button[name=\"add\"]');\n            }\n\n            if (addButton) {\n              addButton.focus({\n                preventScroll: true\n              });\n            }\n          }, 700);\n        } else {\n          window.scrollTo({\n            top: 0,\n            behavior: \"smooth\"\n          });\n        }\n      });\n    });\n  }\n\n  document.addEventListener(\n    \"DOMContentLoaded\",\n    initializeDekiFinalButton\n  );\n\n  document.addEventListener(\n    \"shopify:section:load\",\n    initializeDekiFinalButton\n  );\n\n  initializeDekiFinalButton();\n})();\n</script>",
+        "section_height": "tight",
+        "full_width": false,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "custom_liquid_WHC6MD": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom HTML/Liquid",
+      "settings": {
+        "custom_liquid": "<style>\n/* ==================================================\n   DEKI LANDING PAGE — INTEGRATED SECTION SPACING\n   ================================================== */\n\n/* Remove Shopify spacing around DEKI custom sections */\n.shopify-section:has(.deki-why),\n.shopify-section:has(.deki-ugc-premium),\n.shopify-section:has(.deki-final-cta),\n.shopify-section:has(.deki-moneyback),\n.shopify-section:has(.deki-guarantee),\n.shopify-section:has(.deki-results),\n.shopify-section:has(.deki-comparison),\n.shopify-section:has(.deki-faq),\n.shopify-section:has(.deki-benefits-section) {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  min-height: 0 !important;\n}\n\n/* Remove padding from common Enterprise theme wrappers */\n.shopify-section:has(.deki-why) > div,\n.shopify-section:has(.deki-ugc-premium) > div,\n.shopify-section:has(.deki-final-cta) > div,\n.shopify-section:has(.deki-moneyback) > div,\n.shopify-section:has(.deki-guarantee) > div,\n.shopify-section:has(.deki-results) > div,\n.shopify-section:has(.deki-comparison) > div,\n.shopify-section:has(.deki-faq) > div,\n.shopify-section:has(.deki-benefits-section) > div {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n  min-height: 0 !important;\n}\n\n/* Remove outside gaps from regular DEKI sections */\n.deki-why,\n.deki-ugc-premium,\n.deki-moneyback,\n.deki-guarantee,\n.deki-results,\n.deki-comparison,\n.deki-faq,\n.deki-benefits-section {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n}\n\n/* Final CTA: no gap above, but keep separation from footer */\n.deki-final-cta {\n  margin-top: 0 !important;\n  margin-bottom: 50px !important;\n}\n\n/* Remove spacing from common theme containers */\n.shopify-section:has([class*=\"deki-\"]) .section,\n.shopify-section:has([class*=\"deki-\"]) .section__inner,\n.shopify-section:has([class*=\"deki-\"]) .container,\n.shopify-section:has([class*=\"deki-\"]) .page-width {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important;\n  padding-top: 0 !important;\n  padding-bottom: 0 !important;\n}\n\n/* Prevent empty Custom HTML/Liquid section from creating height */\n.shopify-section:has(.deki-spacing-fix) {\n  margin: 0 !important;\n  padding: 0 !important;\n  min-height: 0 !important;\n  height: 0 !important;\n  overflow: hidden !important;\n}\n\n/* Hide empty elements */\n.shopify-section:has([class*=\"deki-\"]) > p:empty,\n.shopify-section:has([class*=\"deki-\"]) > div:empty {\n  display: none !important;\n}\n\n/* Mobile */\n@media screen and (max-width: 768px) {\n  .shopify-section:has([class*=\"deki-\"]) {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n    padding-top: 0 !important;\n    padding-bottom: 0 !important;\n  }\n\n  .deki-why,\n  .deki-ugc-premium,\n  .deki-moneyback,\n  .deki-guarantee,\n  .deki-results,\n  .deki-comparison,\n  .deki-faq,\n  .deki-benefits-section {\n    margin-top: 0 !important;\n    margin-bottom: 0 !important;\n  }\n\n  .deki-final-cta {\n    margin-top: 0 !important;\n    margin-bottom: 36px !important;\n  }\n}\n\n/* Small mobile */\n@media screen and (max-width: 480px) {\n  .deki-final-cta {\n    margin-bottom: 28px !important;\n  }\n}\n</style>\n\n<div class=\"deki-spacing-fix\" aria-hidden=\"true\"></div>",
+        "section_height": "default",
+        "full_width": false,
+        "dividers": "none",
+        "prevent_animation": false
+      }
+    },
+    "featured_collection_RiViFG": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "title": "Featured collectionMisschien vind je dit ook leuk",
+        "heading_align": "text-start",
+        "show_view_all": true,
+        "collection": "draagbare-speakers",
+        "layout": "carousel",
+        "card_size_mobile": "small",
+        "card_size": "small",
+        "products_to_show": 8,
+        "show_highlight_products": true,
+        "show_promo_info": false,
+        "image_ratio": "fill",
+        "promo_title": "A headline to grab attention",
+        "content": "<p>Use this card with an image to highlight your collections or introduce a promotion.</p>",
+        "link_url": "",
+        "button_label": "Button",
+        "color_scheme": "2",
+        "button_style": "btn btn--primary"
+      }
+    },
+    "featured_blog_y4FV7P": {
+      "type": "featured-blog",
+      "name": "Blog posts",
+      "settings": {
+        "title": "Aanbevolen blog",
+        "heading_align": "text-start",
+        "show_view_all": true,
+        "blog": "news",
+        "layout": "carousel",
+        "posts_to_show": 3,
+        "show_featured_image": true,
+        "show_tags": false,
+        "show_excerpt": true,
+        "show_author": false,
+        "show_date": false,
+        "show_button": false,
+        "color_scheme": "none",
+        "image_ratio": "tallest",
+        "button_style": "btn btn--primary"
+      }
+    },
+    "logo_list_LMJAVg": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_KfEpGc": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/3a549bac-898f-4716-8ba8-8d712a65be66.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_NCRcMh": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_12_36_08_PM_4773b4a8-df23-4de1-ac85-0a884199d6c4.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_fhTy3M": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_12_09_22_PM_df4fb28a-2e90-4ca7-98ad-0b50232f2ade.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_fYAqKn": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Woox_e2d748b7-f382-491c-b664-6f26eda342fe.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_NptJ3e": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_02_35_36_PM.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_JigGd7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/d6aed03a-2320-4f67-897a-5cb4bb5c2c9a.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_YmApqW": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_5_2026_02_01_50_AM.png",
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_fWf8Hp": {
+          "type": "logo",
+          "disabled": true,
+          "settings": {
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_NhikyK": {
+          "type": "logo",
+          "disabled": true,
+          "settings": {
+            "url": "",
+            "logo_width": 120,
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_KfEpGc",
+        "logo_NCRcMh",
+        "logo_fhTy3M",
+        "logo_fYAqKn",
+        "logo_NptJ3e",
+        "logo_JigGd7",
+        "logo_YmApqW",
+        "logo_fWf8Hp",
+        "logo_NhikyK"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "title": "Logo list",
+        "heading_align": "text-start",
+        "button_label": "Optional link",
+        "button_link": "",
+        "layout": "carousel",
+        "spacing": 40,
+        "logo_grid_align": "justify-center",
+        "color_scheme": "none",
+        "full_width": true
+      }
+    },
+    "newsletter_eYrfNV": {
+      "type": "newsletter",
+      "blocks": {
+        "heading_nzCcPm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Abonneer u op onze e-mails",
+            "heading_size": "h4"
+          }
+        },
+        "text_DDmnRn": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Ontvang als eerste informatie over nieuwe collecties en exclusieve aanbiedingen.</p>",
+            "enlarge_text": false
+          }
+        },
+        "form_mpJWJJ": {
+          "type": "form",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "heading_nzCcPm",
+        "text_DDmnRn",
+        "form_mpJWJJ"
+      ],
+      "name": "Email signup",
+      "settings": {
+        "overlay_position": "justify-center",
+        "text_align": "text-center",
+        "color_scheme": "default",
+        "full_width": true,
+        "transparent_content_color": "#ffffff",
+        "tint_color": "#000000",
+        "tint_opacity": 20
+      }
+    }
+  },
+  "order": [
+    "pop_up_PNyetp",
+    "main",
+    "blocks_e8X9ig",
+    "details",
+    "178627929640cce22e",
+    "collection-list",
+    "image-banner",
+    "recommendations",
+    "custom_liquid_4d7fX9",
+    "custom_liquid_HxD8B4",
+    "custom_liquid_fc6LND",
+    "custom_liquid_wcnKYg",
+    "custom_liquid_MtakMP",
+    "custom_liquid_f3RmnV",
+    "custom_liquid_Gqqfzx",
+    "custom_liquid_FyXdrX",
+    "custom_liquid_hVh9UX",
+    "faq_dAAn3q",
+    "custom_liquid_eA6YFq",
+    "custom_liquid_WHC6MD",
+    "featured_collection_RiViFG",
+    "featured_blog_y4FV7P",
+    "logo_list_LMJAVg",
+    "newsletter_eYrfNV"
+  ]
+}

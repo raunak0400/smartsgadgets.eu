@@ -1,0 +1,350 @@
+<section id="MeariUseCases-{{ section.id }}" class="meari-use-cases">
+  <div class="meari-use-cases__inner">
+
+    <div class="meari-use-cases__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="meari-use-cases__eyebrow">
+          {{ section.settings.eyebrow | escape }}
+        </p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2 class="meari-use-cases__heading">
+          {{ section.settings.heading | escape }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="meari-use-cases__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="meari-use-cases__grid">
+      {% for block in section.blocks %}
+        <article
+          class="meari-use-cases__card"
+          {{ block.shopify_attributes }}
+        >
+          <div class="meari-use-cases__media">
+            {% if block.settings.image != blank %}
+              {{
+                block.settings.image
+                | image_url: width: 1400
+                | image_tag:
+                  class: 'meari-use-cases__image',
+                  widths: '450, 650, 850, 1100, 1400',
+                  sizes: '(min-width: 990px) 33vw, (min-width: 700px) 50vw, 100vw',
+                  loading: 'lazy'
+              }}
+            {% else %}
+              <div class="meari-use-cases__placeholder">
+                {{ 'lifestyle-1' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="meari-use-cases__content">
+            {% if block.settings.title != blank %}
+              <h3 class="meari-use-cases__title">
+                {{ block.settings.title | escape }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <div class="meari-use-cases__text">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #MeariUseCases-{{ section.id }} {
+    --meari-dark: #0d172b;
+    --meari-muted: #667085;
+    --meari-orange: #ff7900;
+    --meari-border: rgba(13, 23, 43, 0.08);
+
+    width: 100%;
+    padding: 100px 0;
+    background: #ffffff;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__inner {
+    width: min(1500px, calc(100% - 64px));
+    margin: 0 auto;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__header {
+    max-width: 790px;
+    margin-bottom: 46px;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__eyebrow {
+    margin: 0 0 14px;
+    color: var(--meari-orange);
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__heading {
+    margin: 0;
+    color: var(--meari-dark);
+    font-size: clamp(38px, 4vw, 62px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__description {
+    max-width: 670px;
+    margin-top: 20px;
+    color: var(--meari-muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__description p,
+  #MeariUseCases-{{ section.id }} .meari-use-cases__text p {
+    margin: 0;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--meari-border);
+    border-radius: 26px;
+    background: #ffffff;
+    box-shadow: 0 16px 42px rgba(24, 39, 75, 0.08);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 54px rgba(24, 39, 75, 0.13);
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__media {
+    width: 100%;
+    overflow: hidden;
+    background: #f2f4f7;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    transition: transform 400ms ease;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__card:hover .meari-use-cases__image {
+    transform: scale(1.018);
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__placeholder {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f6;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__placeholder svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__content {
+    padding: 28px 28px 30px;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__title {
+    margin: 0;
+    color: var(--meari-dark);
+    font-size: 27px;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  #MeariUseCases-{{ section.id }} .meari-use-cases__text {
+    margin-top: 12px;
+    color: var(--meari-muted);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  @media screen and (max-width: 1050px) {
+    #MeariUseCases-{{ section.id }} {
+      padding: 82px 0;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__inner {
+      width: min(100% - 40px, 1200px);
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__card:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    #MeariUseCases-{{ section.id }} {
+      padding: 64px 0;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__inner {
+      width: calc(100% - 28px);
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__header {
+      margin-bottom: 30px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__heading {
+      font-size: clamp(36px, 10vw, 48px);
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__description {
+      font-size: 16px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__card:last-child {
+      grid-column: auto;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__card {
+      border-radius: 22px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__content {
+      padding: 23px 22px 26px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__title {
+      font-size: 25px;
+    }
+
+    #MeariUseCases-{{ section.id }} .meari-use-cases__text {
+      font-size: 15px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #MeariUseCases-{{ section.id }} .meari-use-cases__card,
+    #MeariUseCases-{{ section.id }} .meari-use-cases__image {
+      transition: none;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MEARI Use Cases",
+  "tag": "section",
+  "class": "section-meari-use-cases",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "VOOR ELK MOMENT"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Eén slimme camera. Drie vertrouwde toepassingen."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Gebruik de MEARI S1 Plus voor uw woning, babykamer of huisdier — allemaal vanuit één app.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "use_case",
+      "name": "Use case",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Woningbeveiliging"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Houd uw woning dag en nacht in de gaten met slimme detectie en directe meldingen.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MEARI Use Cases",
+      "blocks": [
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Woningbeveiliging",
+            "text": "<p>Houd uw woning dag en nacht in de gaten met slimme detectie en directe meldingen.</p>"
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Babyfoon",
+            "text": "<p>Blijf dichtbij met live beeld, geluid en meldingen wanneer uw baby u nodig heeft.</p>"
+          }
+        },
+        {
+          "type": "use_case",
+          "settings": {
+            "title": "Huisdiercamera",
+            "text": "<p>Bekijk wat uw huisdier doet en blijf verbonden, ook wanneer u niet thuis bent.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

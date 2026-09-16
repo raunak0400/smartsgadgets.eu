@@ -1,0 +1,657 @@
+{% doc %}
+  @prompt
+    <div class="footer-logos-row">
+      <div class="footer-logos-inner">
+    
+        <div class="footer-logo-group shipping-logos">
+          {% for block in section.blocks %}
+            {% if block.type == 'shipping_logo' and block.settings.logo != blank %}
+              <img
+                src="{{ block.settings.logo | image_url: width: 180 }}"
+                alt="{{ block.settings.name }}"
+                loading="lazy"
+              >
+            {% endif %}
+          {% endfor %}
+        </div>
+    
+        <div class="footer-logo-divider"></div>
+    
+        <div class="footer-logo-group payment-logos">
+          {{ 'paypal' | payment_type_svg_tag }}
+          {{ 'ideal' | payment_type_svg_tag }}
+          {{ 'visa' | payment_type_svg_tag }}
+          {{ 'master' | payment_type_svg_tag }}
+          {{ 'american_express' | payment_type_svg_tag }}
+          {{ 'bancontact' | payment_type_svg_tag }}
+          {{ 'apple_pay' | payment_type_svg_tag }}
+          {{ 'google_pay' | payment_type_svg_tag }}
+        </div>
+    
+      </div>
+    </div>
+    
+    <style>
+    .footer-logos-row {
+      background: #151719;
+      border-bottom: 8px solid #ff4b00;
+      padding: 28px 15px;
+    }
+    
+    .footer-logos-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+    
+    .shipping-logos img {
+      max-height: 46px;
+      max-width: 120px;
+      object-fit: contain;
+    }
+    
+    .payment-logos svg {
+      height: 34px;
+      width: auto;
+      background: #ffffff;
+      border-radius: 6px;
+    }
+    
+    .footer-logo-divider {
+      width: 1px;
+      height: 52px;
+      background: rgba(255,255,255,0.45);
+    }
+    
+    @media screen and (max-width: 749px) {
+      .footer-logos-row {
+        padding: 22px 10px;
+      }
+    
+      .footer-logos-inner {
+        gap: 18px;
+      }
+    
+      .footer-logo-group {
+        gap: 14px;
+      }
+    
+      .shipping-logos img {
+        max-height: 34px;
+        max-width: 90px;
+      }
+    
+      .payment-logos svg {
+        height: 28px;
+      }
+    
+      .footer-logo-divider {
+        display: none;
+      }
+    }
+    </style>
+    
+    {% schema %}
+    {
+      "name": "Footer logos row",
+      "settings": [],
+      "blocks": [
+        {
+          "type": "shipping_logo",
+          "name": "Shipping logo",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "logo",
+              "label": "Logo image"
+            },
+            {
+              "type": "text",
+              "id": "name",
+              "label": "Logo name",
+              "default": "Shipping company"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Footer logos row",
+          "blocks": [
+            { "type": "shipping_logo", "settings": { "name": "PostNL" } },
+            { "type": "shipping_logo", "settings": { "name": "DHL" } },
+            { "type": "shipping_logo", "settings": { "name": "DPD" } },
+            { "type": "shipping_logo", "settings": { "name": "UPS" } },
+            { "type": "shipping_logo", "settings": { "name": "GLS" } }
+          ]
+        }
+      ]
+    }
+    {% endschema %}
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-footer-logos-{{ ai_gen_id }} {
+    display: block;
+    background: {{ block.settings.background_color }};
+    border-bottom: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+    padding: {{ block.settings.padding_desktop }}px 15px;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+
+  .ai-footer-logos-inner-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: {{ block.settings.group_gap }}px;
+    flex-wrap: wrap;
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-footer-logo-group-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: {{ block.settings.logo_gap }}px;
+    flex-wrap: wrap;
+  }
+
+  .ai-shipping-logos-{{ ai_gen_id }} img {
+    max-height: {{ block.settings.shipping_logo_height }}px;
+    max-width: {{ block.settings.shipping_logo_width }}px;
+    object-fit: contain;
+  }
+
+  .ai-payment-logos-{{ ai_gen_id }} svg {
+    height: {{ block.settings.payment_icon_height }}px;
+    width: auto;
+    background: {{ block.settings.payment_icon_bg }};
+    border-radius: {{ block.settings.payment_icon_radius }}px;
+  }
+
+  .ai-footer-logo-divider-{{ ai_gen_id }} {
+    width: {{ block.settings.divider_width }}px;
+    height: {{ block.settings.divider_height }}px;
+    background: {{ block.settings.divider_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-footer-logos-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_mobile }}px 10px;
+    }
+
+    .ai-footer-logos-inner-{{ ai_gen_id }} {
+      gap: {{ block.settings.group_gap_mobile }}px;
+    }
+
+    .ai-footer-logo-group-{{ ai_gen_id }} {
+      gap: {{ block.settings.logo_gap_mobile }}px;
+    }
+
+    .ai-shipping-logos-{{ ai_gen_id }} img {
+      max-height: {{ block.settings.shipping_logo_height_mobile }}px;
+      max-width: {{ block.settings.shipping_logo_width_mobile }}px;
+    }
+
+    .ai-payment-logos-{{ ai_gen_id }} svg {
+      height: {{ block.settings.payment_icon_height_mobile }}px;
+    }
+
+    {% if block.settings.hide_divider_mobile %}
+      .ai-footer-logo-divider-{{ ai_gen_id }} {
+        display: none;
+      }
+    {% endif %}
+  }
+{% endstyle %}
+
+<div class="ai-footer-logos-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-footer-logos-inner-{{ ai_gen_id }}">
+
+    <div class="ai-footer-logo-group-{{ ai_gen_id }} ai-shipping-logos-{{ ai_gen_id }}">
+      {% if block.settings.shipping_logo_1 != blank %}
+        <img
+          src="{{ block.settings.shipping_logo_1 | image_url: width: 240 }}"
+          alt="{{ block.settings.shipping_name_1 }}"
+          loading="lazy"
+          width="120"
+          height="60"
+        >
+      {% endif %}
+      {% if block.settings.shipping_logo_2 != blank %}
+        <img
+          src="{{ block.settings.shipping_logo_2 | image_url: width: 240 }}"
+          alt="{{ block.settings.shipping_name_2 }}"
+          loading="lazy"
+          width="120"
+          height="60"
+        >
+      {% endif %}
+      {% if block.settings.shipping_logo_3 != blank %}
+        <img
+          src="{{ block.settings.shipping_logo_3 | image_url: width: 240 }}"
+          alt="{{ block.settings.shipping_name_3 }}"
+          loading="lazy"
+          width="120"
+          height="60"
+        >
+      {% endif %}
+      {% if block.settings.shipping_logo_4 != blank %}
+        <img
+          src="{{ block.settings.shipping_logo_4 | image_url: width: 240 }}"
+          alt="{{ block.settings.shipping_name_4 }}"
+          loading="lazy"
+          width="120"
+          height="60"
+        >
+      {% endif %}
+      {% if block.settings.shipping_logo_5 != blank %}
+        <img
+          src="{{ block.settings.shipping_logo_5 | image_url: width: 240 }}"
+          alt="{{ block.settings.shipping_name_5 }}"
+          loading="lazy"
+          width="120"
+          height="60"
+        >
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_divider %}
+      <div class="ai-footer-logo-divider-{{ ai_gen_id }}"></div>
+    {% endif %}
+
+    <div class="ai-footer-logo-group-{{ ai_gen_id }} ai-payment-logos-{{ ai_gen_id }}">
+      {% if block.settings.show_paypal %}
+        {{ 'paypal' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_ideal %}
+        {{ 'ideal' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_visa %}
+        {{ 'visa' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_mastercard %}
+        {{ 'master' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_amex %}
+        {{ 'american_express' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_bancontact %}
+        {{ 'bancontact' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_apple_pay %}
+        {{ 'apple_pay' | payment_type_svg_tag }}
+      {% endif %}
+      {% if block.settings.show_google_pay %}
+        {{ 'google_pay' | payment_type_svg_tag }}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer logos row",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Maximum content width",
+      "min": 800,
+      "max": 2000,
+      "step": 50,
+      "unit": "px",
+      "default": 1400
+    },
+    {
+      "type": "range",
+      "id": "padding_desktop",
+      "label": "Padding (desktop)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_mobile",
+      "label": "Padding (mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "group_gap",
+      "label": "Gap between groups (desktop)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "group_gap_mobile",
+      "label": "Gap between groups (mobile)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Gap between logos (desktop)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "logo_gap_mobile",
+      "label": "Gap between logos (mobile)",
+      "min": 6,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#151719"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#ff4b00"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Shipping logos"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_logo_1",
+      "label": "Shipping logo 1"
+    },
+    {
+      "type": "text",
+      "id": "shipping_name_1",
+      "label": "Logo 1 name",
+      "default": "PostNL"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_logo_2",
+      "label": "Shipping logo 2"
+    },
+    {
+      "type": "text",
+      "id": "shipping_name_2",
+      "label": "Logo 2 name",
+      "default": "DHL"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_logo_3",
+      "label": "Shipping logo 3"
+    },
+    {
+      "type": "text",
+      "id": "shipping_name_3",
+      "label": "Logo 3 name",
+      "default": "DPD"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_logo_4",
+      "label": "Shipping logo 4"
+    },
+    {
+      "type": "text",
+      "id": "shipping_name_4",
+      "label": "Logo 4 name",
+      "default": "UPS"
+    },
+    {
+      "type": "image_picker",
+      "id": "shipping_logo_5",
+      "label": "Shipping logo 5"
+    },
+    {
+      "type": "text",
+      "id": "shipping_name_5",
+      "label": "Logo 5 name",
+      "default": "GLS"
+    },
+    {
+      "type": "range",
+      "id": "shipping_logo_height",
+      "label": "Height (desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 46
+    },
+    {
+      "type": "range",
+      "id": "shipping_logo_width",
+      "label": "Width (desktop)",
+      "min": 60,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "shipping_logo_height_mobile",
+      "label": "Height (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "shipping_logo_width_mobile",
+      "label": "Width (mobile)",
+      "min": 40,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Divider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "divider_height",
+      "label": "Height",
+      "min": 20,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 52
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Color",
+      "default": "rgba(255,255,255,0.45)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_divider_mobile",
+      "label": "Hide on mobile",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Payment icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paypal",
+      "label": "Show PayPal",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ideal",
+      "label": "Show iDEAL",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_visa",
+      "label": "Show Visa",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mastercard",
+      "label": "Show Mastercard",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_amex",
+      "label": "Show American Express",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bancontact",
+      "label": "Show Bancontact",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_apple_pay",
+      "label": "Show Apple Pay",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_google_pay",
+      "label": "Show Google Pay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "payment_icon_height",
+      "label": "Icon height (desktop)",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "payment_icon_height_mobile",
+      "label": "Icon height (mobile)",
+      "min": 16,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "color",
+      "id": "payment_icon_bg",
+      "label": "Icon background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "payment_icon_radius",
+      "label": "Icon border radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer logos row"
+    }
+  ]
+}
+{% endschema %}

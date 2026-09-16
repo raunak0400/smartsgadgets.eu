@@ -1,0 +1,115 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer Group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_cbj3Kp": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Footer links",
+            "menu": "footer"
+          }
+        },
+        "link_list_tzNDYF": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Footer links",
+            "menu": "footer"
+          }
+        },
+        "link-list-2": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Assortment",
+            "menu": "category"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "image_width": 150,
+            "heading": "",
+            "text": "<p><strong>Over Smartsgadgets</strong></p><p>Smartsgadgets biedt slimme producten voor huis, beveiliging, huisdieren en lifestyle. Wij leveren betrouwbare gadgets tegen een aantrekkelijke prijs.<br/></p><p><strong>Address</strong></p><p>SmartsGadgets<br/>Molenzicht 5C<br/>4881BW Zundert<br/>The Netherlands<br/>VAT: NL868318887B01<br/>KVK: 9798834</p><p><strong>Contact</strong><br/>Email: <a href=\"mailto:info@smartsgadgets.eu\">info@smartsgadgets.eu</a></p>",
+            "button_label": "",
+            "button_link": "shopify://pages/contact",
+            "enable_follow_on_shop": false,
+            "show_social": true,
+            "text_align": "text-start"
+          }
+        },
+        "link_list_AgUrfV": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Klantenservice",
+            "menu": "footer-klantenservice"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "",
+            "text": "<p>Meld je aan voor exclusieve aanbiedingen, originele verhalen, evenementen en meer.</p>",
+            "collapse_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "link_list_cbj3Kp",
+        "link_list_tzNDYF",
+        "link-list-2",
+        "text",
+        "link_list_AgUrfV",
+        "newsletter"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_back_to_top": false,
+        "show_payment_icons": false,
+        "show_powered_by": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "secondary_menu": "customer-account-main-menu",
+        "bg_color": "#292f37",
+        "text_color": "#ffffff"
+      }
+    },
+    "custom_footer": {
+      "type": "custom-footer",
+      "settings": {
+        "logo": "shopify://shop_images/primary_logo_0684672c-a252-4016-9c3d-f7892e640ae2.png",
+        "logo_width": 220,
+        "assortment_heading": "Assortiment",
+        "assortment_menu": "category",
+        "about_heading": "Over Smartsgadgets",
+        "about_text": "Smartsgadgets biedt slimme producten voor thuis, beveiliging, huisdieren en lifestyle. Wij leveren betrouwbare gadgets tegen aantrekkelijke prijzen.",
+        "address_heading": "Adres",
+        "address": "XENEXA B.V.\nMolenzicht 5C\n4881BW Zundert\nThe Netherlands\nKVK: 97998834 \nVAT: NL868318887B01\nTel./Whatsapp: +31(0)85-2500837",
+        "contact_heading": "Contact",
+        "contact_email": "info@smartsgadgets.eu",
+        "show_social": true,
+        "service_heading": "Klantenservice",
+        "service_menu": "footer-klantenservice",
+        "newsletter_text": "Meld je aan voor exclusieve aanbiedingen, originele verhalen, evenementen en meer.",
+        "copyright_text": "© [[YEAR]] Smartsgadgets.eu. All rights reserved.",
+        "show_my_orders": true
+      }
+    }
+  },
+  "order": [
+    "footer",
+    "custom_footer"
+  ]
+}

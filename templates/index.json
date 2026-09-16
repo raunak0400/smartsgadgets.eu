@@ -1,0 +1,799 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_hero": {
+      "type": "custom-hero",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/Kooduu_Banner_1_1.png",
+        "heading": "",
+        "subheading": "",
+        "button_label": "",
+        "button_link": "shopify://collections/kooduu"
+      }
+    },
+    "slideshow_xHHUYX": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_yMKgp9": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Kooduu_Banner_1_2.png",
+            "image_mobile": "shopify://shop_images/Untitled_design_10.png",
+            "url": "shopify://collections/kooduu",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h0",
+            "heading_h1": false,
+            "text": "",
+            "enlarge_text": false,
+            "button_1_label": "",
+            "button_1_link": "shopify://collections/kooduu",
+            "button_1_style": "btn btn--primary",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary",
+            "transparent_content_color": "#ffffff",
+            "countdown_show": false,
+            "countdown_end_date": "",
+            "countdown_end_time": "",
+            "countdown_end_text": "",
+            "enlarge_end_text": false,
+            "countdown_hide_on_end": false,
+            "use_custom_colors": false,
+            "count_color": "#fff",
+            "bg_color": "#070707",
+            "bg_grad": ""
+          }
+        },
+        "slide_BbK8yq": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Smart_Home_Banner.png",
+            "image_mobile": "shopify://shop_images/smart_home_mobile_banner.png",
+            "url": "shopify://collections/smart-home-accessoires",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h0",
+            "heading_h1": false,
+            "text": "",
+            "enlarge_text": true,
+            "button_1_label": "",
+            "button_1_link": "shopify://collections/smart-home-accessoires",
+            "button_1_style": "link",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary",
+            "transparent_content_color": "#ffffff",
+            "countdown_show": false,
+            "countdown_end_date": "",
+            "countdown_end_time": "",
+            "countdown_end_text": "",
+            "enlarge_end_text": false,
+            "countdown_hide_on_end": false,
+            "use_custom_colors": false,
+            "count_color": "#fff",
+            "bg_color": "#070707",
+            "bg_grad": ""
+          }
+        },
+        "slide_8xcKX9": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Drone_Bannner.png",
+            "image_mobile": "shopify://shop_images/DJI_Drone_Banner.png",
+            "url": "shopify://collections/drones",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h0",
+            "heading_h1": false,
+            "text": "",
+            "enlarge_text": true,
+            "button_1_label": "",
+            "button_1_link": "shopify://collections/drones",
+            "button_1_style": "link",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary",
+            "transparent_content_color": "#ffffff",
+            "countdown_show": false,
+            "countdown_end_date": "",
+            "countdown_end_time": "",
+            "countdown_end_text": "",
+            "enlarge_end_text": false,
+            "countdown_hide_on_end": false,
+            "use_custom_colors": false,
+            "count_color": "#ffffff",
+            "bg_color": "#070707",
+            "bg_grad": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_yMKgp9",
+        "slide_BbK8yq",
+        "slide_8xcKX9"
+      ],
+      "name": "Slideshow",
+      "settings": {
+        "height_mode": "auto",
+        "fixed_height_desktop": 600,
+        "fixed_height_mobile": 350,
+        "mobile_stacked": false,
+        "nav_style": "slideshow_nav_lines",
+        "pagination_color": "#ffffff",
+        "nav_position": "justify-center",
+        "transition": "slide-fade",
+        "autoplay": true,
+        "slider_pause": false,
+        "autoplay_speed": 5,
+        "color_scheme": "white",
+        "full_width": true,
+        "tint_color": "#000000",
+        "tint_opacity": 0,
+        "accessibility_info": "",
+        "prevent_animation": true
+      }
+    },
+    "custom_trust_bar": {
+      "type": "custom-trust-bar",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "truck",
+            "label": "Snelle EU-levering"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "label": "100% betrouwbaar"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "return",
+            "label": "Gemakkelijk retourneren"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "badge-check",
+            "label": "Productgarantie"
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "icon": "ribbon",
+            "label": "Echte producten"
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "icon": "headset",
+            "label": "Klantenondersteuning"
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "custom_categories": {
+      "type": "custom-categories",
+      "blocks": {
+        "cat_1": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-outdoor-lamp-lifestyle.png",
+            "label": "LED-luidspreker",
+            "link": "shopify://collections/speaker-led-lampen"
+          }
+        },
+        "cat_2": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-pet-tech.png",
+            "label": "Huisdier technologie",
+            "link": "shopify://collections/huisdierverzorging-accessoires"
+          }
+        },
+        "cat_3": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-security-meari-camera.png",
+            "label": "Beveiliging",
+            "link": "shopify://collections/cameras"
+          }
+        },
+        "cat_4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/category-drone.png",
+            "label": "Outdoor & Travel",
+            "link": "shopify://collections/tools-diy"
+          }
+        }
+      },
+      "block_order": [
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4"
+      ],
+      "settings": {
+        "heading": "Blader op categorie"
+      }
+    },
+    "custom_featured_products": {
+      "type": "custom-featured-products",
+      "blocks": {
+        "fp_1": {
+          "type": "product",
+          "settings": {
+            "product": "meari-b1-slimme-ai-video-deurbel-2k-beveiligingscamera-met-ai-detectie-nachtzicht-tweeweg-audio-app-bediening",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "",
+            "rating_count": 0
+          }
+        },
+        "fp_2": {
+          "type": "product",
+          "settings": {
+            "product": "meari-n2-outdoor-ai-beveiligingscamera-3mp-ptz-wifi-camera-met-batterij-solar-support-nachtzicht-auto-tracking",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 4
+          }
+        }
+      },
+      "block_order": [
+        "fp_1",
+        "fp_2"
+      ],
+      "settings": {
+        "heading": "",
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_5_2026_03_02_06_AM.png",
+        "view_all_link": "shopify://collections/meari"
+      }
+    },
+    "custom_bestsellers": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "product_EFTQMe": {
+          "type": "product",
+          "settings": {
+            "product": "kooduu-sensa-lamp-moss-minimalistische-tafellamp",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 3,
+            "badge_type": "best_seller",
+            "badge_text": "Best Seller"
+          }
+        },
+        "product_NLNJxg": {
+          "type": "product",
+          "settings": {
+            "product": "kooduu-sphere-brushed-silver-sfeerlamp-speaker",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "4.6",
+            "rating_count": 3,
+            "badge_type": "best_seller",
+            "badge_text": "Best Seller"
+          }
+        },
+        "bs_1": {
+          "type": "product",
+          "settings": {
+            "product": "kooduu-atmos-brushed-silver-speaker-drankkoeler",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 6,
+            "badge_type": "best_seller",
+            "badge_text": "Best Seller"
+          }
+        },
+        "bs_2": {
+          "type": "product",
+          "settings": {
+            "product": "kooduu-lite-up-mini-play-earth-jbl-speaker",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 2,
+            "badge_type": "best_seller",
+            "badge_text": "Best Seller"
+          }
+        },
+        "bs_3": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "dji-flip-smart-controller-dji-rc331-controller",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "4.6",
+            "rating_count": 45,
+            "badge_type": "none",
+            "badge_text": "Best Seller"
+          }
+        },
+        "bs_4": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "lichaamsverzorging",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "4.6",
+            "rating_count": 45,
+            "badge_type": "new_arrival",
+            "badge_text": "New Arrival"
+          }
+        }
+      },
+      "block_order": [
+        "product_EFTQMe",
+        "product_NLNJxg",
+        "bs_1",
+        "bs_2",
+        "bs_3",
+        "bs_4"
+      ],
+      "settings": {
+        "heading": "Beste verkopers",
+        "view_all_link": "shopify://collections/kooduu"
+      }
+    },
+    "custom_brands": {
+      "type": "custom-brands",
+      "blocks": {
+        "brand_YAnJ3f": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/ed10c736-d646-443a-87af-34be5a076fdb.png",
+            "link": "shopify://collections/drones"
+          }
+        },
+        "brand_1": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/meari-logo.png",
+            "link": "shopify://collections/meari"
+          }
+        },
+        "brand_2": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/xenon-smart-logo.png",
+            "link": "shopify://collections/xenon-smart"
+          }
+        },
+        "brand_3": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/movespeed-logo.png",
+            "link": "shopify://products/movespeed-wd10-ssd-flash-drive-1000mbs-dual-port-push-pull"
+          }
+        },
+        "brand_4": {
+          "type": "brand",
+          "settings": {
+            "logo": "shopify://shop_images/kooduu-logo.png",
+            "link": "shopify://collections/kooduu"
+          }
+        },
+        "brand_5": {
+          "type": "brand",
+          "disabled": true,
+          "settings": {
+            "logo": "shopify://shop_images/woox-logo.png",
+            "link": "shopify://collections/woox"
+          }
+        }
+      },
+      "block_order": [
+        "brand_YAnJ3f",
+        "brand_1",
+        "brand_2",
+        "brand_3",
+        "brand_4",
+        "brand_5"
+      ],
+      "disabled": true,
+      "settings": {
+        "heading": "Winkelen op merken",
+        "view_all_link": "shopify://collections/all"
+      }
+    },
+    "custom_hotspots": {
+      "type": "custom-hotspots",
+      "blocks": {
+        "hotspot_1": {
+          "type": "hotspot",
+          "settings": {
+            "product": "meari-l1-plus-slimme-schijnwerper-camera-2k-outdoor-beveiligingscamera-met-verlichting-ai-detectie-sirene",
+            "hotspot_x": 8,
+            "hotspot_y": 17,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_2": {
+          "type": "hotspot",
+          "settings": {
+            "product": "xenon-smart-x6850-draagbare-lamp-bluetooth-speaker",
+            "hotspot_x": 13,
+            "hotspot_y": 34,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_3": {
+          "type": "hotspot",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "hotspot_x": 33,
+            "hotspot_y": 36,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_4": {
+          "type": "hotspot",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "hotspot_x": 49,
+            "hotspot_y": 29,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_5": {
+          "type": "hotspot",
+          "settings": {
+            "product": "xenon-x7201-full-hd-wifi-babyfoon-wit",
+            "hotspot_x": 60,
+            "hotspot_y": 33,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_6": {
+          "type": "hotspot",
+          "settings": {
+            "product": "meari-n2-outdoor-ai-beveiligingscamera-3mp-ptz-wifi-camera-met-batterij-solar-support-nachtzicht-auto-tracking",
+            "hotspot_x": 84,
+            "hotspot_y": 26,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_7": {
+          "type": "hotspot",
+          "settings": {
+            "product": "dji-drone-mini-5-pro-fly-more-combo-rc-2-cameras-and-video-recording-kit",
+            "hotspot_x": 96,
+            "hotspot_y": 19,
+            "show_label": true,
+            "label": ""
+          }
+        },
+        "hotspot_8": {
+          "type": "hotspot",
+          "disabled": true,
+          "settings": {
+            "product": "",
+            "hotspot_x": 4,
+            "hotspot_y": 68,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_9": {
+          "type": "hotspot",
+          "settings": {
+            "product": "meari-b1-slimme-ai-video-deurbel-2k-beveiligingscamera-met-ai-detectie-nachtzicht-tweeweg-audio-app-bediening",
+            "hotspot_x": 11,
+            "hotspot_y": 60,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_10": {
+          "type": "hotspot",
+          "settings": {
+            "product": "kooduu-sensa-lamp-moss-minimalistische-tafellamp",
+            "hotspot_x": 42,
+            "hotspot_y": 66,
+            "show_label": true,
+            "label": ""
+          }
+        },
+        "hotspot_11": {
+          "type": "hotspot",
+          "settings": {
+            "product": "",
+            "hotspot_x": 32,
+            "hotspot_y": 55,
+            "show_label": false,
+            "label": ""
+          }
+        },
+        "hotspot_12": {
+          "type": "hotspot",
+          "settings": {
+            "product": "xenon-x8650-slimme-drinkfontein-2-8l-app-control",
+            "hotspot_x": 71,
+            "hotspot_y": 75,
+            "show_label": false,
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_1",
+        "hotspot_2",
+        "hotspot_3",
+        "hotspot_4",
+        "hotspot_5",
+        "hotspot_6",
+        "hotspot_7",
+        "hotspot_8",
+        "hotspot_9",
+        "hotspot_10",
+        "hotspot_11",
+        "hotspot_12"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Hotspot_Banner_Image.png",
+        "image_mobile": "shopify://shop_images/ChatGPT_Image_Sep_6_2026_05_28_41_PM.png"
+      }
+    },
+    "logo_list_hKzaHm": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_n9qHbL": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/3a549bac-898f-4716-8ba8-8d712a65be66.png",
+            "url": "shopify://collections/drones",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_KPYjGH": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_12_38_27_PM_953ef7ee-7145-40e2-a845-520f78cc11af.png",
+            "url": "shopify://collections/kooduu",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_RPef6D": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_02_35_36_PM.png",
+            "url": "shopify://products/lichaamsverzorging",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_jeXW4t": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_5_2026_02_01_50_AM.png",
+            "url": "shopify://collections/meari",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_wKmMWk": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jun_11_2026_12_09_22_PM_df4fb28a-2e90-4ca7-98ad-0b50232f2ade.png",
+            "url": "shopify://collections/xenon-smart",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_3yQQWN": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/d6aed03a-2320-4f67-897a-5cb4bb5c2c9a.png",
+            "url": "shopify://products/movespeed-gd10-slimme-ssd-touchscreen-apple-find-my-1050mbs",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
+        "logo_YyWad7": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/Woox_e2d748b7-f382-491c-b664-6f26eda342fe.png",
+            "url": "shopify://collections/woox",
+            "logo_width": 120,
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "logo_n9qHbL",
+        "logo_KPYjGH",
+        "logo_RPef6D",
+        "logo_jeXW4t",
+        "logo_wKmMWk",
+        "logo_3yQQWN",
+        "logo_YyWad7"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "title": "Winkelen op merken",
+        "heading_align": "text-start",
+        "button_label": "alle collecties",
+        "button_link": "shopify://collections",
+        "layout": "carousel",
+        "spacing": 96,
+        "logo_grid_align": "justify-center",
+        "color_scheme": "none",
+        "full_width": true
+      }
+    },
+    "custom_more_products": {
+      "type": "custom-product-grid",
+      "blocks": {
+        "mp_1": {
+          "type": "product",
+          "settings": {
+            "product": "kooduu-sensa-lamp-moss-minimalistische-tafellamp",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 5,
+            "badge_type": "none",
+            "badge_text": "Best Seller"
+          }
+        },
+        "mp_2": {
+          "type": "product",
+          "settings": {
+            "product": "meari-s1-plus-ai-beveiligingscamera-binnen-huisdiercamera-met-app-beveiligingscameras-wifi-camera-app-2k-qhd-volgt-beweging-en-geluidsdetectie-bewakingscamera",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 7,
+            "badge_type": "none",
+            "badge_text": "Best Seller"
+          }
+        },
+        "mp_3": {
+          "type": "product",
+          "settings": {
+            "product": "movespeed-seeu-su10-slimme-ssd-drive-1090mbs-smart-display",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 3,
+            "badge_type": "none",
+            "badge_text": "Best Seller"
+          }
+        },
+        "mp_4": {
+          "type": "product",
+          "settings": {
+            "product": "movespeed-wd10-ssd-flash-drive-1000mbs-dual-port-push-pull",
+            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
+            "rating": "5",
+            "rating_count": 5,
+            "badge_type": "none",
+            "badge_text": "Best Seller"
+          }
+        }
+      },
+      "block_order": [
+        "mp_1",
+        "mp_2",
+        "mp_3",
+        "mp_4"
+      ],
+      "settings": {
+        "heading": "Meer te ontdekken",
+        "view_all_link": "shopify://collections/all"
+      }
+    },
+    "custom_testimonials": {
+      "type": "custom-testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "quote": "Uitstekende service en snelle levering. De slimme stekkers werken perfect met mijn thuisnetwerk.",
+            "author": "Mark T.",
+            "purchased_product": "WOOX R6113 Smart Plug"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 5,
+            "quote": "De beeldkwaliteit van de binnencamera is uitstekend. De installatie duurde minder dan 5 minuten. Ik beveel deze winkel van harte aan.",
+            "author": "Sarah M.",
+            "purchased_product": "Xenon ProVision 4K"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "star_rating": 4.5,
+            "quote": "Fantastisch mesh-systeem. Eindelijk heb ik overal in mijn appartement wifi-dekking. En een goede prijs ook.",
+            "author": "David L.",
+            "purchased_product": "MEARI Mesh WiFi 6"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "heading": "Wat onze klanten zeggen",
+        "summary_rating": "4.8",
+        "summary_count": "500+"
+      }
+    },
+    "custom_newsletter": {
+      "type": "custom-newsletter",
+      "settings": {
+        "heading": "Ontvang 10% korting op uw eerste bestelling.",
+        "subtext": "Meld je aan voor exclusieve aanbiedingen, nieuwe producten en slimme tips voor je huis."
+      }
+    },
+    "17828080558a0b6b85": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom_hero",
+    "slideshow_xHHUYX",
+    "custom_trust_bar",
+    "custom_categories",
+    "custom_featured_products",
+    "custom_bestsellers",
+    "custom_brands",
+    "custom_hotspots",
+    "logo_list_hKzaHm",
+    "custom_more_products",
+    "custom_testimonials",
+    "custom_newsletter",
+    "17828080558a0b6b85"
+  ]
+}

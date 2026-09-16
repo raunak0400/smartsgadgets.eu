@@ -1,0 +1,50 @@
+{%- comment -%}
+  Parameters:
+  - product {Object} - Product object.
+
+  Renders colour swatches that link to sibling products in the same colour
+  family. Colours in this store are separate Shopify products (not variants
+  of one product), so this reads a `custom.color_variants` list.product_reference
+  metafield populated per-product in Shopify Admin. Renders nothing if the
+  metafield is blank, so products without a colour family are unaffected.
+
+  Usage:
+  {% render 'color-family-swatches', product: product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign color_family = product.metafields.custom.color_variants.value
+-%}
+
+{%- if color_family != blank and color_family.size > 0 -%}
+  <div class="color-family-swatches">
+    <span class="color-family-swatches__label">{{ 'products.product.color' | t }}</span>
+    <div class="color-family-swatches__list">
+      <a
+        href="{{ product.url }}"
+        class="color-family-swatches__item is-active"
+        aria-current="true"
+        aria-label="{{ product.metafields.custom.color_label.value | default: product.title }}"
+        title="{{ product.metafields.custom.color_label.value | default: product.title }}"
+      >
+        {%- if product.featured_media -%}
+          {%- render 'image', image: product.featured_media.preview_image, src_width: 64, class: 'color-family-swatches__image' -%}
+        {%- endif -%}
+      </a>
+      {%- for linked_product in color_family -%}
+        {%- if linked_product != blank -%}
+          <a
+            href="{{ linked_product.url }}"
+            class="color-family-swatches__item"
+            aria-label="{{ linked_product.metafields.custom.color_label.value | default: linked_product.title }}"
+            title="{{ linked_product.metafields.custom.color_label.value | default: linked_product.title }}"
+          >
+            {%- if linked_product.featured_media -%}
+              {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 64, class: 'color-family-swatches__image' -%}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

@@ -1,0 +1,219 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .sg-hotspots {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 0 48px 56px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspots__media {
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspots__media picture.img-fit,
+  #shopify-section-{{ section.id }} .sg-hotspots__media img.img-fit {
+    position: static;
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot__dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot__dot::after {
+    content: "";
+    position: absolute;
+    inset: calc((32px - 44px) / 2);
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot__dot svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot__label {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 8px);
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background-color: #ffffff;
+    color: #111111;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: min(60vw, 240px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot--flip .sg-hotspot__label {
+    left: auto;
+    right: calc(100% + 8px);
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-hotspots {
+      padding: 0 max(20px, env(safe-area-inset-left)) 40px max(20px, env(safe-area-inset-right));
+    }
+
+    #shopify-section-{{ section.id }} .sg-hotspot__dot {
+      width: 26px;
+      height: 26px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-hotspot__dot::after {
+      inset: calc((26px - 44px) / 2);
+    }
+
+    #shopify-section-{{ section.id }} .sg-hotspot__label {
+      top: calc(100% + 8px);
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+      font-size: 12px;
+      padding: 6px 12px;
+      max-width: min(50vw, 180px);
+    }
+
+    #shopify-section-{{ section.id }} .sg-hotspot--flip .sg-hotspot__label {
+      left: 50%;
+      right: auto;
+      transform: translateX(-50%);
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-hotspots">
+  <div class="sg-hotspots__media">
+    {%- if section.settings.image != blank -%}
+      {% render 'image-desktop-and-mobile',
+        class: 'img-fit',
+        desktop_image: section.settings.image,
+        mobile_image: section.settings.image_mobile,
+        src_width_desktop: 2000,
+        widths_desktop: '750, 1100, 1500, 2000',
+        src_width_mobile: 1000,
+        widths_mobile: '480, 750, 1000, 1200',
+        sizes: '100vw',
+        section: section
+      %}
+    {%- else -%}
+      {{ 'lifestyle-3' | placeholder_svg_tag: 'img-fit' }}
+    {%- endif -%}
+
+    {%- for block in section.blocks -%}
+      <div class="sg-hotspot{% if block.settings.hotspot_x > 60 %} sg-hotspot--flip{% endif %}" style="top: {{ block.settings.hotspot_y }}%; left: {{ block.settings.hotspot_x }}%;" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.product.url | default: '#' }}" class="sg-hotspot__dot" aria-label="{{ block.settings.label | default: block.settings.product.title | default: 'View product' }}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </a>
+        {%- if block.settings.show_label and block.settings.label != blank -%}
+          <span class="sg-hotspot__label">{{ block.settings.label }}</span>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom: Hotspot image",
+  "tag": "section",
+  "class": "cc-custom-hotspots",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. If not set, the image above is used on mobile too. Hotspot positions (%) apply to whichever image is shown."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "hotspot_x",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "hotspot_y",
+          "label": "Vertical position",
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "step": 1,
+          "default": 50
+        },
+        {
+          "type": "checkbox",
+          "id": "show_label",
+          "label": "Show label",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom: Hotspot image"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}

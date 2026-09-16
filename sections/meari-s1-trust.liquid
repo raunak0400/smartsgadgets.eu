@@ -1,0 +1,552 @@
+{% liquid
+  assign section_id = 'meari-trust-' | append: section.id
+%}
+
+<section id="{{ section_id }}" class="meari-trust">
+
+  <div class="meari-trust__container">
+
+    <div class="meari-trust__header">
+
+      {% if section.settings.eyebrow != blank %}
+      <div class="meari-trust__eyebrow">
+        <span class="meari-trust__dot"></span>
+        {{ section.settings.eyebrow }}
+      </div>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+      <h2 class="meari-trust__heading">
+        {{ section.settings.heading }}
+      </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+      <div class="meari-trust__description">
+        {{ section.settings.description }}
+      </div>
+      {% endif %}
+
+    </div>
+
+    <div class="meari-trust__grid">
+
+
+<!-- ================= CARD 1 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64" aria-hidden="true">
+
+<rect x="8" y="18" width="28" height="20" rx="4"/>
+
+<path d="M36 24h9l8 8v6h-17z"/>
+
+<circle cx="21" cy="43" r="4" class="accent-fill"/>
+
+<circle cx="46" cy="43" r="4" class="accent-fill"/>
+
+<path d="M17 14h14"/>
+
+<path d="M20 10h8" class="accent-stroke"/>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>Gratis verzending</h3>
+
+<p>Gratis verzending binnen Nederland en België.</p>
+
+</div>
+
+</article>
+
+
+
+<!-- ================= CARD 2 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64">
+
+<path d="M32 11
+A21 21 0 1 0
+53 32"/>
+
+<polyline points="47 11 53 11 53 17"/>
+
+<path d="M24 31l6 6 12-12"
+class="accent-stroke"/>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>60 dagen retourneren</h3>
+
+<p>Niet tevreden? Retourneer eenvoudig binnen 60 dagen.</p>
+
+</div>
+
+</article>
+
+
+
+<!-- ================= CARD 3 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64">
+
+<path d="M32 8
+l18 8
+v13
+c0 12-8 21-18 27
+C22 50 14 41 14 29
+V16z"/>
+
+<path d="M24 32l6 6 11-13"
+class="accent-stroke"/>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>2 jaar garantie</h3>
+
+<p>Volledige garantie op fabricagefouten.</p>
+
+</div>
+
+</article>
+<!-- ================= CARD 4 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64" aria-hidden="true">
+
+<rect x="18" y="28" width="28" height="20" rx="4"></rect>
+
+<path d="M24 28v-8a8 8 0 0 1 16 0v8"></path>
+
+<circle cx="32" cy="37" r="2.3" class="accent-fill"></circle>
+
+<path d="M32 39v5"></path>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>Veilig betalen</h3>
+
+<p>iDEAL, Bancontact, Visa, Mastercard en PayPal.</p>
+
+</div>
+
+</article>
+
+
+
+<!-- ================= CARD 5 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64" aria-hidden="true">
+
+<path d="M35 8L18 36h12l-2 20 18-30H34z"></path>
+
+<path d="M35 8L18 36h12" class="accent-stroke"></path>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>Snelle levering</h3>
+
+<p>Op werkdagen snel verwerkt en verzonden.</p>
+
+</div>
+
+</article>
+
+
+
+<!-- ================= CARD 6 ================= -->
+
+<article class="meari-trust__card">
+
+<div class="meari-trust__icon">
+
+<svg viewBox="0 0 64 64" aria-hidden="true">
+
+<circle cx="32" cy="24" r="10"></circle>
+
+<path d="M16 52c3-9 11-14 16-14s13 5 16 14"></path>
+
+<path d="M44 18l5 5"></path>
+
+<circle cx="51" cy="15" r="5" class="accent-fill"></circle>
+
+</svg>
+
+</div>
+
+<div class="meari-trust__content">
+
+<h3>Nederlandse klantenservice</h3>
+
+<p>Wij staan klaar om je snel en persoonlijk te helpen.</p>
+
+</div>
+
+</article>
+
+    </div>
+
+  </div>
+
+</section>
+<style>
+
+#{{ section_id }},
+#{{ section_id }} *{
+box-sizing:border-box;
+}
+
+#shopify-section-{{ section.id }}{
+margin:0!important;
+padding:0!important;
+overflow:hidden;
+}
+
+#{{ section_id }}{
+
+width:100%;
+padding-top:{{ section.settings.padding_top }}px;
+padding-bottom:{{ section.settings.padding_bottom }}px;
+
+background:
+radial-gradient(circle at top,
+rgba(242,100,25,.05),
+transparent 32%),
+#f8f9fb;
+
+}
+
+#{{ section_id }} .meari-trust__container{
+
+width:calc(100% - 48px);
+max-width:1440px;
+margin:auto;
+
+}
+
+#{{ section_id }} .meari-trust__header{
+
+max-width:900px;
+margin:0 auto 48px;
+text-align:center;
+
+}
+
+#{{ section_id }} .meari-trust__eyebrow{
+
+display:inline-flex;
+align-items:center;
+gap:10px;
+
+padding:9px 18px;
+
+background:#fff3ea;
+
+border-radius:999px;
+
+font-size:14px;
+font-weight:700;
+
+color:#f26419;
+
+margin-bottom:18px;
+
+}
+
+#{{ section_id }} .meari-trust__dot{
+
+width:8px;
+height:8px;
+border-radius:50%;
+background:#f26419;
+
+}
+
+#{{ section_id }} .meari-trust__heading{
+
+margin:0 0 18px;
+
+font-size:clamp(38px,4vw,60px);
+
+font-weight:800;
+
+line-height:1.05;
+
+color:#101820;
+
+}
+
+#{{ section_id }} .meari-trust__description{
+
+font-size:18px;
+
+line-height:1.7;
+
+color:#666;
+
+}
+
+#{{ section_id }} .meari-trust__grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,minmax(0,1fr));
+
+gap:18px;
+
+}
+
+#{{ section_id }} .meari-trust__card{
+
+display:grid;
+
+grid-template-columns:80px 1fr;
+
+gap:22px;
+
+align-items:center;
+
+padding:24px;
+
+background:#fff;
+
+border-radius:20px;
+
+border:1px solid rgba(0,0,0,.06);
+
+box-shadow:
+0 6px 14px rgba(0,0,0,.04),
+0 20px 38px rgba(0,0,0,.05);
+
+transition:.25s;
+
+}
+
+#{{ section_id }} .meari-trust__card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 10px 20px rgba(0,0,0,.05),
+0 24px 46px rgba(0,0,0,.08);
+
+}
+
+#{{ section_id }} .meari-trust__icon{
+
+width:80px;
+height:80px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:18px;
+
+background:linear-gradient(145deg,#fff6ef,#ffe9da);
+
+}
+
+#{{ section_id }} .meari-trust__icon svg{
+
+width:46px;
+height:46px;
+
+fill:none;
+
+stroke:#142333;
+
+stroke-width:2.4;
+
+stroke-linecap:round;
+
+stroke-linejoin:round;
+
+}
+
+#{{ section_id }} .accent-fill{
+
+fill:#f26419;
+
+stroke:#f26419;
+
+}
+
+#{{ section_id }} .accent-stroke{
+
+stroke:#f26419;
+
+}
+
+#{{ section_id }} h3{
+
+margin:0 0 8px;
+
+font-size:21px;
+
+font-weight:760;
+
+color:#101820;
+
+}
+
+#{{ section_id }} p{
+
+margin:0;
+
+font-size:16px;
+
+line-height:1.55;
+
+color:#666;
+
+}
+
+@media(max-width:990px){
+
+#{{ section_id }} .meari-trust__grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:749px){
+
+#{{ section_id }}{
+
+padding-top:56px;
+padding-bottom:56px;
+
+}
+
+#{{ section_id }} .meari-trust__container{
+
+width:calc(100% - 28px);
+
+}
+
+#{{ section_id }} .meari-trust__heading{
+
+font-size:36px;
+
+}
+
+#{{ section_id }} .meari-trust__card{
+
+grid-template-columns:64px 1fr;
+
+gap:18px;
+
+padding:18px;
+
+}
+
+#{{ section_id }} .meari-trust__icon{
+
+width:64px;
+height:64px;
+
+}
+
+#{{ section_id }} .meari-trust__icon svg{
+
+width:38px;
+height:38px;
+
+}
+
+}
+
+</style>
+{% schema %}
+{
+  "name": "MEARI S1 - Trust",
+  "tag": "section",
+  "class": "meari-s1-trust-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine titel",
+      "default": "Waarom MEARI?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hoofdtitel",
+      "default": "Koop met vertrouwen."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Beschrijving",
+      "default": "<p>Bij MEARI profiteer je van snelle levering, veilige betalingen en uitstekende service. Zo bestel je jouw MEARI S1 Plus altijd met een gerust gevoel.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Ruimte boven",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Ruimte onder",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "MEARI S1 - Trust"
+    }
+  ]
+}
+{% endschema %}

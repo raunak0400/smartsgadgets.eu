@@ -1,0 +1,759 @@
+{% comment %}
+  SmartGadgets.eu — MEARI S2 Plus
+  Fully coded premium situations section
+  File: sections/meari-s2-scenes.liquid
+{% endcomment %}
+
+<section
+  id="sg-s2-scenes-{{ section.id }}"
+  class="sg-s2-scenes"
+  style="
+    --sg-scenes-top: {{ section.settings.padding_top }}px;
+    --sg-scenes-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+  <div class="sg-s2-scenes__inner">
+
+    <div class="sg-s2-scenes__visual-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'scene' %}
+          <article class="sg-s2-scenes__scene" {{ block.shopify_attributes }}>
+            <div class="sg-s2-scenes__scene-media">
+              {% if block.settings.image != blank %}
+                {{
+                  block.settings.image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '400, 600, 800, 1000, 1200',
+                    sizes: '(min-width: 990px) 25vw, 50vw',
+                    class: 'sg-s2-scenes__scene-image',
+                    alt: block.settings.title
+                }}
+              {% else %}
+                <div class="sg-s2-scenes__placeholder">
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+              {% endif %}
+
+              <div class="sg-s2-scenes__scene-overlay"></div>
+
+              <div class="sg-s2-scenes__scene-copy">
+                {% if block.settings.number != blank %}
+                  <div class="sg-s2-scenes__number">{{ block.settings.number }}</div>
+                {% endif %}
+
+                {% if block.settings.title != blank %}
+                  <h3>{{ block.settings.title }}</h3>
+                {% endif %}
+
+                {% if block.settings.text != blank %}
+                  <div class="sg-s2-scenes__scene-text">{{ block.settings.text }}</div>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="sg-s2-scenes__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="sg-s2-scenes__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.intro != blank %}
+        <div class="sg-s2-scenes__intro">{{ section.settings.intro }}</div>
+      {% endif %}
+
+      <div class="sg-s2-scenes__features">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature' %}
+            <div class="sg-s2-scenes__feature" {{ block.shopify_attributes }}>
+              <div class="sg-s2-scenes__feature-icon" aria-hidden="true">
+                {% case block.settings.icon %}
+                  {% when 'live' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <rect x="8" y="12" width="32" height="24" rx="5" stroke="currentColor" stroke-width="2.4"/>
+                      <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="2.4"/>
+                    </svg>
+                  {% when 'alert' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M14 35h20l-3-5V21a7 7 0 0 0-14 0v9l-3 5Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+                      <path d="M21 39h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                    </svg>
+                  {% when 'audio' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M24 29a6 6 0 0 0 6-6v-7a6 6 0 0 0-12 0v7a6 6 0 0 0 6 6Z" stroke="currentColor" stroke-width="2.4"/>
+                      <path d="M13 23a11 11 0 0 0 22 0M24 34v6M18 40h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                    </svg>
+                  {% when 'ptz' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <path d="M12 19a14 14 0 0 1 22-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                      <path d="m34 9 .5 7-7 .5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M36 29a14 14 0 0 1-22 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                      <path d="m14 39-.5-7 7-.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'playback' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="2.4"/>
+                      <path d="m21 18 9 6-9 6V18Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'remote' %}
+                    <svg viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="24" r="15" stroke="currentColor" stroke-width="2.4"/>
+                      <path d="M9 24h30M24 9c4 4 6 9 6 15s-2 11-6 15M24 9c-4 4-6 9-6 15s2 11 6 15" stroke="currentColor" stroke-width="2.4"/>
+                    </svg>
+                {% endcase %}
+              </div>
+
+              <div>
+                {% if block.settings.title != blank %}
+                  <h3>{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="sg-s2-scenes__feature-text">{{ block.settings.text }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="sg-s2-scenes__trust">
+        {% for block in section.blocks %}
+          {% if block.type == 'trust' %}
+            <div class="sg-s2-scenes__trust-item" {{ block.shopify_attributes }}>
+              <div class="sg-s2-scenes__trust-icon" aria-hidden="true">
+                {% case block.settings.icon %}
+                  {% when 'shield' %}
+                    <svg viewBox="0 0 40 40" fill="none">
+                      <path d="M20 5 31 9v9c0 8-4.7 13.5-11 17-6.3-3.5-11-9-11-17V9l11-4Z" stroke="currentColor" stroke-width="2.2"/>
+                      <path d="m15.5 20 3 3 6-7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% when 'cloud' %}
+                    <svg viewBox="0 0 40 40" fill="none">
+                      <path d="M13 30h15a7 7 0 0 0 .7-14A10 10 0 0 0 9.8 19 5.5 5.5 0 0 0 13 30Z" stroke="currentColor" stroke-width="2.2"/>
+                    </svg>
+                  {% when 'warranty' %}
+                    <svg viewBox="0 0 40 40" fill="none">
+                      <path d="M20 4 31 8v10c0 8-4.6 13.3-11 17-6.4-3.7-11-9-11-17V8l11-4Z" stroke="currentColor" stroke-width="2.2"/>
+                      <path d="M17 16c.8-1.6 2.2-2.5 4-2.5 2.3 0 4 1.5 4 3.6 0 3.2-4 3.3-4 6.2M21 28h.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                  {% when 'shipping' %}
+                    <svg viewBox="0 0 40 40" fill="none">
+                      <path d="M5 11h20v17H5V11ZM25 17h5l5 6v5H25V17Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+                      <circle cx="12" cy="30" r="3" stroke="currentColor" stroke-width="2.2"/>
+                      <circle cx="29" cy="30" r="3" stroke="currentColor" stroke-width="2.2"/>
+                    </svg>
+                {% endcase %}
+              </div>
+
+              <div>
+                {% if block.settings.title != blank %}
+                  <h4>{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="sg-s2-scenes__trust-text">{{ block.settings.text }}</div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #sg-s2-scenes-{{ section.id }} {
+    padding: var(--sg-scenes-top) 0 var(--sg-scenes-bottom);
+    background:
+      radial-gradient(circle at 85% 12%, rgba(25, 141, 255, .12), transparent 30%),
+      linear-gradient(180deg, #031020 0%, #07182d 100%);
+    color: #fff;
+  }
+
+  #sg-s2-scenes-{{ section.id }} *,
+  #sg-s2-scenes-{{ section.id }} *::before,
+  #sg-s2-scenes-{{ section.id }} *::after {
+    box-sizing: border-box;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__inner {
+    width: min(1500px, calc(100% - 40px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(520px, .95fr);
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__visual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    overflow: hidden;
+    border: 1px solid rgba(63, 157, 255, .24);
+    border-radius: 26px;
+    box-shadow: 0 28px 80px rgba(0,0,0,.32);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene {
+    min-width: 0;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-media {
+    position: relative;
+    min-height: 390px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-image,
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__placeholder,
+  #sg-s2-scenes-{{ section.id }} .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    min-height: 390px;
+    display: block;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-image {
+    object-fit: cover;
+    object-position: center;
+    transition: transform .45s ease;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene:hover .sg-s2-scenes__scene-image {
+    transform: scale(1.035);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 42%, rgba(2, 11, 24, .9) 100%);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-copy {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    z-index: 2;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__number {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #54b1ff;
+    border: 1px solid rgba(84,177,255,.72);
+    background: rgba(5, 28, 52, .72);
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene h3 {
+    margin: 0 0 8px !important;
+    color: #fff !important;
+    font-size: clamp(24px, 2vw, 34px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -.03em !important;
+    font-weight: 780 !important;
+    text-transform: none !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-text {
+    color: rgba(235,243,252,.82) !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-text p,
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__intro p,
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature-text p,
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-text p {
+    margin: 0 !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__content {
+    padding: 26px 0 0;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__eyebrow {
+    margin: 0 0 16px !important;
+    color: #3da6ff !important;
+    font-size: 14px !important;
+    font-weight: 850 !important;
+    letter-spacing: .19em !important;
+    text-transform: uppercase;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__content > h2 {
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: clamp(44px, 4.6vw, 72px) !important;
+    line-height: 1.01 !important;
+    letter-spacing: -.045em !important;
+    font-weight: 820 !important;
+    text-transform: none !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__intro {
+    margin-top: 22px;
+    max-width: 720px;
+    color: rgba(226,237,249,.76) !important;
+    font-size: clamp(17px, 1.25vw, 20px) !important;
+    line-height: 1.62 !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__features {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature {
+    min-height: 190px;
+    padding: 22px;
+    border: 1px solid rgba(59, 162, 255, .24);
+    border-radius: 20px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(36, 151, 255, .13), transparent 42%),
+      linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+    text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+    transition: transform .28s ease, border-color .28s ease, background .28s ease;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 162, 255, .5);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(36, 151, 255, .19), transparent 46%),
+      linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.035));
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature-icon {
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    color: #39a8ff;
+    border-radius: 20px;
+    border: 1px solid rgba(57,168,255,.28);
+    background: rgba(24,125,220,.1);
+    box-shadow: 0 0 28px rgba(57,168,255,.12);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature-icon svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature h3 {
+    margin: 0 0 8px !important;
+    color: #fff !important;
+    font-size: 19px !important;
+    line-height: 1.2 !important;
+    font-weight: 760 !important;
+    text-transform: none !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature-text {
+    color: rgba(222,234,247,.7) !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust {
+    margin-top: 18px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border: 1px solid rgba(56,160,255,.18);
+    border-radius: 20px;
+    background: rgba(255,255,255,.025);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-item {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 12px;
+    align-items: start;
+    padding: 6px 14px;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-item + .sg-s2-scenes__trust-item {
+    border-left: 1px solid rgba(73, 167, 255, .16);
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-icon {
+    width: 42px;
+    height: 42px;
+    color: #37a5ff;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust h4 {
+    margin: 0 0 4px !important;
+    color: #40aaff !important;
+    font-size: 14px !important;
+    line-height: 1.25 !important;
+    font-weight: 760 !important;
+    text-transform: none !important;
+  }
+
+  #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-text {
+    color: rgba(220,232,245,.66) !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  @media (max-width: 1180px) {
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__inner {
+      width: min(100% - 32px, 980px);
+      grid-template-columns: 1fr;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__content {
+      padding-top: 10px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__inner {
+      width: calc(100% - 20px);
+      gap: 24px;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__visual-grid {
+      grid-template-columns: 1fr;
+      border-radius: 20px;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-media,
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-image,
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__placeholder,
+    #sg-s2-scenes-{{ section.id }} .placeholder-svg {
+      min-height: 430px;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__scene-copy {
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__features {
+      grid-template-columns: 1fr;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature {
+      min-height: auto;
+      display: grid;
+      grid-template-columns: 62px 1fr;
+      gap: 16px;
+      text-align: left;
+      align-items: center;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__feature-icon {
+      width: 62px;
+      height: 62px;
+      margin: 0;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-item {
+      padding: 6px 0;
+    }
+
+    #sg-s2-scenes-{{ section.id }} .sg-s2-scenes__trust-item + .sg-s2-scenes__trust-item {
+      border-left: 0;
+      border-top: 1px solid rgba(73, 167, 255, .16);
+      padding-top: 16px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "MEARI S2 situaties",
+  "tag": "section",
+  "class": "section-meari-s2-scenes",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine titel",
+      "default": "ALTIJD VERBONDEN"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hoofdtitel",
+      "default": "Altijd in controle, waar u ook bent."
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introductietekst",
+      "default": "<p>Bewaak uw tuin, ingang en oprit met een brede kijkhoek, 355° draaibereik en bediening via de app.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Ruimte boven",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Ruimte onder",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    }
+  ],
+  "blocks": [
+    {
+      "type": "scene",
+      "name": "Situatiekaart",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Afbeelding"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Nummer",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Live meekijken"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst",
+          "default": "<p>Bekijk wat er rondom uw woning gebeurt, waar u ook bent.</p>"
+        }
+      ]
+    },
+    {
+      "type": "feature",
+      "name": "Functiekaart",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icoon",
+          "default": "live",
+          "options": [
+            { "value": "live", "label": "Livebeeld" },
+            { "value": "alert", "label": "Melding" },
+            { "value": "audio", "label": "Audio" },
+            { "value": "ptz", "label": "PTZ" },
+            { "value": "playback", "label": "Opnames" },
+            { "value": "remote", "label": "Op afstand" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Live meekijken"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst",
+          "default": "<p>Bekijk live beelden vanuit de app, waar u ook bent.</p>"
+        }
+      ]
+    },
+    {
+      "type": "trust",
+      "name": "Vertrouwenspunt",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icoon",
+          "default": "shield",
+          "options": [
+            { "value": "shield", "label": "Veilige verbinding" },
+            { "value": "cloud", "label": "Cloudopslag" },
+            { "value": "warranty", "label": "Garantie" },
+            { "value": "shipping", "label": "Verzending" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel",
+          "default": "Veilige verbinding"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Tekst",
+          "default": "<p>Versleutelde data voor maximale privacy.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MEARI S2 situaties",
+      "blocks": [
+        {
+          "type": "scene",
+          "settings": {
+            "number": "01",
+            "title": "Live meekijken",
+            "text": "<p>Bekijk wat er rondom uw woning gebeurt, waar u ook bent.</p>"
+          }
+        },
+        {
+          "type": "scene",
+          "settings": {
+            "number": "02",
+            "title": "Full-color nachtzicht",
+            "text": "<p>Scherp en helder beeld, zelfs in het donker.</p>"
+          }
+        },
+        {
+          "type": "scene",
+          "settings": {
+            "number": "03",
+            "title": "Tweeweg audio",
+            "text": "<p>Praat en luister via de ingebouwde microfoon en luidspreker.</p>"
+          }
+        },
+        {
+          "type": "scene",
+          "settings": {
+            "number": "04",
+            "title": "Slimme meldingen",
+            "text": "<p>Ontvang direct meldingen bij beweging of personen.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "live",
+            "title": "Live meekijken",
+            "text": "<p>Bekijk live beelden vanuit de app, waar u ook bent.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "alert",
+            "title": "Directe meldingen",
+            "text": "<p>Ontvang slimme meldingen bij beweging of personen.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "audio",
+            "title": "Tweeweg audio",
+            "text": "<p>Praat en luister via de ingebouwde microfoon en luidspreker.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "ptz",
+            "title": "PTZ-bediening",
+            "text": "<p>Draai, kantel en zoom om elk detail te zien.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "playback",
+            "title": "Opnames terugkijken",
+            "text": "<p>Bekijk opgeslagen beelden wanneer u wilt.</p>"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "remote",
+            "title": "Altijd en overal",
+            "text": "<p>Controleer uw woning vanaf elke locatie en elk apparaat.</p>"
+          }
+        },
+        {
+          "type": "trust",
+          "settings": {
+            "icon": "shield",
+            "title": "Veilige verbinding",
+            "text": "<p>Versleutelde data voor maximale privacy.</p>"
+          }
+        },
+        {
+          "type": "trust",
+          "settings": {
+            "icon": "cloud",
+            "title": "Cloud & SD-opslag",
+            "text": "<p>Sla beelden veilig op in de cloud of op een SD-kaart.</p>"
+          }
+        },
+        {
+          "type": "trust",
+          "settings": {
+            "icon": "warranty",
+            "title": "2 jaar garantie",
+            "text": "<p>Kwaliteit waarop u kunt vertrouwen.</p>"
+          }
+        },
+        {
+          "type": "trust",
+          "settings": {
+            "icon": "shipping",
+            "title": "Gratis verzending",
+            "text": "<p>Snel en gratis bij u thuisbezorgd.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

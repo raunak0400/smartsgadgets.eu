@@ -1,0 +1,318 @@
+{% liquid
+  assign section_id = 'meari-faq-' | append: section.id
+%}
+
+<section id="{{ section_id }}" class="meari-faq">
+
+<div class="meari-faq__container">
+
+<div class="meari-faq__header">
+
+{% if section.settings.eyebrow != blank %}
+<div class="meari-faq__eyebrow">
+<span class="meari-faq__dot"></span>
+{{ section.settings.eyebrow }}
+</div>
+{% endif %}
+
+{% if section.settings.heading != blank %}
+<h2 class="meari-faq__heading">
+{{ section.settings.heading }}
+</h2>
+{% endif %}
+
+{% if section.settings.description != blank %}
+<div class="meari-faq__description">
+{{ section.settings.description }}
+</div>
+{% endif %}
+
+</div>
+
+<div class="meari-faq__accordion">
+
+{% for block in section.blocks %}
+
+<details class="meari-faq__item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+
+<summary class="meari-faq__question">
+
+<span>{{ block.settings.question }}</span>
+
+<svg class="meari-faq__icon" viewBox="0 0 24 24" aria-hidden="true">
+
+<path class="line-h" d="M5 12H19"></path>
+
+<path class="line-v" d="M12 5V19"></path>
+
+</svg>
+
+</summary>
+
+<div class="meari-faq__answer">
+
+{{ block.settings.answer }}
+
+</div>
+
+</details>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</section>
+<style>
+
+#{{ section_id }},
+#{{ section_id }} *{
+box-sizing:border-box;
+}
+
+#{{ section_id }}{
+width:100%;
+padding-top:{{ section.settings.padding_top }}px;
+padding-bottom:{{ section.settings.padding_bottom }}px;
+background:#f8f9fb;
+}
+
+#{{ section_id }} .meari-faq__container{
+width:calc(100% - 48px);
+max-width:1000px;
+margin:auto;
+}
+
+#{{ section_id }} .meari-faq__header{
+text-align:center;
+margin-bottom:46px;
+}
+
+#{{ section_id }} .meari-faq__eyebrow{
+display:inline-flex;
+align-items:center;
+gap:9px;
+padding:9px 18px;
+background:#fff3ea;
+border-radius:999px;
+color:#f26419;
+font-size:14px;
+font-weight:700;
+margin-bottom:18px;
+}
+
+#{{ section_id }} .meari-faq__dot{
+width:8px;
+height:8px;
+background:#f26419;
+border-radius:50%;
+}
+
+#{{ section_id }} .meari-faq__heading{
+margin:0 0 18px;
+font-size:clamp(38px,4vw,60px);
+font-weight:800;
+line-height:1.05;
+color:#101820;
+}
+
+#{{ section_id }} .meari-faq__description{
+font-size:18px;
+line-height:1.7;
+color:#666;
+}
+
+#{{ section_id }} .meari-faq__item{
+background:#fff;
+border-radius:18px;
+margin-bottom:16px;
+border:1px solid rgba(0,0,0,.06);
+box-shadow:0 8px 24px rgba(0,0,0,.05);
+overflow:hidden;
+}
+
+#{{ section_id }} .meari-faq__question{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:24px 28px;
+cursor:pointer;
+list-style:none;
+font-size:20px;
+font-weight:700;
+color:#101820;
+}
+
+#{{ section_id }} summary::-webkit-details-marker{
+display:none;
+}
+
+#{{ section_id }} .meari-faq__icon{
+width:24px;
+height:24px;
+stroke:#f26419;
+stroke-width:2.5;
+fill:none;
+transition:.3s;
+flex-shrink:0;
+}
+
+#{{ section_id }} details[open] .line-v{
+opacity:0;
+}
+
+#{{ section_id }} details[open] .meari-faq__icon{
+transform:rotate(180deg);
+}
+
+#{{ section_id }} .meari-faq__answer{
+padding:0 28px 26px;
+font-size:16px;
+line-height:1.8;
+color:#666;
+}
+
+#{{ section_id }} .meari-faq__answer p:last-child{
+margin-bottom:0;
+}
+
+@media(max-width:749px){
+
+#{{ section_id }}{
+padding-top:56px;
+padding-bottom:56px;
+}
+
+#{{ section_id }} .meari-faq__container{
+width:calc(100% - 28px);
+}
+
+#{{ section_id }} .meari-faq__heading{
+font-size:36px;
+}
+
+#{{ section_id }} .meari-faq__question{
+padding:20px;
+font-size:17px;
+}
+
+#{{ section_id }} .meari-faq__answer{
+padding:0 20px 20px;
+font-size:15px;
+}
+
+}
+
+</style>
+
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.querySelectorAll("#{{ section_id }} details").forEach(item=>{
+
+item.addEventListener("toggle",function(){
+
+if(this.open){
+
+document.querySelectorAll("#{{ section_id }} details").forEach(other=>{
+
+if(other!==this){
+
+other.removeAttribute("open");
+
+}
+
+});
+
+}
+
+});
+
+});
+
+});
+
+</script>
+{% schema %}
+{
+  "name": "MEARI S1 - FAQ",
+  "tag": "section",
+  "class": "meari-s1-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleine titel",
+      "default": "Veelgestelde vragen"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hoofdtitel",
+      "default": "Nog vragen?"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Beschrijving",
+      "default": "<p>Hier vind je antwoorden op de meest gestelde vragen over de MEARI S1 Plus.</p>"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Ruimte boven",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Ruimte onder",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Vraag",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Vraag",
+          "default": "Werkt de camera zonder abonnement?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Antwoord",
+          "default": "<p>Ja. De MEARI S1 Plus werkt zonder verplicht abonnement. Je kunt beelden lokaal opslaan op een microSD-kaart of kiezen voor optionele cloudopslag.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "MEARI S1 - FAQ",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
+}
+{% endschema %}
