@@ -17,31 +17,42 @@
 -%}
 
 {%- if color_family != blank and color_family.size > 0 -%}
+  {%- assign current_color_name = product.metafields.custom.color_label.value | default: product.title -%}
   <div class="color-family-swatches">
-    <span class="color-family-swatches__label">{{ 'products.product.color' | t }}</span>
+    <span class="color-family-swatches__label">
+      {{ 'products.product.color' | t }}:
+      <strong class="color-family-swatches__current">{{ current_color_name }}</strong>
+    </span>
     <div class="color-family-swatches__list">
       <a
         href="{{ product.url }}"
         class="color-family-swatches__item is-active"
         aria-current="true"
-        aria-label="{{ product.metafields.custom.color_label.value | default: product.title }}"
-        title="{{ product.metafields.custom.color_label.value | default: product.title }}"
+        aria-label="{{ current_color_name }}"
+        title="{{ current_color_name }}"
       >
-        {%- if product.featured_media -%}
-          {%- render 'image', image: product.featured_media.preview_image, src_width: 64, class: 'color-family-swatches__image' -%}
-        {%- endif -%}
+        <span class="color-family-swatches__frame">
+          {%- if product.featured_media -%}
+            {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
+          {%- endif -%}
+        </span>
+        <span class="color-family-swatches__name">{{ current_color_name }}</span>
       </a>
       {%- for linked_product in color_family -%}
         {%- if linked_product != blank -%}
+          {%- assign linked_color_name = linked_product.metafields.custom.color_label.value | default: linked_product.title -%}
           <a
             href="{{ linked_product.url }}"
             class="color-family-swatches__item"
-            aria-label="{{ linked_product.metafields.custom.color_label.value | default: linked_product.title }}"
-            title="{{ linked_product.metafields.custom.color_label.value | default: linked_product.title }}"
+            aria-label="{{ linked_color_name }}"
+            title="{{ linked_color_name }}"
           >
-            {%- if linked_product.featured_media -%}
-              {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 64, class: 'color-family-swatches__image' -%}
-            {%- endif -%}
+            <span class="color-family-swatches__frame">
+              {%- if linked_product.featured_media -%}
+                {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
+              {%- endif -%}
+            </span>
+            <span class="color-family-swatches__name">{{ linked_color_name }}</span>
           </a>
         {%- endif -%}
       {%- endfor -%}

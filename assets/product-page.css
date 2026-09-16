@@ -4,43 +4,91 @@
 }
 
 .color-family-swatches {
-  margin-bottom: 1em;
+  margin-bottom: 1.25em;
 }
 
 .color-family-swatches__label {
-  display: block;
-  margin-bottom: 0.5em;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin-bottom: 0.6em;
   font-size: 0.9em;
   font-weight: 600;
+}
+
+.color-family-swatches__current {
+  font-weight: 650;
+  color: rgb(var(--text-color));
 }
 
 .color-family-swatches__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
 .color-family-swatches__item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  overflow: hidden;
-  box-sizing: border-box;
+  width: 64px;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.color-family-swatches__item.is-active {
-  border-color: rgb(var(--text-color));
+.color-family-swatches__frame {
+  display: block;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid rgba(var(--swatch-border-color-default)/0.35);
+  border-radius: 10px;
+  background: rgb(var(--bg-color));
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.color-family-swatches__item:hover .color-family-swatches__frame {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(var(--text-color)/0.16);
+}
+
+.color-family-swatches__item.is-active .color-family-swatches__frame {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px rgb(var(--swatch-border-color-active));
 }
 
 .color-family-swatches__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
+  border-radius: 9px;
+}
+
+.color-family-swatches__name {
+  width: 100%;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.25;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: rgba(var(--text-color)/0.75);
+}
+
+.color-family-swatches__item.is-active .color-family-swatches__name {
+  font-weight: 650;
+  color: rgb(var(--text-color));
+}
+
+@media screen and (max-width: 749px) {
+  .color-family-swatches__item,
+  .color-family-swatches__frame {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 .product-info__rating-link {
