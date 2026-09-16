@@ -4440,7 +4440,7 @@ label[data-swatch]::before {
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  width: 52px;
+  width: 68px;
   gap: 4px;
   text-decoration: none;
   color: inherit;
@@ -4483,17 +4483,14 @@ a.color-family-swatches__item:hover .color-family-swatches__frame {
 }
 
 .color-family-swatches__name {
-  display: -webkit-box;
   width: 100%;
   overflow: hidden;
   font-size: 11px;
   line-height: 1.25;
   text-align: center;
-  white-space: normal;
-  word-break: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: rgba(var(--text-color)/0.75);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
 }
 
 .color-family-swatches__item.is-active .color-family-swatches__name {
@@ -4531,7 +4528,7 @@ a.color-family-swatches__item:hover .color-family-swatches__frame {
 
 @media screen and (max-width: 749px) {
   .color-family-swatches__item {
-    width: 44px;
+    width: 60px;
   }
 
   .color-family-swatches__frame {
