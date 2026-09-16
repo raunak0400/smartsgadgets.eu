@@ -316,8 +316,14 @@ body.tab-used .products-toolbar__sort .custom-select:focus-within .custom-select
       "vendor rating"
       "title title"
       "price price"
+      "colors colors"
       "quick-add quick-add";
     grid-template-columns: 1fr auto;
+  }
+
+  .cc-collection-products .card--product .card__color-family,
+  .products-grid-container .card--product .card__color-family {
+    grid-area: colors;
   }
 
   .cc-collection-products .card--product .card__info-inner > .flex.grow.items-end,

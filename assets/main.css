@@ -4505,12 +4505,13 @@ a.color-family-swatches__item:hover .color-family-swatches__frame {
 
 .color-family-swatches--card .color-family-swatches__list {
   gap: 6px;
+  flex-wrap: nowrap;
 }
 
 .color-family-swatches--card .color-family-swatches__item,
 .color-family-swatches--card .color-family-swatches__frame {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 }
 
 .color-family-swatches--card .color-family-swatches__frame {

@@ -377,7 +377,7 @@
           {%- endif -%}
 
           {%- if product.metafields.custom.color_variants.value != blank -%}
-            <div class="card__swatches{% if settings.show_dividers %} mt-3 border-top pt-3{% else %} mt-2 pb-1{% endif %}">
+            <div class="card__color-family{% if settings.show_dividers %} mt-3 border-top pt-3{% else %} mt-2 pb-1{% endif %}">
               {% render 'color-family-swatches', product: product, context: 'card' %}
             </div>
           {%- endif -%}
