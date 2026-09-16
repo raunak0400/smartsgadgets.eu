@@ -2,7 +2,7 @@
   Parameters:
   - product {Object} - Product object.
   - context {String} - 'page' (default, full label + name text) or 'card'
-    (compact - swatches only, smaller, for collection product cards).
+    (compact - swatches only, smaller, for collection/homepage product cards).
 
   Renders colour swatches that link to sibling products in the same colour
   family. Colours in this store are separate Shopify products (not variants
@@ -10,8 +10,10 @@
   metafield populated per-product in Shopify Admin. Renders nothing if the
   metafield is blank, so products without a colour family are unaffected.
 
-  Each swatch shows the product's actual featured photo. Falls back to the
-  `custom.swatch_color` colour metafield only when a product has no photo.
+  Swatch fill differs by context: 'page' swatches are big enough to show the
+  actual product photo clearly. 'card' swatches are small (16-22px) where a
+  shrunk photo reads as a muddy blob, so those use the flat `custom.swatch_color`
+  colour metafield instead, falling back to the photo only if no colour is set.
 
   The current product's swatch is rendered as a non-interactive element
   (not a link) since clicking it should be a no-op.
@@ -40,16 +42,26 @@
       </span>
     {%- endunless -%}
     <div class="color-family-swatches__list">
+      {%- liquid
+        assign use_color = false
+        if is_card and current_swatch_color != blank
+          assign use_color = true
+        elsif current_swatch_color != blank and product.featured_media == blank
+          assign use_color = true
+        endif
+      -%}
       <span
         class="color-family-swatches__item is-active"
         aria-current="true"
         aria-label="{{ current_color_name }}"
         title="{{ current_color_name }}"
       >
-        <span class="color-family-swatches__frame"{% if product.featured_media == blank and current_swatch_color != blank %} style="background-color: {{ current_swatch_color }};"{% endif %}>
-          {%- if product.featured_media -%}
-            {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
-          {%- endif -%}
+        <span class="color-family-swatches__frame"{% if use_color %} style="background-color: {{ current_swatch_color }};"{% endif %}>
+          {%- unless use_color -%}
+            {%- if product.featured_media -%}
+              {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
+            {%- endif -%}
+          {%- endunless -%}
         </span>
         {%- unless is_card -%}
           <span class="color-family-swatches__name">{{ current_color_name }}</span>
@@ -59,16 +71,26 @@
         {%- if linked_product != blank -%}
           {%- assign linked_color_name = linked_product.metafields.custom.color_label.value | default: linked_product.title -%}
           {%- assign linked_swatch_color = linked_product.metafields.custom.swatch_color.value -%}
+          {%- liquid
+            assign linked_use_color = false
+            if is_card and linked_swatch_color != blank
+              assign linked_use_color = true
+            elsif linked_swatch_color != blank and linked_product.featured_media == blank
+              assign linked_use_color = true
+            endif
+          -%}
           <a
             href="{{ linked_product.url }}"
             class="color-family-swatches__item"
             aria-label="{{ linked_color_name }}"
             title="{{ linked_color_name }}"
           >
-            <span class="color-family-swatches__frame"{% if linked_product.featured_media == blank and linked_swatch_color != blank %} style="background-color: {{ linked_swatch_color }};"{% endif %}>
-              {%- if linked_product.featured_media -%}
-                {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
-              {%- endif -%}
+            <span class="color-family-swatches__frame"{% if linked_use_color %} style="background-color: {{ linked_swatch_color }};"{% endif %}>
+              {%- unless linked_use_color -%}
+                {%- if linked_product.featured_media -%}
+                  {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
+                {%- endif -%}
+              {%- endunless -%}
             </span>
             {%- unless is_card -%}
               <span class="color-family-swatches__name">{{ linked_color_name }}</span>
