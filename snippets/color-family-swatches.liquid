@@ -1,6 +1,8 @@
 {%- comment -%}
   Parameters:
   - product {Object} - Product object.
+  - context {String} - 'page' (default, full label + name text) or 'card'
+    (compact - swatches only, smaller, for collection product cards).
 
   Renders colour swatches that link to sibling products in the same colour
   family. Colours in this store are separate Shopify products (not variants
@@ -8,24 +10,33 @@
   metafield populated per-product in Shopify Admin. Renders nothing if the
   metafield is blank, so products without a colour family are unaffected.
 
+  The current product's swatch is rendered as a non-interactive element
+  (not a link) since clicking it should be a no-op.
+
   Usage:
   {% render 'color-family-swatches', product: product %}
+  {% render 'color-family-swatches', product: product, context: 'card' %}
 {%- endcomment -%}
 
 {%- liquid
   assign color_family = product.metafields.custom.color_variants.value
+  assign is_card = false
+  if context == 'card'
+    assign is_card = true
+  endif
 -%}
 
 {%- if color_family != blank and color_family.size > 0 -%}
   {%- assign current_color_name = product.metafields.custom.color_label.value | default: product.title -%}
-  <div class="color-family-swatches">
-    <span class="color-family-swatches__label">
-      {{ 'products.product.color' | t }}:
-      <strong class="color-family-swatches__current">{{ current_color_name }}</strong>
-    </span>
+  <div class="color-family-swatches{% if is_card %} color-family-swatches--card{% endif %}">
+    {%- unless is_card -%}
+      <span class="color-family-swatches__label">
+        {{ 'products.product.color' | t }}:
+        <strong class="color-family-swatches__current">{{ current_color_name }}</strong>
+      </span>
+    {%- endunless -%}
     <div class="color-family-swatches__list">
-      <a
-        href="{{ product.url }}"
+      <span
         class="color-family-swatches__item is-active"
         aria-current="true"
         aria-label="{{ current_color_name }}"
@@ -36,8 +47,10 @@
             {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
           {%- endif -%}
         </span>
-        <span class="color-family-swatches__name">{{ current_color_name }}</span>
-      </a>
+        {%- unless is_card -%}
+          <span class="color-family-swatches__name">{{ current_color_name }}</span>
+        {%- endunless -%}
+      </span>
       {%- for linked_product in color_family -%}
         {%- if linked_product != blank -%}
           {%- assign linked_color_name = linked_product.metafields.custom.color_label.value | default: linked_product.title -%}
@@ -52,7 +65,9 @@
                 {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
               {%- endif -%}
             </span>
-            <span class="color-family-swatches__name">{{ linked_color_name }}</span>
+            {%- unless is_card -%}
+              <span class="color-family-swatches__name">{{ linked_color_name }}</span>
+            {%- endunless -%}
           </a>
         {%- endif -%}
       {%- endfor -%}

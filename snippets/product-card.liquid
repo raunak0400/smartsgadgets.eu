@@ -376,6 +376,12 @@
             {%- endfor -%}
           {%- endif -%}
 
+          {%- if product.metafields.custom.color_variants.value != blank -%}
+            <div class="card__swatches{% if settings.show_dividers %} mt-3 border-top pt-3{% else %} mt-2 pb-1{% endif %}">
+              {% render 'color-family-swatches', product: product, context: 'card' %}
+            </div>
+          {%- endif -%}
+
           {%- if settings.card_show_inventory and current_variant.inventory_management != blank -%}
             {%- liquid
               assign total = 0
