@@ -4439,7 +4439,8 @@ label[data-swatch]::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 36px;
+  flex-shrink: 0;
+  width: 52px;
   gap: 4px;
   text-decoration: none;
   color: inherit;
@@ -4452,6 +4453,8 @@ span.color-family-swatches__item {
 
 .color-family-swatches__frame {
   display: block;
+  flex-shrink: 0;
+  flex-grow: 0;
   width: 36px;
   height: 36px;
   overflow: hidden;
@@ -4480,14 +4483,17 @@ a.color-family-swatches__item:hover .color-family-swatches__frame {
 }
 
 .color-family-swatches__name {
+  display: -webkit-box;
   width: 100%;
   overflow: hidden;
   font-size: 11px;
   line-height: 1.25;
   text-align: center;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   color: rgba(var(--text-color)/0.75);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .color-family-swatches__item.is-active .color-family-swatches__name {
@@ -4524,7 +4530,10 @@ a.color-family-swatches__item:hover .color-family-swatches__frame {
 }
 
 @media screen and (max-width: 749px) {
-  .color-family-swatches__item,
+  .color-family-swatches__item {
+    width: 44px;
+  }
+
   .color-family-swatches__frame {
     width: 32px;
     height: 32px;
