@@ -10,6 +10,10 @@
   metafield populated per-product in Shopify Admin. Renders nothing if the
   metafield is blank, so products without a colour family are unaffected.
 
+  Each swatch is filled with the `custom.swatch_color` colour metafield when
+  set (reads clearly at small sizes, unlike a shrunk product photo) and
+  falls back to the product's featured image when no colour is set.
+
   The current product's swatch is rendered as a non-interactive element
   (not a link) since clicking it should be a no-op.
 
@@ -28,6 +32,7 @@
 
 {%- if color_family != blank and color_family.size > 0 -%}
   {%- assign current_color_name = product.metafields.custom.color_label.value | default: product.title -%}
+  {%- assign current_swatch_color = product.metafields.custom.swatch_color.value -%}
   <div class="color-family-swatches{% if is_card %} color-family-swatches--card{% endif %}">
     {%- unless is_card -%}
       <span class="color-family-swatches__label">
@@ -42,8 +47,8 @@
         aria-label="{{ current_color_name }}"
         title="{{ current_color_name }}"
       >
-        <span class="color-family-swatches__frame">
-          {%- if product.featured_media -%}
+        <span class="color-family-swatches__frame"{% if current_swatch_color != blank %} style="background-color: {{ current_swatch_color }};"{% endif %}>
+          {%- if current_swatch_color == blank and product.featured_media -%}
             {%- render 'image', image: product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
           {%- endif -%}
         </span>
@@ -54,14 +59,15 @@
       {%- for linked_product in color_family -%}
         {%- if linked_product != blank -%}
           {%- assign linked_color_name = linked_product.metafields.custom.color_label.value | default: linked_product.title -%}
+          {%- assign linked_swatch_color = linked_product.metafields.custom.swatch_color.value -%}
           <a
             href="{{ linked_product.url }}"
             class="color-family-swatches__item"
             aria-label="{{ linked_color_name }}"
             title="{{ linked_color_name }}"
           >
-            <span class="color-family-swatches__frame">
-              {%- if linked_product.featured_media -%}
+            <span class="color-family-swatches__frame"{% if linked_swatch_color != blank %} style="background-color: {{ linked_swatch_color }};"{% endif %}>
+              {%- if linked_swatch_color == blank and linked_product.featured_media -%}
                 {%- render 'image', image: linked_product.featured_media.preview_image, src_width: 88, srcset_2x: true, class: 'color-family-swatches__image' -%}
               {%- endif -%}
             </span>
