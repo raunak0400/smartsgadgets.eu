@@ -196,6 +196,12 @@
     white-space: nowrap;
   }
 
+  #shopify-section-{{ section.id }} .sg-card__color-family {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
+  }
+
   #shopify-section-{{ section.id }} .sg-card__button-wrap {
     position: relative;
     z-index: 2;
@@ -322,6 +328,12 @@
           <p class="sg-card__title">{{ product.title | default: block.settings.fallback_title }}</p>
           <p class="sg-card__price">{{ product.price | default: 19900 | money }}</p>
         </div>
+
+        {%- if product != blank and product.metafields.custom.color_variants.value != blank -%}
+          <div class="sg-card__color-family">
+            {% render 'color-family-swatches', product: product, context: 'card' %}
+          </div>
+        {%- endif -%}
 
         {%- if product != blank -%}
           <product-form class="sg-card__button-wrap">
