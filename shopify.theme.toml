@@ -1,0 +1,10 @@
+# Push target for this repo.
+# ALWAYS push to the "dev" environment below — the non-live duplicate theme.
+# Never push to the live theme (Raunak (velova_media) #143741059131).
+#
+#   shopify theme push -e dev
+#   shopify theme pull -e dev
+
+[environments.dev]
+store = "rybhy7-vg"
+theme = "143793258555"  # Raunak (velova_media) - Dev  (unpublished / not live)
