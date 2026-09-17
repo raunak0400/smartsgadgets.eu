@@ -79,6 +79,10 @@
     text-decoration: underline;
   }
 
+  #shopify-section-{{ section.id }} .sg-footer__badge {
+    margin-top: 14px;
+  }
+
   #shopify-section-{{ section.id }} .sg-footer__social {
     display: flex;
     gap: 12px;
@@ -230,13 +234,29 @@
         {%- endif -%}
       </div>
 
+      {%- liquid
+        assign phone_marker = 'Tel./Whatsapp: '
+        assign address_text = section.settings.address
+        assign phone_number = blank
+        if address_text contains phone_marker
+          assign address_text = section.settings.address | split: phone_marker | first | rstrip
+          assign phone_number = section.settings.address | split: phone_marker | last | strip
+        endif
+        if phone_number != blank
+          assign phone_href = phone_number | replace: '(0)', '' | replace: '-', '' | replace: ' ', ''
+        endif
+      -%}
       <div class="sg-footer__col">
         <h2 class="sg-footer__heading">{{ section.settings.address_heading }}</h2>
-        <div class="sg-footer__address">{{ section.settings.address | newline_to_br }}</div>
+        <div class="sg-footer__address">{{ address_text | newline_to_br }}</div>
 
         <h3 class="sg-footer__sub-heading">{{ section.settings.contact_heading }}</h3>
         <div class="sg-footer__contact">
           <p>Email: <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
+          {%- if phone_number != blank -%}
+            <p>Tel./Whatsapp: <a href="tel:{{ phone_href }}">{{ phone_number }}</a></p>
+          {%- endif -%}
+          <p class="sg-footer__badge"><a href="https://www.webwinkelkeur.nl/webshop/Xenexa-B-V-_1226324" class="webwinkelkeurPopup" title="WebwinkelKeur" target="_blank" rel="noopener"><img src="https://dashboard.webwinkelkeur.nl/banners/9/1226324/1789395020000.svg" width="652" height="125" alt="WebwinkelKeur Banner" loading="lazy" style="max-width: 100%; height: auto;"></a></p>
         </div>
       </div>
     </div>
