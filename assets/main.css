@@ -4435,7 +4435,7 @@ label[data-swatch]::before {
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
-  width: 84px;
+  width: 104px;
   overflow: hidden;
   box-sizing: border-box;
   border: 1px solid rgba(var(--text-color)/0.2);
@@ -4466,7 +4466,7 @@ a.color-family-swatches__item:hover {
   justify-content: center;
   width: 100%;
   aspect-ratio: 1 / 1;
-  padding: 6px;
+  padding: 8px;
   box-sizing: border-box;
 }
 
@@ -4476,35 +4476,75 @@ a.color-family-swatches__item:hover {
   object-fit: contain;
 }
 
-.color-family-swatches__price {
+.color-family-swatches__name {
   width: 100%;
-  padding: 5px 4px;
-  border-top: 1px solid rgba(var(--text-color)/0.12);
+  padding: 0 6px;
+  overflow: hidden;
   text-align: center;
   font-size: 12px;
   font-weight: 650;
   color: rgb(var(--text-color));
+  text-overflow: ellipsis;
+  white-space: nowrap;
   box-sizing: border-box;
 }
 
-/* Compact variant for collection/homepage product cards - image only, no price */
+.color-family-swatches__price {
+  width: 100%;
+  padding: 2px 6px 8px;
+  text-align: center;
+  font-size: 12px;
+  color: rgb(var(--text-color));
+  box-sizing: border-box;
+}
+
+/* Compact variant for collection/homepage product cards - small flat-colour circles */
 .color-family-swatches--card .color-family-swatches__list {
   gap: 6px;
   flex-wrap: nowrap;
 }
 
 .color-family-swatches--card .color-family-swatches__item {
-  width: 34px;
-  border-radius: 4px;
+  width: 22px;
+  border: none;
+  background: none;
 }
 
-.color-family-swatches--card .color-family-swatches__image-wrap {
-  padding: 3px;
+.color-family-swatches--card .color-family-swatches__item.is-active {
+  box-shadow: none;
+}
+
+.color-family-swatches--card .color-family-swatches__frame {
+  display: block;
+  width: 22px;
+  height: 22px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid rgba(var(--swatch-border-color-default)/0.35);
+  border-radius: 50%;
+  background: rgb(var(--bg-color));
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.color-family-swatches--card a.color-family-swatches__item:hover .color-family-swatches__frame {
+  box-shadow: 0 0 0 2px rgb(var(--swatch-border-color-default));
+}
+
+.color-family-swatches--card .color-family-swatches__item.is-active .color-family-swatches__frame {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px rgb(var(--swatch-border-color-active));
+}
+
+.color-family-swatches--card .color-family-swatches__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 749px) {
   .color-family-swatches__item {
-    width: 72px;
+    width: 92px;
   }
 }
 
