@@ -93,8 +93,8 @@
           "settings": {
             "show_indicator_bar": false,
             "show_urgency_message": true,
-            "text_very_low": "<p>Almost gone - order soon</p>",
-            "text_low": "<p>Selling fast - order soon</p>",
+            "text_very_low": "<p>bijna uitverkocht - bestel snel!</p>",
+            "text_low": "<p>verkoopt snel - bestel snel!</p>",
             "text_normal": "",
             "text_no_stock": "",
             "text_no_stock_backordered": "<p>Backordered</p>"
@@ -129,6 +129,10 @@
             "show_gift_card_recipient": true
           }
         },
+        "active-offers": {
+          "type": "active-offers",
+          "settings": {}
+        },
         "custom_liquid_CVnnRe": {
           "type": "custom-liquid",
           "settings": {
@@ -141,10 +145,16 @@
             "custom_liquid": ""
           }
         },
+        "custom_liquid_nPYeVY": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<div style=\"display: flex; justify-content: center; margin-top: 6px;\">\n  <valued-widget layout=\"rating\" size=\"small\" align=\"right\" star-color=\"yellow\" theme=\"dark\"></valued-widget>\n</div>"
+          }
+        },
         "custom_liquid_kmVnVa": {
           "type": "custom-liquid",
           "settings": {
-            "custom_liquid": "<style>\n.sg-payment-icons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  flex-wrap: wrap;\n  margin: 12px 0;\n}\n\n.sg-payment-icon {\n  width: 52px;\n  height: 34px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: #ffffff;\n  border: 1px solid #e5e5e5;\n  border-radius: 6px;\n  box-sizing: border-box;\n}\n\n.sg-payment-icon svg {\n  display: block;\n  width: auto;\n  height: 21px;\n  max-width: 44px;\n  max-height: 22px;\n}\n\n.sg-payment-icon--wide svg {\n  max-width: 46px;\n}\n\n@media screen and (max-width: 749px) {\n  .sg-payment-icons {\n    gap: 6px;\n  }\n\n  .sg-payment-icon {\n    width: 46px;\n    height: 30px;\n  }\n\n  .sg-payment-icon svg {\n    height: 18px;\n    max-width: 38px;\n  }\n}\n</style>\n\n<div class=\"sg-payment-icons\">\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'ideal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'bancontact' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'visa' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'master' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'american_express' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'paypal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'apple_pay' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'google_pay' | payment_type_svg_tag }}\n  </div>\n</div>\n\n<div style=\"display: flex; justify-content: center; margin-top: 6px;\">\n  <valued-widget layout=\"rating\" size=\"small\" align=\"right\" star-color=\"yellow\" theme=\"dark\"></valued-widget>\n</div>"
+            "custom_liquid": "<style>\n.sg-payment-icons {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  flex-wrap: wrap;\n  margin: 12px 0;\n}\n\n.sg-payment-icon {\n  width: 52px;\n  height: 34px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background: #ffffff;\n  border: 1px solid #e5e5e5;\n  border-radius: 6px;\n  box-sizing: border-box;\n}\n\n.sg-payment-icon svg {\n  display: block;\n  width: auto;\n  height: 21px;\n  max-width: 44px;\n  max-height: 22px;\n}\n\n.sg-payment-icon--wide svg {\n  max-width: 46px;\n}\n\n@media screen and (max-width: 749px) {\n  .sg-payment-icons {\n    gap: 6px;\n  }\n\n  .sg-payment-icon {\n    width: 46px;\n    height: 30px;\n  }\n\n  .sg-payment-icon svg {\n    height: 18px;\n    max-width: 38px;\n  }\n}\n</style>\n\n<div class=\"sg-payment-icons\">\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'ideal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'bancontact' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'visa' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'master' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'american_express' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'paypal' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon\">\n    {{ 'apple_pay' | payment_type_svg_tag }}\n  </div>\n\n  <div class=\"sg-payment-icon sg-payment-icon--wide\">\n    {{ 'google_pay' | payment_type_svg_tag }}\n  </div>\n</div>"
           }
         },
         "message-1": {
@@ -258,8 +268,10 @@
         "variant-picker",
         "divider-1",
         "buy-buttons",
+        "active-offers",
         "custom_liquid_CVnnRe",
         "custom_liquid_rGi7JJ",
+        "custom_liquid_nPYeVY",
         "custom_liquid_kmVnVa",
         "message-1",
         "message-2",
