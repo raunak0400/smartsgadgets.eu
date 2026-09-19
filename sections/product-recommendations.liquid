@@ -1,8 +1,11 @@
 {%- comment -%}theme-check-disable NestedSnippet{%- endcomment -%}
 {%- if section.index > 2 -%}
   <link rel="stylesheet" href="{{ 'product.css' | asset_url }}" media="print" onload="this.media='all'">
+  {%- comment -%} Grid-card styles carry the mobile quick-add swap (overlay button -> below price). {%- endcomment -%}
+  <link rel="stylesheet" href="{{ 'products-grid.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- else -%}
   {{ 'product.css' | asset_url | stylesheet_tag }}
+  {{ 'products-grid.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- if settings.card_hover_action == 'slideshow' -%}
@@ -73,8 +76,62 @@
   assign limit = section.settings.products_to_show
 -%}
 
+{%- liquid
+  # --- Relevance curation: keep cross-sell to the same category / brand ---
+  # Shopify's generic related feed falls back to store-wide products, which
+  # surfaces unrelated items (e.g. a drone on a lamp page). Rank same product
+  # type and same vendor first, then top up from the product's own collection,
+  # then fall back to the remaining related products so a slot is never empty.
+  assign same_type = recommendations.products | where: 'type', product.type
+  assign same_brand = recommendations.products | where: 'vendor', product.vendor
+
+  assign rel_coll = null
+  assign ptype_handle = product.type | handle
+  for c in product.collections
+    if c.handle == ptype_handle
+      assign rel_coll = c
+      break
+    endif
+  endfor
+  if rel_coll == null
+    for c in product.collections
+      assign ch = c.handle
+      unless ch == 'all' or ch == 'frontpage' or ch contains 'best' or ch contains 'sale' or ch contains 'featured' or ch contains 'new' or ch contains 'uitverkoop' or ch contains 'aanbieding'
+        assign rel_coll = c
+        break
+      endunless
+    endfor
+  endif
+  if rel_coll == null and product.collections.size > 0
+    assign rel_coll = product.collections.first
+  endif
+
+  assign candidates = same_type | concat: same_brand
+  if rel_coll
+    assign candidates = candidates | concat: rel_coll.products
+  endif
+  assign candidates = candidates | concat: recommendations.products
+-%}
+
 <product-recommendations class="section" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product_id }}&limit={{ limit }}&intent=related" data-product-id="{{ product_id }}">
-  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+  {%- capture rec_items -%}
+    {%- assign seen = ',' -%}
+    {%- assign shown = 0 -%}
+    {%- for p in candidates -%}
+      {%- if shown >= limit -%}{%- break -%}{%- endif -%}
+      {%- if p.id == product.id -%}{%- continue -%}{%- endif -%}
+      {%- assign idtag = ',' | append: p.id | append: ',' -%}
+      {%- unless seen contains idtag -%}
+        {%- assign seen = seen | append: p.id | append: ',' -%}
+        {%- assign shown = shown | plus: 1 -%}
+        <li{% if carousel %} class="slider__item"{% endif %}>
+          {% render 'product-card', product: p %}
+        </li>
+      {%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if rec_items != blank -%}
     {%- if section.settings.heading != blank -%}
       <div class="container mb-heading">
         <h2 class="h4 section__heading {{ section.settings.heading_align }}">{{ section.settings.heading | escape }}</h2>
@@ -89,11 +146,7 @@
 
     <div class="container products-grid-container">
       <ul class="{% if carousel %}slider__grid {% endif %}grid {{ grid_classes }}{% if section.settings.layout == 'carousel_on_mobile' and section.settings.card_size_mobile == 'small' and settings.card_contain %} sm:gap-x-theme sm:gap-y-8{% else %} gap-x-theme gap-y-8{% endif %}{% if section.settings.card_size_mobile == 'small' and settings.card_contain %} small__grid{% endif %}" role="list">
-        {%- for product in recommendations.products -%}
-          <li{% if carousel %} class="slider__item"{% endif %}>
-            {% render 'product-card', product: product %}
-          </li>
-        {%- endfor -%}
+        {{ rec_items }}
       </ul>
     </div>
 
