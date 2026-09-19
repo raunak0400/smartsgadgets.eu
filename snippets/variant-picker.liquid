@@ -26,6 +26,10 @@
 
 <script src="{{ 'variant-picker.js' | asset_url }}" defer="defer"></script>
 
+{%- comment -%} Amazon-style variant image swatches (price under photo + horizontal slider) {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'amazon-variant.css' | asset_url }}">
+<script src="{{ 'amazon-variant.js' | asset_url }}" defer="defer"></script>
+
 {%- if block.settings.selector_style == 'dropdown' -%}
   <script src="{{ 'custom-select.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
@@ -117,7 +121,7 @@
         {%- else -%}
           <legend class="label">{{- option.name -}}{% if is_color_selector and settings.variant_picker_color_style != 'text' %}: <span class="option-selector__label-value js-color-text">{% if variant_is_selected %}{{ option.selected_value }}{% endif %}</span>{% endif %}</legend>
         {%- endif -%}
-        <div class="option-selector__btns flex flex-wrap{% if is_variant_image_style %} items-start{% endif %}">
+        {%- capture option_btns -%}
           {%- for value in option.values -%}
             {%- assign value_index0 = forloop.index0 -%}
             <input type="radio" class="opt-btn visually-hidden focus-label js-option" name="{{ option_id }}-option" id="{{ option_id }}-opt-{{ value_index0 }}" value="{{ value | escape }}"{% if variant_is_selected and option.selected_value == value %} checked{% endif %}>
@@ -125,22 +129,15 @@
             {%- if is_variant_image_style -%}
               {%- for variant in product.variants -%}
                 {%- if variant.options[option_index0] == value -%}
-                  <label class="opt-label opt-label--swatch opt-label--image relative swatch-shape--{{ settings.variant_picker_swatch_shape }}{% if settings.variant_picker_swatch_shape != "circle" %} swatch-shape--not-circle{% endif %}{% if settings.variant_picker_color_style == 'variant-images' and variant.featured_media %} swatch--variant-image{% endif %}"{% if variant.featured_media == blank %} data-swatch="{{ value | replace: '"', '' | downcase }}"{% endif %} for="{{ option_id }}-opt-{{ value_index0 }}">
+                  {%- assign swatch_size = settings.variant_picker_swatch_size | times: 1.5 | at_least: 150 -%}
+                  <label class="opt-label opt-label--swatch opt-label--image amz-swatch relative{% if variant.featured_media %} swatch--variant-image{% endif %}"{% if variant.featured_media == blank %} data-swatch="{{ value | replace: '"', '' | downcase }}"{% endif %} for="{{ option_id }}-opt-{{ value_index0 }}">
                     <span class="visually-hidden js-value">{{- value | escape -}}</span>
-                    <div class="opt-label__media media h-full w-full{% if settings.variant_picker_color_style == 'variant-images' and variant.featured_media == blank %} absolute top-0 left-0{% else %} relative{% endif %}">
-                      {%- liquid
-                        if settings.variant_picker_swatch_shape == "natural"
-                          assign class = 'bg-theme-bg'
-                        elsif swatch_crop == 'top'
-                          assign class = 'img-fit object-top bg-theme-bg'
-                        else
-                          assign class = 'img-fit bg-theme-bg'
-                        endif
-
-                        assign swatch_size = settings.variant_picker_swatch_size | times: 1.5
-                      -%}
-                      {% render 'image', image: variant.featured_media, src_width: swatch_size, lazy_load: false, class: class, disable_focal_point: true %}
-                    </div>
+                    <span class="amz-swatch__media opt-label__media media">
+                      {%- if variant.featured_media -%}
+                        {% render 'image', image: variant.featured_media, src_width: swatch_size, lazy_load: false, class: 'amz-swatch__img bg-theme-bg', disable_focal_point: true %}
+                      {%- endif -%}
+                    </span>
+                    <span class="amz-swatch__price">{%- render 'price-as-money', price: variant.price, show_money_with_currency: false -%}</span>
                   </label>
                   {%- break -%}
                 {%- endif -%}
@@ -178,7 +175,20 @@
               </label>
             {%- endif -%}
           {%- endfor -%}
-        </div>
+        {%- endcapture -%}
+        {%- if is_variant_image_style -%}
+          <div class="amz-swatch-scroller" data-amz-swatch-scroller>
+            <button type="button" class="amz-swatch-arrow amz-swatch-arrow--prev" data-amz-swatch-prev aria-label="Scroll left" tabindex="-1" hidden>{%- render 'icon-chevron-left' -%}</button>
+            <div class="option-selector__btns amz-swatch-track" data-amz-swatch-track>
+              {{ option_btns }}
+            </div>
+            <button type="button" class="amz-swatch-arrow amz-swatch-arrow--next" data-amz-swatch-next aria-label="Scroll right" tabindex="-1" hidden>{%- render 'icon-chevron-right' -%}</button>
+          </div>
+        {%- else -%}
+          <div class="option-selector__btns flex flex-wrap">
+            {{ option_btns }}
+          </div>
+        {%- endif -%}
       </fieldset>
     {%- endif -%}
   {%- endfor -%}
