@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Active Offers card (product page block)
+   Premium, theme-aware promo/USP list. Colours derive from the theme's
+   --text-color / --bg-color so it matches branding in light and dark.
+   ========================================================================== */
+
+.product-offers__card {
+  border: 1px solid rgba(var(--text-color) / 0.12);
+  border-radius: var(--btn-border-radius, 12px);
+  background:
+    linear-gradient(180deg, rgba(var(--text-color) / 0.03), rgba(var(--text-color) / 0) 60%),
+    rgba(var(--bg-color));
+  padding: clamp(14px, 2vw, 18px);
+  overflow: hidden;
+}
+
+.product-offers__heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  color: rgb(var(--text-color));
+}
+.product-offers__heading-icon {
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.product-offers__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-offers__item + .product-offers__item {
+  border-top: 1px solid rgba(var(--text-color) / 0.08);
+}
+
+.product-offers__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 6px;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.15s ease;
+}
+
+/* Clickable offers (cross-sell) */
+a.product-offers__row.is-link {
+  cursor: pointer;
+}
+a.product-offers__row.is-link:hover,
+a.product-offers__row.is-link:focus-visible {
+  background-color: rgba(var(--text-color) / 0.05);
+  outline: none;
+}
+
+.product-offers__icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  font-size: 1.15rem;
+  line-height: 1;
+  border-radius: 50%;
+  background: rgba(var(--text-color) / 0.06);
+}
+
+.product-offers__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.product-offers__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: rgb(var(--text-color));
+}
+.product-offers__text {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: rgba(var(--text-color) / 0.6);
+}
+
+.product-offers__chevron {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-start: auto;
+  color: rgba(var(--text-color) / 0.45);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.product-offers__chevron svg {
+  width: 16px;
+  height: 16px;
+}
+a.product-offers__row.is-link:hover .product-offers__chevron,
+a.product-offers__row.is-link:focus-visible .product-offers__chevron {
+  color: rgb(var(--text-color));
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-offers__row,
+  .product-offers__chevron {
+    transition: none;
+  }
+}

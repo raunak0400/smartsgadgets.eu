@@ -357,6 +357,65 @@
               {%- endif -%}
             </div>
 
+          {%- when 'active-offers' -%}
+            {{ 'product-offers.css' | asset_url | stylesheet_tag }}
+            {%- capture offers_html -%}
+              {%- assign today_ts = 'now' | date: '%s' | plus: 0 -%}
+              {%- for i in (1..8) -%}
+                {%- assign en_key = 'offer_' | append: i | append: '_enabled' -%}
+                {%- assign title_key = 'offer_' | append: i | append: '_title' -%}
+                {%- assign title = block.settings[title_key] -%}
+                {%- if block.settings[en_key] and title != blank -%}
+                  {%- assign start_key = 'offer_' | append: i | append: '_start' -%}
+                  {%- assign end_key = 'offer_' | append: i | append: '_end' -%}
+                  {%- assign start_v = block.settings[start_key] -%}
+                  {%- assign end_v = block.settings[end_key] -%}
+                  {%- assign in_range = true -%}
+                  {%- if start_v != blank -%}
+                    {%- assign start_ts = start_v | date: '%s' | plus: 0 -%}
+                    {%- if start_ts > 0 and today_ts < start_ts -%}{%- assign in_range = false -%}{%- endif -%}
+                  {%- endif -%}
+                  {%- if end_v != blank -%}
+                    {%- assign end_ts = end_v | append: ' 23:59:59' | date: '%s' | plus: 0 -%}
+                    {%- if end_ts > 0 and today_ts > end_ts -%}{%- assign in_range = false -%}{%- endif -%}
+                  {%- endif -%}
+                  {%- if in_range -%}
+                    {%- assign icon_key = 'offer_' | append: i | append: '_icon' -%}
+                    {%- assign text_key = 'offer_' | append: i | append: '_text' -%}
+                    {%- assign link_key = 'offer_' | append: i | append: '_link' -%}
+                    {%- assign o_icon = block.settings[icon_key] -%}
+                    {%- assign o_text = block.settings[text_key] -%}
+                    {%- assign o_link = block.settings[link_key] -%}
+                    <li class="product-offers__item">
+                      {%- if o_link != blank -%}<a class="product-offers__row is-link" href="{{ o_link }}">{%- else -%}<div class="product-offers__row">{%- endif -%}
+                        {%- if o_icon != blank -%}<span class="product-offers__icon" aria-hidden="true">{{ o_icon }}</span>{%- endif -%}
+                        <span class="product-offers__content">
+                          <span class="product-offers__title">{{ title | escape }}</span>
+                          {%- if o_text != blank -%}<span class="product-offers__text">{{ o_text | escape }}</span>{%- endif -%}
+                        </span>
+                        {%- if o_link != blank -%}<span class="product-offers__chevron" aria-hidden="true">{%- render 'icon-chevron-right' -%}</span>{%- endif -%}
+                      {%- if o_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+                    </li>
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endcapture -%}
+            {%- if offers_html != blank -%}
+              <div class="product-info__block product-offers" {{ block.shopify_attributes }}>
+                <div class="product-offers__card">
+                  {%- if block.settings.heading != blank -%}
+                    <p class="product-offers__heading">
+                      {%- if block.settings.heading_icon != blank -%}<span class="product-offers__heading-icon" aria-hidden="true">{{ block.settings.heading_icon }}</span>{%- endif -%}
+                      <span>{{ block.settings.heading | escape }}</span>
+                    </p>
+                  {%- endif -%}
+                  <ul class="product-offers__list" role="list">
+                    {{ offers_html }}
+                  </ul>
+                </div>
+              </div>
+            {%- endif -%}
+
           {%- when 'complementary' -%}
             <div class="product-info__block" {{ block.shopify_attributes }}>
               {%- liquid
@@ -1227,6 +1286,93 @@
           "label": "Show recipient information form for gift cards",
           "info": "Allow customers to send gift cards to a recipient along with a personal message. When enabled, the dynamic checkout button will be disabled for gift cards. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
         }
+      ]
+    },
+    {
+      "type": "active-offers",
+      "name": "Active offers",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "A card of your live promotions shown on the product page. Fill in an offer and toggle it on. Add a link to send shoppers to a collection or product (cross-sell). Optional start/end dates hide an offer automatically. Manage everything here — no code changes needed."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Actieve aanbiedingen"
+        },
+        {
+          "type": "text",
+          "id": "heading_icon",
+          "label": "Heading icon (emoji)",
+          "default": "🔥"
+        },
+        { "type": "header", "content": "Offer 1" },
+        { "type": "checkbox", "id": "offer_1_enabled", "label": "Show this offer", "default": true },
+        { "type": "text", "id": "offer_1_icon", "label": "Icon (emoji)", "default": "🎁" },
+        { "type": "text", "id": "offer_1_title", "label": "Title", "default": "Koop 2, ontvang 10% korting" },
+        { "type": "text", "id": "offer_1_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_1_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_1_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_1_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 2" },
+        { "type": "checkbox", "id": "offer_2_enabled", "label": "Show this offer", "default": true },
+        { "type": "text", "id": "offer_2_icon", "label": "Icon (emoji)", "default": "🚚" },
+        { "type": "text", "id": "offer_2_title", "label": "Title", "default": "Gratis verzending vanaf €75" },
+        { "type": "text", "id": "offer_2_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_2_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_2_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_2_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 3" },
+        { "type": "checkbox", "id": "offer_3_enabled", "label": "Show this offer", "default": true },
+        { "type": "text", "id": "offer_3_icon", "label": "Icon (emoji)", "default": "🎁" },
+        { "type": "text", "id": "offer_3_title", "label": "Title", "default": "Gratis cadeau bij bestellingen boven €100" },
+        { "type": "text", "id": "offer_3_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_3_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_3_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_3_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 4" },
+        { "type": "checkbox", "id": "offer_4_enabled", "label": "Show this offer", "default": true },
+        { "type": "text", "id": "offer_4_icon", "label": "Icon (emoji)", "default": "💰" },
+        { "type": "text", "id": "offer_4_title", "label": "Title", "default": "Extra korting op geselecteerde producten" },
+        { "type": "text", "id": "offer_4_text", "label": "Subtitle (optional)", "default": "Bekijk de aanbiedingen" },
+        { "type": "url", "id": "offer_4_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell", "default": "/collections/all" },
+        { "type": "text", "id": "offer_4_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_4_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 5" },
+        { "type": "checkbox", "id": "offer_5_enabled", "label": "Show this offer", "default": true },
+        { "type": "text", "id": "offer_5_icon", "label": "Icon (emoji)", "default": "📦" },
+        { "type": "text", "id": "offer_5_title", "label": "Title", "default": "Bundel & Bespaar" },
+        { "type": "text", "id": "offer_5_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_5_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_5_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_5_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 6" },
+        { "type": "checkbox", "id": "offer_6_enabled", "label": "Show this offer", "default": false },
+        { "type": "text", "id": "offer_6_icon", "label": "Icon (emoji)" },
+        { "type": "text", "id": "offer_6_title", "label": "Title" },
+        { "type": "text", "id": "offer_6_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_6_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_6_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_6_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 7" },
+        { "type": "checkbox", "id": "offer_7_enabled", "label": "Show this offer", "default": false },
+        { "type": "text", "id": "offer_7_icon", "label": "Icon (emoji)" },
+        { "type": "text", "id": "offer_7_title", "label": "Title" },
+        { "type": "text", "id": "offer_7_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_7_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_7_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_7_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
+        { "type": "header", "content": "Offer 8" },
+        { "type": "checkbox", "id": "offer_8_enabled", "label": "Show this offer", "default": false },
+        { "type": "text", "id": "offer_8_icon", "label": "Icon (emoji)" },
+        { "type": "text", "id": "offer_8_title", "label": "Title" },
+        { "type": "text", "id": "offer_8_text", "label": "Subtitle (optional)" },
+        { "type": "url", "id": "offer_8_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
+        { "type": "text", "id": "offer_8_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
+        { "type": "text", "id": "offer_8_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" }
       ]
     },
     {
