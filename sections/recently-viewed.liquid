@@ -1,7 +1,10 @@
 {%- if section.index > 2 -%}
   <link rel="stylesheet" href="{{ 'product.css' | asset_url }}" media="print" onload="this.media='all'">
+  {%- comment -%} Grid-card styles carry the mobile quick-add swap (overlay button -> below price). {%- endcomment -%}
+  <link rel="stylesheet" href="{{ 'products-grid.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- else -%}
   {{ 'product.css' | asset_url | stylesheet_tag }}
+  {{ 'products-grid.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
 {%- if settings.card_hover_action == 'slideshow' -%}
