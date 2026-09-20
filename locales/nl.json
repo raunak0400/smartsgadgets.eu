@@ -382,6 +382,11 @@
       "taxes_and_shipping_at_checkout_html": "Belastingen, kortingen en <a href=\"{{ link }}\">verzending</a> worden bij de checkout berekend.",
       "taxes_included_shipping_at_checkout": "Inclusief belasting; verzendkosten en kortingen worden bij de checkout berekend.",
       "taxes_included_shipping_at_checkout_html": "Inclusief belasting. <a href=\"{{ link }}\">Verzending</a> en kortingen worden bij de checkout berekend.",
+      "free_gift": "Gratis cadeau",
+      "items_free": {
+        "one": "{{ count }} artikel gratis",
+        "other": "{{ count }} artikelen gratis"
+      },
       "error": "Er is een fout opgetreden bij het bijwerken van uw winkelwagen. Probeer opnieuw."
     },
     "items": {

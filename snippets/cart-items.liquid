@@ -155,15 +155,33 @@
                       {%- for property in item.properties -%}
                         {%- assign property_first_char = property.first | slice: 0 -%}
                         {%- if property.last != blank and property_first_char != '_' -%}
+                          {%- liquid
+                            # Some apps (e.g. a free-gift app) inject line-item properties in English.
+                            # Translate the known free-gift label/value through the theme locale so the
+                            # cart stays in the storefront language instead of leaking English.
+                            assign prop_label = property.first
+                            assign prop_value = property.last
+                            assign prop_label_dc = prop_label | downcase
+                            assign prop_value_dc = prop_value | downcase
+                            if prop_label_dc contains 'free gift'
+                              assign prop_label = 'cart.general.free_gift' | t
+                            endif
+                            if prop_value_dc contains 'item free' or prop_value_dc contains 'items free'
+                              assign gift_count = prop_value | split: ' ' | first | plus: 0
+                              if gift_count > 0
+                                assign prop_value = 'cart.general.items_free' | t: count: gift_count
+                              endif
+                            endif
+                          -%}
                           <div>
-                            <dt class="inline"><strong>{{ property.first }}: </strong></dt>
+                            <dt class="inline"><strong>{{ prop_label }}: </strong></dt>
                             <dd class="inline m-0">
                               {%- if property.last contains '/uploads/' -%}
                                 <a href="{{ property.last }}" class="link" target="_blank">
                                   {{ property.last | split: '/' | last }}
                                 </a>
                               {%- else -%}
-                                {{ property.last }}
+                                {{ prop_value }}
                               {%- endif -%}
                             </dd>
                           </div>

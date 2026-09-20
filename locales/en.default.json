@@ -379,6 +379,11 @@
       "taxes_and_shipping_at_checkout_html": "Taxes, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "taxes_included_shipping_at_checkout": "Tax included, shipping and discounts calculated at checkout.",
       "taxes_included_shipping_at_checkout_html": "Tax included, <a href=\"{{ link }}\">shipping</a> and discounts calculated at checkout.",
+      "free_gift": "Free gift",
+      "items_free": {
+        "one": "{{ count }} item free",
+        "other": "{{ count }} items free"
+      },
       "error": "There was an error while updating your cart. Please try again."
     },
     "items": {
