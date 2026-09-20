@@ -1,47 +1,29 @@
+/* Always-visible fixed bottom Add-to-cart bar.
+   Keeps the bar visible at all times (no scroll toggle) and exposes its height
+   as --sticky-atc-height so the page can reserve bottom space for it. */
 if (!customElements.get('sticky-atc-panel')) {
   class StickyAtcPanel extends HTMLElement {
-    constructor() {
-      super();
+    connectedCallback() {
+      this.classList.remove('sticky-atc-panel--out', 'invisible');
+      document.body.classList.add('has-sticky-atc');
+      this._update = this.setHeightVar.bind(this);
+      this.setHeightVar();
 
-      this.productSection = this.closest('.cc-main-product');
-      this.productInfo = this.productSection.querySelector('.product-info');
-      this.productForm = this.productSection.querySelector('product-form');
-
-      if ('IntersectionObserver' in window && 'MutationObserver' in window) {
-        this.bindEvents();
+      if (window.ResizeObserver) {
+        this._ro = new ResizeObserver(this._update);
+        this._ro.observe(this);
       }
+      window.addEventListener('resize', this._update);
     }
 
-    // eslint-disable-next-line class-methods-use-this
     disconnectedCallback() {
-      window.removeEventListener('scroll', StickyAtcPanel.handleScroll);
+      document.body.classList.remove('has-sticky-atc');
+      if (this._ro) this._ro.disconnect();
+      window.removeEventListener('resize', this._update);
     }
 
-    bindEvents() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.target === this.productForm && !theme.mediaMatches.md) {
-            this.classList.toggle('sticky-atc-panel--out', entry.boundingClientRect.bottom > 0);
-          } else if (entry.target === this.productInfo && theme.mediaMatches.md) {
-            this.classList.toggle('sticky-atc-panel--out', entry.isIntersecting);
-          }
-        });
-      });
-
-      if (this.productForm) observer.observe(this.productForm);
-      if (this.productInfo) observer.observe(this.productInfo);
-
-      window.addEventListener('scroll', StickyAtcPanel.handleScroll);
-    }
-
-    /**
-     * Watches for a scroll to the bottom of the page
-     */
-    static handleScroll() {
-      document.body.classList.toggle(
-        'scrolled-to-bottom',
-        window.scrollY + window.innerHeight + 100 > document.body.scrollHeight
-      );
+    setHeightVar() {
+      document.documentElement.style.setProperty('--sticky-atc-height', `${this.offsetHeight}px`);
     }
   }
 
