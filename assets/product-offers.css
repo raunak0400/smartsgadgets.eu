@@ -78,6 +78,24 @@
   background: rgba(255, 88, 13, 0.08);
   --offer-accent: #ff580d;
 }
+.product-offers__card.is-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.product-offers__card.is-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 17, 17, 0.1);
+}
+.product-offers__card.is-link:active {
+  transform: translateY(0);
+}
+.product-offers__card.is-link:focus-visible {
+  outline: 2px solid var(--offer-accent);
+  outline-offset: 2px;
+}
 .product-offers__icon {
   display: inline-flex;
   align-items: center;

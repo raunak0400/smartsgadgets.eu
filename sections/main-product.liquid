@@ -388,23 +388,21 @@
                     {%- assign cta_key = 'offer_' | append: i | append: '_cta' -%}
                     {%- assign o_icon = block.settings[icon_key] -%}
                     {%- assign o_text = block.settings[text_key] -%}
-                    {%- assign o_link = block.settings[link_key] -%}
+                    {%- assign o_link = block.settings[link_key] | default: '/collections/alle-producten' -%}
                     {%- assign o_cta = block.settings[cta_key] | default: 'Bekijk aanbieding' -%}
                     {%- assign cidx = forloop.index0 | modulo: 4 -%}
                     {%- assign o_color = color_cycle[cidx] -%}
-                    <div class="product-offers__card product-offers__card--{{ o_color }}" role="listitem">
+                    <a class="product-offers__card product-offers__card--{{ o_color }} is-link" href="{{ o_link }}" role="listitem">
                       {%- if o_icon != blank and o_icon != 'none' -%}
                         <span class="product-offers__icon" aria-hidden="true">{%- render 'icon', icon: o_icon, width: 22, height: 22 -%}</span>
                       {%- endif -%}
                       <span class="product-offers__title">{{ title | escape }}</span>
                       {%- if o_text != blank -%}<span class="product-offers__text">{{ o_text | escape }}</span>{%- endif -%}
-                      {%- if o_link != blank -%}
-                        <a class="product-offers__cta" href="{{ o_link }}">
-                          <span>{{ o_cta | escape }}</span>
-                          {%- render 'icon-chevron-right' -%}
-                        </a>
-                      {%- endif -%}
-                    </div>
+                      <span class="product-offers__cta">
+                        <span>{{ o_cta | escape }}</span>
+                        {%- render 'icon-chevron-right' -%}
+                      </span>
+                    </a>
                   {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
