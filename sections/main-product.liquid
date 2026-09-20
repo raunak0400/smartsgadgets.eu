@@ -359,8 +359,10 @@
 
           {%- when 'active-offers' -%}
             {{ 'product-offers.css' | asset_url | stylesheet_tag }}
+            <script src="{{ 'active-offers.js' | asset_url }}" defer="defer"></script>
             {%- capture offers_html -%}
               {%- assign today_ts = 'now' | date: '%s' | plus: 0 -%}
+              {%- assign color_cycle = 'orange,amber,sand,graphite' | split: ',' -%}
               {%- for i in (1..8) -%}
                 {%- assign en_key = 'offer_' | append: i | append: '_enabled' -%}
                 {%- assign title_key = 'offer_' | append: i | append: '_title' -%}
@@ -383,35 +385,53 @@
                     {%- assign icon_key = 'offer_' | append: i | append: '_icon' -%}
                     {%- assign text_key = 'offer_' | append: i | append: '_text' -%}
                     {%- assign link_key = 'offer_' | append: i | append: '_link' -%}
+                    {%- assign cta_key = 'offer_' | append: i | append: '_cta' -%}
                     {%- assign o_icon = block.settings[icon_key] -%}
                     {%- assign o_text = block.settings[text_key] -%}
                     {%- assign o_link = block.settings[link_key] -%}
-                    <li class="product-offers__item">
-                      {%- if o_link != blank -%}<a class="product-offers__row is-link" href="{{ o_link }}">{%- else -%}<div class="product-offers__row">{%- endif -%}
-                        {%- if o_icon != blank -%}<span class="product-offers__icon" aria-hidden="true">{{ o_icon }}</span>{%- endif -%}
-                        <span class="product-offers__content">
-                          <span class="product-offers__title">{{ title | escape }}</span>
-                          {%- if o_text != blank -%}<span class="product-offers__text">{{ o_text | escape }}</span>{%- endif -%}
-                        </span>
-                        {%- if o_link != blank -%}<span class="product-offers__chevron" aria-hidden="true">{%- render 'icon-chevron-right' -%}</span>{%- endif -%}
-                      {%- if o_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
-                    </li>
+                    {%- assign o_cta = block.settings[cta_key] | default: 'Bekijk aanbieding' -%}
+                    {%- assign cidx = forloop.index0 | modulo: 4 -%}
+                    {%- assign o_color = color_cycle[cidx] -%}
+                    <div class="product-offers__card product-offers__card--{{ o_color }}" role="listitem">
+                      {%- if o_icon != blank and o_icon != 'none' -%}
+                        <span class="product-offers__icon" aria-hidden="true">{%- render 'icon', icon: o_icon, width: 22, height: 22 -%}</span>
+                      {%- endif -%}
+                      <span class="product-offers__title">{{ title | escape }}</span>
+                      {%- if o_text != blank -%}<span class="product-offers__text">{{ o_text | escape }}</span>{%- endif -%}
+                      {%- if o_link != blank -%}
+                        <a class="product-offers__cta" href="{{ o_link }}">
+                          <span>{{ o_cta | escape }}</span>
+                          {%- render 'icon-chevron-right' -%}
+                        </a>
+                      {%- endif -%}
+                    </div>
                   {%- endif -%}
                 {%- endif -%}
               {%- endfor -%}
             {%- endcapture -%}
             {%- if offers_html != blank -%}
               <div class="product-info__block product-offers" {{ block.shopify_attributes }}>
-                <div class="product-offers__card">
-                  {%- if block.settings.heading != blank -%}
-                    <p class="product-offers__heading">
-                      {%- if block.settings.heading_icon != blank -%}<span class="product-offers__heading-icon" aria-hidden="true">{{ block.settings.heading_icon }}</span>{%- endif -%}
-                      <span>{{ block.settings.heading | escape }}</span>
-                    </p>
-                  {%- endif -%}
-                  <ul class="product-offers__list" role="list">
-                    {{ offers_html }}
-                  </ul>
+                <div class="product-offers__panel">
+                  <div class="product-offers__header">
+                    <div class="product-offers__header-text">
+                      {%- if block.settings.heading != blank -%}<p class="product-offers__heading">{{ block.settings.heading | escape }}</p>{%- endif -%}
+                      {%- if block.settings.subheading != blank -%}<p class="product-offers__subheading">{{ block.settings.subheading | escape }}</p>{%- endif -%}
+                    </div>
+                    {%- if block.settings.view_all_text != blank and block.settings.view_all_link != blank -%}
+                      <a class="product-offers__view-all" href="{{ block.settings.view_all_link }}">
+                        <span>{{ block.settings.view_all_text | escape }}</span>
+                        {%- render 'icon-chevron-right' -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                  <div class="product-offers__scroller" data-offers-scroller>
+                    <button type="button" class="product-offers__arrow product-offers__arrow--prev" data-offers-prev aria-label="{{ 'general.slider.previous' | t }}" tabindex="-1" hidden>{%- render 'icon-chevron-left' -%}</button>
+                    <div class="product-offers__track" data-offers-track role="list">
+                      {{ offers_html }}
+                    </div>
+                    <button type="button" class="product-offers__arrow product-offers__arrow--next" data-offers-next aria-label="{{ 'general.slider.next' | t }}" tabindex="-1" hidden>{%- render 'icon-chevron-right' -%}</button>
+                  </div>
+                  <div class="product-offers__dots" data-offers-dots aria-hidden="true"></div>
                 </div>
               </div>
             {%- endif -%}
@@ -785,50 +805,50 @@
   });
 </script>
 
-{%- if section.settings.sticky_atc_panel and product.available -%}
+{%- if section.settings.sticky_atc_panel -%}
   <link rel="stylesheet" href="{{ 'sticky-atc-panel.css' | asset_url }}" media="print" onload="this.media='all'">
   <script src="{{ 'sticky-atc-panel.js' | asset_url }}" defer="defer"></script>
 
-  <sticky-atc-panel class="sticky-atc-panel sticky-atc-panel--out fixed bottom-0 {{ section.settings.sticky_atc_position }} invisible{% if section.settings.sticky_atc_mobile == false %} hidden md:block{% endif %}">
-    <div class="card card--row card--related card--sticky-atc relative flex items-center">
+  <sticky-atc-panel class="sticky-atc-panel fixed bottom-0{% if section.settings.sticky_atc_mobile == false %} hidden md:block{% endif %}">
+    <div class="sticky-atc-panel__inner container flex items-center">
       {%- if featured_media -%}
-        <div class="card__media{% if settings.blend_product_images %} image-blend{% endif %}">
-          {%- liquid
-            assign image_width = 44
-            if featured_media.preview_image.aspect_ratio >= 1
-              assign image_width = 56
-            endif
-          -%}
-          {% render 'image', image: featured_media.preview_image, src_width: image_width, srcset_2x: true %}
+        <div class="sticky-atc-panel__media{% if settings.blend_product_images %} image-blend{% endif %}">
+          {% render 'image', image: featured_media.preview_image, src_width: 56, srcset_2x: true %}
         </div>
       {%- endif -%}
 
-      <div class="card__info">
-        <p class="sticky-atc-panel__heading h6 regular-text text-current">
-          {{ product.title | escape | truncate: 70 }}
-        </p>
-
-        {%- render 'price', product: product -%}
+      <div class="sticky-atc-panel__info">
+        <p class="sticky-atc-panel__heading">{{ product.title | escape | truncate: 60 }}</p>
+        <div class="sticky-atc-panel__price">{%- render 'price', product: product -%}</div>
       </div>
 
-      <div class="card__buttons">
-        {%- liquid
-          if has_variant_picker
-            assign anchor = "variants"
-          else
-            assign anchor = "product-info"
-          endif
-        -%}
-        {%- if product.has_only_default_variant -%}
-          <a href="#{{ anchor }}" rel="nofollow" class="btn btn--secondary btn--sm">
-            {{- 'products.product.view_details' | t -}}
-          </a>
-        {%- else -%}
-          <a class="btn btn--secondary btn--sm" href="#{{ anchor }}" rel="nofollow">
-            {{- 'products.product.choose_options' | t -}}
-          </a>
-        {%- endif -%}
-      </div>
+      <product-form class="sticky-atc-panel__form">
+        <div class="alert mb-8 bg-error-bg text-error-text js-form-error text-start" role="alert" hidden></div>
+        {%- form 'product', product, class: 'js-product-form js-product-form-main', id: product_form_id, novalidate: 'novalidate' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+          <div class="sticky-atc-panel__controls flex items-center">
+            {% render 'quantity-input', layout_style: 'combined' %}
+
+            {%- capture add_to_cart_text -%}
+              {%- if product.template_suffix contains 'preorder' -%}
+                {{- 'products.product.preorder' | t -}}
+              {%- else -%}
+                {{- 'products.product.add_to_cart' | t -}}
+              {%- endif -%}
+            {%- endcapture -%}
+
+            <button type="submit" data-add-to-cart-text="{{ add_to_cart_text | escape }}" class="btn btn--primary sticky-atc-panel__btn" name="add"{% if product.available == false or section.settings.select_first_variant == false and product.variants.size > 1 %} disabled{% endif %}>
+              {% if section.settings.select_first_variant == false and product.variants.size > 1 -%}
+                {{ "products.variant.not_selected" | t }}
+              {%- elsif product.available -%}
+                {{- add_to_cart_text -}}
+              {%- else -%}
+                {{- 'products.product.sold_out' | t -}}
+              {%- endif -%}
+            </button>
+          </div>
+        {%- endform -%}
+      </product-form>
     </div>
   </sticky-atc-panel>
 {%- endif -%}
@@ -1295,81 +1315,81 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "A card of your live promotions shown on the product page. Fill in an offer and toggle it on. Add a link to send shoppers to a collection or product (cross-sell). Optional start/end dates hide an offer automatically. Manage everything here — no code changes needed."
+          "content": "A horizontal carousel of your live promotions. Fill in an offer and toggle it on; pick an icon; add a link to a collection/product for cross-sell. Optional start/end dates auto-hide an offer. Card colours rotate through the brand palette automatically. No code changes needed."
         },
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Heading",
-          "default": "Actieve aanbiedingen"
-        },
-        {
-          "type": "text",
-          "id": "heading_icon",
-          "label": "Heading icon (emoji)",
-          "default": "🔥"
-        },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Actieve aanbiedingen" },
+        { "type": "text", "id": "subheading", "label": "Subheading", "default": "Profiteer nu van onze beste deals" },
+        { "type": "text", "id": "view_all_text", "label": "\"View all\" link text", "default": "Alle aanbiedingen bekijken" },
+        { "type": "url", "id": "view_all_link", "label": "\"View all\" link (optional)" },
         { "type": "header", "content": "Offer 1" },
         { "type": "checkbox", "id": "offer_1_enabled", "label": "Show this offer", "default": true },
-        { "type": "text", "id": "offer_1_icon", "label": "Icon (emoji)", "default": "🎁" },
+        { "type": "select", "id": "offer_1_icon", "label": "Icon", "default": "price_tag", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_1_title", "label": "Title", "default": "Koop 2, ontvang 10% korting" },
-        { "type": "text", "id": "offer_1_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_1_text", "label": "Description (optional)", "default": "Geldig op alle producten" },
+        { "type": "text", "id": "offer_1_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_1_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_1_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_1_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 2" },
         { "type": "checkbox", "id": "offer_2_enabled", "label": "Show this offer", "default": true },
-        { "type": "text", "id": "offer_2_icon", "label": "Icon (emoji)", "default": "🚚" },
+        { "type": "select", "id": "offer_2_icon", "label": "Icon", "default": "truck", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_2_title", "label": "Title", "default": "Gratis verzending vanaf €75" },
-        { "type": "text", "id": "offer_2_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_2_text", "label": "Description (optional)", "default": "Bestel voor minimaal €75" },
+        { "type": "text", "id": "offer_2_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_2_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_2_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_2_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 3" },
         { "type": "checkbox", "id": "offer_3_enabled", "label": "Show this offer", "default": true },
-        { "type": "text", "id": "offer_3_icon", "label": "Icon (emoji)", "default": "🎁" },
+        { "type": "select", "id": "offer_3_icon", "label": "Icon", "default": "gift", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_3_title", "label": "Title", "default": "Gratis cadeau bij bestellingen boven €100" },
-        { "type": "text", "id": "offer_3_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_3_text", "label": "Description (optional)", "default": "Ontvang een gratis cadeau" },
+        { "type": "text", "id": "offer_3_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_3_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_3_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_3_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 4" },
         { "type": "checkbox", "id": "offer_4_enabled", "label": "Show this offer", "default": true },
-        { "type": "text", "id": "offer_4_icon", "label": "Icon (emoji)", "default": "💰" },
+        { "type": "select", "id": "offer_4_icon", "label": "Icon", "default": "percent", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_4_title", "label": "Title", "default": "Extra korting op geselecteerde producten" },
-        { "type": "text", "id": "offer_4_text", "label": "Subtitle (optional)", "default": "Bekijk de aanbiedingen" },
+        { "type": "text", "id": "offer_4_text", "label": "Description (optional)", "default": "Profiteer van speciale aanbiedingen" },
+        { "type": "text", "id": "offer_4_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_4_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell", "default": "/collections/all" },
         { "type": "text", "id": "offer_4_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_4_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 5" },
         { "type": "checkbox", "id": "offer_5_enabled", "label": "Show this offer", "default": true },
-        { "type": "text", "id": "offer_5_icon", "label": "Icon (emoji)", "default": "📦" },
+        { "type": "select", "id": "offer_5_icon", "label": "Icon", "default": "box", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_5_title", "label": "Title", "default": "Bundel & Bespaar" },
-        { "type": "text", "id": "offer_5_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_5_text", "label": "Description (optional)", "default": "Combineer en bespaar" },
+        { "type": "text", "id": "offer_5_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_5_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_5_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_5_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 6" },
         { "type": "checkbox", "id": "offer_6_enabled", "label": "Show this offer", "default": false },
-        { "type": "text", "id": "offer_6_icon", "label": "Icon (emoji)" },
+        { "type": "select", "id": "offer_6_icon", "label": "Icon", "default": "star", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_6_title", "label": "Title" },
-        { "type": "text", "id": "offer_6_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_6_text", "label": "Description (optional)" },
+        { "type": "text", "id": "offer_6_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_6_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_6_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_6_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 7" },
         { "type": "checkbox", "id": "offer_7_enabled", "label": "Show this offer", "default": false },
-        { "type": "text", "id": "offer_7_icon", "label": "Icon (emoji)" },
+        { "type": "select", "id": "offer_7_icon", "label": "Icon", "default": "check_mark", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_7_title", "label": "Title" },
-        { "type": "text", "id": "offer_7_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_7_text", "label": "Description (optional)" },
+        { "type": "text", "id": "offer_7_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_7_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_7_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_7_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" },
         { "type": "header", "content": "Offer 8" },
         { "type": "checkbox", "id": "offer_8_enabled", "label": "Show this offer", "default": false },
-        { "type": "text", "id": "offer_8_icon", "label": "Icon (emoji)" },
+        { "type": "select", "id": "offer_8_icon", "label": "Icon", "default": "clock", "options": [ {"value":"none","label":"None"}, {"value":"gift","label":"Gift"}, {"value":"truck","label":"Delivery"}, {"value":"percent","label":"Percent"}, {"value":"price_tag","label":"Tag"}, {"value":"box","label":"Box"}, {"value":"credit_card","label":"Card"}, {"value":"star","label":"Star"}, {"value":"check_mark","label":"Check"}, {"value":"clock","label":"Clock"} ] },
         { "type": "text", "id": "offer_8_title", "label": "Title" },
-        { "type": "text", "id": "offer_8_text", "label": "Subtitle (optional)" },
+        { "type": "text", "id": "offer_8_text", "label": "Description (optional)" },
+        { "type": "text", "id": "offer_8_cta", "label": "Link text", "default": "Bekijk aanbieding" },
         { "type": "url", "id": "offer_8_link", "label": "Link (optional)", "info": "Collection, product or page for cross-sell" },
         { "type": "text", "id": "offer_8_start", "label": "Start date (optional)", "info": "YYYY-MM-DD — hidden before this date" },
         { "type": "text", "id": "offer_8_end", "label": "End date (optional)", "info": "YYYY-MM-DD — hidden after this date" }
