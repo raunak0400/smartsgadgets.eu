@@ -21,3 +21,9 @@
 .product-inventory__urgency p {
   display: inline;
 }
+
+/* Amazon-style emphasis on the "Only X left" notice when stock is low */
+product-inventory[data-inventory-level="low"] .product-inventory__status,
+product-inventory[data-inventory-level="very_low"] .product-inventory__status {
+  font-weight: 700;
+}
