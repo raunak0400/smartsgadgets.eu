@@ -57,6 +57,7 @@
           </span>
           <span class="color-family-swatches__name">{{ current_color_name }}</span>
           <span class="color-family-swatches__price">{{ product.price | money }}</span>
+          {%- render 'swatch-stock', product: product -%}
         {%- endif -%}
       </span>
       {%- for linked_product in color_family -%}
@@ -83,6 +84,7 @@
               </span>
               <span class="color-family-swatches__name">{{ linked_color_name }}</span>
               <span class="color-family-swatches__price">{{ linked_product.price | money }}</span>
+              {%- render 'swatch-stock', product: linked_product -%}
             {%- endif -%}
           </a>
         {%- endif -%}

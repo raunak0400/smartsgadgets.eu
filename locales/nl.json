@@ -185,7 +185,8 @@
       "in_stock": "Op voorraad",
       "low_stock": "Beperkte voorraad",
       "very_low_stock": "Zeer geringe voorraad",
-      "only_x_left": "Nog maar {{ quantity }} op voorraad!",
+      "only_x_left": "{{ quantity }} op voorraad",
+      "left_in_stock": "Nog maar {{ quantity }} op voorraad",
       "backordered": "Nabesteld",
       "available_count": {
         "one": "{{ count }} unit",

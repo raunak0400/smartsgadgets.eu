@@ -1,0 +1,27 @@
+{%- comment -%}
+  Amazon-style per-product stock line for a colour swatch box.
+
+  Parameters:
+  - product {Object} - The product (colour) to show stock for.
+  - threshold {Number} - Show "Only X left" when quantity is at or below this
+    (optional, defaults to settings.inventory_threshold_low, else 10).
+
+  Usage:
+  {% render 'swatch-stock', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign inv_threshold = threshold | default: settings.inventory_threshold_low | default: 10
+  assign v = product.selected_or_first_available_variant
+  assign qty = v.inventory_quantity
+  assign tracked = false
+  if v.inventory_management != blank
+    assign tracked = true
+  endif
+-%}
+{%- if product.available == false -%}
+  <span class="color-family-swatches__stock color-family-swatches__stock--out">{{ 'products.product.sold_out' | t }}</span>
+{%- elsif tracked and qty > 0 and qty <= inv_threshold -%}
+  <span class="color-family-swatches__stock color-family-swatches__stock--low">{{ 'products.inventory.left_in_stock' | t: quantity: qty }}</span>
+{%- else -%}
+  <span class="color-family-swatches__stock">{{ 'products.inventory.in_stock' | t }}</span>
+{%- endif -%}
