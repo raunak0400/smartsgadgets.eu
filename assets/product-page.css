@@ -3,6 +3,9 @@
   z-index: 4;
 }
 
+/* .color-family-swatches is styled in main.css (Amazon-style photo boxes).
+   The old circular rules were removed from here to stop overriding it. */
+
 .product-info__rating-link {
   display: flex;
   align-items: center;

@@ -4435,11 +4435,11 @@ label[data-swatch]::before {
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
-  width: 104px;
+  width: 84px;
   overflow: hidden;
   box-sizing: border-box;
-  border: 1px solid rgba(var(--text-color)/0.2);
-  border-radius: 6px;
+  border: 1px solid rgba(var(--text-color)/0.18);
+  border-radius: 8px;
   background: rgb(var(--bg-color));
   text-decoration: none;
   color: inherit;
@@ -4466,7 +4466,7 @@ a.color-family-swatches__item:hover {
   justify-content: center;
   width: 100%;
   aspect-ratio: 1 / 1;
-  padding: 8px;
+  padding: 6px;
   box-sizing: border-box;
 }
 
@@ -4476,24 +4476,17 @@ a.color-family-swatches__item:hover {
   object-fit: contain;
 }
 
+/* Amazon-style: colour name lives in the "Kleur: X" label above, not in the box */
 .color-family-swatches__name {
-  width: 100%;
-  padding: 0 6px;
-  overflow: hidden;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 650;
-  color: rgb(var(--text-color));
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  box-sizing: border-box;
+  display: none;
 }
 
 .color-family-swatches__price {
   width: 100%;
-  padding: 2px 6px 8px;
+  padding: 3px 4px 7px;
   text-align: center;
   font-size: 12px;
+  line-height: 1.2;
   color: rgb(var(--text-color));
   box-sizing: border-box;
 }
@@ -4544,7 +4537,7 @@ a.color-family-swatches__item:hover {
 
 @media screen and (max-width: 749px) {
   .color-family-swatches__item {
-    width: 92px;
+    width: 76px;
   }
 }
 
