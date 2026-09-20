@@ -131,6 +131,7 @@
         },
         "active-offers": {
           "type": "active-offers",
+          "disabled": true,
           "settings": {}
         },
         "custom_liquid_CVnnRe": {
