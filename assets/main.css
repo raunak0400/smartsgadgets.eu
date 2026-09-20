@@ -4558,10 +4558,11 @@ a.color-family-swatches__item:hover {
   border-radius: 50%;
 }
 
-/* Product-card colour swatches: force perfect circles. The page-context box
-   styling on .color-family-swatches__item (border-radius/overflow) must not
-   leak into card swatches; reset it and pin square dimensions. */
-.card--product .color-family-swatches--card .color-family-swatches__item {
+/* Card colour swatches: force perfect circles everywhere the card context is
+   used (collection cards AND the homepage "Beste verkopers" grid). The
+   page-context box styling on .color-family-swatches__item (border-radius /
+   overflow) must not leak into card swatches; reset it and pin square dims. */
+.color-family-swatches--card .color-family-swatches__item {
   width: 22px;
   height: 22px;
   border: 0;
@@ -4569,24 +4570,26 @@ a.color-family-swatches__item:hover {
   border-radius: 50%;
   overflow: visible;
 }
-.card--product .color-family-swatches--card .color-family-swatches__frame {
+.color-family-swatches--card .color-family-swatches__frame {
   width: 22px;
   height: 22px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
 }
-.card--product .color-family-swatches--card .color-family-swatches__image {
+.color-family-swatches--card .color-family-swatches__image {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
 /* Variant-style card swatches (if a product uses real colour variants) */
-.card--product .card__swatches .opt-label--swatch,
-.card--product .card__swatches .opt-label__media,
-.card--product .card__swatches .opt-label--swatch img {
+.card__swatches .opt-label--swatch,
+.card__swatches .opt-label__media,
+.card__swatches .opt-label--swatch img {
   border-radius: 50% !important;
 }
-.card--product .card__swatches .opt-label--swatch {
+.card__swatches .opt-label--swatch {
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }
