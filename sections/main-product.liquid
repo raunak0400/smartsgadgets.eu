@@ -804,7 +804,8 @@
 </script>
 
 {%- if section.settings.sticky_atc_panel -%}
-  <link rel="stylesheet" href="{{ 'sticky-atc-panel.css' | asset_url }}" media="print" onload="this.media='all'">
+  {%- comment -%} Load blocking (not async) so the always-visible bar is styled on first paint — avoids a flash of unstyled content on refresh. {%- endcomment -%}
+  {{ 'sticky-atc-panel.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'sticky-atc-panel.js' | asset_url }}" defer="defer"></script>
 
   <sticky-atc-panel class="sticky-atc-panel fixed bottom-0{% if section.settings.sticky_atc_mobile == false %} hidden md:block{% endif %}">
