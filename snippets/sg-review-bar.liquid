@@ -46,12 +46,22 @@
   @media (max-width: 989px) {
     :root { --sg-review-bar-h: 40px; }
 
-    /* Push the whole site down below the bar */
-    html.sg-review-bar-on body { padding-top: var(--sg-review-bar-h); }
+    /* Push the header below the bar WITHOUT shifting the page's normal flow.
+       (Shifting <body>/<main> collapses the homepage hero, whose height is
+       measured by JS.) */
 
-    /* On the homepage the header is absolutely positioned over the hero,
-       so it needs its own offset to drop below the bar. */
-    html.sg-review-bar-on body.template-index .sg-header { top: var(--sg-review-bar-h) !important; }
+    /* Homepage: the header is an absolute overlay on the hero, so moving its
+       `top` drops it below the bar and leaves the hero/main flow untouched. */
+    html.sg-review-bar-on body.template-index .sg-header {
+      top: var(--sg-review-bar-h) !important;
+    }
+
+    /* Inner pages: the header sits in normal flow, so a top margin on the
+       header section pushes it (and the content below) down. There is no
+       top-of-page slideshow here, so shifting the flow is safe. */
+    html.sg-review-bar-on body:not(.template-index) .cc-custom-header {
+      margin-top: var(--sg-review-bar-h);
+    }
 
     /* Always hide the app's floating badge on mobile so it can't overlap the
        header. This bar replaces it here. */
