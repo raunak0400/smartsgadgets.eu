@@ -5813,3 +5813,16 @@ body > .os-scrollbar {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }
+
+/* Pin the WebwinkelKeur / Valued reviews badge (root #wwkPreactRoot, injected
+   by the app SDK) to the bottom-right so it's visible but never covers the
+   header/nav on load. Reposition only — no size change (that broke it before).
+   If a deeper nested fixed element needs targeting, refine with its real
+   selector, or set the position in the WebwinkelKeur app dashboard. */
+#wwkPreactRoot > * {
+  position: fixed !important;
+  inset: auto 14px 14px auto !important;
+  top: auto !important;
+  left: auto !important;
+  z-index: 15 !important;
+}
