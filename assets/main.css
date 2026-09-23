@@ -5813,12 +5813,3 @@ body > .os-scrollbar {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }
-
-/* WebwinkelKeur / Valued reviews widget (root #wwkPreactRoot, injected by the
-   app SDK). Keep its floating pieces BENEATH the header so it can never sit on
-   top of / block the navigation on load. z-index only — no reposition/resize,
-   to avoid breaking the app's own widget layout. For an actual reposition
-   (e.g. bottom-right / load collapsed) use the WebwinkelKeur app dashboard. */
-#wwkPreactRoot > * {
-  z-index: 10 !important;
-}
