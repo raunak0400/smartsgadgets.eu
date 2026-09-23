@@ -1,0 +1,152 @@
+{%- comment -%}
+  Mobile-only dismissible review trust bar (WebwinkelKeur score).
+
+  - Sits fixed at the very top and pushes the whole site (header included)
+    down below it, so it never overlaps the header/heading.
+  - The x button hides it and remembers the choice (localStorage), returning
+    the layout to how it naturally is.
+  - The app's own floating WebwinkelKeur badge is hidden on mobile so it can't
+    overlap the header; this bar replaces it there. Desktop keeps the app badge.
+
+  To update the numbers, edit sg_review_score / sg_review_count below.
+{%- endcomment -%}
+
+{%- assign sg_review_score = '9,5' -%}
+{%- assign sg_review_count = '4' -%}
+
+<script>
+  (function () {
+    try {
+      var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
+      if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
+        document.documentElement.classList.add('sg-review-bar-on');
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<div class="sg-review-bar" role="region" aria-label="Klantbeoordeling">
+  <div class="sg-review-bar__inner">
+    <span class="sg-review-bar__score">{{ sg_review_score }}</span>
+    <span class="sg-review-bar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="sg-review-bar__count">{{ sg_review_count }} Reviews</span>
+    <span class="sg-review-bar__brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      WebwinkelKeur
+    </span>
+  </div>
+  <button type="button" class="sg-review-bar__close" aria-label="Sluiten">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+</div>
+
+<style>
+  .sg-review-bar { display: none; }
+
+  @media (max-width: 989px) {
+    :root { --sg-review-bar-h: 40px; }
+
+    /* Push the whole site down below the bar */
+    html.sg-review-bar-on body { padding-top: var(--sg-review-bar-h); }
+
+    /* On the homepage the header is absolutely positioned over the hero,
+       so it needs its own offset to drop below the bar. */
+    html.sg-review-bar-on body.template-index .sg-header { top: var(--sg-review-bar-h) !important; }
+
+    /* Always hide the app's floating badge on mobile so it can't overlap the
+       header. This bar replaces it here. */
+    #wwkPreactRoot { display: none !important; }
+
+    html.sg-review-bar-on .sg-review-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--sg-review-bar-h);
+      padding: 0 10px 0 12px;
+      z-index: 60;
+      background: #e6007e;
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+    }
+
+    .sg-review-bar__inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .sg-review-bar__score {
+      flex: none;
+      background: #ffffff;
+      color: #e6007e;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+    }
+
+    .sg-review-bar__stars {
+      flex: none;
+      color: #ffd21e;
+      letter-spacing: 1px;
+      font-size: 13px;
+    }
+
+    .sg-review-bar__count { flex: none; font-weight: 600; }
+
+    .sg-review-bar__brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sg-review-bar__brand svg { flex: none; width: 14px; height: 14px; }
+
+    .sg-review-bar__close {
+      flex: none;
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 0;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .sg-review-bar__close svg { width: 18px; height: 18px; }
+  }
+
+  /* Below the smallest phones, drop the brand label so the bar never wraps. */
+  @media (max-width: 359px) {
+    .sg-review-bar__brand { display: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    var bar = document.querySelector('.sg-review-bar');
+    if (!bar) return;
+    var closeBtn = bar.querySelector('.sg-review-bar__close');
+    if (!closeBtn) return;
+    closeBtn.addEventListener('click', function () {
+      document.documentElement.classList.remove('sg-review-bar-on');
+      try { localStorage.setItem('sgReviewBarDismissed', '1'); } catch (e) {}
+    });
+  })();
+</script>

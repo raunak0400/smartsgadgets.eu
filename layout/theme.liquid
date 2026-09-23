@@ -302,6 +302,8 @@
 </head>
 
 <body class="template-{{ request.page_type }}{% if settings.animations_enabled != "disabled" %} cc-animate-enabled{% endif %}">
+  {%- render 'sg-review-bar' -%}
+
   <a class="skip-link btn btn--primary visually-hidden" href="#main-content" data-ce-role="skip">
     {{- 'accessibility.skip_to_content' | t -}}
   </a>
