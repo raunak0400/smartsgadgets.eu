@@ -5821,7 +5821,7 @@ body > .os-scrollbar {
    selector, or set the position in the WebwinkelKeur app dashboard. */
 #wwkPreactRoot > * {
   position: fixed !important;
-  inset: auto 14px 14px auto !important;
+  inset: auto 14px 92px auto !important;  /* above the Chat bubble */
   top: auto !important;
   left: auto !important;
   z-index: 15 !important;
