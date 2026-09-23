@@ -147,9 +147,9 @@
 
   /* Desktop category bar (visible categories below the header) */
   #shopify-section-{{ section.id }} .sg-header__category-bar {
-    width: min(1320px, 100%);
-    margin: 0 auto;
-    padding: 0 48px 14px;
+    width: 100%;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.32);
   }
 
   #shopify-section-{{ section.id }} .sg-header__category-bar ul {
@@ -159,8 +159,9 @@
     flex-wrap: wrap;
     gap: clamp(14px, 2vw, 30px);
     list-style: none;
-    margin: 0;
-    padding: 0;
+    width: min(1320px, 100%);
+    margin: 0 auto;
+    padding: 11px 48px;
   }
 
   #shopify-section-{{ section.id }} .sg-header__category-bar a {
@@ -180,8 +181,8 @@
   }
 
   body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__category-bar {
+    background: #f7f7f7;
     border-top: 1px solid #e5e5e5;
-    padding-top: 12px;
   }
 
   body:not(.template-index) #shopify-section-{{ section.id }} .sg-header__category-bar a {
