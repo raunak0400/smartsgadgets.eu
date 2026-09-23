@@ -5813,24 +5813,3 @@ body > .os-scrollbar {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }
-
-/* Reposition the floating WebwinkelKeur / Valued reviews badge so it can never
-   overlap the header on load. The badge is injected by the app SDK (not theme
-   markup), so these are best-effort selectors for the floating/sidebar variant
-   — refine with the real id/class if it still overlaps. Deliberately does NOT
-   touch the in-flow product rating widget (valued-widget[layout="rating"]) or
-   the footer banner (.sg-footer__badge). */
-valued-widget[layout="sidebar"],
-[id*="valued-sidebar"],
-[class*="valued-sidebar"],
-[class*="valued-floating"],
-[class*="valued-badge"],
-[class*="webwinkelkeur-sidebar"],
-[class*="wwk-sidebar"] {
-  position: fixed !important;
-  inset: auto 12px 12px auto !important;
-  top: auto !important;
-  left: auto !important;
-  z-index: 6 !important;
-  max-width: 220px !important;
-}
