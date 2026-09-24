@@ -729,7 +729,36 @@
     },
     "custom_why_smartsgadgets": {
       "type": "custom-why-smartsgadgets",
-      "settings": {}
+      "blocks": {
+        "reason_1": {
+          "type": "reason",
+          "settings": {
+            "icon": "bulb",
+            "heading": "Slimme gadgets, slim gekozen",
+            "text": "Ontdek innovatieve en praktische technologie die je dagelijks leven slimmer, comfortabeler en eenvoudiger maakt."
+          }
+        },
+        "reason_2": {
+          "type": "reason",
+          "settings": {
+            "icon": "badge",
+            "heading": "Vertrouwde merken",
+            "text": "Shop kwaliteitsproducten van zorgvuldig geselecteerde en betrouwbare merken, gekozen voor hun innovatie, functionaliteit en gebruiksgemak."
+          }
+        },
+        "reason_3": {
+          "type": "reason",
+          "settings": {
+            "icon": "return",
+            "heading": "Zorgeloos retourneren",
+            "text": "Je ontvangt je aankoopbedrag en standaard verzendkosten terug. Beschadiging door onnodig gebruik kan tot waardevermindering leiden."
+          }
+        }
+      },
+      "block_order": ["reason_1", "reason_2", "reason_3"],
+      "settings": {
+        "heading": "Waarom SmartsGadgets?"
+      }
     },
     "custom_testimonials": {
       "type": "custom-testimonials",
