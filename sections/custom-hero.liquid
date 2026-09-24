@@ -105,6 +105,15 @@
       font-size: 15px;
     }
   }
+
+  /* When the mobile trust bar is showing, the header sits 40px lower than
+     usual — nudge the hero heading down a bit too so it isn't cramped
+     against the header. */
+  @media (max-width: 989px) {
+    html.sg-trustbar-on #shopify-section-{{ section.id }} .sg-hero__content {
+      padding-top: 28px;
+    }
+  }
 {%- endstyle -%}
 
 <div class="sg-hero">
