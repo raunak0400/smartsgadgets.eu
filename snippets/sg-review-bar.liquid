@@ -1,15 +1,33 @@
 {%- comment -%}
   Mobile-only dismissible review trust bar (WebwinkelKeur score).
 
-  - Fixed at the very top; the header is pushed below it (its `top` on the
-    homepage overlay, a `margin-top` on inner pages where it's in normal
-    flow), so it never overlaps.
-  - The x button hides it and remembers the choice (localStorage), returning
-    the layout to normal.
-  - Does NOT touch #wwkPreactRoot (the app's own floating badge). That badge
-    already never renders on mobile (confirmed: its container is empty
-    there), and hiding it via CSS was found to make the app's own script
-    misbehave and break the page layout — so it's left alone entirely.
+  Two different, page-type-appropriate mechanisms push the header below it
+  (deliberately NOT a single one-size-fits-all hack — that's what kept
+  regressing):
+
+  - Homepage (`template-index`): the header overlays the hero via
+    `position: absolute`. The bar floats `fixed` over everything, and ONLY
+    the header's `top` is shifted to clear it. This never touches the hero's
+    own box/flow, so it can't disturb the hero's own sizing. Confirmed
+    correct in isolated testing.
+  - Every other page (product, collection, etc.): the header is already in
+    normal document flow there (not an overlay). So the bar is rendered as
+    an ordinary, non-fixed block — literally the first element in <body>,
+    before the header — and normal CSS flow pushes the header (and
+    everything after it) down. No margin hack, no JS timing dependency:
+    this is the same mechanism any "announcement bar above the header" uses.
+    (An earlier `margin-top` hack on the header corrupted the product image
+    gallery's own height measurement; a JS "wait for window.load, then
+    dispatch resize" workaround was tried next but that resize event also
+    retriggered the theme's own header-position script, undoing the shift.
+    Both are removed — this static-flow approach needs neither.)
+
+  The x button hides it and remembers the choice (localStorage).
+
+  Does NOT touch #wwkPreactRoot (the app's own floating badge). That badge
+  already never renders on mobile (confirmed empty container there), and
+  hiding it via CSS made the app's own script misbehave and break the page
+  layout — so it's left alone entirely.
 
   To update the numbers, edit sg_review_score / sg_review_count below.
 {%- endcomment -%}
@@ -21,28 +39,8 @@
   (function () {
     try {
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
-      if (dismissed || !window.matchMedia('(max-width: 989px)').matches) return;
-
-      /* Activate only after the page has fully loaded (all images, all
-         gallery/slideshow scripts already measured their layout once) and
-         one more paint has settled — then nudge any carousels to
-         re-measure. Turning this on immediately, before other scripts get a
-         chance to run their own size calculations, was corrupting those
-         calculations on some pages (e.g. the product image gallery
-         collapsing to a thumbnail). Waiting sidesteps that race entirely. */
-      function activate() {
-        requestAnimationFrame(function () {
-          document.documentElement.classList.add('sg-review-bar-on');
-          requestAnimationFrame(function () {
-            try { window.dispatchEvent(new Event('resize')); } catch (e2) {}
-          });
-        });
-      }
-
-      if (document.readyState === 'complete') {
-        activate();
-      } else {
-        window.addEventListener('load', activate);
+      if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
+        document.documentElement.classList.add('sg-review-bar-on');
       }
     } catch (e) {}
   })();
@@ -69,35 +67,39 @@
   @media (max-width: 989px) {
     :root { --sg-review-bar-h: 40px; }
 
-    /* Homepage: the header is an absolute overlay on the hero, so moving its
-       `top` drops it below the bar and leaves the hero/main flow untouched. */
-    html.sg-review-bar-on body.template-index .sg-header {
-      top: var(--sg-review-bar-h) !important;
-    }
-
-    /* Inner pages: the header sits in normal flow, so a top margin on the
-       header section pushes it (and the content below) down. */
-    html.sg-review-bar-on body:not(.template-index) .cc-custom-header {
-      margin-top: var(--sg-review-bar-h);
-    }
-
     html.sg-review-bar-on .sg-review-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      width: 100%;
       height: var(--sg-review-bar-h);
       padding: 0 10px 0 12px;
-      z-index: 60;
       background: #e6007e;
       color: #ffffff;
       font-size: 13px;
       line-height: 1;
+      box-sizing: border-box;
+    }
+
+    /* Homepage: float over everything; shift the header's `top` to clear it. */
+    html.sg-review-bar-on body.template-index .sg-review-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
+    }
+
+    html.sg-review-bar-on body.template-index .sg-header {
+      top: var(--sg-review-bar-h) !important;
+    }
+
+    /* Every other page: normal in-flow block, first in <body> — ordinary
+       document flow pushes the (already in-flow) header down naturally. */
+    html.sg-review-bar-on body:not(.template-index) .sg-review-bar {
+      position: static;
     }
 
     .sg-review-bar__inner {
