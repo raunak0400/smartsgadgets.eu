@@ -123,11 +123,16 @@
   {%- if section.index == 1 -%}
     /* When this slideshow is the first section on the page (sits right
        below the header) and the mobile trust bar is showing, the header is
-       40px lower than usual — nudge the slide text down a bit too so it
-       isn't cramped against the header. */
+       40px lower than usual. This slide's heading/promo text is baked into
+       the banner image itself (not a live text layer), so it can't be
+       nudged independently — instead, pad the whole section with a dark
+       fill (matching the image's own tone) to create breathing room between
+       the header and the image, rather than pushing the image down and
+       exposing the page's white background behind it. */
     @media (max-width: 989px) {
-      html.sg-trustbar-on #{{ section.id }} .slideshow__text {
-        padding-top: 28px;
+      html.sg-trustbar-on #{{ section.id }} {
+        padding-top: 20px;
+        background: #000000;
       }
     }
   {%- endif -%}
