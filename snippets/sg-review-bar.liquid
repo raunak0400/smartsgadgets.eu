@@ -17,11 +17,12 @@
 <script>
   (function () {
     try {
-      /* DIAGNOSTIC ONLY (temporary): split into 3 independent flags so we can
-         find exactly which piece breaks the homepage in one test round.
-           ?diag=bar       -> bar UI + header offset only (no wwk hide)
-           ?diag=headeronly-> header offset only (no bar shown, no wwk hide)
-           ?diag=hidewwk   -> hide #wwkPreactRoot only (no bar, no header offset)
+      /* DIAGNOSTIC ONLY (temporary): find exactly which piece breaks the
+         homepage.
+           ?diag=bar        -> bar UI + header offset only (no wwk hide)
+           ?diag=headeronly -> header offset only (no bar, no wwk hide)
+           ?diag=hidewwk    -> hide #wwkPreactRoot only (no bar, no header offset)
+           ?diag=all        -> all three together (the real production combo)
          Nothing happens without one of these params. */
       var diag = new URLSearchParams(location.search).get('diag');
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
@@ -34,6 +35,9 @@
       }
       if (!dismissed && isMobile && diag === 'hidewwk') {
         document.documentElement.classList.add('sg-diag-hidewwk');
+      }
+      if (!dismissed && isMobile && diag === 'all') {
+        document.documentElement.classList.add('sg-diag-bar', 'sg-diag-hidewwk');
       }
     } catch (e) {}
   })();
