@@ -1,0 +1,97 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} .sg-why__desktop {
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__desktop img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__mobile {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    list-style: none;
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__scroll-item {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__scroll-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-why__desktop {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__mobile {
+      display: block;
+      padding: 20px 0;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sg-why">
+  <div class="sg-why__desktop">
+    <img
+      src="{{ 'hello.png' | asset_url }}"
+      alt="SmartsGadgets — Slimme gadgets, slim gekozen. Vertrouwde merken. Zorgeloos retourneren."
+      width="1024"
+      height="221"
+      loading="lazy"
+    >
+  </div>
+
+  <div class="sg-why__mobile">
+    <ul class="sg-why__scroll" role="list">
+      <li class="sg-why__scroll-item">
+        <img src="{{ 'banner1.png' | asset_url }}" alt="Slimme gadgets, slim gekozen" width="365" height="221" loading="lazy">
+      </li>
+      <li class="sg-why__scroll-item">
+        <img src="{{ 'banner2.png' | asset_url }}" alt="Vertrouwde merken" width="351" height="221" loading="lazy">
+      </li>
+      <li class="sg-why__scroll-item">
+        <img src="{{ 'banner3.png' | asset_url }}" alt="Zorgeloos retourneren" width="319" height="221" loading="lazy">
+      </li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom: Why SmartsGadgets",
+  "tag": "section",
+  "class": "cc-custom-why-smartsgadgets",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Custom: Why SmartsGadgets"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}
