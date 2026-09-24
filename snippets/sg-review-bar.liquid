@@ -1,12 +1,15 @@
 {%- comment -%}
   Mobile-only dismissible review trust bar (WebwinkelKeur score).
 
-  - Sits fixed at the very top and pushes the whole site (header included)
-    down below it, so it never overlaps the header/heading.
+  - Fixed at the very top; the header is pushed below it (its `top` on the
+    homepage overlay, a `margin-top` on inner pages where it's in normal
+    flow), so it never overlaps.
   - The x button hides it and remembers the choice (localStorage), returning
-    the layout to how it naturally is.
-  - The app's own floating WebwinkelKeur badge is hidden on mobile so it can't
-    overlap the header; this bar replaces it there. Desktop keeps the app badge.
+    the layout to normal.
+  - Does NOT touch #wwkPreactRoot (the app's own floating badge). That badge
+    already never renders on mobile (confirmed: its container is empty
+    there), and hiding it via CSS was found to make the app's own script
+    misbehave and break the page layout — so it's left alone entirely.
 
   To update the numbers, edit sg_review_score / sg_review_count below.
 {%- endcomment -%}
@@ -17,27 +20,9 @@
 <script>
   (function () {
     try {
-      /* DIAGNOSTIC ONLY (temporary): find exactly which piece breaks the
-         homepage.
-           ?diag=bar        -> bar UI + header offset only (no wwk hide)
-           ?diag=headeronly -> header offset only (no bar, no wwk hide)
-           ?diag=hidewwk    -> hide #wwkPreactRoot only (no bar, no header offset)
-           ?diag=all        -> all three together (the real production combo)
-         Nothing happens without one of these params. */
-      var diag = new URLSearchParams(location.search).get('diag');
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
-      var isMobile = window.matchMedia('(max-width: 989px)').matches;
-      if (!dismissed && isMobile && diag === 'bar') {
-        document.documentElement.classList.add('sg-diag-bar');
-      }
-      if (!dismissed && isMobile && diag === 'headeronly') {
-        document.documentElement.classList.add('sg-diag-headeronly');
-      }
-      if (!dismissed && isMobile && diag === 'hidewwk') {
-        document.documentElement.classList.add('sg-diag-hidewwk');
-      }
-      if (!dismissed && isMobile && diag === 'all') {
-        document.documentElement.classList.add('sg-diag-bar', 'sg-diag-hidewwk');
+      if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
+        document.documentElement.classList.add('sg-review-bar-on');
       }
     } catch (e) {}
   })();
@@ -64,29 +49,19 @@
   @media (max-width: 989px) {
     :root { --sg-review-bar-h: 40px; }
 
-    /* Push the header below the bar WITHOUT shifting the page's normal flow.
-       (Shifting <body>/<main> collapses the homepage hero, whose height is
-       measured by JS.) */
-
     /* Homepage: the header is an absolute overlay on the hero, so moving its
        `top` drops it below the bar and leaves the hero/main flow untouched. */
-    html.sg-diag-bar body.template-index .sg-header,
-    html.sg-diag-headeronly body.template-index .sg-header {
+    html.sg-review-bar-on body.template-index .sg-header {
       top: var(--sg-review-bar-h) !important;
     }
 
     /* Inner pages: the header sits in normal flow, so a top margin on the
-       header section pushes it (and the content below) down. There is no
-       top-of-page slideshow here, so shifting the flow is safe. */
-    html.sg-diag-bar body:not(.template-index) .cc-custom-header,
-    html.sg-diag-headeronly body:not(.template-index) .cc-custom-header {
+       header section pushes it (and the content below) down. */
+    html.sg-review-bar-on body:not(.template-index) .cc-custom-header {
       margin-top: var(--sg-review-bar-h);
     }
 
-    /* Hide the app's floating badge on mobile so it can't overlap the header. */
-    html.sg-diag-hidewwk #wwkPreactRoot { display: none !important; }
-
-    html.sg-diag-bar .sg-review-bar {
+    html.sg-review-bar-on .sg-review-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -174,7 +149,7 @@
     var closeBtn = bar.querySelector('.sg-review-bar__close');
     if (!closeBtn) return;
     closeBtn.addEventListener('click', function () {
-      document.documentElement.classList.remove('sg-diag-bar', 'sg-diag-headeronly', 'sg-diag-hidewwk');
+      document.documentElement.classList.remove('sg-review-bar-on');
       try { localStorage.setItem('sgReviewBarDismissed', '1'); } catch (e) {}
     });
   })();
