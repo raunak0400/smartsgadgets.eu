@@ -5828,3 +5828,16 @@ body > .os-scrollbar {
     z-index: 15 !important;
   }
 }
+
+/* The top "announcement" bar (country/language selector) has no content
+   blocks configured on mobile — its own design intent is for that selector
+   to live in the mobile menu instead (see the section's admin note). It
+   still always renders on mobile as an empty strip; normally this sits
+   unnoticed right at the very top of the page, but with the mobile trust
+   bar pushing content down, it becomes a stray black gap between the trust
+   bar and the header. Hide it in that state only. */
+@media (max-width: 989px) {
+  html.sg-trustbar-on .cc-announcement {
+    display: none;
+  }
+}
