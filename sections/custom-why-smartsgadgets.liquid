@@ -28,23 +28,13 @@
   }
 
   #shopify-section-{{ section.id }} .sg-why__brand {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     margin: 0 0 20px;
   }
 
-  #shopify-section-{{ section.id }} .sg-why__brand svg {
-    width: 28px;
-    height: 28px;
-    color: #ffffff;
-    flex-shrink: 0;
-  }
-
-  #shopify-section-{{ section.id }} .sg-why__brand span {
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 700;
+  #shopify-section-{{ section.id }} .sg-why__brand-logo {
+    display: block;
+    height: 26px;
+    width: auto;
   }
 
   #shopify-section-{{ section.id }} .sg-why__item-icon {
@@ -144,10 +134,6 @@
 {%- capture icon_return -%}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M9 13l3-2 3 2"/></svg>
 {%- endcapture -%}
-{%- capture logo_mark -%}
-  <svg viewBox="0 0 24 24" fill="currentColor"><line x1="15" y1="4" x2="10.2" y2="9" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><line x1="13.8" y1="14" x2="9" y2="19.5" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><circle cx="15" cy="4" r="2.4"/><circle cx="10.2" cy="9" r="3.8"/><circle cx="13.8" cy="14" r="3.8"/><circle cx="9" cy="19.5" r="2.4"/></svg>
-{%- endcapture -%}
-
 <div class="sg-why">
   {%- if section.settings.heading != blank -%}
     <h2 class="sg-why__heading">{{ section.settings.heading }}</h2>
@@ -159,8 +145,14 @@
         <li {{ block.shopify_attributes }}>
           {%- if forloop.first -%}
             <div class="sg-why__brand">
-              {{ logo_mark }}
-              <span>Smarts<strong>Gadgets</strong></span>
+              <img
+                src="{{ 'why-smartsgadgets-logo.png' | asset_url }}"
+                alt="SmartsGadgets"
+                class="sg-why__brand-logo"
+                width="231"
+                height="50"
+                loading="lazy"
+              >
             </div>
           {%- else -%}
             <span class="sg-why__item-icon">
@@ -183,8 +175,14 @@
       <li class="sg-why__card" {{ block.shopify_attributes }}>
         {%- if forloop.first -%}
           <div class="sg-why__brand">
-            {{ logo_mark }}
-            <span>Smarts<strong>Gadgets</strong></span>
+            <img
+              src="{{ 'why-smartsgadgets-logo.png' | asset_url }}"
+              alt="SmartsGadgets"
+              class="sg-why__brand-logo"
+              width="231"
+              height="50"
+              loading="lazy"
+            >
           </div>
         {%- else -%}
           <span class="sg-why__item-icon">
