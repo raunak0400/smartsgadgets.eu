@@ -1,82 +1,205 @@
 {%- style -%}
-  #shopify-section-{{ section.id }} .sg-why__desktop {
-    width: 100%;
+  #shopify-section-{{ section.id }} .sg-why {
+    width: min(1280px, 100%);
+    margin: 0 auto;
+    padding: 56px 48px 0;
   }
 
-  #shopify-section-{{ section.id }} .sg-why__desktop img {
-    display: block;
-    width: 100%;
-    height: auto;
+  #shopify-section-{{ section.id }} .sg-why__heading {
+    margin: 0 0 24px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #111111;
   }
 
-  #shopify-section-{{ section.id }} .sg-why__mobile {
-    display: none;
+  #shopify-section-{{ section.id }} .sg-why__panel {
+    border-radius: 20px;
+    padding: 56px 48px;
+    background: linear-gradient(90deg, #fb9401 0%, #fc5e01 50%, #fc2d05 100%);
   }
 
-  #shopify-section-{{ section.id }} .sg-why__scroll {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  #shopify-section-{{ section.id }} .sg-why__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
     list-style: none;
     margin: 0;
-    padding: 0 20px;
+    padding: 0;
   }
 
-  #shopify-section-{{ section.id }} .sg-why__scroll::-webkit-scrollbar {
+  #shopify-section-{{ section.id }} .sg-why__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__brand svg {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__brand span {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__item-icon {
+    display: block;
+    margin: 0 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__item-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__item-heading {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__item-text {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__mobile-scroll {
     display: none;
   }
 
-  #shopify-section-{{ section.id }} .sg-why__scroll-item {
-    flex: 0 0 78%;
-    scroll-snap-align: start;
-  }
+  @media screen and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .sg-why {
+      padding: 48px 24px 0;
+    }
 
-  #shopify-section-{{ section.id }} .sg-why__scroll-item img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
+    #shopify-section-{{ section.id }} .sg-why__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
   }
 
   @media screen and (max-width: 749px) {
-    #shopify-section-{{ section.id }} .sg-why__desktop {
+    #shopify-section-{{ section.id }} .sg-why {
+      padding: 40px 0 0;
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__heading {
+      margin: 0 0 20px;
+      padding: 0 20px;
+      font-size: 24px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__panel {
       display: none;
     }
 
-    #shopify-section-{{ section.id }} .sg-why__mobile {
-      display: block;
-      padding: 20px 0;
+    #shopify-section-{{ section.id }} .sg-why__mobile-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      list-style: none;
+      margin: 0;
+      padding: 0 20px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__mobile-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__mobile-scroll .sg-why__card {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+      border-radius: 16px;
+      padding: 28px 24px;
+      background: linear-gradient(90deg, #fb9401 0%, #fc5e01 50%, #fc2d05 100%);
+    }
+
+    #shopify-section-{{ section.id }} .sg-why__mobile-scroll .sg-why__item-icon,
+    #shopify-section-{{ section.id }} .sg-why__mobile-scroll .sg-why__brand {
+      margin-bottom: 16px;
     }
   }
 {%- endstyle -%}
 
-<div class="sg-why">
-  <div class="sg-why__desktop">
-    <img
-      src="{{ 'hello.png' | asset_url }}"
-      alt="SmartsGadgets — Slimme gadgets, slim gekozen. Vertrouwde merken. Zorgeloos retourneren."
-      width="1024"
-      height="221"
-      loading="lazy"
-    >
-  </div>
+{%- capture icon_bulb -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.05V17h6v-.25c0-.85.4-1.55 1-2.05A7 7 0 0 0 12 2z"/></svg>
+{%- endcapture -%}
+{%- capture icon_badge -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 1.4 2.7-.3 1.1 2.5 2.5 1.1-.3 2.7L22 12l-1.4 2.4.3 2.7-2.5 1.1-1.1 2.5-2.7-.3L12 22l-2.4-1.4-2.7.3-1.1-2.5-2.5-1.1.3-2.7L2 12l1.4-2.4-.3-2.7 2.5-1.1 1.1-2.5 2.7.3z"/><path d="M9 12l2 2 4-4"/></svg>
+{%- endcapture -%}
+{%- capture icon_return -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M9 13l3-2 3 2"/></svg>
+{%- endcapture -%}
+{%- capture logo_mark -%}
+  <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="3"/><circle cx="12" cy="19" r="3"/><path d="M12 8v8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+{%- endcapture -%}
 
-  <div class="sg-why__mobile">
-    <ul class="sg-why__scroll" role="list">
-      <li class="sg-why__scroll-item">
-        <img src="{{ 'banner1.png' | asset_url }}" alt="Slimme gadgets, slim gekozen" width="365" height="221" loading="lazy">
-      </li>
-      <li class="sg-why__scroll-item">
-        <img src="{{ 'banner2.png' | asset_url }}" alt="Vertrouwde merken" width="351" height="221" loading="lazy">
-      </li>
-      <li class="sg-why__scroll-item">
-        <img src="{{ 'banner3.png' | asset_url }}" alt="Zorgeloos retourneren" width="319" height="221" loading="lazy">
-      </li>
+<div class="sg-why">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="sg-why__heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  <div class="sg-why__panel">
+    <ul class="sg-why__grid">
+      {%- for block in section.blocks -%}
+        <li {{ block.shopify_attributes }}>
+          {%- if forloop.first -%}
+            <div class="sg-why__brand">
+              {{ logo_mark }}
+              <span>Smarts<strong>Gadgets</strong></span>
+            </div>
+          {%- else -%}
+            <span class="sg-why__item-icon">
+              {%- case block.settings.icon -%}
+                {%- when 'bulb' -%}{{ icon_bulb }}
+                {%- when 'badge' -%}{{ icon_badge }}
+                {%- when 'return' -%}{{ icon_return }}
+              {%- endcase -%}
+            </span>
+          {%- endif -%}
+          <h3 class="sg-why__item-heading">{{ block.settings.heading }}</h3>
+          <p class="sg-why__item-text">{{ block.settings.text }}</p>
+        </li>
+      {%- endfor -%}
     </ul>
   </div>
+
+  <ul class="sg-why__mobile-scroll">
+    {%- for block in section.blocks -%}
+      <li class="sg-why__card" {{ block.shopify_attributes }}>
+        {%- if forloop.first -%}
+          <div class="sg-why__brand">
+            {{ logo_mark }}
+            <span>Smarts<strong>Gadgets</strong></span>
+          </div>
+        {%- else -%}
+          <span class="sg-why__item-icon">
+            {%- case block.settings.icon -%}
+              {%- when 'bulb' -%}{{ icon_bulb }}
+              {%- when 'badge' -%}{{ icon_badge }}
+              {%- when 'return' -%}{{ icon_return }}
+            {%- endcase -%}
+          </span>
+        {%- endif -%}
+        <h3 class="sg-why__item-heading">{{ block.settings.heading }}</h3>
+        <p class="sg-why__item-text">{{ block.settings.text }}</p>
+      </li>
+    {%- endfor -%}
+  </ul>
 </div>
 
 {% schema %}
@@ -84,10 +207,75 @@
   "name": "Custom: Why SmartsGadgets",
   "tag": "section",
   "class": "cc-custom-why-smartsgadgets",
-  "settings": [],
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Waarom SmartsGadgets?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon (used for the 2nd and 3rd reason — the 1st always shows the SmartsGadgets logo)",
+          "options": [
+            { "value": "bulb", "label": "Bulb" },
+            { "value": "badge", "label": "Badge" },
+            { "value": "return", "label": "Return" }
+          ],
+          "default": "badge"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Slimme gadgets, slim gekozen"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Ontdek innovatieve en praktische technologie die je dagelijks leven slimmer, comfortabeler en eenvoudiger maakt."
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Custom: Why SmartsGadgets"
+      "name": "Custom: Why SmartsGadgets",
+      "blocks": [
+        {
+          "type": "reason",
+          "settings": {
+            "icon": "bulb",
+            "heading": "Slimme gadgets, slim gekozen",
+            "text": "Ontdek innovatieve en praktische technologie die je dagelijks leven slimmer, comfortabeler en eenvoudiger maakt."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "icon": "badge",
+            "heading": "Vertrouwde merken",
+            "text": "Shop kwaliteitsproducten van zorgvuldig geselecteerde en betrouwbare merken, gekozen voor hun innovatie, functionaliteit en gebruiksgemak."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "icon": "return",
+            "heading": "Zorgeloos retourneren",
+            "text": "Je ontvangt je aankoopbedrag en standaard verzendkosten terug. Beschadiging door onnodig gebruik kan tot waardevermindering leiden."
+          }
+        }
+      ]
     }
   ],
   "disabled_on": {
