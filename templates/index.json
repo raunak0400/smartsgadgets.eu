@@ -727,6 +727,10 @@
         "view_all_link": "shopify://collections/all"
       }
     },
+    "custom_why_smartsgadgets": {
+      "type": "custom-why-smartsgadgets",
+      "settings": {}
+    },
     "custom_testimonials": {
       "type": "custom-testimonials",
       "blocks": {
@@ -792,6 +796,7 @@
     "custom_hotspots",
     "logo_list_hKzaHm",
     "custom_more_products",
+    "custom_why_smartsgadgets",
     "custom_testimonials",
     "custom_newsletter",
     "17828080558a0b6b85"
