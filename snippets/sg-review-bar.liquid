@@ -21,8 +21,28 @@
   (function () {
     try {
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
-      if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
-        document.documentElement.classList.add('sg-review-bar-on');
+      if (dismissed || !window.matchMedia('(max-width: 989px)').matches) return;
+
+      /* Activate only after the page has fully loaded (all images, all
+         gallery/slideshow scripts already measured their layout once) and
+         one more paint has settled — then nudge any carousels to
+         re-measure. Turning this on immediately, before other scripts get a
+         chance to run their own size calculations, was corrupting those
+         calculations on some pages (e.g. the product image gallery
+         collapsing to a thumbnail). Waiting sidesteps that race entirely. */
+      function activate() {
+        requestAnimationFrame(function () {
+          document.documentElement.classList.add('sg-review-bar-on');
+          requestAnimationFrame(function () {
+            try { window.dispatchEvent(new Event('resize')); } catch (e2) {}
+          });
+        });
+      }
+
+      if (document.readyState === 'complete') {
+        activate();
+      } else {
+        window.addEventListener('load', activate);
       }
     } catch (e) {}
   })();
