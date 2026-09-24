@@ -17,8 +17,11 @@
 <script>
   (function () {
     try {
+      /* DIAGNOSTIC: the bar (and all its effects) only turn on with ?showbar=1
+         so the homepage can be checked with and without it on the same build. */
+      var forceOn = new URLSearchParams(location.search).get('showbar') === '1';
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
-      if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
+      if (forceOn && !dismissed && window.matchMedia('(max-width: 989px)').matches) {
         document.documentElement.classList.add('sg-review-bar-on');
       }
     } catch (e) {}
@@ -63,9 +66,10 @@
       margin-top: var(--sg-review-bar-h);
     }
 
-    /* Always hide the app's floating badge on mobile so it can't overlap the
-       header. This bar replaces it here. */
-    #wwkPreactRoot { display: none !important; }
+    /* Hide the app's floating badge on mobile so it can't overlap the header.
+       Gated on the bar being active so that, with the bar off, the page is
+       byte-for-byte the original site. */
+    html.sg-review-bar-on #wwkPreactRoot { display: none !important; }
 
     html.sg-review-bar-on .sg-review-bar {
       display: flex;
