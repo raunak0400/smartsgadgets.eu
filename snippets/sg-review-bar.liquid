@@ -17,12 +17,23 @@
 <script>
   (function () {
     try {
-      /* DIAGNOSTIC: the bar (and all its effects) only turn on with ?showbar=1
-         so the homepage can be checked with and without it on the same build. */
-      var forceOn = new URLSearchParams(location.search).get('showbar') === '1';
+      /* DIAGNOSTIC ONLY (temporary): split into 3 independent flags so we can
+         find exactly which piece breaks the homepage in one test round.
+           ?diag=bar       -> bar UI + header offset only (no wwk hide)
+           ?diag=headeronly-> header offset only (no bar shown, no wwk hide)
+           ?diag=hidewwk   -> hide #wwkPreactRoot only (no bar, no header offset)
+         Nothing happens without one of these params. */
+      var diag = new URLSearchParams(location.search).get('diag');
       var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
-      if (forceOn && !dismissed && window.matchMedia('(max-width: 989px)').matches) {
-        document.documentElement.classList.add('sg-review-bar-on');
+      var isMobile = window.matchMedia('(max-width: 989px)').matches;
+      if (!dismissed && isMobile && diag === 'bar') {
+        document.documentElement.classList.add('sg-diag-bar');
+      }
+      if (!dismissed && isMobile && diag === 'headeronly') {
+        document.documentElement.classList.add('sg-diag-headeronly');
+      }
+      if (!dismissed && isMobile && diag === 'hidewwk') {
+        document.documentElement.classList.add('sg-diag-hidewwk');
       }
     } catch (e) {}
   })();
@@ -55,23 +66,23 @@
 
     /* Homepage: the header is an absolute overlay on the hero, so moving its
        `top` drops it below the bar and leaves the hero/main flow untouched. */
-    html.sg-review-bar-on body.template-index .sg-header {
+    html.sg-diag-bar body.template-index .sg-header,
+    html.sg-diag-headeronly body.template-index .sg-header {
       top: var(--sg-review-bar-h) !important;
     }
 
     /* Inner pages: the header sits in normal flow, so a top margin on the
        header section pushes it (and the content below) down. There is no
        top-of-page slideshow here, so shifting the flow is safe. */
-    html.sg-review-bar-on body:not(.template-index) .cc-custom-header {
+    html.sg-diag-bar body:not(.template-index) .cc-custom-header,
+    html.sg-diag-headeronly body:not(.template-index) .cc-custom-header {
       margin-top: var(--sg-review-bar-h);
     }
 
-    /* Hide the app's floating badge on mobile so it can't overlap the header.
-       Gated on the bar being active so that, with the bar off, the page is
-       byte-for-byte the original site. */
-    html.sg-review-bar-on #wwkPreactRoot { display: none !important; }
+    /* Hide the app's floating badge on mobile so it can't overlap the header. */
+    html.sg-diag-hidewwk #wwkPreactRoot { display: none !important; }
 
-    html.sg-review-bar-on .sg-review-bar {
+    html.sg-diag-bar .sg-review-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -159,7 +170,7 @@
     var closeBtn = bar.querySelector('.sg-review-bar__close');
     if (!closeBtn) return;
     closeBtn.addEventListener('click', function () {
-      document.documentElement.classList.remove('sg-review-bar-on');
+      document.documentElement.classList.remove('sg-diag-bar', 'sg-diag-headeronly', 'sg-diag-hidewwk');
       try { localStorage.setItem('sgReviewBarDismissed', '1'); } catch (e) {}
     });
   })();
