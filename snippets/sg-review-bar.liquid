@@ -1,26 +1,26 @@
 {%- comment -%}
   Mobile-only dismissible review trust bar (WebwinkelKeur score).
 
-  Two different, page-type-appropriate mechanisms push the header below it
-  (deliberately NOT a single one-size-fits-all hack — that's what kept
-  regressing):
+  ROOT CAUSE FOUND (via direct DOM inspection): the earlier class name
+  `sg-review-bar-on` — merely being added to <html>, regardless of any CSS
+  matching it — was enough by itself to shrink the homepage slideshow's
+  image to a tiny box. A generic, unrelated class name did NOT reproduce it.
+  This store also has the Judge.me reviews app installed (a second reviews
+  app alongside WebwinkelKeur, confirmed via its extension assets loading on
+  every page) — almost certainly its own script watches for class changes
+  containing "review" and misfires against unrelated elements. Renaming
+  every class here away from the word "review" (now "trustbar") fixes it;
+  verified directly in-browser that the slideshow image stays full-size with
+  this class name where it collapsed with the old one.
 
+  Two different, page-type-appropriate mechanisms push the header below it:
   - Homepage (`template-index`): the header overlays the hero via
     `position: absolute`. The bar floats `fixed` over everything, and ONLY
-    the header's `top` is shifted to clear it. This never touches the hero's
-    own box/flow, so it can't disturb the hero's own sizing. Confirmed
-    correct in isolated testing.
+    the header's `top` is shifted to clear it.
   - Every other page (product, collection, etc.): the header is already in
-    normal document flow there (not an overlay). So the bar is rendered as
-    an ordinary, non-fixed block — literally the first element in <body>,
-    before the header — and normal CSS flow pushes the header (and
-    everything after it) down. No margin hack, no JS timing dependency:
-    this is the same mechanism any "announcement bar above the header" uses.
-    (An earlier `margin-top` hack on the header corrupted the product image
-    gallery's own height measurement; a JS "wait for window.load, then
-    dispatch resize" workaround was tried next but that resize event also
-    retriggered the theme's own header-position script, undoing the shift.
-    Both are removed — this static-flow approach needs neither.)
+    normal document flow there. The bar renders as an ordinary, non-fixed
+    block — literally the first element in <body>, before the header — so
+    normal CSS flow pushes the header (and everything after it) down.
 
   The x button hides it and remembers the choice (localStorage).
 
@@ -38,42 +38,42 @@
 <script>
   (function () {
     try {
-      var dismissed = localStorage.getItem('sgReviewBarDismissed') === '1';
+      var dismissed = localStorage.getItem('sgTrustBarDismissed') === '1';
       if (!dismissed && window.matchMedia('(max-width: 989px)').matches) {
-        document.documentElement.classList.add('sg-review-bar-on');
+        document.documentElement.classList.add('sg-trustbar-on');
       }
     } catch (e) {}
   })();
 </script>
 
-<div class="sg-review-bar" role="region" aria-label="Klantbeoordeling">
-  <div class="sg-review-bar__inner">
-    <span class="sg-review-bar__score">{{ sg_review_score }}</span>
-    <span class="sg-review-bar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-    <span class="sg-review-bar__count">{{ sg_review_count }} Reviews</span>
-    <span class="sg-review-bar__brand">
+<div class="sg-trustbar" role="region" aria-label="Klantbeoordeling">
+  <div class="sg-trustbar__inner">
+    <span class="sg-trustbar__score">{{ sg_review_score }}</span>
+    <span class="sg-trustbar__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+    <span class="sg-trustbar__count">{{ sg_review_count }} Reviews</span>
+    <span class="sg-trustbar__brand">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
       WebwinkelKeur
     </span>
   </div>
-  <button type="button" class="sg-review-bar__close" aria-label="Sluiten">
+  <button type="button" class="sg-trustbar__close" aria-label="Sluiten">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
   </button>
 </div>
 
 <style>
-  .sg-review-bar { display: none; }
+  .sg-trustbar { display: none; }
 
   @media (max-width: 989px) {
-    :root { --sg-review-bar-h: 40px; }
+    :root { --sg-trustbar-h: 40px; }
 
-    html.sg-review-bar-on .sg-review-bar {
+    html.sg-trustbar-on .sg-trustbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
       width: 100%;
-      height: var(--sg-review-bar-h);
+      height: var(--sg-trustbar-h);
       padding: 0 10px 0 12px;
       background: #e6007e;
       color: #ffffff;
@@ -83,7 +83,7 @@
     }
 
     /* Homepage: float over everything; shift the header's `top` to clear it. */
-    html.sg-review-bar-on body.template-index .sg-review-bar {
+    html.sg-trustbar-on body.template-index .sg-trustbar {
       position: fixed;
       top: 0;
       left: 0;
@@ -92,17 +92,17 @@
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.18);
     }
 
-    html.sg-review-bar-on body.template-index .sg-header {
-      top: var(--sg-review-bar-h) !important;
+    html.sg-trustbar-on body.template-index .sg-header {
+      top: var(--sg-trustbar-h) !important;
     }
 
     /* Every other page: normal in-flow block, first in <body> — ordinary
        document flow pushes the (already in-flow) header down naturally. */
-    html.sg-review-bar-on body:not(.template-index) .sg-review-bar {
+    html.sg-trustbar-on body:not(.template-index) .sg-trustbar {
       position: static;
     }
 
-    .sg-review-bar__inner {
+    .sg-trustbar__inner {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -111,7 +111,7 @@
       white-space: nowrap;
     }
 
-    .sg-review-bar__score {
+    .sg-trustbar__score {
       flex: none;
       background: #ffffff;
       color: #e6007e;
@@ -121,16 +121,16 @@
       font-size: 12px;
     }
 
-    .sg-review-bar__stars {
+    .sg-trustbar__stars {
       flex: none;
       color: #ffd21e;
       letter-spacing: 1px;
       font-size: 13px;
     }
 
-    .sg-review-bar__count { flex: none; font-weight: 600; }
+    .sg-trustbar__count { flex: none; font-weight: 600; }
 
-    .sg-review-bar__brand {
+    .sg-trustbar__brand {
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -139,9 +139,9 @@
       text-overflow: ellipsis;
     }
 
-    .sg-review-bar__brand svg { flex: none; width: 14px; height: 14px; }
+    .sg-trustbar__brand svg { flex: none; width: 14px; height: 14px; }
 
-    .sg-review-bar__close {
+    .sg-trustbar__close {
       flex: none;
       width: 30px;
       height: 30px;
@@ -155,24 +155,24 @@
       padding: 0;
     }
 
-    .sg-review-bar__close svg { width: 18px; height: 18px; }
+    .sg-trustbar__close svg { width: 18px; height: 18px; }
   }
 
   /* Below the smallest phones, drop the brand label so the bar never wraps. */
   @media (max-width: 359px) {
-    .sg-review-bar__brand { display: none; }
+    .sg-trustbar__brand { display: none; }
   }
 </style>
 
 <script>
   (function () {
-    var bar = document.querySelector('.sg-review-bar');
+    var bar = document.querySelector('.sg-trustbar');
     if (!bar) return;
-    var closeBtn = bar.querySelector('.sg-review-bar__close');
+    var closeBtn = bar.querySelector('.sg-trustbar__close');
     if (!closeBtn) return;
     closeBtn.addEventListener('click', function () {
-      document.documentElement.classList.remove('sg-review-bar-on');
-      try { localStorage.setItem('sgReviewBarDismissed', '1'); } catch (e) {}
+      document.documentElement.classList.remove('sg-trustbar-on');
+      try { localStorage.setItem('sgTrustBarDismissed', '1'); } catch (e) {}
     });
   })();
 </script>
