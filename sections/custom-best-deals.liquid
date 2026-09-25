@@ -66,7 +66,7 @@
     flex: 1;
     display: flex;
     align-items: stretch;
-    gap: 12px;
+    gap: 10px;
     min-height: 0;
   }
 
@@ -81,8 +81,8 @@
     position: relative;
     flex: 0 0 auto;
     align-self: flex-end;
-    width: 40%;
-    max-width: 150px;
+    width: 30%;
+    max-width: 90px;
     aspect-ratio: 1 / 1;
     pointer-events: none;
     filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.25));
@@ -112,25 +112,27 @@
   #shopify-section-{{ section.id }} .sg-deal-card__price-compare {
     margin: 0 0 2px;
     color: rgba(255, 255, 255, 0.75);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     text-decoration: line-through;
+    white-space: nowrap;
   }
 
   #shopify-section-{{ section.id }} .sg-deal-card__price-now {
     margin: 0;
     color: #ffffff;
+    white-space: nowrap;
   }
 
   #shopify-section-{{ section.id }} .sg-deal-card__price-prefix {
-    font-size: 13px;
+    display: block;
+    font-size: 12px;
     font-weight: 600;
     text-transform: lowercase;
-    margin-right: 4px;
   }
 
   #shopify-section-{{ section.id }} .sg-deal-card__price-amount {
-    font-size: 26px;
+    font-size: 21px;
     font-weight: 800;
   }
 
@@ -174,8 +176,8 @@
     }
 
     #shopify-section-{{ section.id }} .sg-deal-card__image {
-      width: 36%;
-      max-width: 100px;
+      width: 30%;
+      max-width: 64px;
     }
 
     #shopify-section-{{ section.id }} .sg-deal-card__badge {
@@ -198,7 +200,7 @@
     }
 
     #shopify-section-{{ section.id }} .sg-deal-card__price-amount {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     #shopify-section-{{ section.id }} .sg-deal-card__asterisk {
