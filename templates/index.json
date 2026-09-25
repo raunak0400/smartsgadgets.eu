@@ -729,44 +729,8 @@
     },
     "custom_best_deals": {
       "type": "custom-best-deals",
-      "blocks": {
-        "bd_1": {
-          "type": "deal_product",
-          "settings": {
-            "product": "kooduu-sensa-lamp-moss-minimalistische-tafellamp",
-            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
-            "badge_text": "Best Seller"
-          }
-        },
-        "bd_2": {
-          "type": "deal_product",
-          "settings": {
-            "product": "kooduu-lite-up-mini-play-earth-jbl-speaker",
-            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
-            "badge_text": "Best Seller"
-          }
-        },
-        "bd_3": {
-          "type": "deal_product",
-          "settings": {
-            "product": "xenon-smart-x6850-draagbare-lamp-bluetooth-speaker",
-            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
-            "badge_text": "Best Seller"
-          }
-        },
-        "bd_4": {
-          "type": "deal_product",
-          "settings": {
-            "product": "kooduu-atmos-brushed-silver-speaker-drankkoeler",
-            "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
-            "badge_text": "Best Seller"
-          }
-        }
-      },
-      "block_order": ["bd_1", "bd_2", "bd_3", "bd_4"],
       "settings": {
-        "heading": "Topaanbiedingen",
-        "fine_print": "*Inclusief alle aanbiedingen"
+        "heading": "Best in Lighting Categories"
       }
     },
     "custom_why_smartsgadgets": {
