@@ -44,32 +44,9 @@
     z-index: 3;
   }
 
-  #shopify-section-{{ section.id }} .sg-deal-card__image {
-    position: absolute;
-    right: -12px;
-    bottom: -8px;
-    z-index: 1;
-    width: 58%;
-    max-width: 220px;
-    aspect-ratio: 1 / 1;
-    pointer-events: none;
-    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.25));
-  }
-
-  #shopify-section-{{ section.id }} .sg-deal-card__image img {
-    object-fit: contain;
-  }
-
-  #shopify-section-{{ section.id }} .sg-deal-card__content {
+  #shopify-section-{{ section.id }} .sg-deal-card__badge {
     position: relative;
     z-index: 2;
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  #shopify-section-{{ section.id }} .sg-deal-card__badge {
     display: inline-block;
     align-self: flex-start;
     margin: 0 0 14px;
@@ -81,6 +58,38 @@
     font-weight: 700;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .sg-deal-card__body {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+    min-height: 0;
+  }
+
+  #shopify-section-{{ section.id }} .sg-deal-card__content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .sg-deal-card__image {
+    position: relative;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: 40%;
+    max-width: 150px;
+    aspect-ratio: 1 / 1;
+    pointer-events: none;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.25));
+  }
+
+  #shopify-section-{{ section.id }} .sg-deal-card__image img {
+    object-fit: contain;
   }
 
   #shopify-section-{{ section.id }} .sg-deal-card__title {
@@ -164,15 +173,9 @@
       border-radius: 16px;
     }
 
-    #shopify-section-{{ section.id }} .sg-deal-card__content {
-      max-width: 66%;
-    }
-
     #shopify-section-{{ section.id }} .sg-deal-card__image {
-      width: 50%;
-      max-width: 130px;
-      right: -6px;
-      bottom: -4px;
+      width: 36%;
+      max-width: 100px;
     }
 
     #shopify-section-{{ section.id }} .sg-deal-card__badge {
@@ -231,33 +234,36 @@
       <li class="sg-deal-card" {{ block.shopify_attributes }}>
         <a href="{{ product.url | default: '#' }}" class="sg-deal-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
 
-        <div class="sg-deal-card__image">
-          {%- if product != blank -%}
-            {% render 'image',
-              image: product.featured_image,
-              widths: '200, 300, 400, 500',
-              src_width: 500,
-              sizes: '(max-width: 749px) 35vw, (max-width: 989px) 22vw, 14vw',
-              class: 'img-fit',
-              lazy_load: true
-            %}
-          {%- else -%}
-            {{ 'product-1' | placeholder_svg_tag: 'img-fit' }}
-          {%- endif -%}
-        </div>
+        <span class="sg-deal-card__badge">{{ block.settings.badge_text }}</span>
 
-        <div class="sg-deal-card__content">
-          <span class="sg-deal-card__badge">{{ block.settings.badge_text }}</span>
-          <h3 class="sg-deal-card__title">{{ product.title | default: block.settings.fallback_title }}</h3>
+        <div class="sg-deal-card__body">
+          <div class="sg-deal-card__content">
+            <h3 class="sg-deal-card__title">{{ product.title | default: block.settings.fallback_title }}</h3>
 
-          <div class="sg-deal-card__price-row">
-            {%- if product.compare_at_price > product.price -%}
-              <p class="sg-deal-card__price-compare">{{ product.compare_at_price | money }}</p>
+            <div class="sg-deal-card__price-row">
+              {%- if product.compare_at_price > product.price -%}
+                <p class="sg-deal-card__price-compare">{{ product.compare_at_price | money }}</p>
+              {%- endif -%}
+              <p class="sg-deal-card__price-now">
+                <span class="sg-deal-card__price-prefix">vanaf</span><span class="sg-deal-card__price-amount">{{ product.price | default: 19900 | money }}</span><span class="sg-deal-card__asterisk">*</span>
+              </p>
+              <p class="sg-deal-card__fine-print">{{ section.settings.fine_print }}</p>
+            </div>
+          </div>
+
+          <div class="sg-deal-card__image">
+            {%- if product != blank -%}
+              {% render 'image',
+                image: product.featured_image,
+                widths: '150, 200, 300',
+                src_width: 300,
+                sizes: '(max-width: 749px) 22vw, 10vw',
+                class: 'img-fit',
+                lazy_load: true
+              %}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'img-fit' }}
             {%- endif -%}
-            <p class="sg-deal-card__price-now">
-              <span class="sg-deal-card__price-prefix">vanaf</span><span class="sg-deal-card__price-amount">{{ product.price | default: 19900 | money }}</span><span class="sg-deal-card__asterisk">*</span>
-            </p>
-            <p class="sg-deal-card__fine-print">{{ section.settings.fine_print }}</p>
           </div>
         </div>
       </li>
