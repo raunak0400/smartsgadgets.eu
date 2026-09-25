@@ -71,12 +71,12 @@
     }
 
     #shopify-section-{{ section.id }} .sg-deals__grid {
-      grid-template-columns: 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     #shopify-section-{{ section.id }} .sg-deal-tile {
-      border-radius: 12px;
+      border-radius: 10px;
     }
   }
 {%- endstyle -%}
