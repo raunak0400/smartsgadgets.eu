@@ -101,12 +101,12 @@
 
 <div class="sg-categories">
   <div class="sg-categories__header">
-    <h2 class="sg-categories__heading">{{ section.settings.heading }}</h2>
+    <h2 class="sg-categories__heading" data-cc-animate="fade-in">{{ section.settings.heading }}</h2>
   </div>
 
   <ul class="sg-categories__grid" id="{{ section.id }}-grid">
     {%- for block in section.blocks -%}
-      <li {{ block.shopify_attributes }}>
+      <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
         <a href="{{ block.settings.link | default: '#' }}" class="sg-categories__card">
           <span class="sg-categories__media">
             {%- if block.settings.image != blank -%}
