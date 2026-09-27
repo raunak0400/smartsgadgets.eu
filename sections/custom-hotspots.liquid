@@ -133,7 +133,7 @@
 
     {%- for block in section.blocks -%}
       <div class="sg-hotspot{% if block.settings.hotspot_x > 60 %} sg-hotspot--flip{% endif %}" style="top: {{ block.settings.hotspot_y }}%; left: {{ block.settings.hotspot_x }}%;" {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.product.url | default: '#' }}" class="sg-hotspot__dot" aria-label="{{ block.settings.label | default: block.settings.product.title | default: 'View product' }}">
+        <a href="{{ block.settings.product.url | default: '#' }}" class="sg-hotspot__dot" data-cc-animate="zoom-in" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" aria-label="{{ block.settings.label | default: block.settings.product.title | default: 'View product' }}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </a>
         {%- if block.settings.show_label and block.settings.label != blank -%}
