@@ -63,6 +63,13 @@
     border: 1px solid #e5e5e5;
     border-radius: 4px;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card:hover .sg-card__media-wrap {
+    transform: translateY(-4px);
+    border-color: #ff8600;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
   }
 
   #shopify-section-{{ section.id }} .sg-card__meta,
@@ -137,6 +144,20 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card:hover .sg-card__media img {
+    transform: scale(1.06);
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button {
+    transition: transform 0.15s ease, background-color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-card__button:hover:not([disabled]) {
+    transform: scale(1.03);
+    background-color: #e67600;
   }
 
   #shopify-section-{{ section.id }} .sg-card__meta {
@@ -289,7 +310,7 @@
   <ul class="sg-grid">
     {%- for block in section.blocks -%}
       {%- assign product = block.settings.product -%}
-      <li class="sg-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+      <li class="sg-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
         <a href="{{ product.url | default: '#' }}" class="sg-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
 
         <div class="sg-card__media-wrap">
