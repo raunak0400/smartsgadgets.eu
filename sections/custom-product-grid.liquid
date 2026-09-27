@@ -310,7 +310,7 @@
   <ul class="sg-grid">
     {%- for block in section.blocks -%}
       {%- assign product = block.settings.product -%}
-      <li class="sg-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
+      <li class="sg-card" {{ block.shopify_attributes }}>
         <a href="{{ product.url | default: '#' }}" class="sg-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
 
         <div class="sg-card__media-wrap">
