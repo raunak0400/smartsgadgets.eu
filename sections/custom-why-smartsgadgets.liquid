@@ -136,13 +136,13 @@
 {%- endcapture -%}
 <div class="sg-why">
   {%- if section.settings.heading != blank -%}
-    <h2 class="sg-why__heading">{{ section.settings.heading }}</h2>
+    <h2 class="sg-why__heading" data-cc-animate="fade-in">{{ section.settings.heading }}</h2>
   {%- endif -%}
 
   <div class="sg-why__panel">
     <ul class="sg-why__grid">
       {%- for block in section.blocks -%}
-        <li {{ block.shopify_attributes }}>
+        <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
           {%- if forloop.first -%}
             <div class="sg-why__brand">
               <img
@@ -172,7 +172,7 @@
 
   <ul class="sg-why__mobile-scroll">
     {%- for block in section.blocks -%}
-      <li class="sg-why__card" {{ block.shopify_attributes }}>
+      <li class="sg-why__card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
         {%- if forloop.first -%}
           <div class="sg-why__brand">
             <img
