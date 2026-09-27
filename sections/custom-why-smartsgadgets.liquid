@@ -46,6 +46,11 @@
     width: 32px;
     height: 32px;
     color: #ffffff;
+    transition: transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-why__grid > li:hover .sg-why__item-icon svg {
+    transform: scale(1.15) rotate(-6deg);
   }
 
   #shopify-section-{{ section.id }} .sg-why__item-heading {
@@ -142,7 +147,7 @@
   <div class="sg-why__panel">
     <ul class="sg-why__grid">
       {%- for block in section.blocks -%}
-        <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+        <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
           {%- if forloop.first -%}
             <div class="sg-why__brand">
               <img
@@ -172,7 +177,7 @@
 
   <ul class="sg-why__mobile-scroll">
     {%- for block in section.blocks -%}
-      <li class="sg-why__card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+      <li class="sg-why__card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
         {%- if forloop.first -%}
           <div class="sg-why__brand">
             <img
