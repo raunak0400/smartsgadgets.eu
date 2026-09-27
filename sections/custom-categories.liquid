@@ -55,12 +55,22 @@
     overflow: hidden;
     border-radius: 4px;
     background-color: #ffffff;
+    transition: box-shadow 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-categories__card:hover .sg-categories__media {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
   }
 
   #shopify-section-{{ section.id }} .sg-categories__media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-categories__card:hover .sg-categories__media img {
+    transform: scale(1.08);
   }
 
   #shopify-section-{{ section.id }} .sg-categories__label {
@@ -68,6 +78,11 @@
     font-size: 16px;
     font-weight: 500;
     color: #111111;
+    transition: color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-categories__card:hover .sg-categories__label {
+    color: #ff8600;
   }
 
   @media screen and (max-width: 989px) {
@@ -106,7 +121,7 @@
 
   <ul class="sg-categories__grid" id="{{ section.id }}-grid">
     {%- for block in section.blocks -%}
-      <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+      <li data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
         <a href="{{ block.settings.link | default: '#' }}" class="sg-categories__card">
           <span class="sg-categories__media">
             {%- if block.settings.image != blank -%}
