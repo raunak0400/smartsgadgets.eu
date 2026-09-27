@@ -222,7 +222,7 @@
 {%- endstyle -%}
 
 <div class="sg-featured">
-  <div class="sg-featured__media">
+  <div class="sg-featured__media" data-cc-animate="slide-left">
     {%- if section.settings.image != blank -%}
       {% render 'image',
         image: section.settings.image,
@@ -243,7 +243,7 @@
   <div class="sg-featured__products">
     {%- for block in section.blocks -%}
       {%- assign product = block.settings.product -%}
-      <div class="sg-featured-card" {{ block.shopify_attributes }}>
+      <div class="sg-featured-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
         <a href="{{ product.url | default: '#' }}" class="sg-featured-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
 
         <div class="sg-featured-card__media">
