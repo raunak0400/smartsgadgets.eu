@@ -4550,11 +4550,6 @@ a.color-family-swatches__item:hover {
   box-shadow: 0 0 0 2px rgb(var(--swatch-border-color-default));
 }
 
-.color-family-swatches--card .color-family-swatches__item.is-active .color-family-swatches__frame {
-  border-color: transparent;
-  box-shadow: 0 0 0 2px rgb(var(--swatch-border-color-active));
-}
-
 .color-family-swatches--card .color-family-swatches__image {
   width: 100%;
   height: 100%;
