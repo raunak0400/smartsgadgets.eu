@@ -5817,3 +5817,12 @@ body > .os-scrollbar {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }
+
+/* Lift the Shopify Inbox chat bubble so it clears the sticky add-to-cart bar
+   on product pages (that bar is always visible, desktop + mobile, and sits
+   fixed at the very bottom — the chat bubble was rendering on top of it).
+   `::part(activator)` is the officially exposed styling hook for Shopify's
+   native <shopify-chat> web component's button. */
+shopify-chat::part(activator) {
+  transform: translateY(-76px);
+}
