@@ -60,7 +60,7 @@
 <div class="sg-trust-bar">
   <ul class="sg-trust-bar__list">
     {%- for block in section.blocks -%}
-      <li class="sg-trust-bar__item" {{ block.shopify_attributes }}>
+      <li class="sg-trust-bar__item" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
         {%- case block.settings.icon -%}
           {%- when 'truck' -%}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10"/><path d="M15 10h4l4 4v3h-8z"/><circle cx="6" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg>
