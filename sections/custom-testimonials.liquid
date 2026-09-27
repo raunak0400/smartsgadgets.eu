@@ -55,6 +55,12 @@
     border: 1px solid #e5e5e5;
     border-radius: 8px;
     padding: 24px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-testimonial-card:hover {
+    border-color: #ffd8b0;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.08);
   }
 
   #shopify-section-{{ section.id }} .sg-testimonial-card__stars {
@@ -159,7 +165,7 @@
 
   <ul class="sg-testimonials__grid">
     {%- for block in section.blocks -%}
-      <li class="sg-testimonial-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+      <li class="sg-testimonial-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
         <div class="sg-testimonial-card__stars sg-stars">
           {%- assign full = block.settings.star_rating | floor -%}
           {%- assign remainder = block.settings.star_rating | minus: full -%}
