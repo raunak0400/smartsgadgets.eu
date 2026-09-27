@@ -134,9 +134,9 @@
 {%- capture half_star -%}<svg viewBox="0 0 24 24"><defs><linearGradient id="half-{{ section.id }}"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent" stop-opacity="0"/></linearGradient></defs><path fill="url(#half-{{ section.id }})" stroke="currentColor" stroke-width="1" d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>{%- endcapture -%}
 
 <div class="sg-testimonials">
-  <h2 class="sg-testimonials__heading">{{ section.settings.heading }}</h2>
+  <h2 class="sg-testimonials__heading" data-cc-animate="fade-in">{{ section.settings.heading }}</h2>
 
-  <div class="sg-testimonials__summary">
+  <div class="sg-testimonials__summary" data-cc-animate="fade-in" data-cc-animate-delay="0.1s">
     <span class="sg-stars">
       {%- assign full = section.settings.summary_rating | floor -%}
       {%- assign has_half = false -%}
@@ -159,7 +159,7 @@
 
   <ul class="sg-testimonials__grid">
     {%- for block in section.blocks -%}
-      <li class="sg-testimonial-card" {{ block.shopify_attributes }}>
+      <li class="sg-testimonial-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
         <div class="sg-testimonial-card__stars sg-stars">
           {%- assign full = block.settings.star_rating | floor -%}
           {%- assign remainder = block.settings.star_rating | minus: full -%}
