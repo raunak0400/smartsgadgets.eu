@@ -4426,7 +4426,10 @@ label[data-swatch]::before {
 
 .color-family-swatches__list {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   gap: 10px;
 }
 
@@ -4444,6 +4447,7 @@ label[data-swatch]::before {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  scroll-snap-align: start;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
