@@ -120,22 +120,6 @@
     #{{ section.id }} .text-overlay { background: {{ bg_color }}; }
   {%- endif -%}
 
-  {%- if section.index == 1 -%}
-    /* When this slideshow is the first section on the page (sits right
-       below the header) and the mobile trust bar is showing, the header is
-       40px lower than usual. This slide's heading/promo text is baked into
-       the banner image itself (not a live text layer), so it can't be
-       nudged independently — instead, pad the whole section with a dark
-       fill (matching the image's own tone) to create breathing room between
-       the header and the image, rather than pushing the image down and
-       exposing the page's white background behind it. */
-    @media (max-width: 989px) {
-      html.sg-trustbar-on #{{ section.id }} {
-        padding-top: 20px;
-        background: #000000;
-      }
-    }
-  {%- endif -%}
 {%- endstyle -%}
 
 <div class="slideshow-section section {% if section.settings.full_width %}section--full-width{% else %}container{% endif %}{% if section.settings.mobile_stacked and section.settings.height_mode != 'screen' %} mobile-stacked{% endif %}{% unless color_scheme == 'default' %} color-scheme color-scheme--{{ color_scheme }}{% endunless %}" id="{{ section.id }}">
