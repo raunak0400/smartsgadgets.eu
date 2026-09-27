@@ -5814,21 +5814,6 @@ body > .os-scrollbar {
   }
 }
 
-/* Pin the WebwinkelKeur / Valued reviews badge (root #wwkPreactRoot, injected
-   by the app SDK) to the bottom-right so it's visible but never covers the
-   header/nav on load. Reposition only — no size change (that broke it before).
-   If a deeper nested fixed element needs targeting, refine with its real
-   selector, or set the position in the WebwinkelKeur app dashboard. */
-@media (min-width: 990px) {
-  #wwkPreactRoot > * {
-    position: fixed !important;
-    inset: auto 14px 92px auto !important;  /* above the Chat bubble */
-    top: auto !important;
-    left: auto !important;
-    z-index: 15 !important;
-  }
-}
-
 /* The top "announcement" bar (country/language selector) has no content
    blocks configured on mobile — its own design intent is for that selector
    to live in the mobile menu instead (see the section's admin note). It
