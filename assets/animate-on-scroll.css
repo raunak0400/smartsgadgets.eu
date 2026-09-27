@@ -28,7 +28,7 @@
 @keyframes slide-up {
   0% {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
@@ -36,13 +36,13 @@
   }
 }
 .cc-animate-enabled .slide-up.cc-animate-in {
-  animation: slide-up calc(var(--aos-animate-duration, 1s) * 0.8) 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: slide-up calc(var(--aos-animate-duration, 1s) * 1.1) 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes zoom-in {
   0% {
     opacity: 0;
-    transform: scale(0.94);
+    transform: scale(0.85);
   }
   100% {
     opacity: 1;
@@ -50,13 +50,13 @@
   }
 }
 .cc-animate-enabled .zoom-in.cc-animate-in {
-  animation: zoom-in calc(var(--aos-animate-duration, 1s) * 0.8) 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: zoom-in calc(var(--aos-animate-duration, 1s) * 1.1) 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slide-left {
   0% {
     opacity: 0;
-    transform: translateX(-24px);
+    transform: translateX(-48px);
   }
   100% {
     opacity: 1;
@@ -64,13 +64,13 @@
   }
 }
 .cc-animate-enabled .slide-left.cc-animate-in {
-  animation: slide-left calc(var(--aos-animate-duration, 1s) * 0.8) 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: slide-left calc(var(--aos-animate-duration, 1s) * 1.1) 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes slide-right {
   0% {
     opacity: 0;
-    transform: translateX(24px);
+    transform: translateX(48px);
   }
   100% {
     opacity: 1;
@@ -78,5 +78,5 @@
   }
 }
 .cc-animate-enabled .slide-right.cc-animate-in {
-  animation: slide-right calc(var(--aos-animate-duration, 1s) * 0.8) 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: slide-right calc(var(--aos-animate-duration, 1s) * 1.1) 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
