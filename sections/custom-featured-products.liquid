@@ -83,6 +83,12 @@
     justify-content: center;
     overflow: hidden;
     padding: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-featured-card:hover .sg-featured-card__media {
+    border-color: #ff8600;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   }
 
   #shopify-section-{{ section.id }} .sg-featured-card__image {
@@ -91,6 +97,11 @@
     width: auto;
     height: auto;
     object-fit: contain;
+    transition: transform 0.35s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-featured-card:hover .sg-featured-card__image {
+    transform: scale(1.06);
   }
 
   #shopify-section-{{ section.id }} .sg-featured-card__meta {
@@ -177,6 +188,12 @@
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .sg-featured-card__button:hover:not([disabled]) {
+    transform: scale(1.03);
+    background-color: #e67600;
   }
 
   #shopify-section-{{ section.id }} .sg-featured-card__button[disabled] {
@@ -243,7 +260,7 @@
   <div class="sg-featured__products">
     {%- for block in section.blocks -%}
       {%- assign product = block.settings.product -%}
-      <div class="sg-featured-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" {{ block.shopify_attributes }}>
+      <div class="sg-featured-card" data-cc-animate="slide-up" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" {{ block.shopify_attributes }}>
         <a href="{{ product.url | default: '#' }}" class="sg-featured-card__link" aria-label="{{ product.title | default: block.settings.fallback_title }}"></a>
 
         <div class="sg-featured-card__media">
