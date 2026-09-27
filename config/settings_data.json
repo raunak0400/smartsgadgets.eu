@@ -201,7 +201,7 @@
       },
       "8194965531299925038": {
         "type": "shopify://apps/webwinkelkeur/blocks/sidebar/c3ac2bcb-63f1-40d3-9622-f307cd559ad3",
-        "disabled": true,
+        "disabled": false,
         "settings": {}
       }
     }
