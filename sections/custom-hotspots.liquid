@@ -50,6 +50,38 @@
     inset: calc((32px - 44px) / 2);
   }
 
+  #shopify-section-{{ section.id }} .sg-hotspot__dot::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    animation: sg-hotspot-pulse 2.2s ease-out infinite;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .sg-hotspot__dot:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  }
+
+  @keyframes sg-hotspot-pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .sg-hotspot__dot::before {
+      animation: none;
+      display: none;
+    }
+  }
+
   #shopify-section-{{ section.id }} .sg-hotspot__dot svg {
     width: 16px;
     height: 16px;
@@ -133,7 +165,7 @@
 
     {%- for block in section.blocks -%}
       <div class="sg-hotspot{% if block.settings.hotspot_x > 60 %} sg-hotspot--flip{% endif %}" style="top: {{ block.settings.hotspot_y }}%; left: {{ block.settings.hotspot_x }}%;" {{ block.shopify_attributes }}>
-        <a href="{{ block.settings.product.url | default: '#' }}" class="sg-hotspot__dot" data-cc-animate="zoom-in" data-cc-animate-delay="{{ forloop.index0 | times: 0.08 }}s" aria-label="{{ block.settings.label | default: block.settings.product.title | default: 'View product' }}">
+        <a href="{{ block.settings.product.url | default: '#' }}" class="sg-hotspot__dot" data-cc-animate="zoom-in" data-cc-animate-delay="{{ forloop.index0 | times: 0.12 }}s" aria-label="{{ block.settings.label | default: block.settings.product.title | default: 'View product' }}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
         </a>
         {%- if block.settings.show_label and block.settings.label != blank -%}
