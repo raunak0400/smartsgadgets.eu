@@ -780,6 +780,63 @@
         "full_width": true
       }
     },
+    "product_faqs_Qw8mZr": {
+      "type": "product-faqs",
+      "blocks": {
+        "question_1a2b3c": {
+          "type": "question",
+          "settings": {
+            "heading": "Question 1",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        "question_4d5e6f": {
+          "type": "question",
+          "settings": {
+            "heading": "Question 2",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        "question_7g8h9i": {
+          "type": "question",
+          "settings": {
+            "heading": "Question 3",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        "question_j1k2l3": {
+          "type": "question",
+          "settings": {
+            "heading": "Question 4",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        "question_m4n5o6": {
+          "type": "question",
+          "settings": {
+            "heading": "Question 5",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1a2b3c",
+        "question_4d5e6f",
+        "question_7g8h9i",
+        "question_j1k2l3",
+        "question_m4n5o6"
+      ],
+      "name": "Product FAQs",
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "subheading": "Find quick answers to common questions about this product.",
+        "show_closing_cta": true,
+        "closing_text": "Still have questions? Our support team is here to help!",
+        "button_label": "Contact Support",
+        "button_link": "shopify://pages/contact",
+        "color_scheme": "none"
+      }
+    },
     "newsletter_iReBA9": {
       "type": "newsletter",
       "blocks": {
@@ -978,6 +1035,7 @@
     "recommendations",
     "featured_blog_687fam",
     "logo_list_zXtLEz",
+    "product_faqs_Qw8mZr",
     "newsletter_iReBA9",
     "more-from-vendor",
     "collection-list",

@@ -1,0 +1,271 @@
+{%- liquid
+  assign color_scheme = section.settings.color_scheme
+  assign bg_color = false
+
+  if color_scheme == '1'
+    assign bg_color = settings.color_scheme_1_bg
+  elsif color_scheme == '2'
+    assign bg_color = settings.color_scheme_2_bg
+  elsif color_scheme == '3'
+    assign bg_color = settings.color_scheme_3_bg
+  endif
+
+  if bg_color and bg_color != settings.bg_color
+    assign bg_alpha = bg_color | color_extract: 'alpha'
+    if bg_alpha == 0
+      assign bg_color = false
+    endif
+  else
+    assign bg_color = false
+  endif
+-%}
+
+<div class="section{% unless bg_color == false %} section--padded{% endunless %}{% unless color_scheme == 'none' %} color-scheme color-scheme--{{ color_scheme }}{% endunless %}" id="{{ section.id }}">
+  <div class="container">
+    <div class="product-faqs__inner"{% if settings.animations_enabled != "disabled" %} data-cc-animate{% endif %}>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="h4 section__heading mb-6">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="product-faqs__subheading regular-text mb-12">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+
+      <div class="product-faqs__list">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'question' and block.settings.heading != blank -%}
+            <details-disclosure {{ block.shopify_attributes }}>
+              <details class="disclosure disclosure--row">
+                <summary>
+                  <div class="flex justify-between items-center">
+                    <h3 class="disclosure__title xs:regular-text h6 font-body flex flex-auto items-center mb-0 text-current">
+                      {{- block.settings.heading -}}
+                    </h3>
+                    <span class="disclosure__toggle">
+                      {%- if settings.disclosure_toggle == 'plus' -%}
+                        {% render 'icon-plus' %}
+                      {%- else -%}
+                        {% render 'icon-chevron-down' %}
+                      {%- endif -%}
+                    </span>
+                  </div>
+                </summary>
+                <div class="disclosure__panel has-motion">
+                  <div class="disclosure__content rte">
+                    {{ block.settings.text }}
+                  </div>
+                </div>
+              </details>
+            </details-disclosure>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_closing_cta -%}
+        <div class="product-faqs__cta mt-16">
+          {%- if section.settings.closing_text != blank -%}
+            <p class="product-faqs__closing-text regular-text mb-6">{{ section.settings.closing_text | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.button_label != blank -%}
+            <a class="btn btn--primary" {% if section.settings.button_link != blank %}href="{{ section.settings.button_link }}"{% else %}role="link" aria-disabled="true"{% endif %}>
+              {{- section.settings.button_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script type="application/ld+json">
+  {%- capture faq_json -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'question' and block.settings.heading != blank and block.settings.text != blank -%}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.heading | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.text | json }}
+          }
+        },
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if faq_json != blank -%}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {{ faq_json | remove_last: ',' }}
+    ]
+  }
+  {%- endif -%}
+</script>
+
+{% stylesheet %}
+.product-faqs__inner {
+  max-width: var(--reading-width, 48em);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.product-faqs__list {
+  text-align: left;
+}
+
+.product-faqs__subheading,
+.product-faqs__closing-text {
+  color: rgba(var(--text-color)/0.6);
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product FAQs",
+  "tag": "section",
+  "class": "product-faqs section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Find quick answers to common questions about this product."
+    },
+    {
+      "type": "header",
+      "content": "Support call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_closing_cta",
+      "label": "Show support call to action",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "closing_text",
+      "label": "Closing text",
+      "default": "Still have questions? Our support team is here to help!"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Contact Support"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        {
+          "value": "none",
+          "label": "Default"
+        },
+        {
+          "value": "1",
+          "label": "Scheme 1"
+        },
+        {
+          "value": "2",
+          "label": "Scheme 2"
+        },
+        {
+          "value": "3",
+          "label": "Scheme 3"
+        }
+      ],
+      "default": "none"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Answer",
+          "default": "<p>Add the answer for this question here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product FAQs",
+      "settings": {
+        "button_link": "shopify://pages/contact"
+      },
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "heading": "Question 1",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "heading": "Question 2",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "heading": "Question 3",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "heading": "Question 4",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "heading": "Question 5",
+            "text": "<p>Add the answer for this question here.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}
