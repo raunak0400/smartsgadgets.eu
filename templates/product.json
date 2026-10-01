@@ -786,36 +786,36 @@
         "question_1a2b3c": {
           "type": "question",
           "settings": {
-            "heading": "Question 1",
-            "text": "<p>Add the answer for this question here.</p>"
+            "heading": "Vraag 1",
+            "text": "<p>Voeg hier het antwoord op deze vraag toe.</p>"
           }
         },
         "question_4d5e6f": {
           "type": "question",
           "settings": {
-            "heading": "Question 2",
-            "text": "<p>Add the answer for this question here.</p>"
+            "heading": "Vraag 2",
+            "text": "<p>Voeg hier het antwoord op deze vraag toe.</p>"
           }
         },
         "question_7g8h9i": {
           "type": "question",
           "settings": {
-            "heading": "Question 3",
-            "text": "<p>Add the answer for this question here.</p>"
+            "heading": "Vraag 3",
+            "text": "<p>Voeg hier het antwoord op deze vraag toe.</p>"
           }
         },
         "question_j1k2l3": {
           "type": "question",
           "settings": {
-            "heading": "Question 4",
-            "text": "<p>Add the answer for this question here.</p>"
+            "heading": "Vraag 4",
+            "text": "<p>Voeg hier het antwoord op deze vraag toe.</p>"
           }
         },
         "question_m4n5o6": {
           "type": "question",
           "settings": {
-            "heading": "Question 5",
-            "text": "<p>Add the answer for this question here.</p>"
+            "heading": "Vraag 5",
+            "text": "<p>Voeg hier het antwoord op deze vraag toe.</p>"
           }
         }
       },
@@ -828,11 +828,11 @@
       ],
       "name": "Product FAQs",
       "settings": {
-        "heading": "Frequently Asked Questions",
-        "subheading": "Find quick answers to common questions about this product.",
+        "heading": "Veelgestelde vragen",
+        "subheading": "Vind snel antwoord op de meest gestelde vragen over dit product.",
         "show_closing_cta": true,
-        "closing_text": "Still have questions? Our support team is here to help!",
-        "button_label": "Contact Support",
+        "closing_text": "Nog vragen? Ons supportteam helpt je graag verder!",
+        "button_label": "Neem contact op",
         "button_link": "shopify://pages/contact",
         "color_scheme": "none"
       }
