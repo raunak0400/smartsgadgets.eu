@@ -159,42 +159,28 @@
           "type": "item",
           "settings": {
             "icon": "truck",
-            "label": "Snelle EU-levering"
+            "label": "Zelfde dag verwerkt"
           }
         },
         "item_2": {
           "type": "item",
           "settings": {
-            "icon": "lock",
-            "label": "100% betrouwbaar"
+            "icon": "return",
+            "label": "60 dagen retour"
           }
         },
         "item_3": {
           "type": "item",
           "settings": {
-            "icon": "return",
-            "label": "Gemakkelijk retourneren"
+            "icon": "badge-check",
+            "label": "WebwinkelKeur 9,6"
           }
         },
         "item_4": {
           "type": "item",
           "settings": {
-            "icon": "badge-check",
-            "label": "Productgarantie"
-          }
-        },
-        "item_5": {
-          "type": "item",
-          "settings": {
-            "icon": "ribbon",
-            "label": "Echte producten"
-          }
-        },
-        "item_6": {
-          "type": "item",
-          "settings": {
             "icon": "headset",
-            "label": "Klantenondersteuning"
+            "label": "Support in het Nederlands"
           }
         }
       },
@@ -202,9 +188,7 @@
         "item_1",
         "item_2",
         "item_3",
-        "item_4",
-        "item_5",
-        "item_6"
+        "item_4"
       ],
       "custom_css": [],
       "settings": {}
