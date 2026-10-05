@@ -136,7 +136,7 @@
           "type": "nav_link",
           "settings": {
             "label": "Aanbiedingen",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/aanbiedingen-korting"
           }
         },
         "nav_withdrawal": {
