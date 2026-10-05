@@ -795,7 +795,7 @@
     "custom_newsletter": {
       "type": "custom-newsletter",
       "settings": {
-        "heading": "Ontvang 10% korting op uw eerste bestelling.",
+        "heading": "Als eerste op de hoogte van nieuwe, slimme producten",
         "subtext": "Meld je aan voor exclusieve aanbiedingen, nieuwe producten en slimme tips voor je huis."
       }
     },
