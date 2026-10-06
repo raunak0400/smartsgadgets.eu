@@ -14,6 +14,11 @@
     .announcement {
       --announcement-text-color: {{ section.settings.text_color.rgb }};
       background-color: {{ section.settings.bg_color }};
+      {%- if section.settings.bg_gradient != blank %}
+      background: {{ section.settings.bg_gradient }};
+      {%- endif %}
+      border-top: 1px solid rgba(255, 217, 168, 0.45);
+      border-bottom: 1px solid rgba(255, 217, 168, 0.45);
     }
   {%- endstyle -%}
 
@@ -136,6 +141,12 @@
       "id": "bg_color",
       "label": "Background color",
       "default": "#000000"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background gradient",
+      "info": "If set, replaces the background color."
     },
     {
       "type": "color",
