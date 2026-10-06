@@ -30,11 +30,23 @@
     <div class="container">
       <div class="flex">
         <div class="announcement__col--left {% if section.settings.link1 or section.settings.link2 or show_localization %}announcement__col--align-left{% else %}announcement__col--align-center{% endif %}{% if section.blocks.size > 1 %} announcement__slider{% endif %}"{% if section.blocks.size > 1 %} aria-roledescription="carousel" aria-live="off"{% endif %}>
-          {%- for block in section.blocks -%}
-            <div class="announcement__text flex items-center m-0" {{ block.shopify_attributes }}{% if section.blocks.size > 1 %} aria-roledescription="slide"{% endif %}>
-              <div class="rte">{{- block.settings.text -}}</div>
+          {%- if section.blocks.size == 1 -%}
+            {%- liquid
+              assign marquee_block = section.blocks.first
+            -%}
+            <div class="announcement__text announcement__text--marquee flex items-center m-0" {{ marquee_block.shopify_attributes }}>
+              <div class="announcement__marquee-track">
+                <div class="rte announcement__marquee-item">{{- marquee_block.settings.text -}}</div>
+                <div class="rte announcement__marquee-item" aria-hidden="true">{{- marquee_block.settings.text -}}</div>
+              </div>
             </div>
-          {%- endfor -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              <div class="announcement__text flex items-center m-0" {{ block.shopify_attributes }}{% if section.blocks.size > 1 %} aria-roledescription="slide"{% endif %}>
+                <div class="rte">{{- block.settings.text -}}</div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
         </div>
 
         {% if section.settings.link1 or section.settings.link2 or show_localization %}
