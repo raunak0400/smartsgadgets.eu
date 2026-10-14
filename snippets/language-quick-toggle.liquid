@@ -1,0 +1,64 @@
+{%- comment -%}
+  Parameters:
+  - form_id {String} - id of the localization form whose locale_code input/submit
+    this toggle should drive (e.g. 'nav-localization').
+
+  Compact NL/EN pill for instantly switching language without opening the full
+  language dropdown. Only renders if both nl and en are published languages.
+
+  Usage:
+  {% render 'language-quick-toggle', form_id: 'nav-localization' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign has_nl = false
+  assign has_en = false
+  for language in localization.available_languages
+    if language.iso_code == 'nl'
+      assign has_nl = true
+    endif
+    if language.iso_code == 'en'
+      assign has_en = true
+    endif
+  endfor
+-%}
+
+{%- if has_nl and has_en -%}
+  <div class="language-quick-toggle" role="group" aria-label="{{ 'general.localization.language_label' | t }}">
+    <button
+      type="button"
+      class="language-quick-toggle__btn{% if localization.language.iso_code == 'nl' %} is-active{% endif %}"
+      data-locale="nl"
+      data-form-id="{{ form_id }}"
+      aria-pressed="{% if localization.language.iso_code == 'nl' %}true{% else %}false{% endif %}"
+    >NL</button>
+    <button
+      type="button"
+      class="language-quick-toggle__btn{% if localization.language.iso_code == 'en' %} is-active{% endif %}"
+      data-locale="en"
+      data-form-id="{{ form_id }}"
+      aria-pressed="{% if localization.language.iso_code == 'en' %}true{% else %}false{% endif %}"
+    >EN</button>
+  </div>
+
+  <script>
+    (function () {
+      if (window.sgLanguageQuickToggleBound) return;
+      window.sgLanguageQuickToggleBound = true;
+
+      document.addEventListener('click', function (evt) {
+        var btn = evt.target.closest('.language-quick-toggle__btn');
+        if (!btn || btn.classList.contains('is-active')) return;
+
+        var form = document.getElementById(btn.dataset.formId);
+        if (!form) return;
+
+        var input = form.querySelector('input[name="locale_code"]');
+        if (!input) return;
+
+        input.value = btn.dataset.locale;
+        form.submit();
+      });
+    })();
+  </script>
+{%- endif -%}

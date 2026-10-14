@@ -104,8 +104,52 @@ body:not(.tab-used) .announcement__localization .custom-select__btn:focus {
   min-width: 180px;
 }
 
+.language-quick-toggle {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.language-quick-toggle__btn {
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.language-quick-toggle__btn.is-active {
+  background-color: #ffffff;
+  color: #000000;
+  cursor: default;
+}
+.language-quick-toggle__btn:not(.is-active):hover {
+  color: #ffffff;
+}
+
+@media (min-width: 769px) {
+  .announcement__localization-inner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+}
+
+.mob__localization .language-quick-toggle {
+  margin-bottom: calc(4 * var(--space-unit));
+}
+
 .announcement__col--left {
   flex: 1;
+  min-width: 0;
 }
 
 .announcement__col--right {

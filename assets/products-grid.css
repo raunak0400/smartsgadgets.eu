@@ -319,6 +319,7 @@ body.tab-used .products-toolbar__sort .custom-select:focus-within .custom-select
       "colors colors"
       "quick-add quick-add";
     grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto minmax(58px, auto) auto;
   }
 
   .cc-collection-products .card--product .card__color-family,

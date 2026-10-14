@@ -75,7 +75,12 @@
 
             {%- if show_localization -%}
               <div class="announcement__localization">
-                {% render 'localization-form', id: 'nav-localization', hide_labels: true %}
+                <div class="announcement__localization-inner">
+                  {%- if section.settings.enable_language_selector -%}
+                    {%- render 'language-quick-toggle', form_id: 'nav-localization' -%}
+                  {%- endif -%}
+                  {% render 'localization-form', id: 'nav-localization', hide_labels: true %}
+                </div>
               </div>
             {%- endif -%}
           </div>

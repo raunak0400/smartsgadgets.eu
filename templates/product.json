@@ -149,7 +149,7 @@
         "custom_liquid_nPYeVY": {
           "type": "custom-liquid",
           "settings": {
-            "custom_liquid": "<div style=\"display: flex; justify-content: center; margin-top: 6px;\">\n  <valued-widget layout=\"rating\" size=\"small\" align=\"right\" star-color=\"yellow\" theme=\"dark\"></valued-widget>\n</div>"
+            "custom_liquid": "<div style=\"display: flex; justify-content: flex-start; margin-top: 6px;\">\n  <valued-widget layout=\"rating\" size=\"small\" align=\"right\" star-color=\"yellow\" theme=\"dark\"></valued-widget>\n</div>"
           }
         },
         "custom_liquid_kmVnVa": {
@@ -600,6 +600,7 @@
     },
     "custom_product_grid_FQ4U4g": {
       "type": "custom-product-grid",
+      "disabled": true,
       "blocks": {
         "product_DTaiW8": {
           "type": "product",
@@ -660,7 +661,6 @@
     },
     "recommendations": {
       "type": "product-recommendations",
-      "disabled": true,
       "settings": {
         "heading": "Misschien vind je dit ook leuk",
         "heading_align": "text-start",

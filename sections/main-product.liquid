@@ -243,16 +243,19 @@
             </div>
 
           {%- when 'rating' -%}
-            {%- if product.metafields.reviews.rating.value != blank -%}
-              <a href="#judgeme_product_reviews" class="product-info__block product-info__block--sm product-info__rating product-info__rating-link js-scroll-to-reviews" {{ block.shopify_attributes }}>
-                {% render 'rating',
-                  rating_value: product.metafields.reviews.rating.value
-                %}
-                <span class="product-info__rating-count">
-                  ({{ product.metafields.reviews.rating_count }} {{ 'products.product.reviews' | t }})
-                </span>
-              </a>
-            {%- endif -%}
+            <div class="product-info__block product-info__block--sm product-info__rating product-info__rating-row" {{ block.shopify_attributes }}>
+              {%- if product.metafields.reviews.rating.value != blank -%}
+                <a href="#judgeme_product_reviews" class="product-info__rating-link js-scroll-to-reviews">
+                  {% render 'rating',
+                    rating_value: product.metafields.reviews.rating.value
+                  %}
+                  <span class="product-info__rating-count">
+                    ({{ product.metafields.reviews.rating_count }} {{ 'products.product.reviews' | t }})
+                  </span>
+                </a>
+              {%- endif -%}
+              {% render 'authorized-seller-badge' %}
+            </div>
 
           {%- when 'variant-picker' -%}
             {%- if product.metafields.custom.color_variants.value != blank -%}

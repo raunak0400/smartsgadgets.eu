@@ -24,7 +24,7 @@
   <div class="localization__grid">
     {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
       {%- capture country_names -%}
-        {{ localization.country.name }} ({{ localization.country.currency.iso_code }}&nbsp;{{ localization.country.currency.symbol }})|
+        {{ localization.country.currency.iso_code }}&nbsp;{{ localization.country.currency.symbol }}|
       {%- endcapture -%}
 
       {%- liquid
@@ -47,23 +47,34 @@
         -%}
 
         {%- if include_native -%}
-          {%- capture country_values -%}
-            {%- for country in localization.available_countries -%}
-              {{- country.iso_code -}}
-              {%- unless forloop.last -%}|{%- endunless -%}
-            {%- endfor -%}
-          {%- endcapture -%}
-
-          {%- capture country_names -%}
-            {%- for country in localization.available_countries -%}
-              {{ country.name }} ({{ country.currency.iso_code }}&nbsp;{{ country.currency.symbol }})
-              {%- unless forloop.last -%}|{%- endunless -%}
-            {%- endfor -%}
-          {%- endcapture -%}
-
           {%- liquid
-            assign country_values = country_values | split: '|'
-            assign country_names = country_names | split: '|'
+            assign native_preferred_order = 'NL,US,GB,CH,CA' | split: ','
+            assign native_seen_currencies = ''
+            assign country_values = ''
+            assign country_names = ''
+
+            for code in native_preferred_order
+              for country in localization.available_countries
+                if country.iso_code == code
+                  unless native_seen_currencies contains country.currency.iso_code
+                    assign country_values = country_values | append: country.iso_code | append: '|'
+                    assign country_names = country_names | append: country.currency.iso_code | append: '&nbsp;' | append: country.currency.symbol | append: '|'
+                    assign native_seen_currencies = native_seen_currencies | append: country.currency.iso_code | append: ','
+                  endunless
+                endif
+              endfor
+            endfor
+
+            for country in localization.available_countries
+              unless native_seen_currencies contains country.currency.iso_code
+                assign country_values = country_values | append: country.iso_code | append: '|'
+                assign country_names = country_names | append: country.currency.iso_code | append: '&nbsp;' | append: country.currency.symbol | append: '|'
+                assign native_seen_currencies = native_seen_currencies | append: country.currency.iso_code | append: ','
+              endunless
+            endfor
+
+            assign country_values = country_values | remove_last: '|' | split: '|'
+            assign country_names = country_names | remove_last: '|' | split: '|'
           -%}
 
           <noscript>

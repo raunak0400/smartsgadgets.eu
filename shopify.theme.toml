@@ -1,11 +1,11 @@
 # Push target for this repo.
 # ALWAYS push to the "dev" environment below — the current non-live working draft.
-# NOTE: theme #143913582651 (formerly "Raunak_DEV_2") is now named "Raunak Live" and is the LIVE theme. Do NOT push there.
-# Work now happens on Raunak_DEV (unpublished draft).
+# NOTE: theme #144599711803 (formerly "RKJ_DEV") is now "RKJ_Live" — the LIVE theme. Do NOT push there.
+# Work now happens on Velova_media_DEV (unpublished draft).
 #
 #   shopify theme push -e dev
 #   shopify theme pull -e dev
 
 [environments.dev]
 store = "rybhy7-vg"
-theme = "144183558203"  # Raunak_DEV  (unpublished draft — current working theme)
+theme = "144613376059"  # Velova_media_DEV  (unpublished draft — current working theme)
