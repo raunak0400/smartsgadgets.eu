@@ -245,7 +245,7 @@
         "fp_1": {
           "type": "product",
           "settings": {
-            "product": "meari-b1-slimme-ai-video-deurbel-2k-beveiligingscamera-met-ai-detectie-nachtzicht-tweeweg-audio-app-bediening",
+            "product": "meari-b1-video-deurbel-2k",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "",
             "rating_count": 0
@@ -254,7 +254,7 @@
         "fp_2": {
           "type": "product",
           "settings": {
-            "product": "meari-n2-outdoor-ai-beveiligingscamera-3mp-ptz-wifi-camera-met-batterij-solar-support-nachtzicht-auto-tracking",
+            "product": "meari-n2-beveiligingscamera-batterij-solar",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "5",
             "rating_count": 4
@@ -322,7 +322,7 @@
           "type": "product",
           "disabled": true,
           "settings": {
-            "product": "dji-flip-smart-controller-dji-rc331-controller",
+            "product": "dji-flip-opvouwbare-drone-4k",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "4.6",
             "rating_count": 45,
@@ -334,7 +334,7 @@
           "type": "product",
           "disabled": true,
           "settings": {
-            "product": "lichaamsverzorging",
+            "product": "deki-luma-ipl-ontharingsapparaat",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "4.6",
             "rating_count": 45,
@@ -384,7 +384,7 @@
           "type": "brand",
           "settings": {
             "logo": "shopify://shop_images/movespeed-logo.png",
-            "link": "shopify://products/movespeed-wd10-ssd-flash-drive-1000mbs-dual-port-push-pull"
+            "link": "shopify://products/movespeed-wd10-128gb-ssd-flash-drive"
           }
         },
         "brand_4": {
@@ -423,7 +423,7 @@
         "hotspot_1": {
           "type": "hotspot",
           "settings": {
-            "product": "meari-l1-plus-slimme-schijnwerper-camera-2k-outdoor-beveiligingscamera-met-verlichting-ai-detectie-sirene",
+            "product": "meari-l1-plus-schijnwerper-camera-2k",
             "hotspot_x": 8,
             "hotspot_y": 17,
             "show_label": false,
@@ -475,7 +475,7 @@
         "hotspot_6": {
           "type": "hotspot",
           "settings": {
-            "product": "meari-n2-outdoor-ai-beveiligingscamera-3mp-ptz-wifi-camera-met-batterij-solar-support-nachtzicht-auto-tracking",
+            "product": "meari-n2-beveiligingscamera-batterij-solar",
             "hotspot_x": 84,
             "hotspot_y": 26,
             "show_label": false,
@@ -485,7 +485,7 @@
         "hotspot_7": {
           "type": "hotspot",
           "settings": {
-            "product": "dji-drone-mini-5-pro-fly-more-combo-rc-2-cameras-and-video-recording-kit",
+            "product": "dji-mini-5-pro-fly-more-combo",
             "hotspot_x": 96,
             "hotspot_y": 19,
             "show_label": true,
@@ -506,7 +506,7 @@
         "hotspot_9": {
           "type": "hotspot",
           "settings": {
-            "product": "meari-b1-slimme-ai-video-deurbel-2k-beveiligingscamera-met-ai-detectie-nachtzicht-tweeweg-audio-app-bediening",
+            "product": "meari-b1-video-deurbel-2k",
             "hotspot_x": 11,
             "hotspot_y": 60,
             "show_label": false,
@@ -588,7 +588,7 @@
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Jul_26_2026_02_35_36_PM.png",
-            "url": "shopify://products/lichaamsverzorging",
+            "url": "shopify://products/deki-luma-ipl-ontharingsapparaat",
             "logo_width": 120,
             "text": ""
           }
@@ -615,7 +615,7 @@
           "type": "logo",
           "settings": {
             "image": "shopify://shop_images/d6aed03a-2320-4f67-897a-5cb4bb5c2c9a.png",
-            "url": "shopify://products/movespeed-gd10-slimme-ssd-touchscreen-apple-find-my-1050mbs",
+            "url": "shopify://products/movespeed-gd10-1tb-slimme-ssd-touchscreen",
             "logo_width": 120,
             "text": ""
           }
@@ -669,7 +669,7 @@
         "mp_2": {
           "type": "product",
           "settings": {
-            "product": "meari-s1-plus-ai-beveiligingscamera-binnen-huisdiercamera-met-app-beveiligingscameras-wifi-camera-app-2k-qhd-volgt-beweging-en-geluidsdetectie-bewakingscamera",
+            "product": "meari-s1-plus-binnen-beveiligingscamera-2k",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "5",
             "rating_count": 7,
@@ -680,7 +680,7 @@
         "mp_3": {
           "type": "product",
           "settings": {
-            "product": "movespeed-seeu-su10-slimme-ssd-drive-1090mbs-smart-display",
+            "product": "movespeed-seeu-su10-256gb-slimme-ssd",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "5",
             "rating_count": 3,
@@ -691,7 +691,7 @@
         "mp_4": {
           "type": "product",
           "settings": {
-            "product": "movespeed-wd10-ssd-flash-drive-1000mbs-dual-port-push-pull",
+            "product": "movespeed-wd10-128gb-ssd-flash-drive",
             "fallback_title": "Kooduu Synergy 35 Pro Bluetooth Speaker & Lamp",
             "rating": "5",
             "rating_count": 5,
