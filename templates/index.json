@@ -801,44 +801,8 @@
     },
     "custom_testimonials": {
       "type": "custom-testimonials",
-      "blocks": {
-        "testimonial_1": {
-          "type": "testimonial",
-          "settings": {
-            "star_rating": 5,
-            "quote": "Uitstekende service en snelle levering. De slimme stekkers werken perfect met mijn thuisnetwerk.",
-            "author": "Mark T.",
-            "purchased_product": "WOOX R6113 Smart Plug"
-          }
-        },
-        "testimonial_2": {
-          "type": "testimonial",
-          "settings": {
-            "star_rating": 5,
-            "quote": "De beeldkwaliteit van de binnencamera is uitstekend. De installatie duurde minder dan 5 minuten. Ik beveel deze winkel van harte aan.",
-            "author": "Sarah M.",
-            "purchased_product": "Xenon ProVision 4K"
-          }
-        },
-        "testimonial_3": {
-          "type": "testimonial",
-          "settings": {
-            "star_rating": 4.5,
-            "quote": "Fantastisch mesh-systeem. Eindelijk heb ik overal in mijn appartement wifi-dekking. En een goede prijs ook.",
-            "author": "David L.",
-            "purchased_product": "MEARI Mesh WiFi 6"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3"
-      ],
       "settings": {
-        "heading": "Wat onze klanten zeggen",
-        "summary_rating": "4.8",
-        "summary_count": "500+"
+        "heading": "Wat onze klanten zeggen"
       }
     },
     "custom_newsletter": {
