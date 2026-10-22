@@ -112,6 +112,12 @@
             "size_chart_page": ""
           }
         },
+        "delivery_estimate": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "{% render 'delivery-estimate', context: 'product' %}"
+          }
+        },
         "divider-1": {
           "type": "divider",
           "disabled": true,
@@ -267,6 +273,7 @@
         "price",
         "inventory-status",
         "variant-picker",
+        "delivery_estimate",
         "divider-1",
         "active-offers",
         "custom_liquid_CVnnRe",
