@@ -52,19 +52,19 @@
 
     if is_nl
       assign lang = 'nl'
-      assign prefix = 'Verwachte levering:'
+      assign prefix = 'Verwacht bezorgd'
       if d_min == d_max
-        assign fallback = 'Levering in ' | append: d_min | append: ' werkdagen'
+        assign fallback = 'Verwacht bezorgd binnen ' | append: d_min | append: ' werkdagen'
       else
-        assign fallback = 'Levering in ' | append: d_min | append: '-' | append: d_max | append: ' werkdagen'
+        assign fallback = 'Verwacht bezorgd binnen ' | append: d_min | append: '-' | append: d_max | append: ' werkdagen'
       endif
     else
       assign lang = 'en'
-      assign prefix = 'Estimated delivery:'
+      assign prefix = 'Expected delivery'
       if d_min == d_max
-        assign fallback = 'Delivery in ' | append: d_min | append: ' working days'
+        assign fallback = 'Expected delivery within ' | append: d_min | append: ' working days'
       else
-        assign fallback = 'Delivery in ' | append: d_min | append: '-' | append: d_max | append: ' working days'
+        assign fallback = 'Expected delivery within ' | append: d_min | append: '-' | append: d_max | append: ' working days'
       endif
     endif
   -%}
