@@ -282,7 +282,9 @@
     must run BEFORE content_for_header, i.e. before those apps assign their settings. Dutch pages only.
   {%- endcomment -%}
   {%- if request.locale.iso_code contains 'nl' -%}
+    {% # theme-check-disable ParserBlockingScript %}
     <script src="{{ 'app-i18n-nl.js' | asset_url }}"></script>
+    {% # theme-check-enable ParserBlockingScript %}
   {%- endif -%}
 
   {{ content_for_header }}
