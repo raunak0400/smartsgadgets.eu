@@ -303,7 +303,7 @@
   <div class="sg-grid-section__header">
     <h2 class="sg-grid-section__heading" data-cc-animate="fade-in">{{ section.settings.heading }}</h2>
     {%- if section.settings.view_all_link != blank -%}
-      <a href="{{ section.settings.view_all_link }}" class="sg-grid-section__view-all">View All</a>
+      <a href="{{ section.settings.view_all_link }}" class="sg-grid-section__view-all">{{ 'sections.featured_collection.view_all' | t }}</a>
     {%- endif -%}
   </div>
 
