@@ -317,7 +317,7 @@
                 <details class="filter disclosure" id="filter-{{ filter.param_name | escape }}" data-type="{{ filter.type }}"{% if section.settings.expand_filters %} open{% endif %}>
                   <summary class="filter__toggle">
                     <div class="flex justify-between items-center">
-                      <span class="flex-auto font-bold">{{ filter.label | escape }}</span>
+                      <span class="flex-auto font-bold">{%- if filter.type == 'price_range' -%}{{ 'products.product.price.label' | t }}{%- else -%}{{ filter.label | escape }}{%- endif -%}</span>
                       <span class="disclosure__toggle">
                         {%- if settings.disclosure_toggle == 'plus' -%}
                           {% render 'icon-plus' %}
