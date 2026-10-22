@@ -23,11 +23,45 @@
     "slideshow_xHHUYX": {
       "type": "slideshow",
       "blocks": {
+        "slide_pcXYEW": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/meari_n2_3.png",
+            "image_mobile": "shopify://shop_images/Koop_Meari_N2_3.png",
+            "url": "shopify://products/meari-n2-beveiligingscamera-batterij-solar",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "",
+            "heading": "",
+            "heading_size": "h0",
+            "heading_h1": false,
+            "text": "",
+            "enlarge_text": false,
+            "button_1_label": "",
+            "button_1_link": "",
+            "button_1_style": "btn btn--primary",
+            "button_2_label": "",
+            "button_2_link": "",
+            "button_2_style": "btn btn--primary",
+            "transparent_content_color": "#ffffff",
+            "countdown_show": false,
+            "countdown_end_date": "",
+            "countdown_end_time": "",
+            "countdown_end_text": "",
+            "enlarge_end_text": false,
+            "countdown_hide_on_end": false,
+            "use_custom_colors": false,
+            "count_color": "#ffffff",
+            "bg_color": "#070707",
+            "bg_grad": ""
+          }
+        },
         "slide_yMKgp9": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Kooduu_Banner_1_2.png",
-            "image_mobile": "shopify://shop_images/Untitled_design_10.png",
+            "image_desktop": "shopify://shop_images/Slimme_Gadgets_Slimmere_Prijzen.png",
+            "image_mobile": "shopify://shop_images/Kooduu_Slimme_Gadgets_Slimmere_Prijzen.png",
             "url": "shopify://collections/kooduu",
             "overlay_position": "justify-center items-center",
             "overlay_text_align": "text-center",
@@ -60,8 +94,8 @@
         "slide_BbK8yq": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Smart_Home_Banner.png",
-            "image_mobile": "shopify://shop_images/smart_home_mobile_banner.png",
+            "image_desktop": "shopify://shop_images/Slim_Wonen_in_Warme_Sferen.png",
+            "image_mobile": "shopify://shop_images/Slimmer_Thuis_Warme_Avonden.png",
             "url": "shopify://collections/smart-home-accessoires",
             "overlay_position": "justify-center items-center",
             "overlay_text_align": "text-center",
@@ -94,8 +128,8 @@
         "slide_8xcKX9": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/Drone_Bannner.png",
-            "image_mobile": "shopify://shop_images/DJI_Drone_Banner.png",
+            "image_desktop": "shopify://shop_images/DJI_Mini_5_Pro_Savanna_Adventure.png",
+            "image_mobile": "shopify://shop_images/DJI_Mini_5_Pro__Sunset_Predator_Pursuit.png",
             "url": "shopify://collections/drones",
             "overlay_position": "justify-center items-center",
             "overlay_text_align": "text-center",
@@ -127,6 +161,7 @@
         }
       },
       "block_order": [
+        "slide_pcXYEW",
         "slide_yMKgp9",
         "slide_BbK8yq",
         "slide_8xcKX9"
@@ -173,14 +208,14 @@
           "type": "item",
           "settings": {
             "icon": "badge-check",
-            "label": "WebwinkelKeur 9,6"
+            "label": "WebwinkelKeur Geverifieerd"
           }
         },
         "item_4": {
           "type": "item",
           "settings": {
             "icon": "headset",
-            "label": "Support in het Nederlands"
+            "label": "Ondersteuning in het Nederlands"
           }
         }
       },
@@ -225,7 +260,7 @@
           "settings": {
             "image": "shopify://shop_images/category-drone.png",
             "label": "Outdoor & Travel",
-            "link": "shopify://collections/tools-diy"
+            "link": "shopify://collections/drones"
           }
         }
       },
@@ -354,6 +389,12 @@
       "settings": {
         "heading": "Beste verkopers",
         "view_all_link": "shopify://collections/kooduu"
+      }
+    },
+    "custom_best_deals": {
+      "type": "custom-best-deals",
+      "settings": {
+        "heading": "Beste in Verlichting"
       }
     },
     "custom_brands": {
@@ -566,6 +607,15 @@
     "logo_list_hKzaHm": {
       "type": "logo-list",
       "blocks": {
+        "logo_hxGBCf": {
+          "type": "logo",
+          "settings": {
+            "image": "shopify://shop_images/insta360-logo-png_seeklogo-619339.png",
+            "url": "shopify://collections/collections-insta360",
+            "logo_width": 120,
+            "text": ""
+          }
+        },
         "logo_n9qHbL": {
           "type": "logo",
           "settings": {
@@ -631,6 +681,7 @@
         }
       },
       "block_order": [
+        "logo_hxGBCf",
         "logo_n9qHbL",
         "logo_KPYjGH",
         "logo_RPef6D",
@@ -711,12 +762,6 @@
         "view_all_link": "shopify://collections/all"
       }
     },
-    "custom_best_deals": {
-      "type": "custom-best-deals",
-      "settings": {
-        "heading": "Beste in Verlichting"
-      }
-    },
     "custom_why_smartsgadgets": {
       "type": "custom-why-smartsgadgets",
       "blocks": {
@@ -745,7 +790,11 @@
           }
         }
       },
-      "block_order": ["reason_1", "reason_2", "reason_3"],
+      "block_order": [
+        "reason_1",
+        "reason_2",
+        "reason_3"
+      ],
       "settings": {
         "heading": "Waarom SmartsGadgets?"
       }
