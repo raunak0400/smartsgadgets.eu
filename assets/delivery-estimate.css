@@ -1,0 +1,25 @@
+.sg-delivery-estimate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.sg-delivery-estimate__icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.sg-delivery-estimate__text {
+  min-width: 0;
+}
+
+.sg-delivery-estimate--cart {
+  justify-content: center;
+  margin: 12px 0 0;
+  font-size: 13px;
+  text-align: center;
+}
