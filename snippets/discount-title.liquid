@@ -1,0 +1,11 @@
+{%- comment -%}
+  Prints a cart discount title.
+
+  Discount and gift-app names are typed in the admin, usually in English. The common "Free gift" is
+  translated through the theme locale (cart.general.free_gift) and the rest of the title is kept,
+  so "Free gift - Bundle" becomes "Gratis cadeau - Bundle" on the Dutch shop.
+
+  Usage: {% render 'discount-title', title: discount.title %}
+{%- endcomment -%}
+{%- assign free_gift_label = 'cart.general.free_gift' | t -%}
+{{- title | replace: 'Free gift', free_gift_label | replace: 'Free Gift', free_gift_label | replace: 'free gift', free_gift_label | escape_once -}}
