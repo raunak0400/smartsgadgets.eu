@@ -1,0 +1,87 @@
+{%- comment -%}
+  Estimated delivery date for the product page, the cart page and the cart drawer.
+
+  Usage:  {% render 'delivery-estimate', context: 'product' %}
+          {% render 'delivery-estimate', context: 'cart' %}
+
+  The numbers come from Theme settings > Delivery estimate. The actual date range is computed in the browser
+  (assets/delivery-estimate.js, Europe/Amsterdam time, working days and public holidays) so it stays correct on
+  cached pages. The text printed here is the fallback shown until the script runs, or when JavaScript is off.
+  Shopify's native estimated delivery dates only appear in checkout, so this covers the two pages before it.
+{%- endcomment -%}
+
+{%- liquid
+  assign show = true
+  if settings.delivery_estimate_enabled == false
+    assign show = false
+  endif
+
+  if context == 'product'
+    if product == blank or product.available == false
+      assign show = false
+    elsif product.selected_or_first_available_variant.requires_shipping == false
+      assign show = false
+    endif
+  else
+    if cart.item_count == 0 or cart.requires_shipping == false
+      assign show = false
+    endif
+  endif
+-%}
+
+{%- if show -%}
+  {%- liquid
+    assign country = localization.country.iso_code | default: 'NL'
+    assign cutoff = settings.delivery_cutoff_hour | default: 14
+
+    if country == 'NL'
+      assign d_min = settings.delivery_nl_min | default: 1
+      assign d_max = settings.delivery_nl_max | default: 3
+    else
+      assign d_min = settings.delivery_other_min | default: 2
+      assign d_max = settings.delivery_other_max | default: 4
+    endif
+    if d_max < d_min
+      assign d_max = d_min
+    endif
+
+    assign is_nl = false
+    if request.locale.iso_code contains 'nl'
+      assign is_nl = true
+    endif
+
+    if is_nl
+      assign lang = 'nl'
+      assign prefix = 'Verwachte levering:'
+      if d_min == d_max
+        assign fallback = 'Levering in ' | append: d_min | append: ' werkdagen'
+      else
+        assign fallback = 'Levering in ' | append: d_min | append: '-' | append: d_max | append: ' werkdagen'
+      endif
+    else
+      assign lang = 'en'
+      assign prefix = 'Estimated delivery:'
+      if d_min == d_max
+        assign fallback = 'Delivery in ' | append: d_min | append: ' working days'
+      else
+        assign fallback = 'Delivery in ' | append: d_min | append: '-' | append: d_max | append: ' working days'
+      endif
+    endif
+  -%}
+
+  {{ 'delivery-estimate.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'delivery-estimate.js' | asset_url }}" defer="defer"></script>
+
+  <div
+    class="sg-delivery-estimate sg-delivery-estimate--{{ context | default: 'product' }}"
+    data-country="{{ country }}"
+    data-cutoff="{{ cutoff }}"
+    data-min="{{ d_min }}"
+    data-max="{{ d_max }}"
+    data-locale="{{ lang }}"
+    data-prefix="{{ prefix | escape }}"
+  >
+    <svg class="sg-delivery-estimate__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+    <span class="sg-delivery-estimate__text" data-delivery-text>{{ fallback }}</span>
+  </div>
+{%- endif -%}
