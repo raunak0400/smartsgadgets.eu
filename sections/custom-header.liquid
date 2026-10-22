@@ -335,19 +335,19 @@
     </nav>
 
     <div class="sg-header__icons">
-      <a href="{{ routes.search_url }}" class="sg-header__icon-btn" aria-label="Search">
+      <a href="{{ routes.search_url }}" class="sg-header__icon-btn" aria-label="{{ 'general.search.title' | t }}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       </a>
-      <a href="{{ routes.account_url }}" class="sg-header__icon-btn" aria-label="Account">
+      <a href="{{ routes.account_url }}" class="sg-header__icon-btn" aria-label="{{ 'sections.header.account' | t }}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
       </a>
-      <a href="{{ routes.cart_url }}" class="sg-header__icon-btn" aria-label="Cart">
+      <a href="{{ routes.cart_url }}" class="sg-header__icon-btn" aria-label="{{ 'sections.header.cart' | t }}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 2H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
         {%- if cart.item_count > 0 -%}
           <span class="sg-header__cart-count">{{ cart.item_count }}</span>
         {%- endif -%}
       </a>
-      <button type="button" class="sg-header__burger" data-sg-header-burger aria-label="Menu">
+      <button type="button" class="sg-header__burger" data-sg-header-burger aria-label="{{ 'general.icon_labels.menu' | t }}">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
