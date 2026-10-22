@@ -73,12 +73,17 @@
     'You unlocked your reward!': 'Je hebt je beloning ontgrendeld!',
     'TODAY OFFER': 'AANBIEDING VANDAAG',
     "View today's offers": 'Bekijk de aanbiedingen van vandaag',
-    'Free gift': 'Gratis cadeau'
+    'Free gift': 'Gratis cadeau',
+    'Previous reviews': 'Vorige beoordelingen',
+    'Next reviews': 'Volgende beoordelingen',
+    'Choose a review picture/video (optional)': 'Kies een foto of video voor je beoordeling (optioneel)'
   };
   var PATTERNS = [
     [/^Based on (\d+) reviews?$/, function (m) { return 'Gebaseerd op ' + m[1] + ' ' + plural(m[1], 'beoordeling', 'beoordelingen'); }],
     [/^(\d+) reviews?$/, function (m) { return m[1] + ' ' + plural(m[1], 'beoordeling', 'beoordelingen'); }],
     [/^(\d+)% \((\d+)\) reviews with (\d) star rating$/, function (m) { return m[1] + '% (' + m[2] + ') beoordelingen met ' + m[3] + ' ' + plural(m[3], 'ster', 'sterren'); }],
+    [/^(\d) stars?$/, function (m) { return m[1] + ' ' + plural(m[1], 'ster', 'sterren'); }],
+    [/^Judge\.me (Diamond|Platinum|Gold|Silver|Bronze) Transparent Shop medal$/, function (m) { return 'Judge.me-medaille: ' + MEDAL[m[1]] + ' transparante webshop'; }],
     [/^(\d) star reviews?$/, function (m) { return 'Beoordeling met ' + m[1] + ' ' + plural(m[1], 'ster', 'sterren'); }],
     [/^Average rating is ([\d.]+) stars?$/, function (m) { return 'Gemiddelde beoordeling is ' + m[1].replace('.', ',') + ' sterren'; }],
     [/^(Diamond|Platinum|Gold|Silver|Bronze) Transparent Shop\. Published (\d+)% of verified reviews received in total$/,
