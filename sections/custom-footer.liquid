@@ -252,7 +252,7 @@
 
         <h3 class="sg-footer__sub-heading">{{ section.settings.contact_heading }}</h3>
         <div class="sg-footer__contact">
-          <p>Email: <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
+          <p>{{ 'newsletter.label' | t }}: <a href="mailto:{{ section.settings.contact_email }}">{{ section.settings.contact_email }}</a></p>
           {%- if phone_number != blank -%}
             <p>Tel./Whatsapp: <a href="tel:{{ phone_href }}">{{ phone_number }}</a></p>
           {%- endif -%}
@@ -278,7 +278,7 @@
       {%- assign year_token = '[[YEAR]]' -%}
       <p class="sg-footer__copyright">{{ section.settings.copyright_text | replace: year_token, current_year }}</p>
       {%- if section.settings.show_my_orders -%}
-        <a href="{{ routes.account_url }}" class="sg-footer__bottom-link">My Orders</a>
+        <a href="{{ routes.account_url }}" class="sg-footer__bottom-link">{{ 'customer.orders.title' | t }}</a>
       {%- endif -%}
     </div>
   </div>
