@@ -221,6 +221,10 @@
         "boolean_false": "No",
         "file_download": "Download"
       }
+    },
+    "facets": {
+      "availability": "Availability",
+      "brand": "Brand"
     }
   },
   "sections": {

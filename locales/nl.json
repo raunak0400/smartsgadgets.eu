@@ -221,6 +221,10 @@
         "boolean_false": "Nee",
         "file_download": "Download"
       }
+    },
+    "facets": {
+      "availability": "Beschikbaarheid",
+      "brand": "Merk"
     }
   },
   "sections": {

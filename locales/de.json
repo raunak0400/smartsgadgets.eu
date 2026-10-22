@@ -219,6 +219,10 @@
         "boolean_false": "Nein",
         "file_download": "Download"
       }
+    },
+    "facets": {
+      "availability": "Verfügbarkeit",
+      "brand": "Marke"
     }
   },
   "sections": {
