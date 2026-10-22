@@ -105,6 +105,8 @@
         {%- endif -%}
       </div>
 
+      {% render 'delivery-estimate', context: 'cart' %}
+
       {%- capture icon -%}
         {%- liquid
           if settings.cart_icon == 'bag'
