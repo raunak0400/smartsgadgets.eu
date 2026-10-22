@@ -124,7 +124,7 @@
           {%- for discount in cart.cart_level_discount_applications -%}
             <li class="mt-2">
               <div class="discount text-sm inline-flex items-center" dir="auto">
-                {% render 'icon-tags' %} {{ discount.title | escape_once }} (-{{ discount.total_allocated_amount | money }})
+                {% render 'icon-tags' %} {% render 'discount-title', title: discount.title %} (-{{ discount.total_allocated_amount | money }})
               </div>
             </li>
           {%- endfor -%}
