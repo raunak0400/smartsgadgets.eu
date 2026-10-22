@@ -2884,6 +2884,76 @@
     ]
   },
   {
+    "name": "Delivery estimate",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Shows an estimated delivery date on the product page and in the cart. Shopify's own estimated delivery dates only appear at checkout (and only for some origin countries). Set these numbers to match your shipping policy."
+      },
+      {
+        "type": "checkbox",
+        "id": "delivery_estimate_enabled",
+        "label": "Show estimated delivery date",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "delivery_cutoff_hour",
+        "min": 8,
+        "max": 20,
+        "step": 1,
+        "unit": "h",
+        "label": "Order cut-off (Amsterdam time)",
+        "info": "Orders placed on a working day before this hour are shipped the same day.",
+        "default": 14
+      },
+      {
+        "type": "header",
+        "content": "Netherlands"
+      },
+      {
+        "type": "range",
+        "id": "delivery_nl_min",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "label": "Earliest delivery (working days after shipping)",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "delivery_nl_max",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "label": "Latest delivery (working days after shipping)",
+        "default": 3
+      },
+      {
+        "type": "header",
+        "content": "Belgium and other countries"
+      },
+      {
+        "type": "range",
+        "id": "delivery_other_min",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "label": "Earliest delivery (working days after shipping)",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "delivery_other_max",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "label": "Latest delivery (working days after shipping)",
+        "default": 4
+      }
+    ]
+  },
+  {
     "name": "Animations",
     "settings": [
       {
