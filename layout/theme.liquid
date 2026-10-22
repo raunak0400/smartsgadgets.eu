@@ -277,6 +277,14 @@
     <noscript><link rel="stylesheet" href="{{ 'swatches.css' | asset_url }}"></noscript>
   {%- endif -%}
 
+  {%- comment -%}
+    Dutch texts for the Judge.me and Offerly (free gift) widgets. They render their own English UI, so this script
+    must run BEFORE content_for_header, i.e. before those apps assign their settings. Dutch pages only.
+  {%- endcomment -%}
+  {%- if request.locale.iso_code contains 'nl' -%}
+    <script src="{{ 'app-i18n-nl.js' | asset_url }}"></script>
+  {%- endif -%}
+
   {{ content_for_header }}
 
   {%- if request.design_mode -%}
