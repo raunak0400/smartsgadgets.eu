@@ -85,7 +85,7 @@
   <div class="sg-brands__header">
     <h2 class="sg-brands__heading">{{ section.settings.heading }}</h2>
     {%- if section.settings.view_all_link != blank -%}
-      <a href="{{ section.settings.view_all_link }}" class="sg-brands__view-all">View All</a>
+      <a href="{{ section.settings.view_all_link }}" class="sg-brands__view-all">{{ 'sections.featured_collection.view_all' | t }}</a>
     {%- endif -%}
   </div>
 
