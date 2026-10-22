@@ -76,6 +76,7 @@
     'Free gift': 'Gratis cadeau',
     'Previous reviews': 'Vorige beoordelingen',
     'Next reviews': 'Volgende beoordelingen',
+    'Verified Checkmark': 'Vinkje: geverifieerd',
     'Choose a review picture/video (optional)': 'Kies een foto of video voor je beoordeling (optioneel)'
   };
   var PATTERNS = [
