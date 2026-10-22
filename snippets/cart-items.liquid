@@ -204,7 +204,7 @@
                     {%- for discount in item.discounts -%}
                       <li class="mt-2">
                         <div class="discount text-sm inline-flex items-center" dir="auto">
-                          {% render 'icon-tags' %} {{- discount.title | escape_once -}}
+                          {% render 'icon-tags' %} {%- render 'discount-title', title: discount.title -%}
                         </div>
                       </li>
                     {%- endfor -%}
