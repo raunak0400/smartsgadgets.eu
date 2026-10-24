@@ -26,6 +26,7 @@
         "slide_pcXYEW": {
           "type": "slide",
           "settings": {
+            "header_text": "dark",
             "image_desktop": "shopify://shop_images/meari_n2_4.png",
             "image_mobile": "shopify://shop_images/Koop_Meari_N2_4.png",
             "url": "shopify://products/meari-n2-beveiligingscamera-batterij-solar",
@@ -60,6 +61,7 @@
         "slide_yMKgp9": {
           "type": "slide",
           "settings": {
+            "header_text": "light",
             "image_desktop": "shopify://shop_images/Slimme_Gadgets_Slimmere_Prijzen.png",
             "image_mobile": "shopify://shop_images/Kooduu_Slimme_Gadgets_Slimmere_Prijzen.png",
             "url": "shopify://collections/kooduu",
@@ -94,6 +96,7 @@
         "slide_BbK8yq": {
           "type": "slide",
           "settings": {
+            "header_text": "dark",
             "image_desktop": "shopify://shop_images/Slim_Wonen_in_Warme_Sferen.png",
             "image_mobile": "shopify://shop_images/Slimmer_Thuis_Warme_Avonden.png",
             "url": "shopify://collections/smart-home-accessoires",
@@ -128,6 +131,7 @@
         "slide_8xcKX9": {
           "type": "slide",
           "settings": {
+            "header_text": "dark",
             "image_desktop": "shopify://shop_images/DJI_Mini_5_Pro_Savanna_Adventure.png",
             "image_mobile": "shopify://shop_images/DJI_Mini_5_Pro__Sunset_Predator_Pursuit.png",
             "url": "shopify://collections/drones",
