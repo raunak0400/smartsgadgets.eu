@@ -29,6 +29,22 @@
     color: #111111;
   }
 
+  #shopify-section-{{ section.id }} .sg-header__logo-text,
+  #shopify-section-{{ section.id }} .sg-header__nav-link,
+  #shopify-section-{{ section.id }} .sg-header__icon-btn,
+  #shopify-section-{{ section.id }} .sg-header__burger {
+    transition: color 200ms ease;
+  }
+
+  /* Homepage: the header sits on the hero. assets/header-tone.js sets data-header-tone="dark" while the slide
+     behind it is light, and the menu, icons and text logo turn black so they stay readable. */
+  body.template-index[data-header-tone="dark"] #shopify-section-{{ section.id }} .sg-header__logo-text,
+  body.template-index[data-header-tone="dark"] #shopify-section-{{ section.id }} .sg-header__nav-link,
+  body.template-index[data-header-tone="dark"] #shopify-section-{{ section.id }} .sg-header__icon-btn,
+  body.template-index[data-header-tone="dark"] #shopify-section-{{ section.id }} .sg-header__burger {
+    color: #111111;
+  }
+
   #shopify-section-{{ section.id }} .sg-header__bar {
     width: min(1320px, 100%);
     margin: 0 auto;
