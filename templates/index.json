@@ -26,8 +26,8 @@
         "slide_pcXYEW": {
           "type": "slide",
           "settings": {
-            "image_desktop": "shopify://shop_images/meari_n2_3.png",
-            "image_mobile": "shopify://shop_images/Koop_Meari_N2_3.png",
+            "image_desktop": "shopify://shop_images/meari_n2_4.png",
+            "image_mobile": "shopify://shop_images/Koop_Meari_N2_4.png",
             "url": "shopify://products/meari-n2-beveiligingscamera-batterij-solar",
             "overlay_position": "justify-center items-center",
             "overlay_text_align": "text-center",
