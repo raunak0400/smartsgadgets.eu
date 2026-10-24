@@ -165,7 +165,7 @@
              aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
              {% if style %}style="{{ style }}"{% endif %}
              {%- unless forloop.first %}tabindex="-1"{% endunless %}
-             {%- if request.design_mode %}data-index="{{ forloop.index0 }}"{% endif %}
+             {%- if request.design_mode %}data-index="{{ forloop.index0 }}"{% endif %} data-header-text="{{ block.settings.header_text | default: 'auto' }}"
              {{ block.shopify_attributes }}>
 
           {%- if block.settings.url != blank -%}
@@ -342,6 +342,11 @@
       </div>
     {%- endif -%}
   </slide-show>
+  {%- assign first_slide = section.blocks.first -%}
+  {%- if first_slide.settings.header_text == 'dark' or first_slide.settings.header_text == 'light' -%}
+    <script>document.body.setAttribute('data-header-tone', '{{ first_slide.settings.header_text }}');</script>
+  {%- endif -%}
+  <script src="{{ 'header-tone.js' | asset_url }}" defer="defer"></script>
 </div>
 
 {% schema %}
@@ -589,6 +594,18 @@
           "type": "url",
           "id": "url",
           "label": "Image link (optional)"
+        },
+        {
+          "type": "select",
+          "id": "header_text",
+          "label": "Header text colour on this slide",
+          "info": "Colour of the menu, icons and logo text that sit on top of this slide (homepage only). Auto measures the image.",
+          "options": [
+            { "value": "auto", "label": "Auto (detect from the image)" },
+            { "value": "light", "label": "White (for dark images)" },
+            { "value": "dark", "label": "Black (for light images)" }
+          ],
+          "default": "auto"
         },
         {
           "type": "header",
