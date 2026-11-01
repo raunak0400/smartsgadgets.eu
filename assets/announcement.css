@@ -106,6 +106,9 @@ body:not(.tab-used) .announcement__localization .custom-select__btn:focus {
 
 .announcement__col--left {
   flex: 1;
+  /* A flex item will not shrink below its content by default. The ticker track is width: max-content (about 1270px),
+     so without this the bar, and with it the whole page, became that wide on phones and Chrome zoomed the page out. */
+  min-width: 0;
 }
 
 .announcement__col--right {
