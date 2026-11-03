@@ -1,11 +1,18 @@
 # Push target for this repo.
-# ALWAYS push to the "dev" environment below — the current non-live working draft.
-# NOTE: theme #144599711803 ("RKJ_Live") is the LIVE theme. Do NOT push there.
-# Work now happens on RKJ_Dev (unpublished draft).
+#
+# RULES
+#   - NEVER push to the live storefront. Never use --live, --publish,
+#     or the live theme ID (#144984932411, "RKJ_Live").
+#   - ALL code changes go to RKJ_Dev, targeted by theme ID (theme names are
+#     not unique on this store, so always use the ID).
 #
 #   shopify theme push -e dev
 #   shopify theme pull -e dev
+#
+# Theme IDs verified with `shopify theme list` on 2026-11-04:
+#   145363009595  RKJ_Dev   [unpublished]  <- working theme
+#   144984932411  RKJ_Live  [live]         <- DO NOT TOUCH
 
 [environments.dev]
 store = "rybhy7-vg"
-theme = "144984932411"  # RKJ_Dev  (unpublished draft — current working theme)
+theme = "145363009595"  # RKJ_Dev (unpublished working theme)
