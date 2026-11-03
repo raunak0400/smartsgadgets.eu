@@ -1,0 +1,24 @@
+{%- comment -%}
+  "Notify me when back in stock" button. Rendered INSIDE a buy-button controls
+  wrapper (the element carrying [data-bis-controls]), next to the quantity input
+  and Add-to-cart button. CSS swaps them: while the wrapper has .is-sold-out only
+  this button shows; otherwise it is hidden. assets/back-in-stock.js keeps the
+  state in sync when the shopper switches variant.
+
+  Parameters:
+  - dialog_id {String} - id of the <dialog> rendered by 'back-in-stock-dialog'.
+  - class {String} - extra button classes (e.g. 'w-full' or 'sticky-atc-panel__btn').
+
+  Usage:
+  {% render 'back-in-stock-button', dialog_id: bis_dialog_id, class: 'w-full' %}
+{%- endcomment -%}
+<button type="button"
+  class="btn btn--primary bis-notify-btn js-bis-open {{ class }}"
+  aria-haspopup="dialog"
+  aria-controls="{{ dialog_id }}">
+  <svg class="bis-notify-btn__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>{{ 'products.product.back_in_stock.button' | t }}</span>
+</button>

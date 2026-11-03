@@ -48,6 +48,23 @@
   endif
 
   assign product_form_id = 'product-form-' | append: section.id
+
+  # Back-in-stock: a real, selected variant that can't be bought -> show "Notify me"
+  # in place of Add-to-cart (snippets/back-in-stock-button.liquid).
+  assign bis_dialog_id = 'bis-dialog-' | append: section.id
+  assign bis_sold_out = false
+  if current_variant and current_variant.available == false
+    assign bis_sold_out = true
+  endif
+  assign bis_variant_title = ''
+  if current_variant
+    assign bis_variant_title = current_variant.title | escape
+  endif
+  assign bis_product_title = product.title | escape
+  capture bis_controls_attrs
+    echo 'data-bis-controls data-variant-id="' | append: current_variant.id | append: '" data-product-title="' | append: bis_product_title | append: '" data-variant-title="' | append: bis_variant_title | append: '"'
+  endcapture
+
   assign first_3d_model = product.media | where: 'media_type', 'model' | first
   assign media_ratio = section.settings.media_ratio
   assign thumb_ratio = section.settings.thumb_ratio
@@ -316,7 +333,7 @@
                   <div class="alert mb-8 bg-error-bg text-error-text js-form-error text-start" role="alert" hidden></div>
 
                   <input type="hidden" name="id" value="{{ current_variant.id }}">
-                  <div class="product-info__add-to-cart flex{% if enable_dynamic_checkout %} qty-input--secondary-btn{% endif %}">
+                  <div class="product-info__add-to-cart flex{% if enable_dynamic_checkout %} qty-input--secondary-btn{% endif %}{% if bis_sold_out %} is-sold-out{% endif %}" {{ bis_controls_attrs }}>
                     {%- if block.settings.show_qty_selector -%}
                       {% render 'quantity-input', layout_style: "combined" %}
                     {%- else -%}
@@ -342,6 +359,8 @@
                         {%- endif -%}
                       </button>
                     </div>
+
+                    {% render 'back-in-stock-button', dialog_id: bis_dialog_id, class: 'w-full' %}
                   </div>
 
                   {%- if enable_dynamic_checkout -%}
@@ -825,7 +844,7 @@
         <div class="alert mb-8 bg-error-bg text-error-text js-form-error text-start" role="alert" hidden></div>
         {%- form 'product', product, class: 'js-product-form js-product-form-main', id: product_form_id, novalidate: 'novalidate' -%}
           <input type="hidden" name="id" value="{{ current_variant.id }}">
-          <div class="sticky-atc-panel__controls flex items-center">
+          <div class="sticky-atc-panel__controls flex items-center{% if bis_sold_out %} is-sold-out{% endif %}" {{ bis_controls_attrs }}>
             {% render 'quantity-input', layout_style: 'combined' %}
 
             {%- capture add_to_cart_text -%}
@@ -845,12 +864,17 @@
                 {{- 'products.product.sold_out' | t -}}
               {%- endif -%}
             </button>
+
+            {% render 'back-in-stock-button', dialog_id: bis_dialog_id, class: 'sticky-atc-panel__btn' %}
           </div>
         {%- endform -%}
       </product-form>
     </div>
   </sticky-atc-panel>
 {%- endif -%}
+
+{%- comment -%} One pop-up per section, outside every product <form>; opened by any "Notify me" button above. {%- endcomment -%}
+{% render 'back-in-stock-dialog', dialog_id: bis_dialog_id, product: product %}
 
 {%- if first_3d_model -%}
   <script type="application/json" id="product-json-{{ product.id }}">

@@ -1,0 +1,77 @@
+{%- comment -%}
+  "Notify me when back in stock" pop-up. Render ONCE per product section, OUTSIDE
+  any product <form> (nested forms are invalid HTML).
+
+  Sign-ups go to Klaviyo's Back In Stock list for the exact variant
+  (POST /client/back-in-stock-subscriptions). Klaviyo emails the shopper
+  automatically when that variant is restocked — this needs the
+  "Back In Stock" flow to be live in Klaviyo. If the Klaviyo request fails, the
+  sign-up is sent to the store inbox through the Shopify contact form instead,
+  so no request is lost.
+
+  Parameters:
+  - dialog_id {String} - unique id for the <dialog>.
+  - product {Object} - the product.
+
+  Usage:
+  {% render 'back-in-stock-dialog', dialog_id: bis_dialog_id, product: product %}
+{%- endcomment -%}
+
+{%- comment -%} Klaviyo PUBLIC site key (company_id) — safe to expose; it is already on every page via the Klaviyo app embed. {%- endcomment -%}
+{%- assign klaviyo_company_id = 'XpfVUw' -%}
+
+{{ 'back-in-stock.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'back-in-stock.js' | asset_url }}" defer="defer"></script>
+
+<dialog class="bis-dialog"
+  id="{{ dialog_id }}"
+  aria-labelledby="{{ dialog_id }}-title"
+  data-klaviyo-company-id="{{ klaviyo_company_id }}"
+  data-product-id="{{ product.id }}"
+  data-product-url="{{ shop.url }}{{ product.url }}"
+  data-error-text="{{ 'products.product.back_in_stock.error' | t | escape }}"
+  data-invalid-email-text="{{ 'products.product.back_in_stock.invalid_email' | t | escape }}">
+  <div class="bis-dialog__inner">
+    <button type="button" class="bis-dialog__close js-bis-close" aria-label="{{ 'products.product.back_in_stock.close' | t | escape }}">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="js-bis-step-form">
+      <p class="bis-dialog__title h5" id="{{ dialog_id }}-title">{{ 'products.product.back_in_stock.title' | t }}</p>
+      <p class="bis-dialog__text">
+        {{- 'products.product.back_in_stock.text_html' | t: product: '<strong class="js-bis-product-name"></strong>' -}}
+      </p>
+
+      <form class="bis-dialog__form js-bis-form" novalidate>
+        <label class="visually-hidden" for="{{ dialog_id }}-email">{{ 'products.product.back_in_stock.email_label' | t }}</label>
+        <input type="email"
+          class="input w-full bis-dialog__input js-bis-email"
+          id="{{ dialog_id }}-email"
+          name="email"
+          value="{{ customer.email }}"
+          placeholder="{{ 'products.product.back_in_stock.email_placeholder' | t | escape }}"
+          autocomplete="email"
+          inputmode="email"
+          aria-describedby="{{ dialog_id }}-error"
+          required>
+        <p class="bis-dialog__error js-bis-error" id="{{ dialog_id }}-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn--primary w-full bis-dialog__submit js-bis-submit">
+          {{- 'products.product.back_in_stock.submit' | t -}}
+        </button>
+        <p class="bis-dialog__note">{{ 'products.product.back_in_stock.note' | t }}</p>
+      </form>
+    </div>
+
+    <div class="bis-dialog__success js-bis-step-success" role="status" hidden>
+      <svg class="bis-dialog__success-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M7.5 12.3l3 3 6-6.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="bis-dialog__title h5">{{ 'products.product.back_in_stock.success_title' | t }}</p>
+      <p class="bis-dialog__text">{{ 'products.product.back_in_stock.success_text' | t }}</p>
+      <button type="button" class="btn btn--secondary w-full js-bis-close">{{ 'products.product.back_in_stock.close' | t }}</button>
+    </div>
+  </div>
+</dialog>

@@ -1,0 +1,118 @@
+/* ==========================================================================
+   "Notify me when back in stock" — product pages
+   The notify button sits in the same buy-button wrapper as the quantity input
+   and Add-to-cart ([data-bis-controls]). While the selected variant is sold
+   out the wrapper gets .is-sold-out: everything else hides, the notify button
+   takes the exact spot of Add-to-cart.
+   ========================================================================== */
+
+.bis-notify-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bis-notify-btn__icon {
+  flex: 0 0 auto;
+}
+
+[data-bis-controls].is-sold-out > :not(.bis-notify-btn) {
+  display: none !important;
+}
+[data-bis-controls].is-sold-out > .bis-notify-btn {
+  display: inline-flex;
+  flex: 1 1 auto;
+}
+
+/* ---------- dialog ---------- */
+.bis-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: rgba(var(--bg-color, 255 255 255));
+  color: rgb(var(--text-color, 7 7 7));
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+}
+.bis-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+.bis-dialog[open] {
+  animation: bis-in 0.18s ease-out;
+}
+@keyframes bis-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bis-dialog[open] { animation: none; }
+}
+
+.bis-dialog__inner {
+  position: relative;
+  padding: 28px 24px 24px;
+}
+.bis-dialog__close {
+  position: absolute;
+  top: 10px;
+  inset-inline-end: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.bis-dialog__close:hover {
+  background: rgba(var(--text-color, 7 7 7) / 0.06);
+}
+
+.bis-dialog__title {
+  margin: 0 32px 8px 0;
+}
+.bis-dialog__text {
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+.bis-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bis-dialog__input[aria-invalid="true"] {
+  border-color: rgb(var(--error-text-color, 200 30 30));
+}
+.bis-dialog__error {
+  margin: 0;
+  font-size: 0.875em; /* em, not rem: the theme's root font-size is 10px */
+  color: rgb(var(--error-text-color, 200 30 30));
+}
+.bis-dialog__submit[aria-busy="true"] {
+  opacity: 0.7;
+  cursor: progress;
+}
+.bis-dialog__note {
+  margin: 2px 0 0;
+  font-size: 0.8125em;
+  opacity: 0.7;
+  text-align: center;
+}
+
+.bis-dialog__success {
+  text-align: center;
+}
+.bis-dialog__success .bis-dialog__title {
+  margin-inline-end: 0;
+}
+.bis-dialog__success-icon {
+  margin: 0 auto 10px;
+  color: #2e7d32;
+}
