@@ -1,4 +1,5 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{{ 'card-sale-price.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   #shopify-section-{{ section.id }} .sg-grid-section {
@@ -332,6 +333,10 @@
               {{ 'product-1' | placeholder_svg_tag: 'img-fit' }}
             {%- endif -%}
           </div>
+          {%- comment -%} Auto "-%" tag; skipped when the block already uses the manual red Discount badge. {%- endcomment -%}
+          {%- unless block.settings.badge_type == 'discount' -%}
+            {% render 'card-sale-price', product: product, part: 'tag' %}
+          {%- endunless -%}
           <span class="sg-card__favorite">
             <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.5-10-9c-1.7-3.1-.3-6.5 2.7-7.5C7 3.8 9.5 4.5 12 7c2.5-2.5 5-3.2 7.3-2.5 3 1 4.4 4.4 2.7 7.5-2.5 4.5-10 9-10 9z"/></svg>
           </span>
@@ -351,7 +356,7 @@
 
         <div class="sg-card__title-row">
           <p class="sg-card__title">{{ product.title | default: block.settings.fallback_title }}</p>
-          <p class="sg-card__price">{{ product.price | default: 19900 | money }}</p>
+          {% render 'card-sale-price', product: product, part: 'price', class_prefix: 'sg-card__price' %}
         </div>
 
         {%- if product != blank and product.metafields.custom.color_variants.value != blank -%}

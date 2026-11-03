@@ -1,0 +1,53 @@
+/* Homepage product cards: sale price + "-%" tag (snippets/card-sale-price.liquid) */
+
+.card-sale-price {
+  position: relative; /* keep the absolutely-positioned .visually-hidden labels inside the card (no 1px overflow) */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  line-height: 1.15;
+}
+
+/* Screen-reader labels: pin them to the start so the right-aligned flex column
+   doesn't push them past the card edge (caused a 1px horizontal scrollbar). */
+.card-sale-price .visually-hidden {
+  top: 0;
+  left: 0;
+}
+
+.card-sale-price--on-sale .card-sale-price__now {
+  color: #d1361f;
+}
+
+.card-sale-price__was {
+  font-size: 0.78em;
+  font-weight: 500;
+  color: #8a8a8a;
+  text-decoration-thickness: 1px;
+}
+
+.card-sale-tag {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 2;
+  padding: 4px 9px;
+  border-radius: 4px;
+  background-color: #d1361f;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 480px) {
+  .card-sale-tag {
+    left: 6px;
+    bottom: 6px;
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+}

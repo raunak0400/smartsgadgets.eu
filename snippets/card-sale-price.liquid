@@ -1,0 +1,55 @@
+{%- comment -%}
+  Homepage product-card price with sale display (HP3).
+
+  part: 'price' -> current price, plus the crossed-out compare-at price when on sale.
+  part: 'tag'   -> "-53%" discount tag (render inside a position:relative media box).
+
+  Uses the first available variant so the price, the old price and the % all
+  describe the same variant. The % is rounded DOWN so it never overstates the
+  saving. Nothing extra renders when there is no compare-at price.
+  Styles: assets/card-sale-price.css (each section loads it).
+
+  Parameters:
+  - product {Object} - the product (may be blank in the theme editor).
+  - part {String} - 'price' or 'tag'.
+  - class_prefix {String} - the section's own price class, e.g. 'sg-card__price'.
+
+  Usage:
+  {% render 'card-sale-price', product: product, part: 'tag' %}
+  {% render 'card-sale-price', product: product, part: 'price', class_prefix: 'sg-card__price' %}
+{%- endcomment -%}
+
+{%- liquid
+  assign on_sale = false
+  assign pct = 0
+  if product != blank
+    assign variant = product.selected_or_first_available_variant
+    assign price = variant.price
+    assign compare = variant.compare_at_price | default: 0
+    if compare > price
+      assign pct = compare | minus: price | times: 100 | divided_by: compare | floor
+      if pct >= 1
+        assign on_sale = true
+      endif
+    endif
+  else
+    assign price = 19900
+  endif
+-%}
+
+{%- if part == 'tag' -%}
+  {%- if on_sale -%}
+    <span class="card-sale-tag">-{{ pct }}%</span>
+  {%- endif -%}
+{%- else -%}
+  <p class="{{ class_prefix }} card-sale-price{% if on_sale %} card-sale-price--on-sale{% endif %}">
+    {%- if on_sale -%}
+      <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+      <span class="card-sale-price__now">{{ price | money }}</span>
+      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+      <s class="card-sale-price__was">{{ compare | money }}</s>
+    {%- else -%}
+      <span class="card-sale-price__now">{{ price | money }}</span>
+    {%- endif -%}
+  </p>
+{%- endif -%}
