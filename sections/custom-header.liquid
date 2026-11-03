@@ -188,6 +188,13 @@
     inset: calc((22px - 44px) / 2);
   }
 
+  /* The cart icon sits flush with the right edge on desktop: grow its 44px tap
+     area to the LEFT only, otherwise it pokes 11px past the viewport and the
+     whole page scrolls sideways. */
+  #shopify-section-{{ section.id }} a.sg-header__icon-btn:last-of-type::after {
+    inset: -11px 0 -11px -22px;
+  }
+
   #shopify-section-{{ section.id }} .sg-header__cart-count {
     position: absolute;
     top: -7px;
