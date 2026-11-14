@@ -98,6 +98,17 @@
       "added_to_cart": "Hinzugefügt",
       "awaiting_sale": "Dieses Produkt ist noch nicht verfügbar.",
       "backorder": "ist auf Lager und wird versandt, sobald es wieder verfügbar ist",
+      "top_block": {
+        "shipping_title": "Kostenloser Versand",
+        "shipping_text": "in NL & BE",
+        "returns_title": "60 Tage Rückgabe",
+        "returns_text": "Einfach zurücksenden",
+        "support_title": "Support auf Niederländisch",
+        "support_text": "Per E-Mail oder WhatsApp",
+        "trust_warranty": "2 Jahre Garantie",
+        "trust_partner": "Offizieller Partner",
+        "trust_verified": "WebwinkelKeur geprüft"
+      },
       "back_in_stock": {
         "button": "Benachrichtigen",
         "title": "Benachrichtigung, wenn wieder auf Lager",

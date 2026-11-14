@@ -99,6 +99,17 @@
       "added_to_cart": "Item toegevoegd aan uw winkelwagen.",
       "awaiting_sale": "Dit product kan nog niet worden gekocht.",
       "backorder": "is nabesteld en wordt verzonden zodra het weer op voorraad is.",
+      "top_block": {
+        "shipping_title": "Gratis verzending",
+        "shipping_text": "in NL & BE",
+        "returns_title": "60 dagen retour",
+        "returns_text": "Eenvoudig retourneren",
+        "support_title": "Nederlandse support",
+        "support_text": "Via mail of WhatsApp",
+        "trust_warranty": "2 jaar garantie",
+        "trust_partner": "Officiële partner",
+        "trust_verified": "WebwinkelKeur geverifieerd"
+      },
       "back_in_stock": {
         "button": "Houd me op de hoogte",
         "title": "Laat het me weten als het weer op voorraad is",

@@ -99,6 +99,17 @@
       "added_to_cart": "Item added to your cart.",
       "awaiting_sale": "This product is not for sale yet.",
       "backorder": "is backordered and will ship as soon as it is back in stock.",
+      "top_block": {
+        "shipping_title": "Free shipping",
+        "shipping_text": "in NL & BE",
+        "returns_title": "60-day returns",
+        "returns_text": "Easy returns",
+        "support_title": "Support in Dutch",
+        "support_text": "By email or WhatsApp",
+        "trust_warranty": "2-year warranty",
+        "trust_partner": "Official partner",
+        "trust_verified": "WebwinkelKeur verified"
+      },
       "back_in_stock": {
         "button": "Notify me",
         "title": "Get notified when it's back in stock",
