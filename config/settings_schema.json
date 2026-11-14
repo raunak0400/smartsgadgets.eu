@@ -2894,7 +2894,7 @@
         "type": "checkbox",
         "id": "delivery_estimate_enabled",
         "label": "Show estimated delivery date",
-        "default": true
+        "default": false
       },
       {
         "type": "range",
