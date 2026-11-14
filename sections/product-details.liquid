@@ -217,7 +217,7 @@
                               </div>
                             {%- endif -%}
                           {%- else -%}
-                            {{ block.settings[text_id] }}
+                            {% render 'feature-list', html: block.settings[text_id] %}
                             {{ block.settings[page_id].content }}
                           {%- endif -%}
                         </div>
@@ -282,7 +282,7 @@
                         {%- endif -%}
                       {%- else -%}
                         <div class="rte">
-                          {{ block.settings[text_id] }}
+                          {% render 'feature-list', html: block.settings[text_id] %}
                           {{ block.settings[page_id].content }}
                         </div>
                       {%- endif -%}
@@ -308,77 +308,6 @@
                     );
 
                     if (!buttons.length || !panels.length) return;
-
-                    const formatKeyFeatures = () => {
-                      const keyFeatureButton = buttons.find((button) => {
-                        const label = button.textContent.trim().toLowerCase();
-                        return label.includes('key features') ||
-                          label.includes('belangrijkste kenmerken');
-                      });
-
-                      if (!keyFeatureButton) return;
-
-                      const panelId = keyFeatureButton.getAttribute('aria-controls');
-                      const panel = tabs.querySelector(
-                        `[role="tabpanel"][id="${CSS.escape(panelId)}"]`
-                      );
-
-                      if (!panel || panel.dataset.featuresFormatted === 'true') return;
-
-                      const content = panel.querySelector('.rte');
-                      if (!content) return;
-
-                      const rawText = content.textContent
-                        .replace(/\u00a0/g, ' ')
-                        .trim();
-
-                      if (!rawText) return;
-
-                      let items = rawText
-                        .split(/\s*[•●▪]\s*/)
-                        .map((item) => item.trim())
-                        .filter(Boolean);
-
-                      if (items.length < 2) {
-                        items = rawText
-                          .split(/\r?\n+/)
-                          .map((item) => item.trim())
-                          .filter(Boolean);
-                      }
-
-                      if (items.length < 2) return;
-
-                      const list = document.createElement('ul');
-                      list.className = 'product-key-features';
-
-                      items.forEach((item) => {
-                        const listItem = document.createElement('li');
-                        const colonIndex = item.indexOf(':');
-
-                        if (colonIndex > 0) {
-                          const keyword = item.slice(0, colonIndex + 1).trim();
-                          const description = item.slice(colonIndex + 1).trim();
-                          const strong = document.createElement('strong');
-                          strong.textContent = keyword;
-                          listItem.appendChild(strong);
-
-                          if (description) {
-                            listItem.appendChild(
-                              document.createTextNode(` ${description}`)
-                            );
-                          }
-                        } else {
-                          listItem.textContent = item;
-                        }
-
-                        list.appendChild(listItem);
-                      });
-
-                      content.replaceChildren(list);
-                      panel.dataset.featuresFormatted = 'true';
-                    };
-
-                    formatKeyFeatures();
 
                     const relocateJudgeMe = () => {
                       const target = tabs.querySelector('[data-judgeme-target]');
