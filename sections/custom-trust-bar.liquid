@@ -1,3 +1,8 @@
+{%- liquid
+  # One row on desktop and tablet: as many columns as there are badges (6 at most), so six badges no longer wrap 4 + 2.
+  assign trust_columns = section.blocks.size | at_most: 6 | at_least: 1
+-%}
+
 {%- style -%}
   #shopify-section-{{ section.id }} .sg-trust-bar {
     background-color: #001122;
@@ -8,7 +13,7 @@
     width: min(1280px, 100%);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat({{ trust_columns }}, minmax(0, 1fr));
     gap: 16px;
     list-style: none;
     padding: 0;
@@ -35,18 +40,47 @@
     line-height: 1.2;
   }
 
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 989px) {
     #shopify-section-{{ section.id }} .sg-trust-bar {
-      padding: 24px 20px;
+      padding: 26px 24px;
     }
 
     #shopify-section-{{ section.id }} .sg-trust-bar__list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      row-gap: 24px;
+      gap: 12px;
     }
 
     #shopify-section-{{ section.id }} .sg-trust-bar__item span {
-      font-size: 12px;
+      font-size: 13px;
+    }
+  }
+
+  /* Phones: six badges cannot share one row, so they sit in two even rows of three. */
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .sg-trust-bar {
+      padding: 24px 8px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-trust-bar__list {
+      grid-template-columns: repeat({{ trust_columns | at_most: 3 }}, minmax(0, 1fr));
+      gap: 22px 6px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-trust-bar__item {
+      gap: 8px;
+    }
+
+    #shopify-section-{{ section.id }} .sg-trust-bar__item span {
+      font-size: 11px;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  /* Narrow phones (360 px and below): two columns, so the longest label still fits. */
+  @media screen and (max-width: 379px) {
+    #shopify-section-{{ section.id }} .sg-trust-bar__list {
+      grid-template-columns: repeat({{ trust_columns | at_most: 2 }}, minmax(0, 1fr));
     }
   }
 {%- endstyle -%}
