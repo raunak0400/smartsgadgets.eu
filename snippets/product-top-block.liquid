@@ -1,0 +1,53 @@
+{%- comment -%}
+  PD1: the top block of the product page. Three icon benefits, the delivery line and a trust row, so the answers a
+  buyer looks for ("when does it arrive", "can I send it back", "can I trust this shop") are visible without scrolling.
+
+  Usage (product template, "Custom liquid" block placed right under the variant picker):
+    {% render 'product-top-block' %}
+
+  - The benefit and trust texts are theme locale keys (Edit default theme content > Products > Product > Top block).
+  - The delivery line is snippets/delivery-estimate.liquid and follows Theme settings > Delivery estimate.
+  - Styles: assets/product-top-block.css.
+{%- endcomment -%}
+
+{%- # theme-check-disable OrphanedSnippet -%}
+{%- # Rendered from the product template's Custom liquid block (templates/product.json), which theme-check cannot see. -%}
+
+{{ 'product-top-block.css' | asset_url | stylesheet_tag }}
+
+<div class="pd1">
+  <ul class="pd1__benefits" role="list">
+    <li class="pd1__benefit">
+      <svg class="pd1__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+      <span class="pd1__benefit-title">{{ 'products.product.top_block.shipping_title' | t }}</span>
+      <span class="pd1__benefit-text">{{ 'products.product.top_block.shipping_text' | t }}</span>
+    </li>
+    <li class="pd1__benefit">
+      <svg class="pd1__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+      <span class="pd1__benefit-title">{{ 'products.product.top_block.returns_title' | t }}</span>
+      <span class="pd1__benefit-text">{{ 'products.product.top_block.returns_text' | t }}</span>
+    </li>
+    <li class="pd1__benefit">
+      <svg class="pd1__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 0 1-3 2h-3"/></svg>
+      <span class="pd1__benefit-title">{{ 'products.product.top_block.support_title' | t }}</span>
+      <span class="pd1__benefit-text">{{ 'products.product.top_block.support_text' | t }}</span>
+    </li>
+  </ul>
+
+  {% render 'delivery-estimate', context: 'product' %}
+
+  <ul class="pd1__trust" role="list">
+    <li>
+      <svg class="pd1__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3 5 6v5.5c0 4.2 2.9 7.6 7 9.5 4.1-1.9 7-5.3 7-9.5V6z"/><path d="m9 12 2 2 4-4"/></svg>
+      <span>{{ 'products.product.top_block.trust_warranty' | t }}</span>
+    </li>
+    <li>
+      <svg class="pd1__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.2 2.5 2.5 4.5-5"/></svg>
+      <span>{{ 'products.product.top_block.trust_partner' | t }}</span>
+    </li>
+    <li>
+      <svg class="pd1__trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>
+      <span>{{ 'products.product.top_block.trust_verified' | t }}</span>
+    </li>
+  </ul>
+</div>
