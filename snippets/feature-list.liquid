@@ -1,0 +1,142 @@
+{%- comment -%}
+  PD9: renders the text of a product tab (Belangrijkste Kenmerken, Waarom Kiezen, Pakket Inhoud) as one clean bullet list.
+
+  The tabs are rich text metafields, and the merchant types them in different ways: a real bullet list, several
+  paragraphs, one paragraph with line breaks, or lines that start with a typed "•" / "●". Only the first one is a list in
+  the HTML, so the others showed up as a wall of text. This snippet turns the other shapes into the same <ul>, on the
+  server, so there is no flash of unformatted text and it also works without JavaScript.
+
+  Usage (sections/product-details.liquid, tab content):
+    {% render 'feature-list', html: block.settings.tab_1_text %}
+
+  It leaves the text alone when it is not a list:
+  - not a rich text metafield (custom tab text),
+  - a real list with 2 or more items already (an intro line above it is fine),
+  - an ordered list, heading, table, image or other block markup,
+  - fewer than 2 items (one prose paragraph) or an item longer than 300 characters (prose, not a bullet).
+
+  Details:
+  - A typed bullet at the start of a line (•, ● or ▪) is removed, because the list adds its own.
+  - When lines carry typed bullets, a line without one is the wrapped end of the item above and is joined to it.
+  - Items without bold text that all start with "Keyword: ..." get the keyword in bold, as the old script did. When only
+    some of them do, nothing is bolded, so the list stays uniform.
+  - Styles: .product-key-features in sections/product-details.liquid.
+{%- endcomment -%}
+
+{%- liquid
+  assign source = html | strip
+  assign result = source
+
+  if source contains 'metafield-rich_text_field'
+    assign empty_blocks = '<p></p>,<h1></h1>,<h2></h2>,<h3></h3>,<h4></h4>,<h5></h5>,<h6></h6>' | split: ','
+    assign body = source | remove: '<div class="metafield-rich_text_field">' | remove_last: '</div>'
+    for empty_block in empty_blocks
+      assign body = body | remove: empty_block
+    endfor
+
+    assign li_count = body | split: '<li>' | size | minus: 1
+    assign convert = true
+    if li_count >= 2 or body contains '<ol' or body contains '<h' or body contains '<table' or body contains '<img' or body contains '<div' or body contains '<p '
+      assign convert = false
+    endif
+
+    if convert
+      assign line_end = '[[feature-line-end]]'
+      assign item_start = '[[feature-item-start]]'
+      assign flat = body | replace: '</p>', line_end | replace: '</li>', line_end | replace: '<br />', line_end | replace: '<br/>', line_end | replace: '<br>', line_end
+      assign flat = flat | remove: '<ul>' | remove: '</ul>' | remove: '<li>' | remove: '<p>'
+
+      assign typed_bullets = false
+      if flat contains '•' or flat contains '●' or flat contains '▪'
+        assign typed_bullets = true
+        comment
+          A bullet typed in the middle of a line ("... 24-bit • Frequentiebereik ...") starts a new item as well.
+        endcomment
+        assign flat = flat | replace: ' • ', '[[feature-line-end]]• ' | replace: ' ● ', '[[feature-line-end]]● ' | replace: ' ▪ ', '[[feature-line-end]]▪ '
+      endif
+
+      comment
+        Pass 1: cut the text into lines, drop typed bullets and join wrapped lines.
+      endcomment
+      assign merged = ''
+      assign lines = flat | split: line_end
+      for line in lines
+        assign text = line | strip
+        assign plain = text | strip_html | strip
+        if plain == blank
+          continue
+        endif
+
+        assign new_item = true
+        if typed_bullets
+          assign first_char = plain | slice: 0, 1
+          if '•●▪' contains first_char
+            assign text = text | replace_first: first_char, '' | strip
+          elsif merged != blank
+            assign new_item = false
+          endif
+        endif
+
+        if new_item
+          assign merged = merged | append: item_start | append: text
+        else
+          assign merged = merged | append: ' ' | append: text
+        endif
+      endfor
+
+      comment
+        Pass 2: one <li> per item. Two versions are built, one as it is and one with the "Keyword:" of every item in
+        bold. The bold version is only used when all items that are not bold yet have a keyword, so a list never ends
+        up with a few bold labels between plain items.
+      endcomment
+      assign item_count = 0
+      assign without_label = 0
+      assign too_long = false
+      assign plain_items = ''
+      assign labelled_items = ''
+      assign items = merged | split: item_start
+      for item in items
+        assign item = item | strip
+        if item == blank
+          continue
+        endif
+
+        assign item_count = item_count | plus: 1
+        assign plain_size = item | strip_html | size
+        if plain_size > 300
+          assign too_long = true
+        endif
+
+        assign labelled = item
+        unless item contains '<strong' or item contains '<b>'
+          assign keyword = item | split: ': ' | first
+          assign has_label = false
+          if keyword != item and keyword.size <= 50
+            unless keyword contains '<'
+              assign has_label = true
+            endunless
+          endif
+
+          if has_label
+            assign rest = item | remove_first: keyword | remove_first: ': '
+            assign labelled = '<strong>' | append: keyword | append: ':</strong> ' | append: rest
+          else
+            assign without_label = without_label | plus: 1
+          endif
+        endunless
+
+        assign plain_items = plain_items | append: '<li>' | append: item | append: '</li>'
+        assign labelled_items = labelled_items | append: '<li>' | append: labelled | append: '</li>'
+      endfor
+
+      if item_count >= 2 and too_long == false
+        assign list_items = plain_items
+        if without_label == 0
+          assign list_items = labelled_items
+        endif
+        assign result = '<div class="metafield-rich_text_field"><ul class="product-key-features">' | append: list_items | append: '</ul></div>'
+      endif
+    endif
+  endif
+-%}
+{{ result }}
