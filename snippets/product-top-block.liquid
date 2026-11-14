@@ -1,3 +1,4 @@
+{%- comment -%} Rendered from the product template's Custom liquid block (templates/product.json); theme-check cannot see that and lists it as orphaned. {%- endcomment -%}
 {%- comment -%}
   PD1: the top block of the product page. Three icon benefits, the delivery line and a trust row, so the answers a
   buyer looks for ("when does it arrive", "can I send it back", "can I trust this shop") are visible without scrolling.
@@ -9,9 +10,6 @@
   - The delivery line is snippets/delivery-estimate.liquid and follows Theme settings > Delivery estimate.
   - Styles: assets/product-top-block.css.
 {%- endcomment -%}
-
-{%- # theme-check-disable OrphanedSnippet -%}
-{%- # Rendered from the product template's Custom liquid block (templates/product.json), which theme-check cannot see. -%}
 
 {{ 'product-top-block.css' | asset_url | stylesheet_tag }}
 
