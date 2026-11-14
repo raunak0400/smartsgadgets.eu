@@ -112,10 +112,10 @@
             "size_chart_page": ""
           }
         },
-        "delivery_estimate": {
+        "pd1_top_block": {
           "type": "custom-liquid",
           "settings": {
-            "custom_liquid": "{% render 'delivery-estimate', context: 'product' %}"
+            "custom_liquid": "{% render 'product-top-block' %}"
           }
         },
         "divider-1": {
@@ -210,6 +210,7 @@
         },
         "custom_liquid_Hm6CkY": {
           "type": "custom-liquid",
+          "disabled": true,
           "settings": {
             "custom_liquid": "<section class=\"rspin_8kv7\" style=\"--font-size: {{ font_size | default: \"13px\" }}; --interval-ms: {{ animation_speed | default: \"2000\" }}; margin-top: {{ top_margin | default: \"0px\" }}; margin-bottom: {{ bottom_margin | default: \"0px\" }};\">\n  <style>\n    .rspin_8kv7 { \n      font-size: var(--font-size); \n      color: {{ text_color | default: \"#2b2b2b\" }};\n      font-family: inherit;\n      letter-spacing: 0.2px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-viewport {\n      position: relative;\n      overflow: hidden;\n      height: 22px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-line {\n      display: grid;\n      grid-auto-rows: auto;\n      transition: transform 0.5s ease-in-out;\n      will-change: transform;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-item {\n      display: flex;\n      align-items: center;\n      gap: 6px;\n      white-space: nowrap;\n      font-weight: 500;\n      line-height: 22px;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-icon {\n      width: 15px;\n      height: 15px;\n      display: inline-flex;\n      align-items: center;\n      justify-content: center;\n      color: {{ highlight_color | default: \"#ff6600\" }};\n      flex-shrink: 0;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-icon svg {\n      width: 15px;\n      height: 15px;\n      display: block;\n    }\n\n    .rspin_8kv7 .rspin_8kv7-strong { \n      font-weight: 700; \n      color: {{ highlight_color | default: \"#000000\" }}; \n    }\n  </style>\n\n  <div class=\"rspin_8kv7-viewport\" id=\"rspin_8kv7_view\">\n    <div class=\"rspin_8kv7-line\" id=\"rspin_8kv7_line\">\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M7 10V8a5 5 0 0 1 10 0v2\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><rect x=\"5\" y=\"10\" width=\"14\" height=\"10\" rx=\"2\" stroke=\"currentColor\" stroke-width=\"2\"/></svg>\n        </span>\n        Veilig <span class=\"rspin_8kv7-strong\">& Versleuteld</span> Afrekenen\n      </div>\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M20 6L9 17l-5-5\" stroke=\"currentColor\" stroke-width=\"2.3\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n        </span>\n        Officiële Partner <span class=\"rspin_8kv7-strong\">& Kwaliteit</span> Gegarandeerd\n      </div>\n\n      <div class=\"rspin_8kv7-item\">\n        <span class=\"rspin_8kv7-icon\">\n          <svg viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 7h11a5 5 0 1 1 0 10H8\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/><path d=\"M7 4L4 7l3 3\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n        </span>\n        60 Dagen <span class=\"rspin_8kv7-strong\">Eenvoudig</span> Retourbeleid\n      </div>\n\n    </div>\n  </div>\n\n  <script>\n    (function(){\n      var view = document.getElementById('rspin_8kv7_view');\n      var line = document.getElementById('rspin_8kv7_line');\n      if(!view || !line) return;\n      var items = line.children;\n      if(!items.length) return;\n\n      var root = view.closest('.rspin_8kv7') || document.documentElement;\n\n      function cssVarInt(el, name, fallback){\n        var v = getComputedStyle(el).getPropertyValue(name).trim();\n        var n = parseInt(v, 10);\n        return isNaN(n) ? fallback : n;\n      }\n\n      var idx = 0;\n      var intervalMs = cssVarInt(root, '--interval-ms', 2500);\n      var rowH = items[0].offsetHeight || 22;\n\n      function setHeight(){\n        rowH = items[0].offsetHeight || rowH;\n        view.style.height = rowH + 'px';\n        line.style.transform = 'translateY(' + (-idx * rowH) + 'px)';\n      }\n\n      setHeight();\n      window.addEventListener('load', setHeight);\n\n      var resizeTO;\n      window.addEventListener('resize', function(){\n        clearTimeout(resizeTO);\n        resizeTO = setTimeout(setHeight, 200);\n      });\n\n      setInterval(function(){\n        idx = (idx + 1) % items.length;\n        line.style.transform = 'translateY(' + (-idx * rowH) + 'px)';\n      }, intervalMs);\n    })();\n  </script>\n</section>"
           }
@@ -273,7 +274,7 @@
         "price",
         "inventory-status",
         "variant-picker",
-        "delivery_estimate",
+        "pd1_top_block",
         "divider-1",
         "active-offers",
         "custom_liquid_CVnnRe",
